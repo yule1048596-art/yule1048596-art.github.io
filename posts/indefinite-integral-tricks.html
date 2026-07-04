@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="从分部积分的迭代形式到阿贝尔换元，整理几条不定积分笔记里最容易复用的技巧。">
+    <meta name="author" content="Yule">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="不定积分里的几个小技巧">
+    <meta property="og:description" content="从分部积分的迭代形式、切比雪夫定理到阿贝尔换元，整理几条可复用的不定积分笔记。">
+    <meta property="og:url" content="https://yule1048596-art.github.io/posts/indefinite-integral-tricks.html">
+    <meta property="og:image" content="https://yule1048596-art.github.io/assets/cover.png">
+    <title>不定积分里的几个小技巧 | Yule</title>
+    <link rel="canonical" href="https://yule1048596-art.github.io/posts/indefinite-integral-tricks.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"]]
+        },
+        svg: {
+          fontCache: "global"
+        }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#article">跳到正文</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    <div class="ambient-stage" aria-hidden="true">
+      <span class="motion-grid"></span>
+      <span class="motion-ribbon ribbon-a"></span>
+      <span class="motion-ribbon ribbon-b"></span>
+      <span class="motion-rail rail-a"></span>
+      <span class="motion-rail rail-b"></span>
+      <span class="grain-field"></span>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="回到首页">
+        <span class="brand-mark">Y</span>
+        <span>Yule</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="../index.html#posts">文章</a>
+        <a href="../index.html#topics">主题</a>
+        <a href="../index.html#archive">归档</a>
+        <a href="../index.html#about">关于</a>
+        <a href="https://github.com/yule1048596-art" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="article-main math-note" id="article">
+      <p class="article-kicker" data-reveal><time datetime="2026-07-04">2026-07-04</time><span>数学</span><span>8 min</span></p>
+      <h1 class="kinetic-title" data-reveal>不定积分里的几个小技巧</h1>
+      <p class="article-summary" data-reveal>
+        从本地 LaTeX 笔记里摘出几条可独立使用的技巧：分部积分的迭代写法、切比雪夫定理、阿贝尔换元，以及一个像洛必达的降阶公式。
+      </p>
+
+      <article class="article-body" data-reveal>
+        <p>
+          这篇不是完整的不定积分体系，而是一组适合随手查的笔记。它们共同的用处是：在看到复杂结构时，先判断能不能换成更熟悉的积分，而不是一上来硬算。
+        </p>
+
+        <h2>分部积分的迭代写法</h2>
+        <p>
+          记 \(g^{(-1)}(x)=\int g(t)\,dt\)，再记 \(g^{(-2)}(x)\) 为继续积分一次。重复使用分部积分，可以把一串计算压成一个式子：
+        </p>
+        <div class="math-card">
+          \[
+          \int f(x)g(x)\,dx=
+          \sum_{k=0}^{n}(-1)^k f^{(k)}(x)g^{(-k-1)}(x)
+          +(-1)^{n+1}\int f^{(n+1)}(x)g^{(-n-1)}(x)\,dx.
+          \]
+        </div>
+        <p>
+          这个写法适合处理“一个函数反复求导会变简单，另一个函数反复积分仍然可控”的结构。它不是为了炫公式，而是提醒自己提前看清终止点。
+        </p>
+
+        <h2>切比雪夫定理</h2>
+        <p>
+          对二项微分式
+        </p>
+        <div class="math-card">
+          \[
+          \int x^{\alpha}(a+bx^{\beta})^{\gamma}\,dx
+          \]
+        </div>
+        <p>
+          可以先检查三个条件。满足其中之一，通常能通过代换化为初等积分：
+        </p>
+        <ol>
+          <li>当 \(\gamma\) 为整数时，取 \(x=u^N\)，其中 \(N\) 是 \(\alpha,\beta\) 的公分母。</li>
+          <li>当 \(\frac{\alpha+1}{\beta}\) 为整数时，取 \(a+bx^\beta=u^N\)，其中 \(N\) 是 \(\gamma\) 的分母。</li>
+          <li>当 \(\frac{\alpha+1}{\beta}+\gamma\) 为整数时，取 \(\frac{a+bx^\beta}{x^\beta}=u^N\)，其中 \(N\) 是 \(\gamma\) 的分母。</li>
+        </ol>
+        <p>
+          这条定理的价值在于预判：如果三个条件都不满足，就不要把时间耗在盲目的初等变形里。
+        </p>
+
+        <h2>阿贝尔换元</h2>
+        <p>
+          对形如
+        </p>
+        <div class="math-card">
+          \[
+          \int \frac{dx}{(ax^2+bx+c)^{\frac{2m+1}{2}}}
+          \]
+        </div>
+        <p>
+          的积分，可以记 \(Y=ax^2+bx+c\)，再令
+        </p>
+        <div class="math-card">
+          \[
+          t=(\sqrt{Y})'=\frac{ax+\frac{b}{2}}{\sqrt{ax^2+bx+c}}.
+          \]
+        </div>
+        <p>
+          由 \(4(a-t^2)Y=4ac-b^2\)，以及
+        </p>
+        <div class="math-card">
+          \[
+          \frac{dx}{\sqrt{Y}}=\frac{dt}{a-t^2},
+          \]
+        </div>
+        <p>
+          可以把原积分化成
+        </p>
+        <div class="math-card">
+          \[
+          \int \frac{dx}{Y^m\sqrt{Y}}
+          =
+          \left(\frac{4}{4ac-b^2}\right)^m
+          \int (a-t^2)^{m-1}\,dt.
+          \]
+        </div>
+        <p>
+          特别地，当指数是 \(3/2\) 时，可以直接得到：
+        </p>
+        <div class="math-card">
+          \[
+          \int \frac{dx}{(ax^2+bx+c)^{3/2}}
+          =
+          \frac{2}{4ac-b^2}
+          \frac{2ax+b}{\sqrt{ax^2+bx+c}}+C.
+          \]
+        </div>
+
+        <h2>不定积分里的类洛必达</h2>
+        <p>
+          笔记里把下面这个变形称作“不定积分的洛必达”。它的思路是把 \(g^2\) 的分母结构降到 \(g'\) 上，再观察剩余项是否更简单：
+        </p>
+        <div class="math-card">
+          \[
+          \int \frac{f}{g^2}\,dx
+          =
+          \int \frac{f}{g'}\,d\left(-\frac{1}{g}\right)
+          =
+          -\frac{f}{gg'}
+          +
+          \int
+          \frac{\frac{f'g'-fg''}{g}}{(g')^2}\,dx.
+          \]
+        </div>
+        <p>
+          它不保证一步结束，但在 \(g'\) 比 \(g\) 更贴近题目结构时，经常能让剩余积分降阶。
+        </p>
+
+        <h2>预判分部</h2>
+        <p>
+          有时分部积分前先在微分里凑一个常数，会让后面的导数恰好约掉。比如原笔记里这个结构：
+        </p>
+        <div class="math-card">
+          \[
+          \int \ln(\sqrt{1-x}-\sqrt{x})\,dx
+          =
+          \int \ln(\sqrt{1-x}-\sqrt{x})\,d\left(x-\frac12\right).
+          \]
+        </div>
+        <p>
+          分部后得到
+        </p>
+        <div class="math-card">
+          \[
+          \left(x-\frac12\right)\ln(\sqrt{1-x}-\sqrt{x})
+          -
+          \int \left(x-\frac12\right)d\ln(\sqrt{1-x}-\sqrt{x}).
+          \]
+        </div>
+        <p>
+          这里提前凑出的 \(x-\frac12\)，正是为了吃掉后续对数求导时出现的分母。这个小动作很朴素，但在根式、对数、反三角函数混在一起时很有用。
+        </p>
+
+        <div class="article-callout">
+          这次只摘出一组短技巧。原笔记后面还有 Mobius 换元、双元法、积木法等内容，更适合拆成单独专题慢慢整理。
+        </div>
+      </article>
+
+      <a class="back-link" href="../index.html#posts" data-reveal>返回文章列表</a>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>

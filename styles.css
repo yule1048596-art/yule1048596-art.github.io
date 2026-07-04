@@ -1164,6 +1164,38 @@ h3 {
   text-underline-offset: 3px;
 }
 
+.article-body ol,
+.article-body ul {
+  display: grid;
+  gap: 10px;
+  padding-left: 1.3rem;
+}
+
+.math-note .article-summary {
+  max-width: 780px;
+}
+
+.math-card {
+  margin: 24px 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 8px 18px;
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  box-shadow: var(--soft-shadow);
+}
+
+.article-body mjx-container[display="true"] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 6px 0;
+}
+
+.math-card mjx-container[display="true"] {
+  margin: 0.55em 0 !important;
+}
+
 .article-callout {
   position: relative;
   margin: 30px 0;
