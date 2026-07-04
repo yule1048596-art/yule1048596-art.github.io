@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="为什么 GitHub Pages 适合作为个人博客的第一站。">
+    <meta name="author" content="Yule">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="为什么从 GitHub Pages 开始个人博客">
+    <meta property="og:description" content="不用服务器、不用复杂运维，从一个仓库开始，让写作和发布变成同一件事。">
+    <meta property="og:url" content="https://yule1048596-art.github.io/posts/github-pages.html">
+    <meta property="og:image" content="https://yule1048596-art.github.io/assets/cover.png">
+    <title>为什么从 GitHub Pages 开始个人博客 | Yule</title>
+    <link rel="canonical" href="https://yule1048596-art.github.io/posts/github-pages.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="回到首页">
+        <span class="brand-mark">Y</span>
+        <span>Yule</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="../index.html#posts">文章</a>
+        <a href="../index.html#topics">主题</a>
+        <a href="../index.html#archive">归档</a>
+        <a href="../index.html#about">关于</a>
+        <a href="https://github.com/yule1048596-art" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="article-main">
+      <p class="article-kicker">2026-07-04 · 建站 · 4 min</p>
+      <h1>为什么从 GitHub Pages 开始个人博客</h1>
+      <p class="article-summary">
+        个人博客最难的部分往往不是技术，而是开始。GitHub Pages 把部署压到很轻：维护一个仓库，剩下的交给 GitHub。
+      </p>
+
+      <article class="article-body">
+        <p>
+          我选择先从 GitHub Pages 开始，是因为它让博客的成本足够低。没有服务器账单，没有数据库迁移，也不用先搭一整套内容管理系统。只要能写 HTML，博客就能上线。
+        </p>
+
+        <h2>它适合什么人</h2>
+        <p>
+          如果你希望拥有一个长期可维护的写作空间，又不想一开始就处理服务器、证书、备份和运行环境，静态博客就是一个很稳的起点。
+        </p>
+
+        <div class="article-callout">
+          当前博客采用纯静态结构：`index.html` 是首页，`posts/` 存放文章，`styles.css` 管理样式，`script.js` 负责搜索和筛选。
+        </div>
+
+        <h2>为什么不用复杂框架</h2>
+        <p>
+          一开始最重要的是降低维护摩擦。纯静态页面足够透明，每个文件都能直接打开、修改和发布。等文章数量变多，再升级到 Jekyll、Astro、Hugo 或 Eleventy 也不迟。
+        </p>
+
+        <h2>接下来怎么维护</h2>
+        <p>
+          新增文章时，在 `posts/` 目录复制一篇现有文章作为模板，再把首页文章列表、归档、RSS 和站点地图各加一条记录。这个流程虽然朴素，但可控。
+        </p>
+      </article>
+
+      <a class="back-link" href="../index.html#posts">返回文章列表</a>
+    </main>
+  </body>
+</html>
