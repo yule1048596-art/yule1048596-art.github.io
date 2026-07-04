@@ -17,6 +17,7 @@
   </head>
   <body>
     <a class="skip-link" href="#article">跳到正文</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
     <header class="site-header">
       <a class="brand" href="../index.html" aria-label="回到首页">
         <span class="brand-mark">Y</span>
@@ -32,13 +33,13 @@
     </header>
 
     <main class="article-main" id="article">
-      <p class="article-kicker">2026-07-04 · 写作 · 3 min</p>
-      <h1>我的第一篇博客</h1>
-      <p class="article-summary">
+      <p class="article-kicker" data-reveal>2026-07-04 · 写作 · 3 min</p>
+      <h1 data-reveal>我的第一篇博客</h1>
+      <p class="article-summary" data-reveal>
         写博客不是为了立刻展示一个完美的人设，而是给学习和思考留下可回看的轨迹。
       </p>
 
-      <article class="article-body">
+      <article class="article-body" data-reveal>
         <p>
           这是这个博客的第一篇记录。我希望它先保持简单：遇到问题、解决问题、写下过程。久而久之，这些小记录会变成自己的知识地图。
         </p>
@@ -62,7 +63,8 @@
         </ul>
       </article>
 
-      <a class="back-link" href="../index.html#posts">返回文章列表</a>
+      <a class="back-link" href="../index.html#posts" data-reveal>返回文章列表</a>
     </main>
+    <script src="../script.js"></script>
   </body>
 </html>

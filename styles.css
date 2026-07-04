@@ -16,6 +16,9 @@
   --shadow: 0 22px 70px rgba(30, 39, 34, 0.12);
   --soft-shadow: 0 12px 34px rgba(30, 39, 34, 0.08);
   --radius: 8px;
+  --motion-fast: 180ms;
+  --motion-medium: 520ms;
+  --motion-slow: 780ms;
 }
 
 * {
@@ -34,6 +37,19 @@ body {
   color: var(--ink);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
   line-height: 1.72;
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 80;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--warm), var(--gold));
+  transform: scaleX(0);
+  transform-origin: left;
+  will-change: transform;
 }
 
 a {
@@ -88,6 +104,7 @@ main {
   background: rgba(245, 241, 232, 0.82);
   backdrop-filter: blur(18px) saturate(1.08);
   -webkit-backdrop-filter: blur(18px) saturate(1.08);
+  animation: headerDrop var(--motion-medium) ease-out both;
 }
 
 .brand,
@@ -115,6 +132,11 @@ main {
   background: var(--ink);
   color: var(--surface);
   box-shadow: inset 0 -10px 16px rgba(255, 255, 255, 0.06);
+  transition: transform var(--motion-fast) ease;
+}
+
+.brand:hover .brand-mark {
+  transform: rotate(-4deg) translateY(-1px);
 }
 
 .site-nav {
@@ -205,6 +227,8 @@ h3 {
 }
 
 .button {
+  position: relative;
+  overflow: hidden;
   min-height: 46px;
   display: inline-flex;
   align-items: center;
@@ -213,6 +237,19 @@ h3 {
   padding: 10px 18px;
   border: 1px solid var(--line);
   font-weight: 850;
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.34) 48%, transparent 74%);
+  transform: translateX(-120%);
+}
+
+.button:hover::after {
+  transform: translateX(120%);
+  transition: transform 680ms ease;
 }
 
 .button.primary {
@@ -284,6 +321,7 @@ h3 {
   overflow: hidden;
   box-shadow: var(--shadow);
   background: var(--surface);
+  animation: mediaFloat 7s ease-in-out infinite;
 }
 
 .intro-media::before {
@@ -313,6 +351,7 @@ h3 {
   padding: 12px 14px;
   background: rgba(255, 253, 250, 0.88);
   box-shadow: 0 12px 30px rgba(22, 32, 28, 0.12);
+  animation: captionSettle var(--motion-slow) 260ms ease-out both;
 }
 
 .intro-media figcaption span {
@@ -341,6 +380,12 @@ h3 {
   min-height: 188px;
   padding: 26px;
   background: rgba(255, 253, 250, 0.78);
+  transition: transform var(--motion-fast) ease, background-color var(--motion-fast) ease;
+}
+
+.feature-strip article:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 253, 250, 0.94);
 }
 
 .feature-strip span {
@@ -460,13 +505,25 @@ h3 {
   border-radius: var(--radius);
   background: rgba(255, 253, 250, 0.84);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
-  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  transition: transform var(--motion-fast) ease, box-shadow var(--motion-fast) ease, border-color var(--motion-fast) ease;
 }
 
 .post-card:hover {
   transform: translateY(-3px);
   border-color: rgba(47, 111, 94, 0.3);
   box-shadow: 0 18px 42px rgba(30, 39, 34, 0.1);
+}
+
+.post-card h3 a {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 2px;
+  transition: background-size var(--motion-fast) ease;
+}
+
+.post-card:hover h3 a {
+  background-size: 100% 2px;
 }
 
 .post-card.featured {
@@ -557,6 +614,12 @@ h3 {
   height: 8px;
   border-radius: 50%;
   background: var(--warm);
+  transition: transform var(--motion-fast) ease, background-color var(--motion-fast) ease;
+}
+
+.timeline li:hover::before {
+  transform: scale(1.55);
+  background: var(--accent);
 }
 
 .timeline time {
@@ -675,6 +738,11 @@ h3 {
   color: var(--muted);
 }
 
+.article-callout:hover {
+  transform: translateY(-2px);
+  transition: transform var(--motion-fast) ease;
+}
+
 .back-link {
   display: inline-flex;
   margin-top: 42px;
@@ -686,6 +754,52 @@ h3 {
   min-height: calc(100vh - 172px);
   display: grid;
   align-content: center;
+}
+
+.animations-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity var(--motion-slow) ease,
+    transform var(--motion-slow) cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.animations-ready [data-reveal].is-in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes headerDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mediaFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes captionSettle {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 900px) {
@@ -810,5 +924,25 @@ h3 {
 
   .timeline li {
     gap: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .scroll-progress {
+    display: none;
+  }
+
+  .animations-ready [data-reveal] {
+    opacity: 1;
+    transform: none;
   }
 }

@@ -17,6 +17,7 @@
   </head>
   <body>
     <a class="skip-link" href="#article">跳到正文</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
     <header class="site-header">
       <a class="brand" href="../index.html" aria-label="回到首页">
         <span class="brand-mark">Y</span>
@@ -32,13 +33,13 @@
     </header>
 
     <main class="article-main" id="article">
-      <p class="article-kicker">2026-07-04 · 建站 · 4 min</p>
-      <h1>为什么从 GitHub Pages 开始个人博客</h1>
-      <p class="article-summary">
+      <p class="article-kicker" data-reveal>2026-07-04 · 建站 · 4 min</p>
+      <h1 data-reveal>为什么从 GitHub Pages 开始个人博客</h1>
+      <p class="article-summary" data-reveal>
         个人博客最难的部分往往不是技术，而是开始。GitHub Pages 把部署压到很轻：维护一个仓库，剩下的交给 GitHub。
       </p>
 
-      <article class="article-body">
+      <article class="article-body" data-reveal>
         <p>
           我选择先从 GitHub Pages 开始，是因为它让博客的成本足够低。没有服务器账单，没有数据库迁移，也不用先搭一整套内容管理系统。只要能写 HTML，博客就能上线。
         </p>
@@ -63,7 +64,8 @@
         </p>
       </article>
 
-      <a class="back-link" href="../index.html#posts">返回文章列表</a>
+      <a class="back-link" href="../index.html#posts" data-reveal>返回文章列表</a>
     </main>
+    <script src="../script.js"></script>
   </body>
 </html>
