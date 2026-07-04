@@ -5,7 +5,11 @@ const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
 const revealItems = Array.from(document.querySelectorAll("[data-reveal]"));
 const kineticTitles = Array.from(document.querySelectorAll(".kinetic-title"));
 const countItems = Array.from(document.querySelectorAll("[data-count]"));
+const spotlightItems = Array.from(
+  document.querySelectorAll(".topic-card, .post-card, .about-panel, .article-callout, .intro-stats div, .button, .filter-button"),
+);
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
 let activeFilter = "all";
 
@@ -151,17 +155,47 @@ function setupRevealAnimations() {
       }
     },
     {
-      rootMargin: "0px 0px -8% 0px",
-      threshold: 0.12,
+      rootMargin: "0px 0px 12% 0px",
+      threshold: 0.06,
     },
   );
 
   revealItems.forEach((item) => observer.observe(item));
 }
 
+function setupPointerMotion() {
+  if (reduceMotion || !finePointer || spotlightItems.length === 0) return;
+
+  for (const item of spotlightItems) {
+    item.addEventListener("pointermove", (event) => {
+      const rect = item.getBoundingClientRect();
+      const localX = event.clientX - rect.left;
+      const localY = event.clientY - rect.top;
+
+      item.style.setProperty("--spot-x", `${localX}px`);
+      item.style.setProperty("--spot-y", `${localY}px`);
+
+      if (item.classList.contains("button")) {
+        const pushX = ((localX / rect.width) - 0.5) * 8;
+        const pushY = ((localY / rect.height) - 0.5) * 6;
+        item.style.setProperty("--push-x", `${pushX.toFixed(2)}px`);
+        item.style.setProperty("--push-y", `${pushY.toFixed(2)}px`);
+      }
+    });
+
+    item.addEventListener("pointerleave", () => {
+      item.style.removeProperty("--spot-x");
+      item.style.removeProperty("--spot-y");
+      item.style.removeProperty("--push-x");
+      item.style.removeProperty("--push-y");
+    });
+  }
+}
+
 splitKineticTitles();
 setupProseMotion();
 setupCounters();
+setupPointerMotion();
 
 if (searchInput) {
   searchInput.addEventListener("input", updatePosts);
