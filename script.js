@@ -2,12 +2,9 @@ const searchInput = document.querySelector("[data-search]");
 const postCards = Array.from(document.querySelectorAll("[data-post-card]"));
 const emptyState = document.querySelector("[data-empty-state]");
 const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
-const progressBar = document.querySelector("[data-scroll-progress]");
 const revealItems = Array.from(document.querySelectorAll("[data-reveal]"));
 const kineticTitles = Array.from(document.querySelectorAll(".kinetic-title"));
 const countItems = Array.from(document.querySelectorAll("[data-count]"));
-const tiltItems = Array.from(document.querySelectorAll("[data-tilt]"));
-const magneticItems = Array.from(document.querySelectorAll("[data-magnetic]"));
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 let activeFilter = "all";
@@ -61,14 +58,6 @@ function setupProseMotion() {
   });
 }
 
-function updateScrollProgress() {
-  if (!progressBar || reduceMotion) return;
-
-  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = scrollable > 0 ? window.scrollY / scrollable : 0;
-  progressBar.style.transform = `scaleX(${Math.min(Math.max(progress, 0), 1)})`;
-}
-
 function updatePosts() {
   const query = searchInput ? normalize(searchInput.value) : "";
   let visibleCount = 0;
@@ -97,7 +86,7 @@ function animateCount(item) {
   const target = Number(item.dataset.count || "0");
   if (!Number.isFinite(target)) return;
 
-  const duration = target > 100 ? 1300 : 820;
+  const duration = target > 100 ? 1200 : 720;
   const start = performance.now();
 
   function tick(now) {
@@ -138,73 +127,13 @@ function setupCounters() {
   countItems.forEach((item) => observer.observe(item));
 }
 
-function setupCursorLines() {
-  if (reduceMotion || !window.matchMedia("(pointer: fine)").matches) return;
-
-  window.addEventListener(
-    "pointermove",
-    (event) => {
-      document.body.style.setProperty("--cursor-x", `${event.clientX}px`);
-      document.body.style.setProperty("--cursor-y", `${event.clientY}px`);
-      document.body.style.setProperty("--cursor-active", "1");
-    },
-    { passive: true },
-  );
-
-  window.addEventListener("pointerleave", () => {
-    document.body.style.setProperty("--cursor-active", "0");
-  });
-}
-
-function setupTilt() {
-  if (reduceMotion || !window.matchMedia("(pointer: fine)").matches) return;
-
-  for (const item of tiltItems) {
-    item.addEventListener("pointermove", (event) => {
-      const rect = item.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width;
-      const y = (event.clientY - rect.top) / rect.height;
-      item.style.setProperty("--tilt-y", `${(x - 0.5) * 6}deg`);
-      item.style.setProperty("--tilt-x", `${(0.5 - y) * 6}deg`);
-      item.style.setProperty("--spot-x", `${x * 100}%`);
-      item.style.setProperty("--spot-y", `${y * 100}%`);
-    });
-
-    item.addEventListener("pointerleave", () => {
-      item.style.setProperty("--tilt-y", "0deg");
-      item.style.setProperty("--tilt-x", "0deg");
-      item.style.setProperty("--spot-x", "50%");
-      item.style.setProperty("--spot-y", "50%");
-    });
-  }
-}
-
-function setupMagneticButtons() {
-  if (reduceMotion || !window.matchMedia("(pointer: fine)").matches) return;
-
-  for (const item of magneticItems) {
-    item.addEventListener("pointermove", (event) => {
-      const rect = item.getBoundingClientRect();
-      const x = event.clientX - (rect.left + rect.width / 2);
-      const y = event.clientY - (rect.top + rect.height / 2);
-      item.style.setProperty("--magnet-x", `${x * 0.12}px`);
-      item.style.setProperty("--magnet-y", `${y * 0.18}px`);
-    });
-
-    item.addEventListener("pointerleave", () => {
-      item.style.setProperty("--magnet-x", "0px");
-      item.style.setProperty("--magnet-y", "0px");
-    });
-  }
-}
-
 function setupRevealAnimations() {
   if (reduceMotion || revealItems.length === 0) return;
 
   document.body.classList.add("animations-ready");
 
   revealItems.forEach((item, index) => {
-    item.style.setProperty("--reveal-delay", `${Math.min(index * 55, 420)}ms`);
+    item.style.setProperty("--reveal-delay", `${Math.min(index * 55, 360)}ms`);
   });
 
   if (!("IntersectionObserver" in window)) {
@@ -222,7 +151,7 @@ function setupRevealAnimations() {
       }
     },
     {
-      rootMargin: "0px 0px -10% 0px",
+      rootMargin: "0px 0px -8% 0px",
       threshold: 0.12,
     },
   );
@@ -233,9 +162,6 @@ function setupRevealAnimations() {
 splitKineticTitles();
 setupProseMotion();
 setupCounters();
-setupCursorLines();
-setupTilt();
-setupMagneticButtons();
 
 if (searchInput) {
   searchInput.addEventListener("input", updatePosts);
@@ -257,6 +183,3 @@ for (const button of filterButtons) {
 }
 
 setupRevealAnimations();
-updateScrollProgress();
-window.addEventListener("scroll", updateScrollProgress, { passive: true });
-window.addEventListener("resize", updateScrollProgress);

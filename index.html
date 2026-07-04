@@ -45,77 +45,60 @@
     <main>
       <section class="intro" aria-labelledby="intro-title">
         <div class="intro-copy" data-reveal>
-          <p class="eyebrow">Yule's Blog · Notes in public</p>
+          <p class="eyebrow">Yule's Blog / Notes in public</p>
           <h1 class="kinetic-title" id="intro-title" data-kinetic-lines="把学习过程写清楚，|把长期问题留在明处。">把学习过程写清楚，把长期问题留在明处。</h1>
           <p class="intro-text">
             这里记录技术学习、项目复盘、阅读笔记和日常思考。文章不追求宏大结论，更在意把一个问题的来龙去脉说完整。
           </p>
           <div class="intro-actions" aria-label="快速入口">
-            <a class="button primary" href="#posts" data-magnetic><span>阅读文章</span></a>
-            <a class="button secondary" href="feed.xml" data-magnetic><span>订阅 RSS</span></a>
+            <a class="button primary" href="#posts"><span>阅读文章</span></a>
+            <a class="button secondary" href="feed.xml"><span>订阅 RSS</span></a>
           </div>
-          <dl class="intro-stats" aria-label="博客概览">
-            <div>
-              <dt data-count="3">0</dt>
-              <dd>已发布文章</dd>
-            </div>
-            <div>
-              <dt data-count="4">0</dt>
-              <dd>关注主题</dd>
-            </div>
-            <div>
-              <dt data-count="2026">0</dt>
-              <dd>开始记录</dd>
-            </div>
-          </dl>
         </div>
         <figure class="intro-media" data-reveal>
           <img src="assets/cover.png" alt="一张写作桌面的插画，包含笔记本、电脑和咖啡">
           <figcaption>
             <span>Now writing</span>
-            <strong>GitHub Pages · 静态博客</strong>
+            <strong>GitHub Pages / 静态博客</strong>
           </figcaption>
         </figure>
       </section>
 
-      <div class="motion-ticker" aria-hidden="true">
-        <div>
-          <span>Build in public</span>
-          <span>Write. Ship. Reflect.</span>
-          <span>GitHub Pages</span>
-          <span>Notes with motion</span>
-          <span>Long-term thinking</span>
-        </div>
-        <div>
-          <span>Build in public</span>
-          <span>Write. Ship. Reflect.</span>
-          <span>GitHub Pages</span>
-          <span>Notes with motion</span>
-          <span>Long-term thinking</span>
-        </div>
-      </div>
-
-      <section class="feature-strip" aria-label="博客主题">
-        <article data-reveal data-tilt>
-          <span>01</span>
-          <h2>技术笔记</h2>
+      <section class="topic-map" id="topics" aria-label="博客主题">
+        <article class="topic-card topic-card-wide" data-reveal>
+          <span class="topic-label">技术笔记</span>
+          <h2>把问题写到可复用</h2>
           <p>把问题、排查过程和最终方案写成以后能复用的记录。</p>
         </article>
-        <article data-reveal data-tilt>
-          <span>02</span>
-          <h2>项目复盘</h2>
+        <article class="topic-card" data-reveal>
+          <span class="topic-label">项目复盘</span>
+          <h2>保留选择的上下文</h2>
           <p>记录选择背后的原因，尤其是当时为什么这样做。</p>
         </article>
-        <article data-reveal data-tilt>
-          <span>03</span>
-          <h2>阅读思考</h2>
+        <article class="topic-card" data-reveal>
+          <span class="topic-label">阅读思考</span>
+          <h2>从材料里提取行动</h2>
           <p>从书、文章和课程里提取可验证、可行动的观点。</p>
         </article>
       </section>
 
+      <dl class="intro-stats overview-strip" aria-label="博客概览" data-reveal>
+        <div>
+          <dt data-count="3">0</dt>
+          <dd>已发布文章</dd>
+        </div>
+        <div>
+          <dt data-count="4">0</dt>
+          <dd>关注主题</dd>
+        </div>
+        <div>
+          <dt data-count="2026">0</dt>
+          <dd>开始记录</dd>
+        </div>
+      </dl>
+
       <section class="content-grid" id="posts" aria-labelledby="posts-title">
         <div class="section-heading" data-reveal>
-          <p class="eyebrow">Latest</p>
           <h2 id="posts-title">最近文章</h2>
           <p>先从小问题开始写。每篇文章只解决一件事，慢慢形成自己的知识地图。</p>
         </div>
@@ -125,7 +108,7 @@
             <span>搜索文章</span>
             <input type="search" data-search placeholder="标题、主题或标签">
           </label>
-          <div class="filter-row" id="topics" aria-label="按主题筛选">
+          <div class="filter-row" aria-label="按主题筛选">
             <button class="filter-button active" type="button" data-filter="all">全部</button>
             <button class="filter-button" type="button" data-filter="建站">建站</button>
             <button class="filter-button" type="button" data-filter="写作">写作</button>
@@ -134,9 +117,9 @@
         </div>
 
         <div class="post-list" data-post-list>
-          <article class="post-card featured" data-post-card data-title="为什么从 GitHub Pages 开始个人博客" data-tags="github pages 建站 博客 发布" data-reveal data-tilt>
+          <article class="post-card featured" data-post-card data-title="为什么从 GitHub Pages 开始个人博客" data-tags="github pages 建站 博客 发布" data-reveal>
             <div>
-              <p class="post-meta">2026-07-04 · 建站 · 4 min</p>
+              <p class="post-meta"><time datetime="2026-07-04">2026-07-04</time><span>建站</span><span>4 min</span></p>
               <h3><a href="posts/github-pages.html">为什么从 GitHub Pages 开始个人博客</a></h3>
               <p>不用服务器、不用复杂运维，从一个仓库开始，让写作和发布变成同一件事。</p>
             </div>
@@ -146,9 +129,9 @@
             </div>
           </article>
 
-          <article class="post-card" data-post-card data-title="我的第一篇博客" data-tags="随笔 开始 写作 记录" data-reveal data-tilt>
+          <article class="post-card" data-post-card data-title="我的第一篇博客" data-tags="随笔 开始 写作 记录" data-reveal>
             <div>
-              <p class="post-meta">2026-07-04 · 写作 · 3 min</p>
+              <p class="post-meta"><time datetime="2026-07-04">2026-07-04</time><span>写作</span><span>3 min</span></p>
               <h3><a href="posts/hello-world.html">我的第一篇博客</a></h3>
               <p>先不用追求宏大主题，写下一个真实的问题、一个刚学会的技巧，或者一段还没完全想明白的观察。</p>
             </div>
@@ -158,9 +141,9 @@
             </div>
           </article>
 
-          <article class="post-card" data-post-card data-title="接下来想写什么" data-tags="计划 清单 主题 写作" data-reveal data-tilt>
+          <article class="post-card" data-post-card data-title="接下来想写什么" data-tags="计划 清单 主题 写作" data-reveal>
             <div>
-              <p class="post-meta">2026-07-04 · 计划 · 3 min</p>
+              <p class="post-meta"><time datetime="2026-07-04">2026-07-04</time><span>计划</span><span>3 min</span></p>
               <h3><a href="posts/next-topics.html">接下来想写什么</a></h3>
               <p>列一个不会吓到自己的主题清单：每篇文章只解决一个问题，慢慢形成自己的知识地图。</p>
             </div>
@@ -176,7 +159,6 @@
 
       <section class="archive-section" id="archive" aria-labelledby="archive-title">
         <div data-reveal>
-          <p class="eyebrow">Archive</p>
           <h2 id="archive-title">归档</h2>
         </div>
         <ol class="timeline">
@@ -197,10 +179,9 @@
 
       <section class="about-section" id="about" aria-labelledby="about-title">
         <div data-reveal>
-          <p class="eyebrow">About</p>
           <h2 id="about-title">关于我</h2>
         </div>
-        <div class="about-copy about-panel" data-reveal data-tilt>
+        <div class="about-copy about-panel" data-reveal>
           <p>
             我是 Yule。这个博客会持续整理学习、建站、编程和个人项目中的经验。它更像一间公开的工作台：保留探索过程，也保留结论暂时不完美的地方。
           </p>
