@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="双元锁把 pq′-qp′ 作为核心对象，用一个符号统一 arctan、arctanh 和比值换元。">
+    <meta name="author" content="Yule">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="双元锁：用 Wronskian 看比值微分">
+    <meta property="og:description" content="双元锁把 pq′-qp′ 作为核心对象，用一个符号统一 arctan、arctanh 和比值换元。">
+    <meta property="og:url" content="https://yule1048596-art.github.io/posts/dual-element-lock.html">
+    <meta property="og:image" content="https://yule1048596-art.github.io/assets/cover.png">
+    <title>双元锁：用 Wronskian 看比值微分 | Yule</title>
+    <link rel="canonical" href="https://yule1048596-art.github.io/posts/dual-element-lock.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"]]
+        },
+        svg: {
+          fontCache: "global"
+        }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#article">跳到正文</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    <div class="ambient-stage" aria-hidden="true">
+      <span class="motion-grid"></span>
+      <span class="motion-ribbon ribbon-a"></span>
+      <span class="motion-ribbon ribbon-b"></span>
+      <span class="motion-rail rail-a"></span>
+      <span class="motion-rail rail-b"></span>
+      <span class="grain-field"></span>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="回到首页">
+        <span class="brand-mark">Y</span>
+        <span>Yule</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="../index.html#posts">文章</a>
+        <a href="../index.html#topics">主题</a>
+        <a href="../index.html#archive">归档</a>
+        <a href="../index.html#about">关于</a>
+        <a href="https://github.com/yule1048596-art" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="article-main math-note" id="article">
+      <p class="article-kicker" data-reveal><time datetime="2026-07-05">2026-07-05</time><span>数学</span><span>8 min</span></p>
+      <h1 class="kinetic-title" data-reveal>双元锁：用 Wronskian 看比值微分</h1>
+      <p class="article-summary" data-reveal>双元锁把 pq′-qp′ 作为核心对象，用一个符号统一 arctan、arctanh 和比值换元。</p>
+
+      <article class="article-body" data-reveal>
+        <p>双元锁是把双元法符号化的一种方式。它引入</p>
+        <div class="math-card">\[
+        W(p,q)=pq'-qp',
+        \qquad S(p,q)=p^2+q^2,
+        \qquad \overline S(p,q)=p^2-q^2.
+        \]</div>
+        <p>其中 \(W(p,q)\) 可以看作比值微分的分子。这个符号一旦建立，很多积分就能一眼看出原函数。</p>
+        <p>如果普通双元法是在寻找 \(p,q\) 的关系，那么双元锁是在检查“题目是否已经给出了这个关系的微分”。看到交叉项 \(pq'-qp'\) 时，可以先不展开，直接比较它和分母的组合。</p>
+        <h2>比值微分</h2>
+        <p>最基础的是</p>
+        <div class="math-card">\[
+        \frac{W(p,q)}{p^2}\,dx=d\frac{q}{p},
+        \qquad
+        \frac{W(p,q)}{q^2}\,dx=-d\frac{p}{q}.
+        \]</div>
+        <p>所以只要积分里出现 \(pq'-qp'\)，就应该优先尝试 \(q/p\) 或 \(p/q\)。</p>
+        <h2>圆型锁</h2>
+        <p>当分母是 \(S(p,q)=p^2+q^2\) 时，得到</p>
+        <div class="math-card">\[
+        \frac{W(p,q)}{S(p,q)}\,dx=d\arctan\frac{q}{p}.
+        \]</div>
+        <p>这就是第一积分公式的抽象版本。不必先知道 \(p^2+q^2\) 是不是常数，只要出现这个分母，就可以用 arctan 比值。</p>
+        <h2>双曲型锁</h2>
+        <p>当分母换成 \(\overline S(p,q)=p^2-q^2\)，则</p>
+        <div class="math-card">\[
+        \frac{W(p,q)}{\overline S(p,q)}\,dx=d\operatorname{arctanh}\frac{q}{p}.
+        \]</div>
+        <p>于是 arctan 和 arctanh 只是分母二次型不同。这个统一视角能减少记忆负担。</p>
+        <div class="article-callout">双元锁适合做最后一步识别。前面通过换元把题目变成 W/S 或 W/\(\overline S\)，后面就直接读出 arctan 或 arctanh。</div>
+    
+      </article>
+
+      <a class="back-link" href="../index.html#posts" data-reveal>返回文章列表</a>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>

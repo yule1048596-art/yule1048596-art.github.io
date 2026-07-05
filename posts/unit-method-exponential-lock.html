@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="单元法把指数、幂函数和分式结构锁进一个新变量，再通过对数求导控制微分。">
+    <meta name="author" content="Yule">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="单元法与指数锁">
+    <meta property="og:description" content="单元法把指数、幂函数和分式结构锁进一个新变量，再通过对数求导控制微分。">
+    <meta property="og:url" content="https://yule1048596-art.github.io/posts/unit-method-exponential-lock.html">
+    <meta property="og:image" content="https://yule1048596-art.github.io/assets/cover.png">
+    <title>单元法与指数锁 | Yule</title>
+    <link rel="canonical" href="https://yule1048596-art.github.io/posts/unit-method-exponential-lock.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"]]
+        },
+        svg: {
+          fontCache: "global"
+        }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#article">跳到正文</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    <div class="ambient-stage" aria-hidden="true">
+      <span class="motion-grid"></span>
+      <span class="motion-ribbon ribbon-a"></span>
+      <span class="motion-ribbon ribbon-b"></span>
+      <span class="motion-rail rail-a"></span>
+      <span class="motion-rail rail-b"></span>
+      <span class="grain-field"></span>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="回到首页">
+        <span class="brand-mark">Y</span>
+        <span>Yule</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="../index.html#posts">文章</a>
+        <a href="../index.html#topics">主题</a>
+        <a href="../index.html#archive">归档</a>
+        <a href="../index.html#about">关于</a>
+        <a href="https://github.com/yule1048596-art" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="article-main math-note" id="article">
+      <p class="article-kicker" data-reveal><time datetime="2026-07-05">2026-07-05</time><span>数学</span><span>9 min</span></p>
+      <h1 class="kinetic-title" data-reveal>单元法与指数锁</h1>
+      <p class="article-summary" data-reveal>单元法把指数、幂函数和分式结构锁进一个新变量，再通过对数求导控制微分。</p>
+
+      <article class="article-body" data-reveal>
+        <p>单元法的目标是把看似复杂的乘积压成一个变量。尤其当题目中同时出现 \(f(x)^n\)、\(g(x)^m\)、\(e^{h(x)}\) 时，对数求导会给出很清晰的微分结构。</p>
+        <p>判断是否该用单元法，可以看积分因子里是否同时有幂次变化和指数变化。如果对数求导后出现的几项正好能拼出原来的括号，说明这个新变量选得很准。</p>
+        <h2>基本设元</h2>
+        <p>对于形如</p>
+        <div class="math-card">\[
+        \int W(x)\frac{f(x)^n}{g(x)^m}e^{h(x)}\,dx
+        \]</div>
+        <p>的积分，可以考虑设</p>
+        <div class="math-card">\[
+        p=\frac{f(x)^{n+1}}{g(x)^{m-1}}e^{h(x)}.
+        \]</div>
+        <p>对数求导得到</p>
+        <div class="math-card">\[
+        \frac{dp}{p}=\left((n+1)\frac{f'}{f}-(m-1)\frac{g'}{g}+h'\right)dx.
+        \]</div>
+        <p>如果 \(W(x)\) 正好能与括号中的结构匹配，原积分就能转成关于 \(p\) 的积分。</p>
+        <h2>一个例子</h2>
+        <p>考虑</p>
+        <div class="math-card">\[
+        \int e^{\sin x}\left(\frac{x\cos^3x-\sin x}{\cos^2x}\right)dx.
+        \]</div>
+        <p>把它拆成两部分，并设</p>
+        <div class="math-card">\[
+        p=e^{\sin x},\qquad q=\frac{e^{\sin x}}{\cos x}.
+        \]</div>
+        <p>有</p>
+        <div class="math-card">\[
+        \frac{dp}{p}=\cos x\,dx,
+        \qquad
+        \frac{dq}{q}=(\cos x+\tan x)dx.
+        \]</div>
+        <p>两部分积分中的中间项会抵消，最后得到</p>
+        <div class="math-card">\[
+        e^{\sin x}\left(x-\frac{1}{\cos x}\right)+C.
+        \]</div>
+        <h2>方法的判断点</h2>
+        <p>单元法不是看到指数就设元。它适合“指数的导数、幂函数的导数、分母的导数同时出现”的题。如果对数求导后的括号不能和原分子对齐，就要换设元方式。</p>
+        <div class="article-callout">指数锁的关键是对数求导。先设一个把主要结构全包进去的 \(p\)，再看 \(dp/p\) 能否解释题目中的分子。</div>
+    
+      </article>
+
+      <a class="back-link" href="../index.html#posts" data-reveal>返回文章列表</a>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="MOD 法把部分分式系数看成模多项式下的逆元，减少联立方程的机械计算。">
+    <meta name="author" content="Yule">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="MOD 法做部分分式">
+    <meta property="og:description" content="MOD 法把部分分式系数看成模多项式下的逆元，减少联立方程的机械计算。">
+    <meta property="og:url" content="https://yule1048596-art.github.io/posts/mod-method-partial-fractions.html">
+    <meta property="og:image" content="https://yule1048596-art.github.io/assets/cover.png">
+    <title>MOD 法做部分分式 | Yule</title>
+    <link rel="canonical" href="https://yule1048596-art.github.io/posts/mod-method-partial-fractions.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"]]
+        },
+        svg: {
+          fontCache: "global"
+        }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#article">跳到正文</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    <div class="ambient-stage" aria-hidden="true">
+      <span class="motion-grid"></span>
+      <span class="motion-ribbon ribbon-a"></span>
+      <span class="motion-ribbon ribbon-b"></span>
+      <span class="motion-rail rail-a"></span>
+      <span class="motion-rail rail-b"></span>
+      <span class="grain-field"></span>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="回到首页">
+        <span class="brand-mark">Y</span>
+        <span>Yule</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="../index.html#posts">文章</a>
+        <a href="../index.html#topics">主题</a>
+        <a href="../index.html#archive">归档</a>
+        <a href="../index.html#about">关于</a>
+        <a href="https://github.com/yule1048596-art" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="article-main math-note" id="article">
+      <p class="article-kicker" data-reveal><time datetime="2026-07-05">2026-07-05</time><span>数学</span><span>9 min</span></p>
+      <h1 class="kinetic-title" data-reveal>MOD 法做部分分式</h1>
+      <p class="article-summary" data-reveal>MOD 法把部分分式系数看成模多项式下的逆元，减少联立方程的机械计算。</p>
+
+      <article class="article-body" data-reveal>
+        <p>有理函数积分绕不开部分分式。常规做法是设一堆待定系数再联立方程，MOD 法则换个视角：每个系数都是在某个模多项式下求逆元。</p>
+        <p>这个方法最适合分母已经分解好的情形。与其一次性展开所有项，不如先盯住某一个因子，把其它因子都当作可以求逆的对象。这样会把“全局比较系数”变成“局部求余”，计算量通常小很多。</p>
+        <h2>最简单的例子</h2>
+        <p>分解</p>
+        <div class="math-card">\[
+        \frac{1}{(x-1)(x^2+1)}=\frac{A}{x-1}+\frac{B}{x^2+1}.
+        \]</div>
+        <p>对 \(x-1\) 取模，直接代入 \(x=1\)：</p>
+        <div class="math-card">\[
+        A\equiv\frac{1}{x^2+1}\equiv\frac12\pmod{x-1}.
+        \]</div>
+        <p>对 \(x^2+1\) 取模，需要求 \(1/(x-1)\) 的逆。因为</p>
+        <div class="math-card">\[
+        \frac{1}{x-1}\equiv -\frac{x+1}{2}\pmod{x^2+1},
+        \]</div>
+        <p>所以 \(B=-(x+1)/2\)。这样不用展开比较系数，也能得到分解。</p>
+        <h2>MOD 积分法</h2>
+        <p>对于</p>
+        <div class="math-card">\[
+        \frac{P(x)}{q(x)^{n+1}},
+        \]</div>
+        <p>希望写成</p>
+        <div class="math-card">\[
+        \left(\frac{P_1(x)}{q(x)^n}\right)'+\frac{P_2(x)}{q(x)^n}.
+        \]</div>
+        <p>比较分子可得</p>
+        <div class="math-card">\[
+        P=qP_1'-nq'P_1+P_2q.
+        \]</div>
+        <p>于是先在 \(\bmod q\) 下求</p>
+        <div class="math-card">\[
+        P_1\equiv-\frac{P}{nq'}\pmod q.
+        \]</div>
+        <p>这里的关键是 \(P_2q\) 在模 \(q\) 下会消失，\(qP_1'\) 也会消失，剩下的只有 \(-nq'P_1\)。只要 \(q\) 与 \(q'\) 互素，就能在模 \(q\) 下给 \(q'\) 求逆，进而直接得到 \(P_1\)。</p>
+        <p>求出 \(P_1\) 后，原积分被拆成一个显式导数加上分母幂次更低的余项。这个过程可以反复使用，使分母从 \(q^{n+1}\) 降到 \(q^n\)、再降到 \(q^{n-1}\)，直到变成普通部分分式。</p>
+        <div class="article-callout">MOD 法的核心是：别把所有系数都展开。先在对应因子下求逆元，局部解决，再拼回整体。</div>
+    
+      </article>
+
+      <a class="back-link" href="../index.html#posts" data-reveal>返回文章列表</a>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>

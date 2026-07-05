@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="对勾双元处理 ax+b/x，乘积双元处理二次式根号，两者都是把结构改造成稳定关系。">
+    <meta name="author" content="Yule">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="对勾双元与乘积双元">
+    <meta property="og:description" content="对勾双元处理 ax+b/x，乘积双元处理二次式根号，两者都是把结构改造成稳定关系。">
+    <meta property="og:url" content="https://yule1048596-art.github.io/posts/hook-and-product-dual-elements.html">
+    <meta property="og:image" content="https://yule1048596-art.github.io/assets/cover.png">
+    <title>对勾双元与乘积双元 | Yule</title>
+    <link rel="canonical" href="https://yule1048596-art.github.io/posts/hook-and-product-dual-elements.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"]]
+        },
+        svg: {
+          fontCache: "global"
+        }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#article">跳到正文</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    <div class="ambient-stage" aria-hidden="true">
+      <span class="motion-grid"></span>
+      <span class="motion-ribbon ribbon-a"></span>
+      <span class="motion-ribbon ribbon-b"></span>
+      <span class="motion-rail rail-a"></span>
+      <span class="motion-rail rail-b"></span>
+      <span class="grain-field"></span>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="回到首页">
+        <span class="brand-mark">Y</span>
+        <span>Yule</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="../index.html#posts">文章</a>
+        <a href="../index.html#topics">主题</a>
+        <a href="../index.html#archive">归档</a>
+        <a href="../index.html#about">关于</a>
+        <a href="https://github.com/yule1048596-art" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="article-main math-note" id="article">
+      <p class="article-kicker" data-reveal><time datetime="2026-07-05">2026-07-05</time><span>数学</span><span>9 min</span></p>
+      <h1 class="kinetic-title" data-reveal>对勾双元与乘积双元</h1>
+      <p class="article-summary" data-reveal>对勾双元处理 ax+b/x，乘积双元处理二次式根号，两者都是把结构改造成稳定关系。</p>
+
+      <article class="article-body" data-reveal>
+        <p>对勾双元和乘积双元都属于“把原式包装成两个相关变量”的方法。前者处理 \(ax+b/x\) 这种对勾结构，后者处理二次式 \(Y=ax^2+bx+c\) 与 \(\sqrt{Y}\) 的组合。</p>
+        <p>它们都适合在题目前半段使用。先把分式或根式整理成 \(p,q\)，再观察 \(dp,dq\) 是否能覆盖原来的 \(dx\)。如果微分关系也简洁，后面通常会落到基础双元公式。若微分关系变得更乱，就说明这个包装不合适，应回到配方或普通换元。</p>
+        <h2>对勾双元</h2>
+        <p>设</p>
+        <div class="math-card">\[
+        p=ax+\frac{b}{x},\qquad q=ax-\frac{b}{x}.
+        \]</div>
+        <p>那么</p>
+        <div class="math-card">\[
+        x=\frac{p+q}{2a},\qquad \frac1x=\frac{p-q}{2b}.
+        \]</div>
+        <p>更关键的是微分关系：</p>
+        <div class="math-card">\[
+        \frac{dx}{x}=\frac{dp}{q}=\frac{dq}{p}.
+        \]</div>
+        <p>此外还有</p>
+        <div class="math-card">\[
+        p\,dq-q\,dp=4ab\frac{dx}{x}.
+        \]</div>
+        <p>所以只要题目里出现 \(dx/x\)、\(ax\pm b/x\)，就可以尝试用 \(p,q\) 把它变成双元积分。</p>
+        <h2>乘积双元</h2>
+        <p>记 \(Y=ax^2+bx+c\)，\(Y'=2ax+b\)。当 \(a\gt0\) 时，可以设</p>
+        <div class="math-card">\[
+        p=\frac{Y'}{2}+\sqrt{aY},\qquad q=\frac{Y'}{2}-\sqrt{aY}.
+        \]</div>
+        <p>这时</p>
+        <div class="math-card">\[
+        pq=\frac{b^2-4ac}{4},\qquad p+q=Y',\qquad p-q=2\sqrt{aY}.
+        \]</div>
+        <p>它把二次式根号变成了“和、差、积都可控”的双元结构。对于含有 \(\sqrt{ax^2+bx+c}\) 的有理化题，这通常比直接配方更有组织。</p>
+        <div class="article-callout">对勾双元看 \(x\) 与 \(1/x\)，乘积双元看二次式与导数。共同目标是把题目中散乱的项变成可微分的双元关系。</div>
+    
+      </article>
+
+      <a class="back-link" href="../index.html#posts" data-reveal>返回文章列表</a>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>

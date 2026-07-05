@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="双元法先把两个量锁在一个二次关系里，再把积分改写成比值或角度的微分。">
+    <meta name="author" content="Yule">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="双元法的三条基础公式">
+    <meta property="og:description" content="双元法先把两个量锁在一个二次关系里，再把积分改写成比值或角度的微分。">
+    <meta property="og:url" content="https://yule1048596-art.github.io/posts/dual-element-basic-formulas.html">
+    <meta property="og:image" content="https://yule1048596-art.github.io/assets/cover.png">
+    <title>双元法的三条基础公式 | Yule</title>
+    <link rel="canonical" href="https://yule1048596-art.github.io/posts/dual-element-basic-formulas.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"]]
+        },
+        svg: {
+          fontCache: "global"
+        }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#article">跳到正文</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    <div class="ambient-stage" aria-hidden="true">
+      <span class="motion-grid"></span>
+      <span class="motion-ribbon ribbon-a"></span>
+      <span class="motion-ribbon ribbon-b"></span>
+      <span class="motion-rail rail-a"></span>
+      <span class="motion-rail rail-b"></span>
+      <span class="grain-field"></span>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="回到首页">
+        <span class="brand-mark">Y</span>
+        <span>Yule</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="../index.html#posts">文章</a>
+        <a href="../index.html#topics">主题</a>
+        <a href="../index.html#archive">归档</a>
+        <a href="../index.html#about">关于</a>
+        <a href="https://github.com/yule1048596-art" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="article-main math-note" id="article">
+      <p class="article-kicker" data-reveal><time datetime="2026-07-05">2026-07-05</time><span>数学</span><span>8 min</span></p>
+      <h1 class="kinetic-title" data-reveal>双元法的三条基础公式</h1>
+      <p class="article-summary" data-reveal>双元法先把两个量锁在一个二次关系里，再把积分改写成比值或角度的微分。</p>
+
+      <article class="article-body" data-reveal>
+        <p>双元法的核心不是多引入一个变量，而是让两个变量之间存在稳定关系，例如 \(p^2+q^2=C\) 或 \(p^2-q^2=C\)。一旦有这种关系，很多积分就会变成角度或双曲角的微分。</p>
+        <p>选元时要反过来看题目：如果分母像某个根式，就把根式设成 \(p\)；如果分子里有它的导数或互补项，就设成 \(q\)。重点不是名字，而是让 \(pdp\) 与 \(qdq\) 能互相替换。</p>
+        <h2>第一积分公式</h2>
+        <p>当 \(p^2+q^2=C\) 时，有</p>
+        <div class="math-card">\[
+        \int\frac{dq}{p}=\arctan\frac{q}{p}+C.
+        \]</div>
+        <p>原因是 \(pdp+qdq=0\)，于是</p>
+        <div class="math-card">\[
+        d\arctan\frac{q}{p}=\frac{pdq-qdp}{p^2+q^2}=\frac{dq}{p}.
+        \]</div>
+        <p>当 \(p^2-q^2=C\) 时，有</p>
+        <div class="math-card">\[
+        \int\frac{dq}{p}=\ln(p+q)+C.
+        \]</div>
+        <h2>第二积分公式</h2>
+        <p>如果题目里出现 \(dx/y\)，可以尝试把它写成一个反对称形式：</p>
+        <div class="math-card">\[
+        \int f(x,y)\frac{dx}{y}=\int f(x,y)\frac{y\,dx-x\,dy}{y^2\pm x^2}.
+        \]</div>
+        <p>这里正号对应圆型关系，负号对应双曲型关系。这个公式的作用是把“单边的微分”改造成“比值的微分”。</p>
+        <h2>第三积分公式</h2>
+        <p>继续从比值看，若 \(pdp+qdq=0\)，则</p>
+        <div class="math-card">\[
+        d\left(\frac{x}{y}\right)=\left(x^2+y^2\right)\frac{dx}{y^3}.
+        \]</div>
+        <p>若 \(pdp=qdq\)，则相应变成</p>
+        <div class="math-card">\[
+        d\left(\frac{x}{y}\right)=\left(y^2-x^2\right)\frac{dx}{y^3}.
+        \]</div>
+        <div class="article-callout">双元法的第一反应是找关系：圆型用 arctan，双曲型用 log 或 arctanh。关系比变量名字更重要。</div>
+    
+      </article>
+
+      <a class="back-link" href="../index.html#posts" data-reveal>返回文章列表</a>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>

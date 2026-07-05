@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="多变量三角积分公式看似繁杂，其实大多来自和差化积与半角代换。">
+    <meta name="author" content="Yule">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="多变量三角积分公式怎么读">
+    <meta property="og:description" content="多变量三角积分公式看似繁杂，其实大多来自和差化积与半角代换。">
+    <meta property="og:url" content="https://yule1048596-art.github.io/posts/multivariable-integral-formulas.html">
+    <meta property="og:image" content="https://yule1048596-art.github.io/assets/cover.png">
+    <title>多变量三角积分公式怎么读 | Yule</title>
+    <link rel="canonical" href="https://yule1048596-art.github.io/posts/multivariable-integral-formulas.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"]]
+        },
+        svg: {
+          fontCache: "global"
+        }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#article">跳到正文</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    <div class="ambient-stage" aria-hidden="true">
+      <span class="motion-grid"></span>
+      <span class="motion-ribbon ribbon-a"></span>
+      <span class="motion-ribbon ribbon-b"></span>
+      <span class="motion-rail rail-a"></span>
+      <span class="motion-rail rail-b"></span>
+      <span class="grain-field"></span>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="回到首页">
+        <span class="brand-mark">Y</span>
+        <span>Yule</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="../index.html#posts">文章</a>
+        <a href="../index.html#topics">主题</a>
+        <a href="../index.html#archive">归档</a>
+        <a href="../index.html#about">关于</a>
+        <a href="https://github.com/yule1048596-art" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="article-main math-note" id="article">
+      <p class="article-kicker" data-reveal><time datetime="2026-07-05">2026-07-05</time><span>数学</span><span>8 min</span></p>
+      <h1 class="kinetic-title" data-reveal>多变量三角积分公式怎么读</h1>
+      <p class="article-summary" data-reveal>多变量三角积分公式看似繁杂，其实大多来自和差化积与半角代换。</p>
+
+      <article class="article-body" data-reveal>
+        <p>笔记里的多变量积分公式很多，直接背会很痛苦。更好的读法是把它们看成同一个模板：分子是两个变量的微分组合，分母是和角或差角结构。</p>
+        <p>实际使用时先看分子符号，再看分母符号。加号常常对应和差化积后的某个乘积，差号则会把另一个半角组合暴露出来。这样公式就不是孤立记忆，而是可推回来的。</p>
+        <h2>一个典型公式</h2>
+        <div class="math-card">\[
+        \int\frac{\sin y\,dx+\sin x\,dy}{\cos x+
+        \cos y}
+        =\ln\left(\cos\frac{x-y}{2}\sec\frac{x+y}{2}\right)+C.
+        \]</div>
+        <p>右边出现 \((x-y)/2\) 与 \((x+y)/2\)，说明本质工具是和差化积。</p>
+        <h2>符号变化带来的配对</h2>
+        <p>如果分子改成差，分母也会相应改变：</p>
+        <div class="math-card">\[
+        \int\frac{\sin y\,dx-\sin x\,dy}{\cos x-\cos y}
+        =\ln\left(\sin\frac{x+y}{2}\csc\frac{x-y}{2}\right)+C.
+        \]</div>
+        <p>这些公式不是孤立的，它们成对出现：加号通常对应 \(\cos x+
+        \cos y\)，差号对应 \(\cos x-
+        \cos y\)。</p>
+        <h2>反三角版本</h2>
+        <p>分母换成 \(1+\cos x\cos y\) 时，会出现 arctan：</p>
+        <div class="math-card">\[
+        \int\frac{\sin y\,dx+
+        \sin x\,dy}{1+\cos x\cos y}
+        =2\arctan\left(\tan\frac{x}{2}\tan\frac{y}{2}\right)+C.
+        \]</div>
+        <p>这说明半角变量 \(\tan(x/2)\)、\(\tan(y/2)\) 是背后的统一坐标。</p>
+        <h2>如何记忆</h2>
+        <p>先记结构，不要记长式。看到 \(\sin y dx\pm\sin x dy\)，就联想到 \(\cos x\pm\cos y\) 或 \(1\pm\cos x\cos y\)。看到 \(\cos y dx\pm\cos x dy\)，就联想到 \(\sin x\pm\sin y\)。</p>
+        <div class="article-callout">多变量三角公式的重点是对称性。只要分清和差、正负号、半角变量，就不必逐条死背。</div>
+    
+      </article>
+
+      <a class="back-link" href="../index.html#posts" data-reveal>返回文章列表</a>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>

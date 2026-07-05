@@ -3,9 +3,149 @@
   <channel>
     <title>Yule 的个人博客</title>
     <link>https://yule1048596-art.github.io/</link>
-    <description>记录技术学习、项目复盘、阅读笔记和长期思考。</description>
+    <description>记录技术学习、项目复盘、数学笔记和长期思考。</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 04 Jul 2026 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 05 Jul 2026 00:00:00 +0800</lastBuildDate>
+    <item>
+      <title>几组三角求导的识别表</title>
+      <link>https://yule1048596-art.github.io/posts/trigonometric-derivative-patterns.html</link>
+      <guid>https://yule1048596-art.github.io/posts/trigonometric-derivative-patterns.html</guid>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0800</pubDate>
+      <description>把三角函数积分中常见的商式求导整理成识别表，遇到复杂分式时先看它像哪个导数。</description>
+    </item>
+    <item>
+      <title>Mobius 换元的基本入口</title>
+      <link>https://yule1048596-art.github.io/posts/mobius-substitution-basics.html</link>
+      <guid>https://yule1048596-art.github.io/posts/mobius-substitution-basics.html</guid>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0800</pubDate>
+      <description>Mobius 换元的核心是先找多项式恒等式，再把比值变成新变量。</description>
+    </item>
+    <item>
+      <title>Mobius 换元处理二次根式</title>
+      <link>https://yule1048596-art.github.io/posts/mobius-quadratic-radicals.html</link>
+      <guid>https://yule1048596-art.github.io/posts/mobius-quadratic-radicals.html</guid>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0800</pubDate>
+      <description>当分母里有一次式和二次根式时，Mobius 换元常常能把根式化成标准二次型。</description>
+    </item>
+    <item>
+      <title>双元法的三条基础公式</title>
+      <link>https://yule1048596-art.github.io/posts/dual-element-basic-formulas.html</link>
+      <guid>https://yule1048596-art.github.io/posts/dual-element-basic-formulas.html</guid>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0800</pubDate>
+      <description>双元法先把两个量锁在一个二次关系里，再把积分改写成比值或角度的微分。</description>
+    </item>
+    <item>
+      <title>双元点火公式怎么用</title>
+      <link>https://yule1048596-art.github.io/posts/dual-element-ignition-formula.html</link>
+      <guid>https://yule1048596-art.github.io/posts/dual-element-ignition-formula.html</guid>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0800</pubDate>
+      <description>点火公式把双元里的高次幂积分降阶，是处理成串幂次积分的核心工具。</description>
+    </item>
+    <item>
+      <title>三角类双元对的整理</title>
+      <link>https://yule1048596-art.github.io/posts/trigonometric-dual-elements.html</link>
+      <guid>https://yule1048596-art.github.io/posts/trigonometric-dual-elements.html</guid>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0800</pubDate>
+      <description>把三角函数中的常见双元对整理出来，方便在根式和三角混合题里快速选元。</description>
+    </item>
+    <item>
+      <title>对勾双元与乘积双元</title>
+      <link>https://yule1048596-art.github.io/posts/hook-and-product-dual-elements.html</link>
+      <guid>https://yule1048596-art.github.io/posts/hook-and-product-dual-elements.html</guid>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0800</pubDate>
+      <description>对勾双元处理 ax+b/x，乘积双元处理二次式根号，两者都是把结构改造成稳定关系。</description>
+    </item>
+    <item>
+      <title>根式相关双元的三种形态</title>
+      <link>https://yule1048596-art.github.io/posts/radical-dual-elements.html</link>
+      <guid>https://yule1048596-art.github.io/posts/radical-dual-elements.html</guid>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0800</pubDate>
+      <description>把根式和根式的和差作为双元，可以系统处理 sqrt(f+a) 与 sqrt(f+b) 的组合。</description>
+    </item>
+    <item>
+      <title>倍角双元的生成思路</title>
+      <link>https://yule1048596-art.github.io/posts/double-angle-dual-elements.html</link>
+      <guid>https://yule1048596-art.github.io/posts/double-angle-dual-elements.html</guid>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0800</pubDate>
+      <description>倍角双元把 p²+q² 或 p²-q² 的关系向高阶推进，用来识别复杂根式中的隐藏角度。</description>
+    </item>
+    <item>
+      <title>重置双元：圆型与双曲型</title>
+      <link>https://yule1048596-art.github.io/posts/reset-dual-elements.html</link>
+      <guid>https://yule1048596-art.github.io/posts/reset-dual-elements.html</guid>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0800</pubDate>
+      <description>重置双元用线性变换把 p,q 换成更顺手的 m,n，同时保持圆型或双曲型关系。</description>
+    </item>
+    <item>
+      <title>双元锁：用 Wronskian 看比值微分</title>
+      <link>https://yule1048596-art.github.io/posts/dual-element-lock.html</link>
+      <guid>https://yule1048596-art.github.io/posts/dual-element-lock.html</guid>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0800</pubDate>
+      <description>双元锁把 pq′-qp′ 作为核心对象，用一个符号统一 arctan、arctanh 和比值换元。</description>
+    </item>
+    <item>
+      <title>单元法与指数锁</title>
+      <link>https://yule1048596-art.github.io/posts/unit-method-exponential-lock.html</link>
+      <guid>https://yule1048596-art.github.io/posts/unit-method-exponential-lock.html</guid>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0800</pubDate>
+      <description>单元法把指数、幂函数和分式结构锁进一个新变量，再通过对数求导控制微分。</description>
+    </item>
+    <item>
+      <title>待定函数法处理积分</title>
+      <link>https://yule1048596-art.github.io/posts/undetermined-function-integrals.html</link>
+      <guid>https://yule1048596-art.github.io/posts/undetermined-function-integrals.html</guid>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0800</pubDate>
+      <description>把原函数写成待定函数乘已知结构，可以把积分问题转成微分方程问题。</description>
+    </item>
+    <item>
+      <title>MOD 法做部分分式</title>
+      <link>https://yule1048596-art.github.io/posts/mod-method-partial-fractions.html</link>
+      <guid>https://yule1048596-art.github.io/posts/mod-method-partial-fractions.html</guid>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0800</pubDate>
+      <description>MOD 法把部分分式系数看成模多项式下的逆元，减少联立方程的机械计算。</description>
+    </item>
+    <item>
+      <title>线性 Hensel 提升在部分分式中的用法</title>
+      <link>https://yule1048596-art.github.io/posts/hensel-lift-mod-method.html</link>
+      <guid>https://yule1048596-art.github.io/posts/hensel-lift-mod-method.html</guid>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0800</pubDate>
+      <description>当模多项式出现高次幂时，线性 Hensel 提升可以把低阶逆元逐层提升到高阶逆元。</description>
+    </item>
+    <item>
+      <title>一类高次积分：1/(1+x^n)</title>
+      <link>https://yule1048596-art.github.io/posts/high-power-integrals.html</link>
+      <guid>https://yule1048596-art.github.io/posts/high-power-integrals.html</guid>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0800</pubDate>
+      <description>通过复根分解和二次因子配对，可以写出 ∫dx/(1+x^n) 的统一表达。</description>
+    </item>
+    <item>
+      <title>积木法：把分子拆成可积部件</title>
+      <link>https://yule1048596-art.github.io/posts/building-block-method.html</link>
+      <guid>https://yule1048596-art.github.io/posts/building-block-method.html</guid>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0800</pubDate>
+      <description>积木法不是硬凑，而是先选一组容易积分的部件，再把原分子线性拼出来。</description>
+    </item>
+    <item>
+      <title>万能公式与三角分母判断</title>
+      <link>https://yule1048596-art.github.io/posts/universal-trig-substitution.html</link>
+      <guid>https://yule1048596-art.github.io/posts/universal-trig-substitution.html</guid>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0800</pubDate>
+      <description>万能代换并不是所有三角积分的默认选项，先判断分母结构再决定是否使用。</description>
+    </item>
+    <item>
+      <title>多变量三角积分公式怎么读</title>
+      <link>https://yule1048596-art.github.io/posts/multivariable-integral-formulas.html</link>
+      <guid>https://yule1048596-art.github.io/posts/multivariable-integral-formulas.html</guid>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0800</pubDate>
+      <description>多变量三角积分公式看似繁杂，其实大多来自和差化积与半角代换。</description>
+    </item>
+    <item>
+      <title>隐函数不定积分的参数化思路</title>
+      <link>https://yule1048596-art.github.io/posts/implicit-function-integrals.html</link>
+      <guid>https://yule1048596-art.github.io/posts/implicit-function-integrals.html</guid>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0800</pubDate>
+      <description>隐函数积分通常先转参数方程，把 x 和 y 都写成同一个参数的函数。</description>
+    </item>
     <item>
       <title>不定积分里的几个小技巧</title>
       <link>https://yule1048596-art.github.io/posts/indefinite-integral-tricks.html</link>
@@ -32,7 +172,7 @@
       <link>https://yule1048596-art.github.io/posts/next-topics.html</link>
       <guid>https://yule1048596-art.github.io/posts/next-topics.html</guid>
       <pubDate>Sat, 04 Jul 2026 00:00:00 +0800</pubDate>
-      <description>列一个不会吓到自己的主题清单：每篇文章只解决一个问题。</description>
+      <description>列一个不会吓到自己的主题清单：每篇文章只解决一个问题，慢慢形成自己的知识地图。</description>
     </item>
   </channel>
 </rss>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="点火公式把双元里的高次幂积分降阶，是处理成串幂次积分的核心工具。">
+    <meta name="author" content="Yule">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="双元点火公式怎么用">
+    <meta property="og:description" content="点火公式把双元里的高次幂积分降阶，是处理成串幂次积分的核心工具。">
+    <meta property="og:url" content="https://yule1048596-art.github.io/posts/dual-element-ignition-formula.html">
+    <meta property="og:image" content="https://yule1048596-art.github.io/assets/cover.png">
+    <title>双元点火公式怎么用 | Yule</title>
+    <link rel="canonical" href="https://yule1048596-art.github.io/posts/dual-element-ignition-formula.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"]]
+        },
+        svg: {
+          fontCache: "global"
+        }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#article">跳到正文</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    <div class="ambient-stage" aria-hidden="true">
+      <span class="motion-grid"></span>
+      <span class="motion-ribbon ribbon-a"></span>
+      <span class="motion-ribbon ribbon-b"></span>
+      <span class="motion-rail rail-a"></span>
+      <span class="motion-rail rail-b"></span>
+      <span class="grain-field"></span>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="回到首页">
+        <span class="brand-mark">Y</span>
+        <span>Yule</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="../index.html#posts">文章</a>
+        <a href="../index.html#topics">主题</a>
+        <a href="../index.html#archive">归档</a>
+        <a href="../index.html#about">关于</a>
+        <a href="https://github.com/yule1048596-art" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="article-main math-note" id="article">
+      <p class="article-kicker" data-reveal><time datetime="2026-07-05">2026-07-05</time><span>数学</span><span>9 min</span></p>
+      <h1 class="kinetic-title" data-reveal>双元点火公式怎么用</h1>
+      <p class="article-summary" data-reveal>点火公式把双元里的高次幂积分降阶，是处理成串幂次积分的核心工具。</p>
+
+      <article class="article-body" data-reveal>
+        <p>“点火公式”这个名字很形象：一旦 \(p\) 与 \(q\) 被锁在 \(p^2\pm q^2=A\) 里，它就能把高次幂积分一点点降下来。它适合处理 \(p^n dq\)、\(p^{n-1}q^m dq\) 这类题。</p>
+        <h2>基本形式</h2>
+        <p>若 \(p^2\pm q^2=A\)，则 \(pdp=\mp qdq\)。在这个关系下，有</p>
+        <div class="math-card">\[
+        \int p^n\,dq=\frac{p^nq}{n+1}+\frac{nA}{n+1}\int p^{n-2}\,dq.
+        \]</div>
+        <p>这就是降阶。每用一次，\(p\) 的次数减少 2，直到落到基础积分。</p>
+        <h2>倒幂形式</h2>
+        <p>如果题目里是倒幂，也有对应公式：</p>
+        <div class="math-card">\[
+        \int\frac{dq}{p^n}=\frac{1}{n-2}\frac{q}{A p^{n-2}}+\frac{n-3}{(n-2)A}\int\frac{dq}{p^{n-2}}.
+        \]</div>
+        <p>这个式子特别适合根式分母的题，因为很多根式代换后都会变成 \(1/p^n\) 的积分。</p>
+        <h2>一般形式</h2>
+        <p>更完整的递推是</p>
+        <div class="math-card">\[
+        (n+m)\int p^{n-1}q^m\,dq=p^{n-1}q^{m+1}+(n-1)A\int p^{n-3}q^m\,dq.
+        \]</div>
+        <p>推导只用分部积分。先把 \(q^m dq\) 看成 \(d(q^{m+1})/(m+1)\)，再利用 \(pdp=\mp qdq\) 把多出来的 \(q^2\) 换成 \(A-p^2\)。</p>
+        <h2>使用顺序</h2>
+        <p>实际做题时，先判断是圆型还是双曲型，再确定要降的是 \(p\) 的次数还是 \(q\) 的次数。如果目标是把积分化到 \(dq/p\)，最后会落回第一积分公式。</p>
+        <div class="article-callout">点火公式不是孤立公式，它是双元法里的“降阶引擎”。先建双元关系，再用点火公式把高次结构送回基础积分。</div>
+    
+      </article>
+
+      <a class="back-link" href="../index.html#posts" data-reveal>返回文章列表</a>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>

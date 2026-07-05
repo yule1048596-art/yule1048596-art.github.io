@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="当分母里有一次式和二次根式时，Mobius 换元常常能把根式化成标准二次型。">
+    <meta name="author" content="Yule">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Mobius 换元处理二次根式">
+    <meta property="og:description" content="当分母里有一次式和二次根式时，Mobius 换元常常能把根式化成标准二次型。">
+    <meta property="og:url" content="https://yule1048596-art.github.io/posts/mobius-quadratic-radicals.html">
+    <meta property="og:image" content="https://yule1048596-art.github.io/assets/cover.png">
+    <title>Mobius 换元处理二次根式 | Yule</title>
+    <link rel="canonical" href="https://yule1048596-art.github.io/posts/mobius-quadratic-radicals.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"]]
+        },
+        svg: {
+          fontCache: "global"
+        }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#article">跳到正文</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    <div class="ambient-stage" aria-hidden="true">
+      <span class="motion-grid"></span>
+      <span class="motion-ribbon ribbon-a"></span>
+      <span class="motion-ribbon ribbon-b"></span>
+      <span class="motion-rail rail-a"></span>
+      <span class="motion-rail rail-b"></span>
+      <span class="grain-field"></span>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="回到首页">
+        <span class="brand-mark">Y</span>
+        <span>Yule</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="../index.html#posts">文章</a>
+        <a href="../index.html#topics">主题</a>
+        <a href="../index.html#archive">归档</a>
+        <a href="../index.html#about">关于</a>
+        <a href="https://github.com/yule1048596-art" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="article-main math-note" id="article">
+      <p class="article-kicker" data-reveal><time datetime="2026-07-05">2026-07-05</time><span>数学</span><span>9 min</span></p>
+      <h1 class="kinetic-title" data-reveal>Mobius 换元处理二次根式</h1>
+      <p class="article-summary" data-reveal>当分母里有一次式和二次根式时，Mobius 换元常常能把根式化成标准二次型。</p>
+
+      <article class="article-body" data-reveal>
+        <p>二次根式积分常见的困难是：分母里既有一次式，又有 \(\sqrt{ax^2+bx+c}\)。直接配方当然能做一部分题，但遇到多个线性因子时，Mobius 换元通常更系统。</p>
+        <h2>反解公式</h2>
+        <p>Mobius 换元的基本形式是</p>
+        <div class="math-card">\[
+        t=\frac{ax+b}{cx+d}.
+        \]</div>
+        <p>反解和微分为</p>
+        <div class="math-card">\[
+        x=\frac{dt-b}{a-ct},\qquad dx=\frac{ad-bc}{(a-ct)^2}\,dt.
+        \]</div>
+        <p>这两个式子很重要。它们保证代换后仍然是有理函数与二次根式的组合，而不会生成新的复杂函数。</p>
+        <h2>一个常用构型</h2>
+        <p>例如</p>
+        <div class="math-card">\[
+        \int\frac{dx}{(x+1)\sqrt{x^2+x+1}}
+        \]</div>
+        <p>可以利用恒等式</p>
+        <div class="math-card">\[
+        x^2+x+1=\frac{(x-1)^2}{4}+\frac{3(x+1)^2}{4}.
+        \]</div>
+        <p>取</p>
+        <div class="math-card">\[
+        t=\frac{x-1}{x+1}.
+        \]</div>
+        <p>这时根式里的二次型被改写成 \(t^2+3\)，积分降为</p>
+        <div class="math-card">\[
+        \int\frac{dt}{\sqrt{t^2+3}}.
+        \]</div>
+        <p>于是答案可以写成反双曲函数形式：</p>
+        <div class="math-card">\[
+        \operatorname{arctanh}\frac{t}{\sqrt{t^2+3}}+C.
+        \]</div>
+        <h2>选择分母的经验</h2>
+        <p>若原式像 \(P/(R^mS^n)\)，且 \(m\) 比 \(n\) 更大，笔记里的经验是优先取 \(t=\text{另一项}/R\)。这样做的原因很朴素：高次分母保留在换元的分母里，微分后更容易消掉。</p>
+        <div class="article-callout">二次根式题不要只盯着配方。先问一次：能不能把根式拆成两个一次式平方的组合？如果可以，Mobius 比值通常就是最短入口。</div>
+    
+      </article>
+
+      <a class="back-link" href="../index.html#posts" data-reveal>返回文章列表</a>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>

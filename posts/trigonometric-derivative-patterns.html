@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="把三角函数积分中常见的商式求导整理成识别表，遇到复杂分式时先看它像哪个导数。">
+    <meta name="author" content="Yule">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="几组三角求导的识别表">
+    <meta property="og:description" content="把三角函数积分中常见的商式求导整理成识别表，遇到复杂分式时先看它像哪个导数。">
+    <meta property="og:url" content="https://yule1048596-art.github.io/posts/trigonometric-derivative-patterns.html">
+    <meta property="og:image" content="https://yule1048596-art.github.io/assets/cover.png">
+    <title>几组三角求导的识别表 | Yule</title>
+    <link rel="canonical" href="https://yule1048596-art.github.io/posts/trigonometric-derivative-patterns.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"]]
+        },
+        svg: {
+          fontCache: "global"
+        }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#article">跳到正文</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    <div class="ambient-stage" aria-hidden="true">
+      <span class="motion-grid"></span>
+      <span class="motion-ribbon ribbon-a"></span>
+      <span class="motion-ribbon ribbon-b"></span>
+      <span class="motion-rail rail-a"></span>
+      <span class="motion-rail rail-b"></span>
+      <span class="grain-field"></span>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="回到首页">
+        <span class="brand-mark">Y</span>
+        <span>Yule</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="../index.html#posts">文章</a>
+        <a href="../index.html#topics">主题</a>
+        <a href="../index.html#archive">归档</a>
+        <a href="../index.html#about">关于</a>
+        <a href="https://github.com/yule1048596-art" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="article-main math-note" id="article">
+      <p class="article-kicker" data-reveal><time datetime="2026-07-05">2026-07-05</time><span>数学</span><span>7 min</span></p>
+      <h1 class="kinetic-title" data-reveal>几组三角求导的识别表</h1>
+      <p class="article-summary" data-reveal>把三角函数积分中常见的商式求导整理成识别表，遇到复杂分式时先看它像哪个导数。</p>
+
+      <article class="article-body" data-reveal>
+        <p>很多三角积分难在第一眼看不出换元，而不是难在换元本身。笔记里这一组“几组三角求导”非常适合做成速查表：它们把含有 \(x\sin x\)、\(x\cos x\)、半角结构的式子变成可识别的导数。</p>
+        <p>使用这类表时，不要急着背完整结论。更有效的读法是先观察分母，例如 \(1+\cos x\)、\(1-\cos x\)、\(1+\sin x\)，再看分子里是否出现了 \(x\) 和同类三角函数的线性组合。</p>
+        <h2>四个最常用的入口</h2>
+        <div class="math-card">\[
+        \left(\frac{x\sin x}{1+\cos x}\right)'=\frac{\sin x+x}{1+\cos x},\qquad
+        \left(\frac{x\sin x}{1-\cos x}\right)'=\frac{\sin x-x}{1-\cos x}.
+        \]</div>
+        <div class="math-card">\[
+        \left(\frac{x\cos x}{1+\sin x}\right)'=\frac{\cos x-x}{1+\sin x},\qquad
+        \left(\frac{x\cos x}{1-\sin x}\right)'=\frac{\cos x+x}{1-\sin x}.
+        \]</div>
+        <p>这四个公式的共同点是：分母是一个“1 加减三角函数”，分子是“同名三角函数加减 \(x\)”。如果积分里出现这些组合，直接把它们看作某个商式的导数，会比万能代换更短。</p>
+        <h2>半角形式的记忆方式</h2>
+        <p>半角结构也可以用同样的眼光看。关键不是记 \(\tan\frac{x}{2}\) 本身，而是记它与 \(1\pm\cos x\) 的联系：</p>
+        <div class="math-card">\[
+        \left(\tan\frac{x}{2}\right)'=\left(\frac{\sin x}{1+\cos x}\right)'=\frac{1}{1+\cos x}.
+        \]</div>
+        <div class="math-card">\[
+        \left(\cot\frac{x}{2}\right)'=\left(\frac{\sin x}{1-\cos x}\right)'=-\frac{1}{1-\cos x}.
+        \]</div>
+        <p>这说明当分母只有 \(1+\cos x\) 或 \(1-\cos x\) 时，积分可能已经是半角函数的导数。若分子多了 \(x\)，再回到前面的四个商式。</p>
+        <h2>怎么在题目里使用</h2>
+        <p>遇到三角分式时，先做三步检查：第一，看分母是否是 \(1\pm\sin x\)、\(1\pm\cos x\)；第二，看分子是否能拆成 \(x\)、\(\sin x\)、\(\cos x\) 的组合；第三，如果有平方分母，就检查是否是某个商式求导后的结果。</p>
+        <div class="article-callout">这类表的价值是减少试错。它不是替代推导，而是让你更快决定“这题该从哪个导数倒着看”。</div>
+    
+      </article>
+
+      <a class="back-link" href="../index.html#posts" data-reveal>返回文章列表</a>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>

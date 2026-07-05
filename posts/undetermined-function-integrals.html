@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="把原函数写成待定函数乘已知结构，可以把积分问题转成微分方程问题。">
+    <meta name="author" content="Yule">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="待定函数法处理积分">
+    <meta property="og:description" content="把原函数写成待定函数乘已知结构，可以把积分问题转成微分方程问题。">
+    <meta property="og:url" content="https://yule1048596-art.github.io/posts/undetermined-function-integrals.html">
+    <meta property="og:image" content="https://yule1048596-art.github.io/assets/cover.png">
+    <title>待定函数法处理积分 | Yule</title>
+    <link rel="canonical" href="https://yule1048596-art.github.io/posts/undetermined-function-integrals.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"]]
+        },
+        svg: {
+          fontCache: "global"
+        }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#article">跳到正文</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    <div class="ambient-stage" aria-hidden="true">
+      <span class="motion-grid"></span>
+      <span class="motion-ribbon ribbon-a"></span>
+      <span class="motion-ribbon ribbon-b"></span>
+      <span class="motion-rail rail-a"></span>
+      <span class="motion-rail rail-b"></span>
+      <span class="grain-field"></span>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="回到首页">
+        <span class="brand-mark">Y</span>
+        <span>Yule</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="../index.html#posts">文章</a>
+        <a href="../index.html#topics">主题</a>
+        <a href="../index.html#archive">归档</a>
+        <a href="../index.html#about">关于</a>
+        <a href="https://github.com/yule1048596-art" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="article-main math-note" id="article">
+      <p class="article-kicker" data-reveal><time datetime="2026-07-05">2026-07-05</time><span>数学</span><span>8 min</span></p>
+      <h1 class="kinetic-title" data-reveal>待定函数法处理积分</h1>
+      <p class="article-summary" data-reveal>把原函数写成待定函数乘已知结构，可以把积分问题转成微分方程问题。</p>
+
+      <article class="article-body" data-reveal>
+        <p>待定函数法的想法很直接：如果猜测原函数应该长得像某个结构，就把未知部分设成一个函数，再通过求导反推它满足的微分方程。</p>
+        <p>它适合“外壳明显、系数麻烦”的积分。外壳可能是 \(e^{g(x)}\)、\(\sin x\)、\(\cos x\)，未知函数只负责吸收多项式或有理函数部分。这样猜原函数会更有约束。</p>
+        <h2>指数函数的情况</h2>
+        <p>若想计算</p>
+        <div class="math-card">\[
+        \int f(x)e^{g(x)}\,dx,
+        \]</div>
+        <p>可以设结果为</p>
+        <div class="math-card">\[
+        h(x)e^{g(x)}.
+        \]</div>
+        <p>求导后得到条件</p>
+        <div class="math-card">\[
+        h'(x)+g'(x)h(x)=f(x).
+        \]</div>
+        <p>于是积分问题变成一阶线性微分方程。若 \(h\) 能在熟悉函数类里找到，积分就完成了。</p>
+        <h2>三角函数的情况</h2>
+        <p>对于 \(\int f(x)\sin x\,dx\) 或 \(\int f(x)\cos x\,dx\)，可以借助复指数：</p>
+        <div class="math-card">\[
+        \int f(x)e^{ix}\,dx=y(x)e^{ix},\qquad y'+iy=f(x).
+        \]</div>
+        <p>也可以转成实函数形式：</p>
+        <div class="math-card">\[
+        y''+y=f(x).
+        \]</div>
+        <p>此时有</p>
+        <div class="math-card">\[
+        \int (y''+y)\cos x\,dx=y'\cos x+y\sin x.
+        \]</div>
+        <h2>例子</h2>
+        <p>计算</p>
+        <div class="math-card">\[
+        \int x^2\cos x\,dx.
+        \]</div>
+        <p>取 \(y''+y=x^2\)，一个特解是 \(y=x^2-2\)。于是</p>
+        <div class="math-card">\[
+        \int x^2\cos x\,dx=(x^2-2)\sin x+2x\cos x+C.
+        \]</div>
+        <p>这个方法比连续分部积分更像“反向设计”：先指定原函数形态，再解出缺失的函数。</p>
+        <div class="article-callout">待定函数法适合有明显外壳的积分，例如指数壳、正弦余弦壳。外壳负责形态，待定函数负责补偿导数。</div>
+    
+      </article>
+
+      <a class="back-link" href="../index.html#posts" data-reveal>返回文章列表</a>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>

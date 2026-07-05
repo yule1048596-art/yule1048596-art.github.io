@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="把三角函数中的常见双元对整理出来，方便在根式和三角混合题里快速选元。">
+    <meta name="author" content="Yule">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="三角类双元对的整理">
+    <meta property="og:description" content="把三角函数中的常见双元对整理出来，方便在根式和三角混合题里快速选元。">
+    <meta property="og:url" content="https://yule1048596-art.github.io/posts/trigonometric-dual-elements.html">
+    <meta property="og:image" content="https://yule1048596-art.github.io/assets/cover.png">
+    <title>三角类双元对的整理 | Yule</title>
+    <link rel="canonical" href="https://yule1048596-art.github.io/posts/trigonometric-dual-elements.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"]]
+        },
+        svg: {
+          fontCache: "global"
+        }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#article">跳到正文</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    <div class="ambient-stage" aria-hidden="true">
+      <span class="motion-grid"></span>
+      <span class="motion-ribbon ribbon-a"></span>
+      <span class="motion-ribbon ribbon-b"></span>
+      <span class="motion-rail rail-a"></span>
+      <span class="motion-rail rail-b"></span>
+      <span class="grain-field"></span>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="回到首页">
+        <span class="brand-mark">Y</span>
+        <span>Yule</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="../index.html#posts">文章</a>
+        <a href="../index.html#topics">主题</a>
+        <a href="../index.html#archive">归档</a>
+        <a href="../index.html#about">关于</a>
+        <a href="https://github.com/yule1048596-art" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="article-main math-note" id="article">
+      <p class="article-kicker" data-reveal><time datetime="2026-07-05">2026-07-05</time><span>数学</span><span>8 min</span></p>
+      <h1 class="kinetic-title" data-reveal>三角类双元对的整理</h1>
+      <p class="article-summary" data-reveal>把三角函数中的常见双元对整理出来，方便在根式和三角混合题里快速选元。</p>
+
+      <article class="article-body" data-reveal>
+        <p>三角函数天然适合双元法，因为 \(\sin x\) 和 \(\cos x\) 本身就满足圆型关系。真正有用的是继续扩展出带根式的三元或四元组合，让复杂根式也被纳入同一个关系网。</p>
+        <p>遇到三角根式混合题时，可以先把 \(\sin x,\cos x\) 视为基础坐标，再把多出来的根式当成新元。只要新元和基础坐标之间有平方关系，就能继续套双元法。</p>
+        <h2>最基本的一组</h2>
+        <div class="math-card">\[
+        p=\sin x,\qquad q=\cos x.
+        \]</div>
+        <p>它们满足</p>
+        <div class="math-card">\[
+        p^2+q^2=1,\qquad dx=\frac{dp}{q}=-\frac{dq}{p}.
+        \]</div>
+        <p>如果题目里只有 \(\sin x\)、\(\cos x\) 的有理式，通常先把它翻译成 \(p,q\) 再看是否出现 \(dq/p\) 或 \(dp/q\)。</p>
+        <h2>带根式的扩展</h2>
+        <p>当出现 \(\sqrt{1+\sin^2x}\) 或 \(\sqrt{1+\cos^2x}\) 时，可以设</p>
+        <div class="math-card">\[
+        r=\sqrt{1+\sin^2x},\qquad s=\sqrt{1+\cos^2x}.
+        \]</div>
+        <p>于是有一串关系：</p>
+        <div class="math-card">\[
+        r^2-p^2=1,
+        \qquad s^2-q^2=1,
+        \qquad r^2+s^2=3.
+        \]</div>
+        <p>这些关系让根式不再孤立。积分中出现 \(r\,dr\)、\(s\,ds\) 时，可以回到 \(p,q\) 的微分关系中。</p>
+        <h2>和差型三角双元</h2>
+        <p>另一组常见结构是</p>
+        <div class="math-card">\[
+        p=\sin x-\cos x,
+        \qquad q=\sin x+\cos x,
+        \qquad r=\sqrt{\sin 2x}.
+        \]</div>
+        <p>它们满足</p>
+        <div class="math-card">\[
+        p^2+q^2=2,
+        \qquad q^2-r^2=1,
+        \qquad p^2+r^2=1.
+        \]</div>
+        <p>这类结构适合处理同时含有 \(\sin x+\cos x\)、\(\sin x-\cos x\)、\(\sqrt{\sin 2x}\) 的题。</p>
+        <div class="article-callout">三角双元的整理方式是先列变量，再列二次关系，最后列微分。缺少微分关系的变量组，只是代数关系表，还不能直接服务积分。</div>
+    
+      </article>
+
+      <a class="back-link" href="../index.html#posts" data-reveal>返回文章列表</a>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>

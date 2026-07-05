@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Mobius 换元的核心是先找多项式恒等式，再把比值变成新变量。">
+    <meta name="author" content="Yule">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Mobius 换元的基本入口">
+    <meta property="og:description" content="Mobius 换元的核心是先找多项式恒等式，再把比值变成新变量。">
+    <meta property="og:url" content="https://yule1048596-art.github.io/posts/mobius-substitution-basics.html">
+    <meta property="og:image" content="https://yule1048596-art.github.io/assets/cover.png">
+    <title>Mobius 换元的基本入口 | Yule</title>
+    <link rel="canonical" href="https://yule1048596-art.github.io/posts/mobius-substitution-basics.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"]]
+        },
+        svg: {
+          fontCache: "global"
+        }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#article">跳到正文</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    <div class="ambient-stage" aria-hidden="true">
+      <span class="motion-grid"></span>
+      <span class="motion-ribbon ribbon-a"></span>
+      <span class="motion-ribbon ribbon-b"></span>
+      <span class="motion-rail rail-a"></span>
+      <span class="motion-rail rail-b"></span>
+      <span class="grain-field"></span>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="回到首页">
+        <span class="brand-mark">Y</span>
+        <span>Yule</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="../index.html#posts">文章</a>
+        <a href="../index.html#topics">主题</a>
+        <a href="../index.html#archive">归档</a>
+        <a href="../index.html#about">关于</a>
+        <a href="https://github.com/yule1048596-art" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="article-main math-note" id="article">
+      <p class="article-kicker" data-reveal><time datetime="2026-07-05">2026-07-05</time><span>数学</span><span>8 min</span></p>
+      <h1 class="kinetic-title" data-reveal>Mobius 换元的基本入口</h1>
+      <p class="article-summary" data-reveal>Mobius 换元的核心是先找多项式恒等式，再把比值变成新变量。</p>
+
+      <article class="article-body" data-reveal>
+        <p>Mobius 换元看上去像技巧，实质上是“先找恒等式，再取比值”。如果一个表达式里反复出现 \(x+1\)、\(x-1\)、\(1+x^2\) 这类结构，就可以尝试把它们组合成平方和或高次差。</p>
+        <p>读题时可以先问一个问题：有没有两个线性式在反复出现，并且它们的平方、乘积或和差能解释分母。若答案是肯定的，把它们做成比值，原式里的多个块就会被同一个变量控制。</p>
+        <h2>一个标准例子</h2>
+        <p>考虑积分</p>
+        <div class="math-card">\[
+        I=\int_0^1\frac{\ln(1+x)}{1+x^2}\,dx.
+        \]</div>
+        <p>关键恒等式是</p>
+        <div class="math-card">\[
+        2(x^2+1)=(x+1)^2+(x-1)^2.
+        \]</div>
+        <p>于是取</p>
+        <div class="math-card">\[
+        t=\frac{1-x}{1+x}.
+        \]</div>
+        <p>这个代换不是凭空来的，而是把两个一次式的比值拿出来。代入后有</p>
+        <div class="math-card">\[
+        \frac{dx}{1+x^2}=-\frac{dt}{1+t^2},\qquad
+        1+x=\frac{2}{1+t}.
+        \]</div>
+        <p>因此原积分会被换成自己与一个常数项的组合：</p>
+        <div class="math-card">\[
+        I=\ln2\int_0^1\frac{dx}{1+x^2}-I.
+        \]</div>
+        <p>整理得到</p>
+        <div class="math-card">\[
+        I=\frac{\pi\ln2}{8}.
+        \]</div>
+        <h2>一般识别法</h2>
+        <p>笔记里把这一类思路总结成一句话：如果能找到</p>
+        <div class="math-card">\[
+        p(x)^m+q(x)^m=r(x),
+        \]</div>
+        <p>就优先考虑 \(t=p/q\) 或 \(t=q/p\)。这个比值会把高次恒等式压成 \(1+t^m\) 或 \(1-t^m\)，从而把根式、对数或三角结构统一处理。</p>
+        <div class="article-callout">Mobius 换元的第一步不是代换，而是找恒等式。恒等式找对了，代换几乎自己就出现了。</div>
+    
+      </article>
+
+      <a class="back-link" href="../index.html#posts" data-reveal>返回文章列表</a>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>

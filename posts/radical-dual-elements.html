@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="把根式和根式的和差作为双元，可以系统处理 sqrt(f+a) 与 sqrt(f+b) 的组合。">
+    <meta name="author" content="Yule">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="根式相关双元的三种形态">
+    <meta property="og:description" content="把根式和根式的和差作为双元，可以系统处理 sqrt(f+a) 与 sqrt(f+b) 的组合。">
+    <meta property="og:url" content="https://yule1048596-art.github.io/posts/radical-dual-elements.html">
+    <meta property="og:image" content="https://yule1048596-art.github.io/assets/cover.png">
+    <title>根式相关双元的三种形态 | Yule</title>
+    <link rel="canonical" href="https://yule1048596-art.github.io/posts/radical-dual-elements.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"]]
+        },
+        svg: {
+          fontCache: "global"
+        }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#article">跳到正文</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    <div class="ambient-stage" aria-hidden="true">
+      <span class="motion-grid"></span>
+      <span class="motion-ribbon ribbon-a"></span>
+      <span class="motion-ribbon ribbon-b"></span>
+      <span class="motion-rail rail-a"></span>
+      <span class="motion-rail rail-b"></span>
+      <span class="grain-field"></span>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="回到首页">
+        <span class="brand-mark">Y</span>
+        <span>Yule</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="../index.html#posts">文章</a>
+        <a href="../index.html#topics">主题</a>
+        <a href="../index.html#archive">归档</a>
+        <a href="../index.html#about">关于</a>
+        <a href="https://github.com/yule1048596-art" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="article-main math-note" id="article">
+      <p class="article-kicker" data-reveal><time datetime="2026-07-05">2026-07-05</time><span>数学</span><span>8 min</span></p>
+      <h1 class="kinetic-title" data-reveal>根式相关双元的三种形态</h1>
+      <p class="article-summary" data-reveal>把根式和根式的和差作为双元，可以系统处理 sqrt(f+a) 与 sqrt(f+b) 的组合。</p>
+
+      <article class="article-body" data-reveal>
+        <p>根式积分最怕一堆平方根互相纠缠。双元法的做法是把“根式的和”与“根式的差”同时拿出来，让它们之间产生简单关系。</p>
+        <p>这类设元的判断标准很具体：如果两个根式只差一个常数或一个符号，就优先看和差；如果根号里又套根号，就尝试把外层根式和内层线性根式配成 \(q^2=p^2+C\)。</p>
+        <h2>同向根式</h2>
+        <p>设</p>
+        <div class="math-card">\[
+        p=\sqrt{f+a}+\sqrt{f+b},\qquad q=\sqrt{f+a}-\sqrt{f+b}.
+        \]</div>
+        <p>立刻得到</p>
+        <div class="math-card">\[
+        pq=a-b.
+        \]</div>
+        <p>这说明 \(p\) 与 \(q\) 的乘积是常数。很多含两个同类根式的积分，会因此转化成乘积双元问题。</p>
+        <h2>反向根式</h2>
+        <p>如果根式是 \(\sqrt{a+f}\) 和 \(\sqrt{b-f}\)，可设</p>
+        <div class="math-card">\[
+        p=\sqrt{a+f}+\sqrt{b-f},\qquad q=\sqrt{a+f}-\sqrt{b-f}.
+        \]</div>
+        <p>这时关系变成圆型：</p>
+        <div class="math-card">\[
+        p^2+q^2=2(a+b),\qquad pq=a-b+2f.
+        \]</div>
+        <p>如果积分里出现 \(f' dx\)，可以通过 \(p,q\) 的微分来替换。</p>
+        <h2>嵌套根式</h2>
+        <p>对于</p>
+        <div class="math-card">\[
+        \sqrt{ax+f+b\sqrt{cx+d}},
+        \]</div>
+        <p>可以尝试令</p>
+        <div class="math-card">\[
+        p=B\sqrt{cx+d}+A,
+        \qquad q=\sqrt{ax+f+b\sqrt{cx+d}}.
+        \]</div>
+        <p>只要取</p>
+        <div class="math-card">\[
+        B=\sqrt{\frac{a}{c}},\qquad 2AB=b,
+        \]</div>
+        <p>就能让 \(q^2=p^2+C\)。这相当于把嵌套根式降成一个双曲型关系。</p>
+        <div class="article-callout">根式双元的诀窍是“和差同取”。只取一个根式往往没有足够关系，同时取和与差才会出现常数乘积或二次关系。</div>
+    
+      </article>
+
+      <a class="back-link" href="../index.html#posts" data-reveal>返回文章列表</a>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>

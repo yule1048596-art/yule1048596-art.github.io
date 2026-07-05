@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="倍角双元把 p²+q² 或 p²-q² 的关系向高阶推进，用来识别复杂根式中的隐藏角度。">
+    <meta name="author" content="Yule">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="倍角双元的生成思路">
+    <meta property="og:description" content="倍角双元把 p²+q² 或 p²-q² 的关系向高阶推进，用来识别复杂根式中的隐藏角度。">
+    <meta property="og:url" content="https://yule1048596-art.github.io/posts/double-angle-dual-elements.html">
+    <meta property="og:image" content="https://yule1048596-art.github.io/assets/cover.png">
+    <title>倍角双元的生成思路 | Yule</title>
+    <link rel="canonical" href="https://yule1048596-art.github.io/posts/double-angle-dual-elements.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"]]
+        },
+        svg: {
+          fontCache: "global"
+        }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#article">跳到正文</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    <div class="ambient-stage" aria-hidden="true">
+      <span class="motion-grid"></span>
+      <span class="motion-ribbon ribbon-a"></span>
+      <span class="motion-ribbon ribbon-b"></span>
+      <span class="motion-rail rail-a"></span>
+      <span class="motion-rail rail-b"></span>
+      <span class="grain-field"></span>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="回到首页">
+        <span class="brand-mark">Y</span>
+        <span>Yule</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="../index.html#posts">文章</a>
+        <a href="../index.html#topics">主题</a>
+        <a href="../index.html#archive">归档</a>
+        <a href="../index.html#about">关于</a>
+        <a href="https://github.com/yule1048596-art" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="article-main math-note" id="article">
+      <p class="article-kicker" data-reveal><time datetime="2026-07-05">2026-07-05</time><span>数学</span><span>8 min</span></p>
+      <h1 class="kinetic-title" data-reveal>倍角双元的生成思路</h1>
+      <p class="article-summary" data-reveal>倍角双元把 p²+q² 或 p²-q² 的关系向高阶推进，用来识别复杂根式中的隐藏角度。</p>
+
+      <article class="article-body" data-reveal>
+        <p>倍角双元的核心是：如果 \(p,q\) 已经满足圆型或双曲型关系，那么由它们生成的新变量仍然带着可控关系。复杂根式里经常藏着这样的倍角结构。</p>
+        <p>它的优势是不用真的把 \(p,q\) 写成三角函数或双曲函数。只要关系式保留下来，就能用代数方式模拟倍角公式，把题目里的高阶组合重新整理成一对新双元。</p>
+        <h2>圆型倍角</h2>
+        <p>若</p>
+        <div class="math-card">\[
+        p^2+q^2=1,
+        \]</div>
+        <p>可以生成</p>
+        <div class="math-card">\[
+        \{p,q\}\mapsto\{2pq,p^2-q^2\}.
+        \]</div>
+        <p>这正是三角倍角公式的代数版本。继续生成可得到更高阶的组合：</p>
+        <div class="math-card">\[
+        \left\{\frac{(p+iq)^n+(p-iq)^n}{2},\frac{(p+iq)^n-(p-iq)^n}{2i}\right\}.
+        \]</div>
+        <h2>双曲型倍角</h2>
+        <p>若</p>
+        <div class="math-card">\[
+        p^2-q^2=1,
+        \]</div>
+        <p>则对应生成</p>
+        <div class="math-card">\[
+        \{p,q\}\mapsto\{2pq,p^2+q^2\}.
+        \]</div>
+        <p>也可以写成</p>
+        <div class="math-card">\[
+        \left\{\frac{(p+q)^n+(p-q)^n}{2},\frac{(p+q)^n-(p-q)^n}{2}\right\}.
+        \]</div>
+        <h2>为什么有用</h2>
+        <p>当题目里出现 \(\sqrt{1-x^2}\)、\(x\pm\sqrt{1-x^2}\)、\(2x\sqrt{1-x^2}\) 这样的组合时，它们往往不是孤立项，而是由圆型双元倍角生成的。</p>
+        <p>先把 \(x\) 和 \(\sqrt{1-x^2}\) 看成 \(p,q\)，再按倍角生成新元，可以把复杂根式变成标准双元积分。</p>
+        <div class="article-callout">倍角双元的思路不是展开，而是逆向识别。看到高阶组合时，先问它是不是某个低阶双元的倍角产物。</div>
+    
+      </article>
+
+      <a class="back-link" href="../index.html#posts" data-reveal>返回文章列表</a>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>

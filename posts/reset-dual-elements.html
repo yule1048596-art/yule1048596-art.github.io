@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="重置双元用线性变换把 p,q 换成更顺手的 m,n，同时保持圆型或双曲型关系。">
+    <meta name="author" content="Yule">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="重置双元：圆型与双曲型">
+    <meta property="og:description" content="重置双元用线性变换把 p,q 换成更顺手的 m,n，同时保持圆型或双曲型关系。">
+    <meta property="og:url" content="https://yule1048596-art.github.io/posts/reset-dual-elements.html">
+    <meta property="og:image" content="https://yule1048596-art.github.io/assets/cover.png">
+    <title>重置双元：圆型与双曲型 | Yule</title>
+    <link rel="canonical" href="https://yule1048596-art.github.io/posts/reset-dual-elements.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"]]
+        },
+        svg: {
+          fontCache: "global"
+        }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#article">跳到正文</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    <div class="ambient-stage" aria-hidden="true">
+      <span class="motion-grid"></span>
+      <span class="motion-ribbon ribbon-a"></span>
+      <span class="motion-ribbon ribbon-b"></span>
+      <span class="motion-rail rail-a"></span>
+      <span class="motion-rail rail-b"></span>
+      <span class="grain-field"></span>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="回到首页">
+        <span class="brand-mark">Y</span>
+        <span>Yule</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="../index.html#posts">文章</a>
+        <a href="../index.html#topics">主题</a>
+        <a href="../index.html#archive">归档</a>
+        <a href="../index.html#about">关于</a>
+        <a href="https://github.com/yule1048596-art" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="article-main math-note" id="article">
+      <p class="article-kicker" data-reveal><time datetime="2026-07-05">2026-07-05</time><span>数学</span><span>9 min</span></p>
+      <h1 class="kinetic-title" data-reveal>重置双元：圆型与双曲型</h1>
+      <p class="article-summary" data-reveal>重置双元用线性变换把 p,q 换成更顺手的 m,n，同时保持圆型或双曲型关系。</p>
+
+      <article class="article-body" data-reveal>
+        <p>双元法做到一半，经常会遇到 \(Ap+Bq\) 这样的线性组合。与其硬算，不如把双元“重置”：直接把 \(Ap+Bq\) 设为新的一个元，再补出另一个元。</p>
+        <h2>圆型重置</h2>
+        <p>若 \(p^2+q^2=a^2\)，希望新元满足 \(m=Ap+Bq\)。只要 \(A^2+B^2=1\)，可以取</p>
+        <div class="math-card">\[
+        m=Ap+Bq,
+        \qquad n=Aq-Bp.
+        \]</div>
+        <p>于是</p>
+        <div class="math-card">\[
+        m^2+n^2=p^2+q^2=a^2.
+        \]</div>
+        <p>本质上，这是一个正交变换。它改变坐标轴，但不改变长度。</p>
+        <h2>另一种圆型补元</h2>
+        <p>也可以取</p>
+        <div class="math-card">\[
+        m=Ap+Bq,
+        \qquad n=Bp-Aq.
+        \]</div>
+        <p>这同样保持 \(m^2+n^2=a^2\)。选择哪一种，取决于后续微分里哪个更顺手。</p>
+        <h2>双曲型重置</h2>
+        <p>若 \(p^2-q^2=a^2\)，则可以用双曲型线性变换：</p>
+        <div class="math-card">\[
+        m=Ap+Bq,
+        \qquad n=Bp+Aq.
+        \]</div>
+        <p>这时</p>
+        <div class="math-card">\[
+        m^2-n^2=(A^2-B^2)(p^2-q^2).
+        \]</div>
+        <p>只要 \(A^2-B^2\) 是可控常数，新双元仍然处在双曲型框架里。</p>
+        <h2>什么时候使用</h2>
+        <p>如果分母是 \(Ap^2+Bpq+Cq^2\)，或者积分里反复出现 \(Ap+Bq\)，重置双元能把原来的斜方向变成新坐标轴。这样后面的积分就回到 \(dm/n\)、\(dn/m\) 这类基础形态。</p>
+        <div class="article-callout">重置双元是“换坐标系”，不是重新发明变量。先保住二次关系，再让新变量贴近题目的分母或微分。</div>
+    
+      </article>
+
+      <a class="back-link" href="../index.html#posts" data-reveal>返回文章列表</a>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>

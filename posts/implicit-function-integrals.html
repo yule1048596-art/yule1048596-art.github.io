@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="隐函数积分通常先转参数方程，把 x 和 y 都写成同一个参数的函数。">
+    <meta name="author" content="Yule">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="隐函数不定积分的参数化思路">
+    <meta property="og:description" content="隐函数积分通常先转参数方程，把 x 和 y 都写成同一个参数的函数。">
+    <meta property="og:url" content="https://yule1048596-art.github.io/posts/implicit-function-integrals.html">
+    <meta property="og:image" content="https://yule1048596-art.github.io/assets/cover.png">
+    <title>隐函数不定积分的参数化思路 | Yule</title>
+    <link rel="canonical" href="https://yule1048596-art.github.io/posts/implicit-function-integrals.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"]]
+        },
+        svg: {
+          fontCache: "global"
+        }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#article">跳到正文</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    <div class="ambient-stage" aria-hidden="true">
+      <span class="motion-grid"></span>
+      <span class="motion-ribbon ribbon-a"></span>
+      <span class="motion-ribbon ribbon-b"></span>
+      <span class="motion-rail rail-a"></span>
+      <span class="motion-rail rail-b"></span>
+      <span class="grain-field"></span>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="回到首页">
+        <span class="brand-mark">Y</span>
+        <span>Yule</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="../index.html#posts">文章</a>
+        <a href="../index.html#topics">主题</a>
+        <a href="../index.html#archive">归档</a>
+        <a href="../index.html#about">关于</a>
+        <a href="https://github.com/yule1048596-art" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="article-main math-note" id="article">
+      <p class="article-kicker" data-reveal><time datetime="2026-07-05">2026-07-05</time><span>数学</span><span>7 min</span></p>
+      <h1 class="kinetic-title" data-reveal>隐函数不定积分的参数化思路</h1>
+      <p class="article-summary" data-reveal>隐函数积分通常先转参数方程，把 x 和 y 都写成同一个参数的函数。</p>
+
+      <article class="article-body" data-reveal>
+        <p>隐函数不定积分最重要的一步是不要急着把 \(y\) 解成 \(x\) 的显函数。很多方程显式求解很麻烦，但参数化以后，积分会变成普通单变量积分。</p>
+        <p>选择参数时要看方程里最稳定的组合。如果每一项次数接近，就试 \(y=tx\)；如果反复出现 \(x-y\)、\(x+y\)，就把这个和差设成参数。目标是同时得到 \(x(t)\)、\(y(t)\) 和 \(dx\)。</p>
+        <h2>比值换元</h2>
+        <p>例如 \(y=y(x)\) 由</p>
+        <div class="math-card">\[
+        y^3(x+y)=x^3
+        \]</div>
+        <p>确定，要求</p>
+        <div class="math-card">\[
+        \int\frac{dx}{y^3}.
+        \]</div>
+        <p>因为方程里 \(x\) 与 \(y\) 的齐次味道很明显，可以设</p>
+        <div class="math-card">\[
+        y=tx.
+        \]</div>
+        <p>代入得到</p>
+        <div class="math-card">\[
+        t^3(1+t)x=1,
+        \qquad
+        x=\frac{1}{t^3(1+t)},
+        \qquad
+        y=\frac{1}{t^2(1+t)}.
+        \]</div>
+        <p>此时 \(dx/y^3\) 就能全部改写成 \(t\) 的函数。</p>
+        <h2>差值换元</h2>
+        <p>另一个例子是</p>
+        <div class="math-card">\[
+        y(x-y)^2=x,
+        \qquad
+        \int\frac{dx}{x-3y}.
+        \]</div>
+        <p>因为方程里出现 \(x-y\)，设</p>
+        <div class="math-card">\[
+        x=y+t.
+        \]</div>
+        <p>代入后得到</p>
+        <div class="math-card">\[
+        t^2y=y+t,
+        \qquad
+        y=\frac{t}{t^2-1},
+        \qquad
+        x=\frac{t^3}{t^2-1}.
+        \]</div>
+        <p>原积分同样变成关于 \(t\) 的有理函数积分。</p>
+        <h2>选择参数的原则</h2>
+        <p>如果方程里是齐次结构，优先试比值 \(y=tx\)。如果方程里有差 \(x-y\) 或和 \(x+y\)，优先把这个和差设成参数。参数不是越巧越好，而是要让方程能同时给出 \(x(t)\) 和 \(y(t)\)。</p>
+        <div class="article-callout">隐函数积分的核心是“同时参数化”。只要 \(x\)、\(y\)、\(dx\) 都能写成同一个参数，题目就回到了普通积分。</div>
+    
+      </article>
+
+      <a class="back-link" href="../index.html#posts" data-reveal>返回文章列表</a>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>

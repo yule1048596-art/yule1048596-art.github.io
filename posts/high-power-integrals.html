@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="通过复根分解和二次因子配对，可以写出 ∫dx/(1+x^n) 的统一表达。">
+    <meta name="author" content="Yule">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="一类高次积分：1/(1+x^n)">
+    <meta property="og:description" content="通过复根分解和二次因子配对，可以写出 ∫dx/(1+x^n) 的统一表达。">
+    <meta property="og:url" content="https://yule1048596-art.github.io/posts/high-power-integrals.html">
+    <meta property="og:image" content="https://yule1048596-art.github.io/assets/cover.png">
+    <title>一类高次积分：1/(1+x^n) | Yule</title>
+    <link rel="canonical" href="https://yule1048596-art.github.io/posts/high-power-integrals.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"]]
+        },
+        svg: {
+          fontCache: "global"
+        }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#article">跳到正文</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    <div class="ambient-stage" aria-hidden="true">
+      <span class="motion-grid"></span>
+      <span class="motion-ribbon ribbon-a"></span>
+      <span class="motion-ribbon ribbon-b"></span>
+      <span class="motion-rail rail-a"></span>
+      <span class="motion-rail rail-b"></span>
+      <span class="grain-field"></span>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="回到首页">
+        <span class="brand-mark">Y</span>
+        <span>Yule</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="../index.html#posts">文章</a>
+        <a href="../index.html#topics">主题</a>
+        <a href="../index.html#archive">归档</a>
+        <a href="../index.html#about">关于</a>
+        <a href="https://github.com/yule1048596-art" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="article-main math-note" id="article">
+      <p class="article-kicker" data-reveal><time datetime="2026-07-05">2026-07-05</time><span>数学</span><span>9 min</span></p>
+      <h1 class="kinetic-title" data-reveal>一类高次积分：1/(1+x^n)</h1>
+      <p class="article-summary" data-reveal>通过复根分解和二次因子配对，可以写出 ∫dx/(1+x^n) 的统一表达。</p>
+
+      <article class="article-body" data-reveal>
+        <p>积分 \(\int dx/(1+x^n)\) 看上去只是一个有理函数积分，但当 \(n\) 变大时，手工分解会很繁。统一做法是先用复根分解，再把共轭根配成实二次因子。</p>
+        <p>这篇的重点不是要求每次都背统一公式，而是看清楚来源：一次实因子给对数，共轭二次因子给对数加反正切。把这两类部件配齐，高次情形就只是求和记号。</p>
+        <h2>根的分解</h2>
+        <p>方程 \(x^n+1=0\) 的根是</p>
+        <div class="math-card">\[
+        x=\exp\left(\frac{(2k-1)\pi i}{n}\right),\qquad k=1,2,\ldots,n.
+        \]</div>
+        <p>当根成共轭配对时，对应的实二次因子为</p>
+        <div class="math-card">\[
+        x^2-2x\cos\frac{(2k-1)\pi}{n}+1.
+        \]</div>
+        <h2>关键基础积分</h2>
+        <p>配对后会出现下面这种标准项：</p>
+        <div class="math-card">\[
+        \int\frac{1-ax}{x^2-2ax+1}\,dx.
+        \]</div>
+        <p>它的原函数是</p>
+        <div class="math-card">\[
+        \sqrt{1-a^2}\arctan\frac{x-a}{\sqrt{1-a^2}}-\frac{a}{2}\ln|x^2-2ax+1|.
+        \]</div>
+        <h2>统一公式</h2>
+        <p>整理后可以得到</p>
+        <div class="math-card">\[
+        \int\frac{dx}{1+x^n}=
+        \frac{(-1)^{n+1}+1}{2n}\ln(1+x)
+        +\frac{2}{n}\sum_{k=1}^{\lfloor n/2\rfloor}\sin\theta_k\arctan\frac{x-\cos\theta_k}{\sin\theta_k}
+        -\frac{1}{n}\sum_{k=1}^{\lfloor n/2\rfloor}\cos\theta_k\ln|x^2-2x\cos\theta_k+1|+C,
+        \]</div>
+        <p>其中</p>
+        <div class="math-card">\[
+        \theta_k=\frac{(2k-1)\pi}{n}.
+        \]</div>
+        <h2>Omega 记号</h2>
+        <p>笔记里还引入</p>
+        <div class="math-card">\[
+        \Omega_{m,n}^{+}(x)=\int\frac{x^{m-1}}{x^n+1}\,dx,
+        \qquad
+        \Omega_{m,n}^{-}(x)=\int\frac{x^{m-1}}{x^n-1}\,dx.
+        \]</div>
+        <p>它的作用是把同一族高次积分集中管理，避免每次都从复根重新推。</p>
+        <div class="article-callout">高次积分的难点不是积分本身，而是分解。先把共轭复根配成实二次因子，后面就只剩 arctan 和 log。</div>
+    
+      </article>
+
+      <a class="back-link" href="../index.html#posts" data-reveal>返回文章列表</a>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>

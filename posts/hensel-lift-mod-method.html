@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="当模多项式出现高次幂时，线性 Hensel 提升可以把低阶逆元逐层提升到高阶逆元。">
+    <meta name="author" content="Yule">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="线性 Hensel 提升在部分分式中的用法">
+    <meta property="og:description" content="当模多项式出现高次幂时，线性 Hensel 提升可以把低阶逆元逐层提升到高阶逆元。">
+    <meta property="og:url" content="https://yule1048596-art.github.io/posts/hensel-lift-mod-method.html">
+    <meta property="og:image" content="https://yule1048596-art.github.io/assets/cover.png">
+    <title>线性 Hensel 提升在部分分式中的用法 | Yule</title>
+    <link rel="canonical" href="https://yule1048596-art.github.io/posts/hensel-lift-mod-method.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"]]
+        },
+        svg: {
+          fontCache: "global"
+        }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#article">跳到正文</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    <div class="ambient-stage" aria-hidden="true">
+      <span class="motion-grid"></span>
+      <span class="motion-ribbon ribbon-a"></span>
+      <span class="motion-ribbon ribbon-b"></span>
+      <span class="motion-rail rail-a"></span>
+      <span class="motion-rail rail-b"></span>
+      <span class="grain-field"></span>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="回到首页">
+        <span class="brand-mark">Y</span>
+        <span>Yule</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="../index.html#posts">文章</a>
+        <a href="../index.html#topics">主题</a>
+        <a href="../index.html#archive">归档</a>
+        <a href="../index.html#about">关于</a>
+        <a href="https://github.com/yule1048596-art" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="article-main math-note" id="article">
+      <p class="article-kicker" data-reveal><time datetime="2026-07-05">2026-07-05</time><span>数学</span><span>8 min</span></p>
+      <h1 class="kinetic-title" data-reveal>线性 Hensel 提升在部分分式中的用法</h1>
+      <p class="article-summary" data-reveal>当模多项式出现高次幂时，线性 Hensel 提升可以把低阶逆元逐层提升到高阶逆元。</p>
+
+      <article class="article-body" data-reveal>
+        <p>MOD 法在一次因子或简单不可约因子上很快，但当分母里出现 \(v^k\) 时，只求 \(\bmod v\) 的逆元还不够。线性 Hensel 提升就是把低阶逆元逐层修正到高阶。</p>
+        <p>可以把它理解成一种误差修补：先让乘积在第一层余数里等于 1，再看下一层多出来的误差，把这部分误差乘回基础逆元后补上。每次只修一层，所以计算很稳。</p>
+        <h2>基础逆元</h2>
+        <p>设目标多项式为 \(A\)，基础模为 \(v\)。先求出</p>
+        <div class="math-card">\[
+        A Y_0\equiv1\pmod v.
+        \]</div>
+        <p>这一步就是普通 MOD 逆元。</p>
+        <h2>第 k 层误差</h2>
+        <p>假设已经有 \(Y_k\)，使它在 \(\bmod v^{k+1}\) 下正确。可以写成</p>
+        <div class="math-card">\[
+        A Y_k=1-E_k v^{k+1}.
+        \]</div>
+        <p>这里 \(E_k\) 表示第 \(k+1\) 层开始出现的误差。</p>
+        <h2>修正项</h2>
+        <p>设下一层为</p>
+        <div class="math-card">\[
+        Y_{k+1}=Y_k+\Delta v^{k+1}.
+        \]</div>
+        <p>代入后要求它在 \(\bmod v^{k+2}\) 下仍等于 1，于是得到</p>
+        <div class="math-card">\[
+        A\Delta\equiv E_k\pmod v.
+        \]</div>
+        <p>因为 \(Y_0\) 是 \(A\) 在 \(\bmod v\) 下的逆元，所以</p>
+        <div class="math-card">\[
+        \Delta\equiv E_kY_0\pmod v.
+        \]</div>
+        <h2>显式递推</h2>
+        <p>合并后可写成</p>
+        <div class="math-card">\[
+        Y_{k+1}=Y_k+\left[\left(\frac{1-AY_k}{v^{k+1}}\right)Y_0\bmod v\right]v^{k+1}.
+        \]</div>
+        <p>它的意义很实际：高次部分分式分解不必一次性联立所有系数，而是从低阶逆元逐层补尾项。</p>
+        <div class="article-callout">Hensel 提升适合分母含有高次幂因子的有理函数。它把“大联立”拆成一层一层的小修正。</div>
+    
+      </article>
+
+      <a class="back-link" href="../index.html#posts" data-reveal>返回文章列表</a>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>

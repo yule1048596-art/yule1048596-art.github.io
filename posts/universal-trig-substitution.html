@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="万能代换并不是所有三角积分的默认选项，先判断分母结构再决定是否使用。">
+    <meta name="author" content="Yule">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="万能公式与三角分母判断">
+    <meta property="og:description" content="万能代换并不是所有三角积分的默认选项，先判断分母结构再决定是否使用。">
+    <meta property="og:url" content="https://yule1048596-art.github.io/posts/universal-trig-substitution.html">
+    <meta property="og:image" content="https://yule1048596-art.github.io/assets/cover.png">
+    <title>万能公式与三角分母判断 | Yule</title>
+    <link rel="canonical" href="https://yule1048596-art.github.io/posts/universal-trig-substitution.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"]]
+        },
+        svg: {
+          fontCache: "global"
+        }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#article">跳到正文</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    <div class="ambient-stage" aria-hidden="true">
+      <span class="motion-grid"></span>
+      <span class="motion-ribbon ribbon-a"></span>
+      <span class="motion-ribbon ribbon-b"></span>
+      <span class="motion-rail rail-a"></span>
+      <span class="motion-rail rail-b"></span>
+      <span class="grain-field"></span>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="回到首页">
+        <span class="brand-mark">Y</span>
+        <span>Yule</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="../index.html#posts">文章</a>
+        <a href="../index.html#topics">主题</a>
+        <a href="../index.html#archive">归档</a>
+        <a href="../index.html#about">关于</a>
+        <a href="https://github.com/yule1048596-art" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="article-main math-note" id="article">
+      <p class="article-kicker" data-reveal><time datetime="2026-07-05">2026-07-05</time><span>数学</span><span>7 min</span></p>
+      <h1 class="kinetic-title" data-reveal>万能公式与三角分母判断</h1>
+      <p class="article-summary" data-reveal>万能代换并不是所有三角积分的默认选项，先判断分母结构再决定是否使用。</p>
+
+      <article class="article-body" data-reveal>
+        <p>三角积分里最容易过度使用的工具就是万能公式。它确实能把三角函数有理化，但也会把简单题变得很长。因此更好的做法是先判断结构，再决定是否代换。</p>
+        <p>判断的顺序可以很实际：先试半角、配角和商式求导；如果分母是一般的 \(A\sin x+B\cos x+C\)，并且没有明显短路，再用万能代换把题目变成有理函数。</p>
+        <h2>万能公式</h2>
+        <p>令</p>
+        <div class="math-card">\[
+        t=\tan\frac{x}{2}.
+        \]</div>
+        <p>则</p>
+        <div class="math-card">\[
+        \sin x=\frac{2t}{1+t^2},
+        \qquad
+        \cos x=\frac{1-t^2}{1+t^2},
+        \qquad
+        \tan x=\frac{2t}{1-t^2}.
+        \]</div>
+        <h2>分母的判别式</h2>
+        <p>对线性三角结构</p>
+        <div class="math-card">\[
+        A\sin x+B\cos x+C,
+        \]</div>
+        <p>代入万能公式后会得到</p>
+        <div class="math-card">\[
+        \frac{2At+(C-B)t^2+B+C}{1+t^2}.
+        \]</div>
+        <p>这个二次式的判别式是</p>
+        <div class="math-card">\[
+        \Delta=4(A^2+B^2-C^2).
+        \]</div>
+        <p>当 \(A^2+B^2-C^2=0\) 或 \(B=C\) 时，万能代换往往特别顺手。</p>
+        <h2>什么时候不用</h2>
+        <p>如果没有这些特征，可以先尝试半角或配角。例如</p>
+        <div class="math-card">\[
+        3-\cos x=2\left(1+\sin^2\frac{x}{2}\right).
+        \]</div>
+        <p>这类变形比完整万能代换更短，也更容易保持结构。</p>
+        <div class="article-callout">万能公式是兜底工具，不是第一选择。先看分母是否真的适合有理化，再决定是否把整题推入 \(t\) 的世界。</div>
+    
+      </article>
+
+      <a class="back-link" href="../index.html#posts" data-reveal>返回文章列表</a>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>

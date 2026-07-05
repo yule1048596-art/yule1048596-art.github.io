@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="积木法不是硬凑，而是先选一组容易积分的部件，再把原分子线性拼出来。">
+    <meta name="author" content="Yule">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="积木法：把分子拆成可积部件">
+    <meta property="og:description" content="积木法不是硬凑，而是先选一组容易积分的部件，再把原分子线性拼出来。">
+    <meta property="og:url" content="https://yule1048596-art.github.io/posts/building-block-method.html">
+    <meta property="og:image" content="https://yule1048596-art.github.io/assets/cover.png">
+    <title>积木法：把分子拆成可积部件 | Yule</title>
+    <link rel="canonical" href="https://yule1048596-art.github.io/posts/building-block-method.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"]]
+        },
+        svg: {
+          fontCache: "global"
+        }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#article">跳到正文</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    <div class="ambient-stage" aria-hidden="true">
+      <span class="motion-grid"></span>
+      <span class="motion-ribbon ribbon-a"></span>
+      <span class="motion-ribbon ribbon-b"></span>
+      <span class="motion-rail rail-a"></span>
+      <span class="motion-rail rail-b"></span>
+      <span class="grain-field"></span>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="回到首页">
+        <span class="brand-mark">Y</span>
+        <span>Yule</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="../index.html#posts">文章</a>
+        <a href="../index.html#topics">主题</a>
+        <a href="../index.html#archive">归档</a>
+        <a href="../index.html#about">关于</a>
+        <a href="https://github.com/yule1048596-art" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="article-main math-note" id="article">
+      <p class="article-kicker" data-reveal><time datetime="2026-07-05">2026-07-05</time><span>数学</span><span>8 min</span></p>
+      <h1 class="kinetic-title" data-reveal>积木法：把分子拆成可积部件</h1>
+      <p class="article-summary" data-reveal>积木法不是硬凑，而是先选一组容易积分的部件，再把原分子线性拼出来。</p>
+
+      <article class="article-body" data-reveal>
+        <p>积木法的思路很朴素：面对一个分式积分，先不要立刻分解分母，而是先找几块“可积的分子积木”。如果原分子能由这些积木线性组合出来，积分会非常快。</p>
+        <p>判断积木时可以先列三类候选：分母本身、分母的导数、配方后能产生反三角函数的剩余项。这样做的好处是每一块都已经知道怎么积分，最后只是在解一个小的线性拼图。</p>
+        <h2>一个入门例子</h2>
+        <p>考虑</p>
+        <div class="math-card">\[
+        \int\frac{x^2}{(x^2+2x+2)^2}\,dx.
+        \]</div>
+        <p>选取积木 \(x^2+2x+2\) 与 \(2x+2\)。因为</p>
+        <div class="math-card">\[
+        x^2=(x^2+2x+2)-(2x+2),
+        \]</div>
+        <p>所以</p>
+        <div class="math-card">\[
+        \int\frac{x^2}{(x^2+2x+2)^2}\,dx
+        =\int\frac{dx}{(x+1)^2+1}-\int\frac{d(x^2+2x+2)}{(x^2+2x+2)^2}.
+        \]</div>
+        <p>直接得到</p>
+        <div class="math-card">\[
+        \arctan(x+1)+\frac{1}{x^2+2x+2}+C.
+        \]</div>
+        <h2>如何选积木</h2>
+        <p>常见积木包括：分母本身、分母的导数、能配成平方的线性组合，以及能通过 \(x\pm c/x\) 变成标准形式的分子。</p>
+        <p>例如分母是 \((ax^2+bx+c)^2\) 时，可以优先看</p>
+        <div class="math-card">\[
+        ax^2+bx+c,
+        \qquad ax^2-c,
+        \qquad 2ax+b.
+        \]</div>
+        <p>它们分别对应降幂、对勾换元和直接导数。</p>
+        <h2>方法边界</h2>
+        <p>积木法适合分子次数不高、分母结构明显的题。它不是万能算法，但能把很多看似需要长分解的题变成几块短积分。</p>
+        <div class="article-callout">积木法的关键是先列可积部件，再拼原分子。别从原分子开始乱拆，要从“哪些东西我会积”开始。</div>
+    
+      </article>
+
+      <a class="back-link" href="../index.html#posts" data-reveal>返回文章列表</a>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>
