@@ -644,6 +644,7 @@ h3 {
 .archive-panel,
 .series-group,
 .collection-item,
+.gallery-item,
 .about-panel,
 .article-callout,
 .intro-stats div {
@@ -660,6 +661,7 @@ h3 {
 .archive-panel::before,
 .series-group::before,
 .collection-item::before,
+.gallery-item::before,
 .about-panel::before,
 .article-callout::before,
 .intro-stats div::before {
@@ -685,6 +687,7 @@ h3 {
 .archive-panel > *,
 .series-group > *,
 .collection-item > *,
+.gallery-item > *,
 .about-panel > *,
 .article-callout > *,
 .intro-stats div > * {
@@ -700,6 +703,7 @@ h3 {
 .archive-panel:hover::before,
 .series-group:hover::before,
 .collection-item:hover::before,
+.gallery-item:hover::before,
 .about-panel:hover::before,
 .article-callout:hover::before,
 .intro-stats div:hover::before {
@@ -771,7 +775,8 @@ h3 {
 
 .category-entry,
 .path-section,
-.series-section {
+.series-section,
+.gallery-section {
   padding: 70px 0;
   border-top: 1px solid var(--line);
 }
@@ -791,6 +796,7 @@ h3 {
 .category-card,
 .path-card,
 .series-card,
+.gallery-item,
 .archive-panel {
   position: relative;
   display: grid;
@@ -808,6 +814,7 @@ h3 {
 .category-card:hover,
 .path-card:hover,
 .series-card:hover,
+.gallery-item:hover,
 .archive-panel:hover {
   transform: translateY(-6px) scale(1.01);
   border-color: color-mix(in srgb, var(--accent) 38%, var(--line));
@@ -1184,6 +1191,10 @@ h3 {
   padding-bottom: 36px;
 }
 
+.gallery-main {
+  padding-bottom: 72px;
+}
+
 .archive-hero {
   min-height: min(430px, calc(100dvh - 210px));
   display: grid;
@@ -1208,6 +1219,44 @@ h3 {
 
 .archive-panel .text-link {
   margin-top: 10px;
+}
+
+.gallery-section {
+  display: grid;
+  gap: 24px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.gallery-item {
+  margin: 0;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--surface) 84%, transparent);
+}
+
+.gallery-item img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  background: var(--surface-soft);
+  transition: transform 900ms var(--motion-ease), filter 900ms var(--motion-ease);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.035);
+  filter: saturate(1.02) contrast(1.02);
+}
+
+.gallery-item figcaption {
+  padding: 12px 14px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 820;
 }
 
 .archive-browser {
@@ -1560,6 +1609,7 @@ h3 {
 .animations-ready .category-card[data-reveal].is-in-view:hover,
 .animations-ready .path-card[data-reveal].is-in-view:hover,
 .animations-ready .series-card[data-reveal].is-in-view:hover,
+.animations-ready .gallery-item[data-reveal].is-in-view:hover,
 .animations-ready .archive-panel[data-reveal].is-in-view:hover {
   transform: translateY(-6px) scale(1.01);
 }
@@ -1748,6 +1798,7 @@ h3 {
   .topic-map,
   .category-grid,
   .archive-hero,
+  .gallery-grid,
   .path-grid,
   .series-grid {
     grid-template-columns: 1fr;
@@ -1786,7 +1837,8 @@ h3 {
 
   .category-entry,
   .path-section,
-  .series-section {
+  .series-section,
+  .gallery-section {
     padding: 52px 0;
   }
 
@@ -1880,6 +1932,7 @@ h3 {
   .category-card,
   .path-card,
   .series-card,
+  .gallery-item,
   .archive-panel,
   .series-group,
   .about-panel {
