@@ -605,6 +605,11 @@ h3 {
   transition: transform 1200ms var(--motion-ease), filter 1200ms var(--motion-ease);
 }
 
+.intro-media.home-visual img {
+  aspect-ratio: 4 / 3;
+  object-position: center;
+}
+
 .intro-media:hover img {
   transform: scale(1.045);
   filter: saturate(1.05) contrast(1.02);
