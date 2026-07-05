@@ -641,6 +641,42 @@ h3 {
   font-size: 0.95rem;
 }
 
+.home-showcase {
+  position: relative;
+  overflow: hidden;
+  margin: clamp(12px, 3vw, 34px) auto 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.home-showcase::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 18%, color-mix(in srgb, #ffffff 28%, transparent) 48%, transparent 74%);
+  transform: translateX(-130%);
+  pointer-events: none;
+}
+
+.home-showcase:hover::after {
+  animation: imageSheen 980ms ease-out both;
+}
+
+.home-showcase img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transform: scale(1.006);
+  transition: transform 1200ms var(--motion-ease), filter 1200ms var(--motion-ease);
+}
+
+.home-showcase:hover img {
+  transform: scale(1.025);
+  filter: saturate(1.04) contrast(1.02);
+}
+
 .topic-card,
 .category-card,
 .path-card,
