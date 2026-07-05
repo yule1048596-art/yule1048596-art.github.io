@@ -6,7 +6,9 @@ const revealItems = Array.from(document.querySelectorAll("[data-reveal]"));
 const kineticTitles = Array.from(document.querySelectorAll(".kinetic-title"));
 const countItems = Array.from(document.querySelectorAll("[data-count]"));
 const spotlightItems = Array.from(
-  document.querySelectorAll(".topic-card, .post-card, .about-panel, .article-callout, .intro-stats div, .button, .filter-button"),
+  document.querySelectorAll(
+    ".topic-card, .category-card, .path-card, .series-card, .post-card, .archive-panel, .series-group, .collection-item, .about-panel, .article-callout, .intro-stats div, .button, .filter-button",
+  ),
 );
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
