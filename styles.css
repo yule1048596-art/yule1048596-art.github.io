@@ -1,20 +1,22 @@
 :root {
-  color-scheme: light dark;
-  --bg: #eef4f0;
-  --bg-quiet: #e6eee9;
-  --surface: #fbfdfb;
-  --surface-soft: #f4f8f5;
-  --ink: #101817;
-  --muted: #5f706a;
-  --line: #d4ddd8;
-  --line-strong: #aebdb5;
-  --accent: #2b6653;
-  --accent-strong: #174635;
-  --accent-soft: #dcebe4;
-  --accent-ink: #ffffff;
-  --shadow: 0 22px 70px rgba(25, 47, 39, 0.12);
-  --soft-shadow: 0 12px 34px rgba(25, 47, 39, 0.08);
-  --radius: 8px;
+  color-scheme: dark;
+  --bg: #080d0d;
+  --bg-quiet: #0d1414;
+  --surface: #121a19;
+  --surface-soft: #182321;
+  --ink: #e6eee9;
+  --muted: #9aa8a2;
+  --line: #273532;
+  --line-strong: #53645f;
+  --accent: #d68a32;
+  --accent-strong: #f4b15d;
+  --accent-soft: #2a2418;
+  --accent-ink: #0a0f0f;
+  --signal: #78c7db;
+  --signal-soft: #17272a;
+  --shadow: 0 28px 96px rgba(0, 0, 0, 0.44);
+  --soft-shadow: 0 14px 42px rgba(0, 0, 0, 0.3);
+  --radius: 4px;
   --motion-fast: 180ms;
   --motion-medium: 460ms;
   --motion-slow: 720ms;
@@ -24,20 +26,22 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #111715;
-    --bg-quiet: #151d1a;
-    --surface: #18211e;
-    --surface-soft: #1f2b27;
-    --ink: #edf5f0;
-    --muted: #aab8b1;
-    --line: #2e3c37;
-    --line-strong: #52635c;
-    --accent: #7ec5a9;
-    --accent-strong: #b6ead6;
-    --accent-soft: #20382f;
-    --accent-ink: #111715;
-    --shadow: 0 22px 70px rgba(0, 0, 0, 0.28);
-    --soft-shadow: 0 12px 34px rgba(0, 0, 0, 0.22);
+    --bg: #060a0a;
+    --bg-quiet: #0a1010;
+    --surface: #101716;
+    --surface-soft: #17211f;
+    --ink: #edf4ef;
+    --muted: #a7b4ae;
+    --line: #25312f;
+    --line-strong: #596963;
+    --accent: #d98d35;
+    --accent-strong: #ffc06c;
+    --accent-soft: #2b2518;
+    --accent-ink: #080d0d;
+    --signal: #80d3e8;
+    --signal-soft: #14272b;
+    --shadow: 0 30px 100px rgba(0, 0, 0, 0.5);
+    --soft-shadow: 0 16px 46px rgba(0, 0, 0, 0.34);
   }
 }
 
@@ -58,10 +62,13 @@ body {
   margin: 0;
   overflow-x: hidden;
   background:
-    linear-gradient(180deg, color-mix(in srgb, var(--bg-quiet) 82%, transparent) 0, var(--bg) 430px),
+    linear-gradient(180deg, rgba(214, 138, 50, 0.08) 0, transparent 360px),
+    repeating-linear-gradient(90deg, transparent 0 84px, rgba(120, 199, 219, 0.045) 84px 85px, transparent 85px 168px),
+    repeating-linear-gradient(0deg, rgba(230, 238, 233, 0.026) 0 1px, transparent 1px 12px),
+    linear-gradient(180deg, var(--bg-quiet) 0, var(--bg) 520px),
     var(--bg);
   color: var(--ink);
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: "Avenir Next", "Segoe UI", "PingFang SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
   line-height: 1.68;
   text-rendering: optimizeLegibility;
 }
@@ -72,8 +79,8 @@ body {
   left: 0;
   z-index: 80;
   width: 100%;
-  height: 3px;
-  background: var(--accent);
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--signal), var(--accent));
   transform: scaleX(0);
   transform-origin: left;
 }
@@ -111,10 +118,11 @@ body {
 
 .motion-grid {
   background:
-    linear-gradient(color-mix(in srgb, var(--accent) 9%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, var(--accent) 7%, transparent) 1px, transparent 1px);
-  background-size: 96px 96px;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.72), transparent 70%);
+    repeating-linear-gradient(0deg, rgba(120, 199, 219, 0.055) 0 1px, transparent 1px 74px),
+    repeating-linear-gradient(90deg, rgba(120, 199, 219, 0.04) 0 1px, transparent 1px 74px),
+    linear-gradient(118deg, transparent 0 46%, rgba(214, 138, 50, 0.08) 47%, transparent 49% 100%);
+  background-size: 148px 148px, 148px 148px, 320px 100%;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.78), transparent 76%);
   will-change: transform, background-position;
 }
 
@@ -123,9 +131,12 @@ body {
   inset-block: auto;
   left: 8%;
   width: 84%;
-  height: 22vh;
-  opacity: 0.14;
-  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 30%, transparent), transparent);
+  height: 18vh;
+  opacity: 0.18;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 26px, rgba(214, 138, 50, 0.24) 26px 28px, transparent 28px 54px),
+    linear-gradient(90deg, transparent, rgba(120, 199, 219, 0.14), transparent);
+  clip-path: polygon(0 48%, 18% 34%, 44% 53%, 70% 41%, 100% 55%, 100% 59%, 70% 46%, 44% 58%, 18% 39%, 0 53%);
   transform: rotate(var(--ribbon-rotate)) translate3d(0, 0, 0);
   will-change: transform, opacity;
 }
@@ -143,7 +154,8 @@ body {
   --rail-rotate: 0deg;
   inset: auto 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--ink) 15%, transparent), transparent);
+  background:
+    linear-gradient(90deg, transparent, rgba(214, 138, 50, 0.42), rgba(120, 199, 219, 0.2), transparent);
   transform: rotate(var(--rail-rotate)) translateX(0);
   transform-origin: center;
   will-change: transform, opacity;
@@ -160,17 +172,17 @@ body {
 }
 
 .grain-field {
-  opacity: 0.08;
+  opacity: 0.16;
   background-image:
-    repeating-linear-gradient(0deg, color-mix(in srgb, var(--ink) 8%, transparent) 0 1px, transparent 1px 3px),
-    repeating-linear-gradient(90deg, color-mix(in srgb, var(--surface) 14%, transparent) 0 1px, transparent 1px 4px);
-  mix-blend-mode: multiply;
+    repeating-linear-gradient(104deg, rgba(230, 238, 233, 0.06) 0 1px, transparent 1px 9px),
+    repeating-linear-gradient(0deg, rgba(120, 199, 219, 0.035) 0 1px, transparent 1px 4px);
+  mix-blend-mode: screen;
 }
 
 @media (prefers-color-scheme: dark) {
   .grain-field {
     mix-blend-mode: screen;
-    opacity: 0.05;
+    opacity: 0.13;
   }
 }
 
@@ -263,10 +275,12 @@ main {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  border-bottom: 1px solid var(--line);
-  background: color-mix(in srgb, var(--bg) 86%, transparent);
-  backdrop-filter: blur(18px) saturate(1.08);
-  -webkit-backdrop-filter: blur(18px) saturate(1.08);
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 42%, var(--line));
+  background:
+    linear-gradient(90deg, rgba(214, 138, 50, 0.08), transparent 28%, rgba(120, 199, 219, 0.06)),
+    color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: blur(22px) saturate(1.15);
+  -webkit-backdrop-filter: blur(22px) saturate(1.15);
   animation: headerDrop var(--motion-medium) ease-out both;
 }
 
@@ -277,8 +291,8 @@ main {
   right: 0;
   bottom: -1px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  opacity: 0.72;
+  background: linear-gradient(90deg, transparent, var(--accent), var(--signal), transparent);
+  opacity: 0.82;
 }
 
 .brand,
@@ -297,6 +311,7 @@ main {
 .brand {
   gap: 11px;
   font-weight: 900;
+  text-transform: uppercase;
 }
 
 .brand-mark {
@@ -305,14 +320,21 @@ main {
   display: grid;
   place-items: center;
   border-radius: var(--radius);
-  background: var(--ink);
-  color: var(--surface);
+  border: 1px solid color-mix(in srgb, var(--accent) 58%, var(--line));
+  background:
+    linear-gradient(135deg, rgba(214, 138, 50, 0.18), rgba(120, 199, 219, 0.08)),
+    var(--surface);
+  color: var(--accent-strong);
   letter-spacing: 0;
-  transition: transform var(--motion-fast) ease;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 10px 30px rgba(0, 0, 0, 0.28);
+  transition: transform var(--motion-fast) ease, border-color var(--motion-fast) ease;
 }
 
 .brand:hover .brand-mark {
   transform: translateY(-1px);
+  border-color: var(--accent-strong);
 }
 
 .site-nav {
@@ -325,9 +347,13 @@ main {
 .site-nav a {
   position: relative;
   overflow: hidden;
-  border-radius: 999px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
   padding: 7px 11px;
-  transition: color var(--motion-fast) ease, background-color var(--motion-fast) ease;
+  transition:
+    color var(--motion-fast) ease,
+    border-color var(--motion-fast) ease,
+    background-color var(--motion-fast) ease;
 }
 
 .site-nav a::after {
@@ -335,22 +361,24 @@ main {
   position: absolute;
   left: 11px;
   right: 11px;
-  bottom: 5px;
-  height: 2px;
-  border-radius: 999px;
-  background: currentColor;
+  bottom: 3px;
+  height: 1px;
+  border-radius: 0;
+  background: linear-gradient(90deg, var(--accent), var(--signal));
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--motion-medium) var(--motion-ease);
 }
 
 .site-nav a:hover {
-  background: color-mix(in srgb, var(--surface) 78%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 32%, var(--line));
+  background: color-mix(in srgb, var(--surface-soft) 74%, transparent);
   color: var(--accent-strong);
 }
 
 .site-nav a[aria-current="page"] {
-  background: color-mix(in srgb, var(--accent-soft) 74%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 42%, var(--line));
+  background: color-mix(in srgb, var(--accent-soft) 72%, transparent);
   color: var(--accent-strong);
 }
 
@@ -374,6 +402,7 @@ main {
 .eyebrow {
   margin: 0 0 14px;
   color: var(--accent-strong);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   font-size: 0.78rem;
   font-weight: 900;
   letter-spacing: 0;
@@ -393,6 +422,7 @@ h1 {
   font-size: clamp(2.9rem, 5.4vw, 4.25rem);
   line-height: 1.04;
   letter-spacing: 0;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .kinetic-title {
@@ -430,6 +460,7 @@ h2 {
   font-size: clamp(2rem, 3.2vw, 3rem);
   line-height: 1.08;
   letter-spacing: 0;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.035);
 }
 
 h3 {
@@ -460,8 +491,8 @@ h3 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--line);
-  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--line-strong) 58%, var(--line));
+  border-radius: var(--radius);
   padding: 10px 18px;
   font-weight: 850;
   white-space: nowrap;
@@ -480,7 +511,7 @@ h3 {
   border-radius: inherit;
   background: radial-gradient(
     circle at var(--spot-x, 50%) var(--spot-y, 50%),
-    color-mix(in srgb, var(--accent-strong) 18%, transparent),
+    color-mix(in srgb, var(--signal) 16%, transparent),
     transparent 62%
   );
   opacity: 0;
@@ -507,13 +538,15 @@ h3 {
 }
 
 .button.primary {
-  background: var(--accent);
-  border-color: var(--accent);
+  background:
+    linear-gradient(135deg, var(--accent-strong), var(--accent));
+  border-color: color-mix(in srgb, var(--accent-strong) 72%, var(--line));
   color: var(--accent-ink);
 }
 
 .button.primary:hover {
-  background: var(--accent-strong);
+  background:
+    linear-gradient(135deg, #ffc878, var(--accent));
   border-color: var(--accent-strong);
 }
 
@@ -522,7 +555,9 @@ h3 {
 }
 
 .button.secondary {
-  background: color-mix(in srgb, var(--surface) 86%, transparent);
+  background:
+    linear-gradient(135deg, rgba(120, 199, 219, 0.08), transparent),
+    color-mix(in srgb, var(--surface) 82%, transparent);
   color: var(--ink);
 }
 
@@ -549,7 +584,9 @@ h3 {
   padding: 15px 16px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: color-mix(in srgb, var(--surface) 74%, transparent);
+  background:
+    linear-gradient(135deg, rgba(120, 199, 219, 0.07), transparent 48%),
+    color-mix(in srgb, var(--surface) 76%, transparent);
   box-shadow: var(--soft-shadow);
   transition: transform var(--motion-fast) ease, border-color var(--motion-fast) ease;
 }
@@ -561,6 +598,7 @@ h3 {
 
 .intro-stats dt {
   color: var(--accent-strong);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   font-size: 1.42rem;
   font-weight: 900;
   line-height: 1.1;
@@ -576,10 +614,14 @@ h3 {
   position: relative;
   margin: 0;
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid color-mix(in srgb, var(--line-strong) 64%, var(--line));
   border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: var(--shadow);
+  background:
+    linear-gradient(135deg, rgba(214, 138, 50, 0.1), transparent 34%),
+    var(--surface);
+  box-shadow:
+    var(--shadow),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.035);
   transform-origin: 50% 70%;
   will-change: transform;
 }
@@ -588,7 +630,9 @@ h3 {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(115deg, transparent 18%, color-mix(in srgb, #ffffff 30%, transparent) 48%, transparent 74%);
+  background:
+    repeating-linear-gradient(0deg, rgba(120, 199, 219, 0.06) 0 1px, transparent 1px 9px),
+    linear-gradient(115deg, transparent 18%, rgba(214, 138, 50, 0.22) 48%, transparent 74%);
   transform: translateX(-130%);
   pointer-events: none;
 }
@@ -601,6 +645,7 @@ h3 {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+  filter: saturate(0.82) contrast(1.08) brightness(0.88);
   transform: scale(1.012);
   transition: transform 1200ms var(--motion-ease), filter 1200ms var(--motion-ease);
 }
@@ -612,7 +657,7 @@ h3 {
 
 .intro-media:hover img {
   transform: scale(1.045);
-  filter: saturate(1.05) contrast(1.02);
+  filter: saturate(0.92) contrast(1.12) brightness(0.92);
 }
 
 .intro-media figcaption {
@@ -645,17 +690,23 @@ h3 {
   position: relative;
   overflow: hidden;
   margin: clamp(12px, 3vw, 34px) auto 8px;
-  border: 1px solid var(--line);
+  border: 1px solid color-mix(in srgb, var(--line-strong) 62%, var(--line));
   border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: var(--shadow);
+  background:
+    linear-gradient(135deg, rgba(120, 199, 219, 0.08), transparent 42%),
+    var(--surface);
+  box-shadow:
+    var(--shadow),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.035);
 }
 
 .home-showcase::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(115deg, transparent 18%, color-mix(in srgb, #ffffff 28%, transparent) 48%, transparent 74%);
+  background:
+    repeating-linear-gradient(0deg, rgba(120, 199, 219, 0.052) 0 1px, transparent 1px 10px),
+    linear-gradient(115deg, transparent 18%, rgba(214, 138, 50, 0.2) 48%, transparent 74%);
   transform: translateX(-130%);
   pointer-events: none;
 }
@@ -668,13 +719,14 @@ h3 {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
+  filter: saturate(0.82) contrast(1.08) brightness(0.88);
   transform: scale(1.006);
   transition: transform 1200ms var(--motion-ease), filter 1200ms var(--motion-ease);
 }
 
 .home-showcase:hover img {
   transform: scale(1.025);
-  filter: saturate(1.04) contrast(1.02);
+  filter: saturate(0.92) contrast(1.12) brightness(0.92);
 }
 
 .topic-card,
@@ -710,13 +762,11 @@ h3 {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: radial-gradient(
-    circle at var(--spot-x, 50%) var(--spot-y, 50%),
-    color-mix(in srgb, var(--accent) 18%, transparent),
-    transparent 42%
-  );
+  background:
+    linear-gradient(90deg, transparent, color-mix(in srgb, var(--signal) 12%, transparent), transparent 62%),
+    repeating-linear-gradient(0deg, transparent 0 12px, color-mix(in srgb, var(--accent) 8%, transparent) 12px 13px);
   opacity: 0;
-  transform: scale(0.96);
+  transform: translateX(-18%) scale(0.96);
   transition: opacity var(--motion-medium) ease, transform var(--motion-medium) var(--motion-ease);
 }
 
@@ -736,6 +786,29 @@ h3 {
   z-index: 1;
 }
 
+.topic-card::after,
+.category-card::after,
+.path-card::after,
+.series-card::after,
+.post-card::after,
+.archive-panel::after,
+.series-group::after,
+.gallery-item::after,
+.about-panel::after,
+.article-callout::after,
+.math-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: min(112px, 42%);
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), rgba(120, 199, 219, 0.48), transparent);
+  opacity: 0.78;
+  pointer-events: none;
+}
+
 .topic-card:hover::before,
 .category-card:hover::before,
 .path-card:hover::before,
@@ -749,7 +822,7 @@ h3 {
 .article-callout:hover::before,
 .intro-stats div:hover::before {
   opacity: 1;
-  transform: scale(1);
+  transform: translateX(0) scale(1);
 }
 
 .topic-map {
@@ -763,10 +836,11 @@ h3 {
   position: relative;
   min-height: 190px;
   padding: 26px;
-  border: 1px solid var(--line);
+  border: 1px solid color-mix(in srgb, var(--line-strong) 48%, var(--line));
   border-radius: var(--radius);
   background:
-    linear-gradient(135deg, color-mix(in srgb, var(--surface) 94%, transparent), color-mix(in srgb, var(--accent-soft) 42%, transparent)),
+    linear-gradient(135deg, rgba(120, 199, 219, 0.07), transparent 42%),
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 94%, transparent), color-mix(in srgb, var(--surface-soft) 84%, transparent)),
     var(--surface);
   box-shadow: var(--soft-shadow);
   transition:
@@ -787,17 +861,21 @@ h3 {
   display: grid;
   align-content: end;
   background:
-    linear-gradient(160deg, color-mix(in srgb, var(--accent-soft) 72%, transparent), color-mix(in srgb, var(--surface) 94%, transparent) 58%),
+    linear-gradient(155deg, rgba(214, 138, 50, 0.18), transparent 42%),
+    repeating-linear-gradient(100deg, transparent 0 34px, rgba(120, 199, 219, 0.035) 34px 35px),
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, transparent), color-mix(in srgb, var(--surface-soft) 88%, transparent)),
     var(--surface);
 }
 
 .topic-label {
   width: fit-content;
   margin-bottom: 18px;
-  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--line));
-  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent) 38%, var(--line));
+  border-radius: var(--radius);
   padding: 4px 10px;
+  background: color-mix(in srgb, var(--accent-soft) 62%, transparent);
   color: var(--accent-strong);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   font-size: 0.82rem;
   font-weight: 850;
 }
@@ -819,7 +897,7 @@ h3 {
 .series-section,
 .gallery-section {
   padding: 70px 0;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid color-mix(in srgb, var(--line) 84%, transparent);
 }
 
 .flat-heading {
@@ -842,9 +920,11 @@ h3 {
   position: relative;
   display: grid;
   gap: 16px;
-  border: 1px solid var(--line);
+  border: 1px solid color-mix(in srgb, var(--line-strong) 44%, var(--line));
   border-radius: var(--radius);
-  background: color-mix(in srgb, var(--surface) 84%, transparent);
+  background:
+    linear-gradient(135deg, rgba(120, 199, 219, 0.055), transparent 46%),
+    color-mix(in srgb, var(--surface) 84%, transparent);
   box-shadow: var(--soft-shadow);
   transition:
     transform var(--motion-medium) var(--motion-spring),
@@ -873,7 +953,9 @@ h3 {
   align-content: end;
   grid-row: span 3;
   background:
-    linear-gradient(155deg, color-mix(in srgb, var(--accent-soft) 78%, transparent), color-mix(in srgb, var(--surface) 96%, transparent) 62%),
+    linear-gradient(155deg, rgba(214, 138, 50, 0.18), transparent 42%),
+    repeating-linear-gradient(100deg, transparent 0 34px, rgba(120, 199, 219, 0.034) 34px 35px),
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 94%, transparent), color-mix(in srgb, var(--surface-soft) 86%, transparent)),
     var(--surface);
 }
 
@@ -901,6 +983,7 @@ h3 {
 
 .category-metrics strong,
 .archive-panel strong {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   font-size: clamp(2.4rem, 4.8vw, 4rem);
   line-height: 0.95;
 }
@@ -964,11 +1047,12 @@ h3 {
 .series-card span,
 .series-group-heading span {
   width: fit-content;
-  border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--line));
-  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent) 36%, var(--line));
+  border-radius: var(--radius);
   padding: 3px 9px;
-  background: color-mix(in srgb, var(--accent-soft) 56%, transparent);
+  background: color-mix(in srgb, var(--accent-soft) 66%, transparent);
   color: var(--accent-strong);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   font-size: 0.84rem;
   font-weight: 840;
 }
@@ -980,7 +1064,7 @@ h3 {
   grid-template-columns: minmax(220px, 0.34fr) minmax(0, 1fr);
   gap: 32px;
   padding: 70px 0;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid color-mix(in srgb, var(--line) 84%, transparent);
 }
 
 .content-grid {
@@ -1008,6 +1092,7 @@ h3 {
   display: grid;
   gap: 8px;
   color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   font-size: 0.9rem;
   font-weight: 780;
 }
@@ -1015,10 +1100,12 @@ h3 {
 .search-box input {
   width: 100%;
   min-height: 50px;
-  border: 1px solid var(--line);
+  border: 1px solid color-mix(in srgb, var(--line-strong) 42%, var(--line));
   border-radius: var(--radius);
   padding: 0 16px;
-  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  background:
+    linear-gradient(90deg, rgba(120, 199, 219, 0.045), transparent),
+    color-mix(in srgb, var(--surface) 92%, transparent);
   color: var(--ink);
 }
 
@@ -1039,10 +1126,12 @@ h3 {
   position: relative;
   overflow: hidden;
   min-height: 38px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--line-strong) 40%, var(--line));
+  border-radius: var(--radius);
   padding: 7px 14px;
-  background: color-mix(in srgb, var(--surface) 76%, transparent);
+  background:
+    linear-gradient(135deg, rgba(120, 199, 219, 0.05), transparent),
+    color-mix(in srgb, var(--surface) 76%, transparent);
   color: var(--muted);
   cursor: pointer;
   transition:
@@ -1059,7 +1148,7 @@ h3 {
   border-radius: inherit;
   background: radial-gradient(
     circle at var(--spot-x, 50%) var(--spot-y, 50%),
-    color-mix(in srgb, var(--accent) 18%, transparent),
+    color-mix(in srgb, var(--signal) 14%, transparent),
     transparent 62%
   );
   opacity: 0;
@@ -1087,7 +1176,8 @@ h3 {
 
 .filter-button.active {
   border-color: var(--accent);
-  background: var(--accent);
+  background:
+    linear-gradient(135deg, var(--accent-strong), var(--accent));
   color: var(--accent-ink);
 }
 
@@ -1106,10 +1196,14 @@ h3 {
   justify-content: space-between;
   gap: 28px;
   padding: 24px;
-  border: 1px solid var(--line);
+  border: 1px solid color-mix(in srgb, var(--line-strong) 42%, var(--line));
   border-radius: var(--radius);
-  background: color-mix(in srgb, var(--surface) 86%, transparent);
-  box-shadow: 0 1px 0 color-mix(in srgb, var(--surface) 90%, transparent);
+  background:
+    linear-gradient(135deg, rgba(120, 199, 219, 0.05), transparent 42%),
+    color-mix(in srgb, var(--surface) 86%, transparent);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.045),
+    var(--soft-shadow);
   transform-origin: 50% 100%;
   transition:
     transform var(--motion-medium) var(--motion-spring),
@@ -1128,7 +1222,9 @@ h3 {
   min-height: 290px;
   padding: 30px;
   background:
-    linear-gradient(135deg, color-mix(in srgb, var(--surface) 96%, transparent), color-mix(in srgb, var(--accent-soft) 64%, transparent)),
+    linear-gradient(135deg, rgba(214, 138, 50, 0.16), transparent 44%),
+    repeating-linear-gradient(100deg, transparent 0 36px, rgba(120, 199, 219, 0.038) 36px 37px),
+    color-mix(in srgb, var(--surface) 92%, transparent),
     var(--surface);
   border-color: color-mix(in srgb, var(--accent) 26%, var(--line));
 }
@@ -1147,14 +1243,15 @@ h3 {
   flex-wrap: wrap;
   gap: 8px;
   color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   font-size: 0.88rem;
   font-weight: 820;
 }
 
 .post-meta span,
 .article-kicker span {
-  border: 1px solid var(--line);
-  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--line-strong) 38%, var(--line));
+  border-radius: var(--radius);
   padding: 1px 8px;
   color: var(--accent-strong);
 }
@@ -1174,10 +1271,10 @@ h3 {
   display: inline-flex;
   align-items: center;
   min-height: 30px;
-  border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--line));
-  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent) 36%, var(--line));
+  border-radius: var(--radius);
   padding: 4px 10px;
-  background: color-mix(in srgb, var(--accent-soft) 62%, transparent);
+  background: color-mix(in srgb, var(--accent-soft) 72%, transparent);
   color: var(--accent-strong);
   font-weight: 780;
 }
@@ -1254,7 +1351,9 @@ h3 {
   align-content: end;
   padding: 24px;
   background:
-    linear-gradient(145deg, color-mix(in srgb, var(--accent-soft) 70%, transparent), color-mix(in srgb, var(--surface) 88%, transparent)),
+    linear-gradient(145deg, rgba(214, 138, 50, 0.16), transparent 44%),
+    repeating-linear-gradient(100deg, transparent 0 28px, rgba(120, 199, 219, 0.04) 28px 29px),
+    color-mix(in srgb, var(--surface) 88%, transparent),
     var(--surface);
 }
 
@@ -1276,7 +1375,9 @@ h3 {
 .gallery-item {
   margin: 0;
   overflow: hidden;
-  background: color-mix(in srgb, var(--surface) 84%, transparent);
+  background:
+    linear-gradient(135deg, rgba(120, 199, 219, 0.05), transparent),
+    color-mix(in srgb, var(--surface) 84%, transparent);
 }
 
 .gallery-item img {
@@ -1284,18 +1385,20 @@ h3 {
   aspect-ratio: 16 / 10;
   object-fit: cover;
   background: var(--surface-soft);
+  filter: saturate(0.86) contrast(1.06) brightness(0.9);
   transition: transform 900ms var(--motion-ease), filter 900ms var(--motion-ease);
 }
 
 .gallery-item:hover img {
   transform: scale(1.035);
-  filter: saturate(1.02) contrast(1.02);
+  filter: saturate(0.94) contrast(1.1) brightness(0.94);
 }
 
 .gallery-item figcaption {
   padding: 12px 14px;
   border-top: 1px solid var(--line);
   color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   font-size: 0.9rem;
   font-weight: 820;
 }
@@ -1322,10 +1425,12 @@ h3 {
 
 .series-group {
   scroll-margin-top: 96px;
-  border: 1px solid var(--line);
+  border: 1px solid color-mix(in srgb, var(--line-strong) 42%, var(--line));
   border-radius: var(--radius);
   padding: 24px;
-  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  background:
+    linear-gradient(135deg, rgba(120, 199, 219, 0.05), transparent 42%),
+    color-mix(in srgb, var(--surface) 80%, transparent);
   box-shadow: var(--soft-shadow);
   transition:
     transform var(--motion-medium) var(--motion-spring),
@@ -1345,7 +1450,7 @@ h3 {
   justify-content: space-between;
   gap: 18px;
   margin-bottom: 8px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 86%, transparent);
   padding-bottom: 16px;
 }
 
@@ -1409,7 +1514,7 @@ h3 {
   grid-template-columns: 132px minmax(0, 1fr);
   gap: 18px;
   padding: 18px 0;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 82%, transparent);
   transition: transform var(--motion-fast) var(--motion-ease), color var(--motion-fast) ease;
 }
 
@@ -1419,6 +1524,7 @@ h3 {
 
 .timeline time {
   color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   font-variant-numeric: tabular-nums;
 }
 
@@ -1437,10 +1543,12 @@ h3 {
 }
 
 .about-panel {
-  border: 1px solid var(--line);
+  border: 1px solid color-mix(in srgb, var(--line-strong) 42%, var(--line));
   border-radius: var(--radius);
   padding: 26px;
-  background: color-mix(in srgb, var(--surface) 78%, transparent);
+  background:
+    linear-gradient(135deg, rgba(214, 138, 50, 0.07), transparent 44%),
+    color-mix(in srgb, var(--surface) 78%, transparent);
   box-shadow: var(--soft-shadow);
 }
 
@@ -1460,7 +1568,7 @@ h3 {
   justify-content: space-between;
   gap: 18px;
   min-height: 94px;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid color-mix(in srgb, var(--line) 86%, transparent);
   color: var(--muted);
 }
 
@@ -1509,7 +1617,7 @@ h3 {
   position: relative;
   margin-top: 40px;
   padding-top: 34px;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid color-mix(in srgb, var(--line) 86%, transparent);
   font-size: 1.06rem;
 }
 
@@ -1532,7 +1640,7 @@ h3 {
   height: 2px;
   margin-top: 12px;
   border-radius: 999px;
-  background: var(--accent);
+  background: linear-gradient(90deg, var(--accent), var(--signal));
   transform-origin: left;
 }
 
@@ -1552,7 +1660,7 @@ h3 {
 .article-body code {
   border-radius: 6px;
   padding: 0.12em 0.34em;
-  background: var(--surface-soft);
+  background: color-mix(in srgb, var(--surface-soft) 82%, transparent);
   color: var(--accent-strong);
 }
 
@@ -1571,18 +1679,69 @@ h3 {
   padding-left: 1.3rem;
 }
 
+.article-table-wrap {
+  margin: 26px 0 34px;
+  overflow-x: auto;
+  border: 1px solid color-mix(in srgb, var(--line-strong) 42%, var(--line));
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(120, 199, 219, 0.045), transparent 42%),
+    color-mix(in srgb, var(--surface) 86%, transparent);
+  box-shadow: var(--soft-shadow);
+}
+
+.article-table {
+  width: 100%;
+  min-width: 920px;
+  border-collapse: collapse;
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+.article-table th,
+.article-table td {
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 84%, transparent);
+  padding: 14px 16px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.article-table thead th {
+  background:
+    linear-gradient(90deg, rgba(214, 138, 50, 0.12), rgba(120, 199, 219, 0.06)),
+    color-mix(in srgb, var(--accent-soft) 66%, transparent);
+  color: var(--accent-strong);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.article-table tbody th {
+  width: 132px;
+  color: var(--accent-strong);
+  font-weight: 900;
+}
+
+.article-table tr:last-child th,
+.article-table tr:last-child td {
+  border-bottom: 0;
+}
+
 .math-note .article-summary {
   max-width: 780px;
 }
 
 .math-card {
+  position: relative;
   margin: 24px 0;
   overflow-x: auto;
   overflow-y: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid color-mix(in srgb, var(--line-strong) 42%, var(--line));
   border-radius: var(--radius);
   padding: 8px 18px;
-  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  background:
+    linear-gradient(135deg, rgba(120, 199, 219, 0.05), transparent 44%),
+    color-mix(in srgb, var(--surface) 82%, transparent);
   box-shadow: var(--soft-shadow);
 }
 
@@ -1602,7 +1761,9 @@ h3 {
   padding: 20px 22px;
   border-left: 4px solid var(--accent);
   border-radius: var(--radius);
-  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  background:
+    linear-gradient(135deg, rgba(214, 138, 50, 0.08), transparent 42%),
+    color-mix(in srgb, var(--surface) 82%, transparent);
   box-shadow: var(--soft-shadow);
   color: var(--muted);
   transition: transform var(--motion-medium) var(--motion-spring), border-color var(--motion-fast) ease;
@@ -1685,7 +1846,7 @@ h3 {
     transform: translate3d(0, 0, 0);
   }
   100% {
-    background-position: 96px 48px, 48px 96px;
+    background-position: 148px 74px, 74px 148px, 320px 0;
     transform: translate3d(-18px, 10px, 0);
   }
 }
@@ -1921,6 +2082,10 @@ h3 {
   .intro-media img {
     aspect-ratio: 16 / 4;
     object-position: center 42%;
+  }
+
+  .home-showcase img {
+    aspect-ratio: 16 / 10;
   }
 
   #intro-title {
