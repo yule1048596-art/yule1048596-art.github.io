@@ -1,783 +1,197 @@
 <!DOCTYPE html>
-
-<html lang="zh-CN"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>《LLMs Can't Jump：大模型为何无法自主跃迁与符号接地困境》· 思辨之境</title>
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&amp;family=Noto+Serif+SC:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<!-- Material Symbols -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS v3 -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          "colors": {
-            "on-secondary-fixed-variant": "#46464e",
-            "on-tertiary-fixed-variant": "#832604",
-            "surface-tint": "#99462a",
-            "surface": "#fbf9f5",
-            "on-error-container": "#93000a",
-            "error": "#ba1a1a",
-            "secondary-fixed": "#e3e1ec",
-            "surface-bright": "#fbf9f5",
-            "secondary": "#5d5e66",
-            "on-surface": "#1b1c1a",
-            "on-secondary-fixed": "#1a1b22",
-            "on-surface-variant": "#55433d",
-            "tertiary-fixed": "#ffdbd0",
-            "on-primary-fixed-variant": "#7a2f15",
-            "outline-variant": "#dbc1b9",
-            "surface-container-lowest": "#ffffff",
-            "on-tertiary-container": "#551300",
-            "surface-container-high": "#eae8e4",
-            "primary-fixed": "#ffdbd0",
-            "on-secondary": "#ffffff",
-            "primary-fixed-dim": "#ffb59e",
-            "outline": "#88726c",
-            "secondary-fixed-dim": "#c6c5cf",
-            "surface-container-low": "#f5f3ef",
-            "tertiary-fixed-dim": "#ffb59f",
-            "inverse-primary": "#ffb59e",
-            "on-primary": "#ffffff",
-            "on-primary-fixed": "#390b00",
-            "inverse-surface": "#30312e",
-            "inverse-on-surface": "#f2f0ed",
-            "tertiary-container": "#e76e48",
-            "background": "#fbf9f5",
-            "on-error": "#ffffff",
-            "error-container": "#ffdad6",
-            "on-tertiary-fixed": "#3a0a00",
-            "tertiary": "#a43d1b",
-            "surface-container-highest": "#e4e2de",
-            "surface-container": "#efeeea",
-            "primary": "#99462a",
-            "on-primary-container": "#541400",
-            "on-background": "#1b1c1a",
-            "secondary-container": "#e3e1ec",
-            "primary-container": "#d97757",
-            "surface-dim": "#dbdad6",
-            "surface-variant": "#e4e2de",
-            "on-secondary-container": "#63646c",
-            "on-tertiary": "#ffffff"
-          },
-          "borderRadius": {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
-          },
-          "spacing": {
-            "gutter": "1.5rem",
-            "space-lg": "1.5rem",
-            "space-md": "1rem",
-            "margin-sm": "1rem",
-            "gutter-sm": "1rem",
-            "space-xl": "2.5rem",
-            "space-xs": "0.25rem",
-            "margin": "2rem",
-            "space-sm": "0.5rem"
-          },
-          "fontFamily": {
-            "headline-md": ["\"Source Serif 4\"", "\"Noto Serif SC\"", "serif"],
-            "label-md": ["Inter", "sans-serif"],
-            "body-md": ["Inter", "sans-serif"],
-            "body-lg": ["Inter", "sans-serif"],
-            "headline-lg-mobile": ["\"Source Serif 4\"", "\"Noto Serif SC\"", "serif"],
-            "display-lg-mobile": ["\"Source Serif 4\"", "\"Noto Serif SC\"", "serif"],
-            "display-lg": ["\"Source Serif 4\"", "\"Noto Serif SC\"", "serif"],
-            "label-code": ["JetBrains Mono", "monospace"],
-            "headline-sm": ["\"Source Serif 4\"", "\"Noto Serif SC\"", "serif"],
-            "body-sm": ["Inter", "sans-serif"],
-            "title-md": ["Inter", "sans-serif"],
-            "label-meta": ["JetBrains Mono", "monospace"],
-            "headline-lg": ["\"Source Serif 4\"", "\"Noto Serif SC\"", "serif"]
-          },
-          "fontSize": {
-            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
-            "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
-            "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }],
-            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
-            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
-            "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
-            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "400" }],
-            "label-code": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "400" }],
-            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "500" }],
-            "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
-            "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
-            "label-meta": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500" }],
-            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "400" }]
-          }
-        }
-      }
-    };
-  </script>
-<style>
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-      display: inline-block;
-      vertical-align: middle;
-      line-height: 1;
-    }
-    .drop-cap::first-letter {
-      float: left;
-      font-family: 'Source Serif 4', 'Noto Serif SC', serif;
-      font-size: 3.8rem;
-      line-height: 0.85;
-      padding-top: 4px;
-      padding-right: 12px;
-      padding-bottom: 2px;
-      color: #99462a;
-      font-weight: 600;
-    }
-    /* Smooth paper scroll feel */
-    html {
-      scroll-behavior: smooth;
-      background-color: #fbf9f5;
-    }
-  </style>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LLMs Can't Jump · 思辨之境</title>
+<meta name="description" content="当统计学概率补全被误认为真正理解：从爱因斯坦电梯思想实验看 AGI 的本质壁垒与符号接地困境。">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('reader-size');if(s)document.documentElement.style.setProperty('--reader-size',s+'px')}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23b23a2a'/%3E%3Ctext x='16' y='23' font-size='19' text-anchor='middle' fill='white' font-family='serif' font-weight='700'%3E思%3C/text%3E%3C/svg%3E">
 </head>
-<body class="bg-surface text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed min-h-screen flex flex-col font-body-md text-body-md">
-<!-- ================= TOP APP BAR (Shared Components JSON Anchor) ================= -->
-<header class="bg-surface dark:bg-inverse-surface docked full-width top-0 z-50 sticky border-b border-surface-variant dark:border-outline-variant flat no shadows">
-<div class="flex justify-between items-center w-full px-6 py-3 max-w-7xl mx-auto">
-<!-- Search & Brand -->
-<div class="flex items-center gap-6">
-<a class="text-headline-sm font-headline-sm font-bold text-on-surface dark:text-inverse-on-surface tracking-tight flex items-center gap-2 cursor-pointer transition-all duration-150 active:scale-95" href="index.html">
-<span class="w-7 h-7 rounded-lg bg-primary flex items-center justify-center text-on-primary text-label-md font-bold shadow-sm">思</span>
-<span>思辨之境 · 全景思想文库</span>
-</a>
-<div class="relative hidden sm:block">
-<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
-<input class="bg-surface-container-low pl-8 pr-3 py-1.5 rounded-lg text-body-sm font-body-sm text-on-surface border border-surface-variant focus:outline-none focus:border-primary w-56 lg:w-72 transition-all" placeholder="检索哲学概念、文献索引、思考模型..." type="text"/>
-</div>
-</div>
-<!-- Navigation Links -->
-<nav class="hidden md:flex items-center gap-6">
-<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:text-on-surface dark:hover:text-inverse-on-surface font-body-md text-body-md" href="index.html">文库</a>
-<a class="text-primary dark:text-inverse-primary border-b-2 border-primary dark:border-inverse-primary font-title-md text-title-md pb-1" href="index.html">论题</a>
-<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:text-on-surface dark:hover:text-inverse-on-surface font-body-md text-body-md" href="index.html">拓扑</a>
-<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:text-on-surface dark:hover:text-inverse-on-surface font-body-md text-body-md" href="index.html">札记</a>
-<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:text-on-surface dark:hover:text-inverse-on-surface font-body-md text-body-md" href="index.html">手稿</a>
-</nav>
-<!-- Trailing Actions -->
-<div class="flex items-center gap-2">
-<button class="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-surface-variant text-body-sm font-body-sm text-on-surface hover:bg-surface-container-low transition-colors duration-150 cursor-pointer">
-<span class="material-symbols-outlined text-[16px] text-primary">download</span>
-<span>离线归档</span>
-</button>
-<button class="bg-primary text-on-primary px-3.5 py-1.5 rounded-lg font-title-md text-body-sm hover:bg-tertiary transition-colors duration-150 cursor-pointer shadow-sm">
-          订阅文摘
-        </button>
-<div class="flex items-center gap-1 border-l border-surface-variant pl-2 ml-1">
-<button class="p-1.5 rounded-lg hover:bg-surface-container-low text-on-surface-variant cursor-pointer" title="阅读视图">
-<span class="material-symbols-outlined text-[20px]">menu_book</span>
-</button>
-<button class="p-1.5 rounded-lg hover:bg-surface-container-low text-on-surface-variant cursor-pointer" title="切换模式">
-<span class="material-symbols-outlined text-[20px]">contrast</span>
-</button>
-<button class="p-1.5 rounded-lg hover:bg-surface-container-low text-on-surface-variant cursor-pointer" title="收藏">
-<span class="material-symbols-outlined text-[20px]">bookmark</span>
-</button>
-</div>
-</div>
-</div>
+<body>
+<div class="progress" id="progress"></div>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="seal">思</span>思辨之境</a>
+    <nav class="nav" aria-label="主导航">
+      <a href="index.html#featured" class="hide-sm">精选</a>
+      <a href="index.html#domains" class="hide-sm">领域</a>
+      <a href="index.html#archive">文库</a>
+      <a href="index.html#about">关于</a>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="切换深浅色">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+      </button>
+    </nav>
+  </div>
 </header>
-<!-- ================= SUB-HEADER / CLAUDE READING HUD & PROGRESS ================= -->
-<section class="bg-surface-container-low/90 backdrop-blur-md sticky top-[57px] z-40 border-b border-surface-variant">
-<div class="max-w-7xl mx-auto px-6 py-2.5 flex flex-wrap items-center justify-between gap-4">
-<!-- Left: Breadcrumb -->
-<div class="flex items-center gap-2 text-body-sm font-body-sm text-on-surface-variant">
-<a class="hover:text-primary transition-colors flex items-center gap-1" href="index.html">
-<span class="material-symbols-outlined text-[16px]">arrow_back</span>
-<span>返回文库 (思辨之境)</span>
-</a>
-<span class="text-surface-variant">/</span>
-<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container text-primary font-label-meta text-label-meta">
-<span>🤖 AI与技术哲学</span>
-</span>
-</div>
-<!-- Center: Slim Terracotta Progress -->
-<div class="hidden md:flex items-center gap-3 w-72 lg:w-96">
-<div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
-<div class="bg-primary h-1.5 rounded-full transition-all duration-300" style="width: 35%;"></div>
-</div>
-<span class="font-label-meta text-label-meta text-on-surface-variant shrink-0">
-          35% · 剩 16 分钟 · 第 03 章
-        </span>
-</div>
-<!-- Right: Reading Controls & Artifact Export -->
-<div class="flex items-center gap-2">
-<div class="hidden sm:flex items-center bg-surface rounded-lg border border-surface-variant p-0.5 text-on-surface-variant text-label-code font-label-code">
-<button class="px-2 py-0.5 hover:text-primary transition-colors">A-</button>
-<span class="text-surface-variant">|</span>
-<button class="px-2 py-0.5 hover:text-primary transition-colors font-medium text-primary">A+</button>
-<span class="text-surface-variant">|</span>
-<button class="px-2 py-0.5 hover:text-primary transition-colors font-serif">宋</button>
-<span class="text-surface-variant">|</span>
-<button class="px-2 py-0.5 hover:text-primary transition-colors">宽松</button>
-</div>
-<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-surface-variant hover:bg-surface text-body-sm font-body-sm text-on-surface transition-colors cursor-pointer">
-<span class="material-symbols-outlined text-[16px] text-primary">share</span>
-<span class="hidden sm:inline">生成分享卡</span>
-</button>
-<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-container-highest hover:bg-surface-variant text-body-sm font-body-sm text-on-surface transition-colors cursor-pointer">
-<span class="material-symbols-outlined text-[16px] text-primary">download</span>
-<span>导出 Markdown/PDF</span>
-</button>
-</div>
-</div>
-</section>
-<!-- ================= MAIN LAYOUT WITH 3 COLUMNS ================= -->
-<main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-8">
-<div class="flex flex-col lg:flex-row gap-8 items-start relative">
-<!-- ================= 1. LEFT NAVIGATION RAIL (Outline & Progress) ================= -->
-<aside class="hidden lg:flex flex-col w-64 shrink-0 sticky top-28 bg-surface-container-low rounded-xl p-4 border border-surface-variant">
-<div class="flex items-center justify-between pb-3 border-b border-surface-variant mb-3">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[20px]">account_tree</span>
-<span class="font-title-md text-label-md font-semibold text-on-surface">目录与论题拓扑</span>
-</div>
-<span class="font-label-meta text-label-meta text-on-surface-variant">6 节全</span>
-</div>
-<nav class="space-y-1">
-<!-- 01 Item (Read) -->
-<a class="flex items-start gap-2.5 px-2.5 py-2 rounded-lg text-body-sm font-body-sm text-on-surface-variant hover:bg-surface-container transition-colors group" href="#section-1">
-<span class="material-symbols-outlined text-outline-variant text-[16px] mt-0.5 group-hover:text-primary">check_circle</span>
-<span class="line-clamp-2">01. 引言：涌现神话与AGI的“跃迁幻觉”</span>
-</a>
-<!-- 02 Item (Read) -->
-<a class="flex items-start gap-2.5 px-2.5 py-2 rounded-lg text-body-sm font-body-sm text-on-surface-variant hover:bg-surface-container transition-colors group" href="#section-2">
-<span class="material-symbols-outlined text-outline-variant text-[16px] mt-0.5 group-hover:text-primary">check_circle</span>
-<span class="line-clamp-2">02. 统计拟合 vs 因果推理：朱迪亚·珀尔的因果之梯</span>
-</a>
-<!-- 03 Item (Current Active) -->
-<a class="flex items-start gap-2.5 px-2.5 py-2 rounded-lg bg-surface-container-highest text-primary font-medium transition-colors border-l-2 border-primary" href="#section-3">
-<span class="material-symbols-outlined text-primary text-[16px] mt-0.5">radio_button_checked</span>
-<span class="line-clamp-2">03. 思想实验：封闭在爱因斯坦电梯里的大语言模型</span>
-</a>
-<!-- 04 Item -->
-<a class="flex items-start gap-2.5 px-2.5 py-2 rounded-lg text-body-sm font-body-sm text-on-surface-variant hover:bg-surface-container transition-colors group" href="#section-4">
-<span class="material-symbols-outlined text-surface-variant text-[16px] mt-0.5 group-hover:text-primary">radio_button_unchecked</span>
-<span class="line-clamp-2">04. 符号接地的本体论困境：塞尔中文屋的新变体</span>
-</a>
-<!-- 05 Item -->
-<a class="flex items-start gap-2.5 px-2.5 py-2 rounded-lg text-body-sm font-body-sm text-on-surface-variant hover:bg-surface-container transition-colors group" href="#section-5">
-<span class="material-symbols-outlined text-surface-variant text-[16px] mt-0.5 group-hover:text-primary">radio_button_unchecked</span>
-<span class="line-clamp-2">05. 大脑“过拟合”与机器“记忆回放”的同构性</span>
-</a>
-<!-- 06 Item -->
-<a class="flex items-start gap-2.5 px-2.5 py-2 rounded-lg text-body-sm font-body-sm text-on-surface-variant hover:bg-surface-container transition-colors group" href="#section-6">
-<span class="material-symbols-outlined text-surface-variant text-[16px] mt-0.5 group-hover:text-primary">radio_button_unchecked</span>
-<span class="line-clamp-2">06. 结论：通往真正认知智能的下一条未竟之路</span>
-</a>
-</nav>
-<!-- Citation Network Widget -->
-<div class="mt-6 pt-4 border-t border-surface-variant">
-<div class="p-3 bg-surface rounded-lg border border-surface-variant text-body-sm">
-<div class="flex items-center gap-1.5 text-primary font-medium mb-1">
-<span class="material-symbols-outlined text-[16px]">hub</span>
-<span>知识网络拓扑</span>
-</div>
-<p class="text-on-surface-variant font-body-sm text-[12px] leading-relaxed mb-2">
-              包含 18 项图灵奖、认知神经学经典文献互联图谱
-            </p>
-<button class="w-full text-center py-1 rounded bg-surface-container-high hover:bg-surface-variant font-label-code text-label-code text-primary transition-colors">
-              交互式展开文献图谱 →
-            </button>
-</div>
-</div>
-<!-- Academic Seal / Badge -->
-<div class="mt-4 flex items-center justify-between text-on-surface-variant/70 font-label-code text-label-code">
-<span>印章徽标 · 认证评议</span>
-<span class="material-symbols-outlined text-[16px] text-primary">verified</span>
-</div>
-</aside>
-<!-- ================= 2. CENTER PRIMARY READING STREAM ================= -->
-<article class="flex-1 max-w-[780px] mx-auto w-full">
-<!-- ARTICLE MASTHEAD -->
-<div class="bg-surface-container-lowest border border-surface-variant rounded-2xl p-6 sm:p-10 mb-8 shadow-sm">
-<!-- Category Badge -->
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-meta text-label-meta mb-4">
-<span class="material-symbols-outlined text-[15px]">psychology</span>
-<span>AI与技术哲学 · 深度研究长文 (Research Monograph)</span>
-</div>
-<!-- Master Title -->
-<h1 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight mb-4 leading-tight">
-            《LLMs Can't Jump：大模型为何无法自主跃迁与符号接地困境》
-          </h1>
-<!-- Subtitle -->
-<p class="font-headline-sm text-headline-sm text-on-surface-variant font-normal leading-relaxed mb-6">
-            当统计学概率补全被误认为真正理解：从爱因斯坦电梯思想实验看AGI的本质壁垒与符号接地终极困境
-          </p>
-<!-- Scholarly Metadata Strip -->
-<div class="flex flex-wrap items-center gap-y-2 gap-x-4 pt-4 border-t border-surface-variant text-on-surface-variant font-label-meta text-label-meta">
-<span class="flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">calendar_today</span> 2026年10月9日
-            </span>
-<span class="text-surface-variant">·</span>
-<span class="flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">article</span> 26,541 字
-            </span>
-<span class="text-surface-variant">·</span>
-<span class="flex items-center gap-1 text-primary">
-<span class="material-symbols-outlined text-[14px]">schema</span> 包含动态图解
-            </span>
-<span class="text-surface-variant">·</span>
-<span class="flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">format_quote</span> 引用 18 项计算机与认知科学文献
-            </span>
-<span class="text-surface-variant">·</span>
-<span class="flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">schedule</span> 24 分钟深度长读
-            </span>
-<span class="text-surface-variant">·</span>
-<span class="text-outline">CC BY-NC-SA 4.0</span>
-</div>
-<!-- CLAUDE EXECUTIVE SUMMARY / 思辨提要 -->
-<div class="mt-8 rounded-xl bg-surface-container-low border-l-4 border-primary p-6 relative overflow-hidden">
-<div class="flex items-center gap-2 mb-3">
-<span class="material-symbols-outlined text-primary text-[20px]">lightbulb</span>
-<h2 class="font-title-md text-title-md text-on-surface font-semibold">核心论点提要 (Executive Summary / Claude 思辨提要)</h2>
-</div>
-<ul class="space-y-3 font-body-md text-body-md text-on-surface-variant">
-<li class="flex items-start gap-2.5">
-<span class="font-label-meta text-label-meta text-primary font-bold mt-1 bg-surface-container px-1.5 py-0.5 rounded">01</span>
-<div>
-<strong class="text-on-surface font-medium">跃迁悖论：</strong>
-                  增加参数量（Scaling Law）与拓展预训练语料只能持续提升超高维流形上的内插拟合精度（Interpolation），却无法在本体论层面自主产生真正的因果反事实推理能力与自发认知跃迁。
-                </div>
-</li>
-<li class="flex items-start gap-2.5">
-<span class="font-label-meta text-label-meta text-primary font-bold mt-1 bg-surface-container px-1.5 py-0.5 rounded">02</span>
-<div>
-<strong class="text-on-surface font-medium">爱因斯坦电梯隐喻：</strong>
-                  大模型好比一个永远被封闭在加速上升电梯内的纯统计观察者，即便穷尽内部仪器分析所有局部相关性，若无外部物理干预与能动介入，永远无法从数学上区分“均质引力场”与“惯性加速坐标系”。
-                </div>
-</li>
-<li class="flex items-start gap-2.5">
-<span class="font-label-meta text-label-meta text-primary font-bold mt-1 bg-surface-container px-1.5 py-0.5 rounded">03</span>
-<div>
-<strong class="text-on-surface font-medium">符号接地的终极鸿沟：</strong>
-                  脱离具身实体（Embodied Agency）与物理世界动态因果交互的纯语言符号系统，无论其注意力矩阵如何深邃，本质上仍然受困于高维矢量空间的“无底词语接龙”（Symbol Grounding Problem）。
-                </div>
-</li>
-</ul>
-</div>
-</div>
-<!-- ================= ARTICLE BODY ================= -->
-<div class="bg-surface-container-lowest border border-surface-variant rounded-2xl p-6 sm:p-12 shadow-sm space-y-8 font-body-lg text-body-lg leading-[1.85] text-on-surface">
-<!-- Section 01 Header -->
-<div class="pt-2" id="section-1">
-<span class="font-label-code text-label-code text-primary uppercase tracking-wider block mb-1">SECTION 01</span>
-<h2 class="font-headline-md text-headline-md text-on-surface font-medium">
-              引言：涌现神话与AGI的“跃迁幻觉”
-            </h2>
-</div>
-<!-- Opening Prose with Drop Cap -->
-<p class="drop-cap text-justify">
-            在当代人工智能的狂热叙事中，参数尺度的每一次倍增都被赋予了某种神圣的蜕变意义。伴随着千亿乃至万亿级密集注意力矩阵的收敛，公众与大量工程主义学者沉浸于一种关于“涌现（Emergence）”的技术弥赛亚主义之中：仿佛只要向 Transformer 的吞噬巨兽喂入足够多的全人类数字化文本，一个具有自我意向性、因果自觉与本体洞察的通用人工智能（AGI）便会水到渠成地从统计噪音中呼啸而出。
-          </p>
-<p class="text-justify text-on-surface-variant">
-            然而，这种被广泛赞颂的“智能跃迁”，往往遮蔽了统计学习理论早已划定的本体论防线。从图灵测试的修辞戏法到现代大型语言模型的惊人流利度，我们见证的究竟是认知的飞跃，还是一场前所未有的、极其逼真且精致的高维流形影子戏？当一个系统能够毫无破绽地撰写十四行诗、解答量子物理习题集时，它是否真正跨越了那道从“表征相关”到“实在理解”的终极鸿沟？
-          </p>
-<!-- Section 02 -->
-<div class="pt-6 border-t border-surface-variant" id="section-2">
-<span class="font-label-code text-label-code text-primary uppercase tracking-wider block mb-1">SECTION 02</span>
-<h2 class="font-headline-md text-headline-md text-on-surface font-medium">
-              统计拟合 vs 因果推理：朱迪亚·珀尔的因果之梯
-            </h2>
-</div>
-<p class="text-justify text-on-surface-variant">
-            图灵奖得主朱迪亚·珀尔（Judea Pearl）曾将人类认知与科学探索的阶梯严整地拆解为三层架构：关联（Association）、干预（Intervention）以及反事实反思（Counterfactuals）。当今所有基于自回归损失（Autoregressive Loss）训练的 Transformer 架构，无一例外被严格禁锢在第一层阶梯上。
-          </p>
-<!-- Claude Pull Quote Component -->
-<div class="my-8 py-6 px-8 bg-surface-container-low rounded-xl border-l-4 border-primary">
-<blockquote class="font-headline-sm text-headline-sm italic text-primary leading-relaxed">
-              “大模型并不‘理解’世界，它只是在亿万次高维投掷中，精确记住了人类语言投射在地板上的影子。”
-            </blockquote>
-<div class="mt-3 font-label-meta text-label-meta text-on-surface-variant text-right">
-              —— 《思辨之境 · 认知架构札记》
-            </div>
-</div>
-<p class="text-justify text-on-surface-variant">
-            预训练模型的全部智慧，来自对条件概率分布 <code class="font-label-code text-label-code bg-surface-container px-1.5 py-0.5 rounded text-primary">P(w_t | w_1, ..., w_{t-1})</code> 的极大似然估计。这种机制具备无比强大的内插插值能力（Interpolation），却先天缺乏外推探寻（Extrapolation）以及执行结构化因果算子 <code class="font-label-code text-label-code bg-surface-container px-1.5 py-0.5 rounded text-primary">do(X)</code> 的能力。模型可以复述“吃退烧药导致退烧”的全部语言模式，但在其潜空间中，并不存在独立于文本共现的生理本体，更无从设立真实的因果干预实验。
-          </p>
-<!-- Section 03: The Thought Experiment Core -->
-<div class="pt-6 border-t border-surface-variant" id="section-3">
-<span class="font-label-code text-label-code text-primary uppercase tracking-wider block mb-1">SECTION 03 · 深度思想实验</span>
-<h2 class="font-headline-md text-headline-md text-on-surface font-medium">
-              思想实验：封闭在爱因斯坦电梯里的大语言模型
-            </h2>
-</div>
-<p class="text-justify text-on-surface-variant">
-            为透彻阐明大模型对现实认知的结构性盲视，我们不妨构想一个计算科学版本的“爱因斯坦电梯”思想实验。在1907年，阿尔伯特·爱因斯坦提出了著名的等效原理：一个处于无窗密闭电梯内的观察者，若感受到地板传递向上的压力，在逻辑上完全无法区分自己是静止在均质引力场中，还是正以 1g 的加速度在深空中受外力牵引。
-          </p>
-<!-- EMBEDDED INTERACTIVE THOUGHT EXPERIMENT CARD -->
-<div class="my-8 bg-surface border border-outline-variant/60 rounded-xl overflow-hidden shadow-sm">
-<div class="bg-surface-container-high px-5 py-3 border-b border-surface-variant flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[18px]">science</span>
-<span class="font-title-md text-label-md text-on-surface font-semibold">
-                  【思想实验图解】爱因斯坦封闭电梯与大模型观测窗口
-                </span>
-</div>
-<span class="font-label-meta text-label-meta text-primary bg-surface px-2 py-0.5 rounded">
-                交互推演模型 v2.4
-              </span>
-</div>
-<!-- Visual Diagrammatic Comparison Panels -->
-<div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-surface-variant p-6 gap-6">
-<!-- System A -->
-<div class="space-y-3">
-<div class="flex items-center justify-between">
-<span class="font-title-md text-label-md font-semibold text-primary">
-                    系统 A：高维统计观测 (LLMs)
-                  </span>
-<span class="font-label-meta text-label-meta bg-surface-container px-1.5 py-0.5 rounded text-on-surface-variant">
-                    纯关联投影
-                  </span>
-</div>
-<!-- Abstract Vector Visualization Box -->
-<div class="h-44 bg-surface-container-low rounded-lg border border-surface-variant p-3 flex flex-col justify-between relative overflow-hidden">
-<div class="text-[11px] font-label-meta text-on-surface-variant flex items-center justify-between">
-<span>封闭黑盒舱室 [零外部介入]</span>
-<span class="text-error font-mono">壁厚: 无穷大</span>
-</div>
-<!-- Visual Graphic -->
-<div class="flex items-center justify-center h-24 gap-3 my-auto">
-<div class="w-16 h-20 border-2 border-dashed border-outline rounded flex flex-col items-center justify-center p-1 bg-surface">
-<span class="material-symbols-outlined text-outline text-[24px]">smart_toy</span>
-<span class="text-[9px] font-label-code text-outline mt-1">LLM 潜空间</span>
-</div>
-<div class="flex flex-col items-center text-primary">
-<span class="material-symbols-outlined text-[18px]">compare_arrows</span>
-<span class="text-[10px] font-label-code">相关性概率网</span>
-</div>
-<div class="w-20 h-20 bg-surface-container-highest rounded border border-surface-variant p-1 text-[10px] font-label-code flex flex-col justify-center text-on-surface-variant">
-<div>g ≡ a ?</div>
-<div class="text-[9px] text-error">无法判定本体</div>
-<div class="text-[8px] text-outline mt-1">仅可生成对应词法</div>
-</div>
-</div>
-<div class="text-[10px] font-label-meta text-outline-variant text-center bg-surface-container py-1 rounded">
-                    状态：模型在电梯内对所有符号共现进行自注意力运算
-                  </div>
-</div>
-<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
-                  系统 A 收集了电梯内仪器产生的所有万亿文本与数据。大模型可以以 99.9% 的置信度推导重力加速度方程式，但由于其<strong>从未打破舱壁</strong>，它无法判定外部是重力场还是推力火箭。因果解释退化为单纯的文本同义替换。
-                </p>
-</div>
-<!-- System B -->
-<div class="space-y-3">
-<div class="flex items-center justify-between">
-<span class="font-title-md text-label-md font-semibold text-on-surface">
-                    系统 B：因果干预与本体接触
-                  </span>
-<span class="font-label-meta text-label-meta bg-primary-fixed text-on-primary-fixed px-1.5 py-0.5 rounded">
-                    具身行动主体
-                  </span>
-</div>
-<!-- Abstract Vector Visualization Box -->
-<div class="h-44 bg-surface-container-low rounded-lg border border-surface-variant p-3 flex flex-col justify-between relative overflow-hidden">
-<div class="text-[11px] font-label-meta text-primary flex items-center justify-between">
-<span>开窗破壁 [物理干预 do(x)]</span>
-<span class="text-primary font-mono">反馈回路: 实时闭环</span>
-</div>
-<!-- Visual Graphic -->
-<div class="flex items-center justify-center h-24 gap-3 my-auto">
-<div class="w-16 h-20 border-2 border-primary rounded flex flex-col items-center justify-center p-1 bg-surface-container-lowest shadow-sm">
-<span class="material-symbols-outlined text-primary text-[24px]">accessibility_new</span>
-<span class="text-[9px] font-label-code text-primary mt-1">具身行动者</span>
-</div>
-<div class="flex flex-col items-center text-primary">
-<span class="material-symbols-outlined text-[18px]">forward</span>
-<span class="text-[10px] font-label-code">主动开孔/干预</span>
-</div>
-<div class="w-20 h-20 bg-primary-fixed/40 rounded border border-primary/30 p-1 text-[10px] font-label-code flex flex-col justify-center text-on-primary-fixed">
-<div class="font-bold">破壁观测</div>
-<div class="text-[9px] text-primary">光线弯曲测定</div>
-<div class="text-[8px] mt-1">形成接地概念</div>
-</div>
-</div>
-<div class="text-[10px] font-label-meta text-primary text-center bg-primary-fixed/20 py-1 rounded">
-                    状态：主动发射光子穿过外壁，测定外部空间曲率
-                  </div>
-</div>
-<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
-                  系统 B 能够执行物理干预（Intervention）。行动者向电梯壁钻孔发射一束横向光线，通过测量光线是否在电梯加速中产生抛物弯曲，从而<strong>锚定真实世界</strong>。符号由此获得了物理落点与真值依据。
-                </p>
-</div>
-</div>
-<!-- Synthesis note -->
-<div class="bg-surface-container-low px-5 py-3 border-t border-surface-variant flex items-center justify-between text-body-sm text-on-surface-variant font-label-code text-[12px]">
-<span>💡 核心推论：纯语言预训练大模型是恒久无法钻破电梯壁的系统 A。</span>
-<span class="text-primary cursor-pointer hover:underline">查看数学证明 (Pearl 2000) →</span>
-</div>
-</div>
-<!-- Section 04 -->
-<div class="pt-6 border-t border-surface-variant" id="section-4">
-<span class="font-label-code text-label-code text-primary uppercase tracking-wider block mb-1">SECTION 04</span>
-<h2 class="font-headline-md text-headline-md text-on-surface font-medium">
-              符号接地的本体论困境：塞尔中文屋的新变体
-            </h2>
-</div>
-<p class="text-justify text-on-surface-variant">
-            认知科学家斯蒂芬·哈纳德（Stevan Harnad）在 1990 年正式确立了“符号接地问题”（The Symbol Grounding Problem）。简言之：如果你试图用一本纯中文词典去学习中文，而你原本只字不通，那么词典里的每个汉字都不过是用其他你不认识的汉字来定义。你可以在词典里绕上一万圈，却永远无法跨出符号网络哪怕一微米去触碰真实的“红苹果”或“热烈的情感”。
-          </p>
-<p class="text-justify text-on-surface-variant">
-            大型语言模型正是一本超维度的、由 1750 亿到数万亿参数构成的自循环全景词典。词嵌入向量（Embedding）所捕捉的高维几何关系，仅仅是符号彼此之间的拓扑相对距离。当大模型输出“火是热的”，它并不具有关于“热”的热力学感知与痛觉接地；它所拥有的，仅仅是 token “火” 与 token “热” 经常在同一注意力窗口内共现这一事实。
-          </p>
-<!-- CLAUDE ARTIFACT CALLOUT / 思辨探针 -->
-<div class="my-8 p-6 rounded-xl bg-surface border border-outline-variant/70 shadow-sm relative">
-<div class="flex items-center gap-2 mb-3 text-primary">
-<span class="material-symbols-outlined text-[20px]">explore</span>
-<span class="font-title-md text-title-md font-semibold text-on-surface">
-                Claude 思辨探针 · 跨学科思想关联 (Cross-Disciplinary Probe)
-              </span>
-</div>
-<p class="text-body-md font-body-md text-on-surface-variant mb-4 leading-relaxed">
-              本文讨论的“符号接地困境”并非孤立命题，它与文库中其他两篇经典长文在认知哲学上高度共振：
-            </p>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-<a class="p-3 bg-surface-container-low rounded-lg border border-surface-variant hover:border-primary transition-all group block" href="index.html">
-<div class="text-label-meta font-label-meta text-primary mb-1">论题 01 关联</div>
-<div class="font-title-md text-label-md font-semibold text-on-surface group-hover:text-primary transition-colors">
-                  《为什么AI正在重新定义学习》
-                </div>
-<p class="text-[12px] font-body-sm text-on-surface-variant mt-1">
-                  当知识被机器压缩为极低熵的直出答案，人类是正在失去具身探索的感知根基？
-                </p>
-</a>
-<a class="p-3 bg-surface-container-low rounded-lg border border-surface-variant hover:border-primary transition-all group block" href="index.html">
-<div class="text-label-meta font-label-meta text-primary mb-1">论题 02 关联</div>
-<div class="font-title-md text-label-md font-semibold text-on-surface group-hover:text-primary transition-colors">
-                  《当我们的大脑开始“过拟合”》
-                </div>
-<p class="text-[12px] font-body-sm text-on-surface-variant mt-1">
-                  信息流饲养下的当代思维固化，与高层神经网络的过拟合具有令人心惊的同构性。
-                </p>
-</a>
-</div>
-<div class="mt-4 pt-3 border-t border-surface-variant flex items-center justify-between text-label-meta font-label-meta text-outline">
-<span>探针状态：已注入思辨记忆图谱</span>
-<span class="text-primary hover:underline cursor-pointer">在 Claude 中打开此对话分支 →</span>
-</div>
-</div>
-<!-- Section 05 & 06 -->
-<div class="pt-6 border-t border-surface-variant" id="section-5">
-<span class="font-label-code text-label-code text-primary uppercase tracking-wider block mb-1">SECTION 05</span>
-<h2 class="font-headline-md text-headline-md text-on-surface font-medium">
-              大脑“过拟合”与机器“记忆回放”的同构性
-            </h2>
-</div>
-<p class="text-justify text-on-surface-variant">
-            在计算神经科学中，哺乳动物海马体与大脑皮层的双重学习理论（Complementary Learning Systems）揭示了一个关键机制：有机体之所以不会因海量感官输入而陷入死记硬背的“过拟合”，正是因为有意识的有机体拥有持续的物理具身试错机制。
-          </p>
-<p class="text-justify text-on-surface-variant">
-            反观基于海量静态文本训练的巨型模型，由于缺失身体与动作反馈回路（Sensorimotor Loop），其泛化能力始终受困于分布偏移（Out-of-Distribution Shift）。它在应对微小的词序扰动或颠倒因果命题时暴露出的脆弱性，恰恰印证了其本质仅仅是高维统计流形上的插值逼近，而非对世界的实在表征。
-          </p>
-</div>
-<!-- ================= ARTICLE CONCLUSION & REFLECTION ================= -->
-<div class="mt-8 bg-surface-container-lowest border border-surface-variant rounded-2xl p-6 sm:p-10 shadow-sm space-y-6" id="section-6">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[24px]">flag</span>
-<h2 class="font-headline-md text-headline-md text-on-surface font-medium">
-              结论：通往真正认知智能的下一条未竟之路
-            </h2>
-</div>
-<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed text-justify">
-            大模型并不会因为参数量从万亿攀升至十万亿便突然自主“跃迁”为真正的具身心灵。只要它依然停留在爱因斯坦那座毫无破口的加速电梯里，它就永远只是人类过往文字遗骸的最高级统计反照镜。通往真正 AGI 的道路，绝不在单纯扩大上下文窗口与提升预训练算力，而在于将智能重新放回具有重力感、触觉阻力、因果因缘与真实社会契约的具身物理世界之中。
-          </p>
-<!-- Discussion Prompt Card -->
-<div class="bg-surface-container-low border border-primary/20 rounded-xl p-5">
-<div class="flex items-center gap-2 text-primary font-title-md text-title-md font-semibold mb-2">
-<span class="material-symbols-outlined text-[18px]">forum</span>
-<span>学者探讨思辨提问 (Academic Discussion Prompt)</span>
-</div>
-<p class="font-body-md text-body-md text-on-surface italic leading-relaxed">
-              “在没有任何具身世界感觉输入与物理力学反馈的纯语言世界中，大语言模型能否仅凭基于强化学习（RLHF / RLAIF）的逻辑对齐，实现真正意义上的常识理解与因果反思？”
-            </p>
-</div>
-<!-- BOTTOM ACTION ROW -->
-<div class="pt-6 border-t border-surface-variant flex flex-wrap items-center justify-between gap-3">
-<div class="flex flex-wrap items-center gap-2">
-<button class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-primary text-on-primary font-title-md text-body-sm hover:bg-tertiary transition-colors shadow-sm cursor-pointer">
-<span class="material-symbols-outlined text-[18px]">bookmark_add</span>
-<span>收藏到个人思想文库</span>
-</button>
-<button class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-surface-variant bg-surface hover:bg-surface-container text-body-sm font-body-sm text-on-surface transition-colors cursor-pointer">
-<span class="material-symbols-outlined text-[18px] text-primary">content_copy</span>
-<span>复制精选金句卡片</span>
-</button>
-<button class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-surface-variant bg-surface hover:bg-surface-container text-body-sm font-body-sm text-on-surface transition-colors cursor-pointer">
-<span class="material-symbols-outlined text-[18px] text-primary">file_download</span>
-<span>打包下载全文 (Markdown/PDF)</span>
-</button>
-</div>
-<button class="inline-flex items-center gap-1 text-primary font-title-md text-body-sm hover:underline cursor-pointer">
-<span class="material-symbols-outlined text-[18px]">chat_bubble_outline</span>
-<span>查看 42 条深度学者批注</span>
-</button>
-</div>
-<!-- NEXT / PREV ARTICLE NAVIGATOR -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-6 border-t border-surface-variant">
-<a class="p-4 rounded-xl border border-surface-variant bg-surface-container-low hover:bg-surface-container transition-all group flex items-start gap-3" href="index.html">
-<span class="material-symbols-outlined text-outline mt-1 group-hover:text-primary transition-colors text-[20px]">arrow_back</span>
-<div>
-<span class="font-label-meta text-label-meta text-outline-variant block mb-1">上一篇研究长文</span>
-<span class="font-title-md text-label-md font-medium text-on-surface group-hover:text-primary transition-colors line-clamp-1">
-                  《当我们的大脑开始“过拟合”》
-                </span>
-<span class="text-[12px] text-on-surface-variant block mt-1">信息过载与神经可塑性的衰退</span>
-</div>
-</a>
-<a class="p-4 rounded-xl border border-surface-variant bg-surface-container-low hover:bg-surface-container transition-all group flex items-start justify-between gap-3 text-right" href="index.html">
-<div>
-<span class="font-label-meta text-label-meta text-outline-variant block mb-1">下一篇研究长文</span>
-<span class="font-title-md text-label-md font-medium text-on-surface group-hover:text-primary transition-colors line-clamp-1">
-                  《任天堂：枯竭技术的水平思考》
-                </span>
-<span class="text-[12px] text-on-surface-variant block mt-1">横井军平与技术实用哲学的极致</span>
-</div>
-<span class="material-symbols-outlined text-outline mt-1 group-hover:text-primary transition-colors text-[20px]">arrow_forward</span>
-</a>
-</div>
-</div>
-</article>
-<!-- ================= 3. RIGHT MARGINALIA & RESEARCH NOTES (Width ~280px) ================= -->
-<aside class="hidden xl:flex flex-col w-72 shrink-0 sticky top-28 space-y-6">
-<!-- Scholarly References Card -->
-<div class="bg-surface-container-low rounded-xl p-4 border border-surface-variant">
-<div class="flex items-center justify-between pb-2 border-b border-surface-variant mb-3">
-<div class="flex items-center gap-1.5 text-on-surface font-title-md text-label-md font-semibold">
-<span class="material-symbols-outlined text-primary text-[18px]">format_quote</span>
-<span>文中核心文献标注 (Ref)</span>
-</div>
-<span class="font-label-meta text-label-meta text-outline-variant">3 / 18</span>
-</div>
-<div class="space-y-3 font-body-sm text-body-sm">
-<!-- Ref 04 -->
-<div class="p-2.5 bg-surface rounded-lg border border-surface-variant hover:border-primary transition-colors">
-<div class="flex items-center justify-between mb-1">
-<span class="font-label-code text-label-code text-primary font-bold">[Ref 04]</span>
-<span class="text-[11px] font-label-meta text-outline">图灵奖文献</span>
-</div>
-<p class="font-medium text-on-surface text-[12px] leading-tight">
-                Pearl, Judea (2000). Causality: Models, Reasoning, and Inference.
-              </p>
-<p class="text-[11px] text-on-surface-variant mt-1">
-                提出因果关系三阶梯（关联、干预、反事实）理论奠基之作。
-              </p>
-</div>
-<!-- Ref 07 -->
-<div class="p-2.5 bg-surface rounded-lg border border-surface-variant hover:border-primary transition-colors">
-<div class="flex items-center justify-between mb-1">
-<span class="font-label-code text-label-code text-primary font-bold">[Ref 07]</span>
-<span class="text-[11px] font-label-meta text-outline">认知科学经典</span>
-</div>
-<p class="font-medium text-on-surface text-[12px] leading-tight">
-                Harnad, Stevan (1990). The Symbol Grounding Problem. Physica D.
-              </p>
-<p class="text-[11px] text-on-surface-variant mt-1">
-                论证自指系统如何必须通过感觉运动自底向上与环境接地。
-              </p>
-</div>
-<!-- Ref 11 -->
-<div class="p-2.5 bg-surface rounded-lg border border-surface-variant hover:border-primary transition-colors">
-<div class="flex items-center justify-between mb-1">
-<span class="font-label-code text-label-code text-primary font-bold">[Ref 11]</span>
-<span class="text-[11px] font-label-meta text-outline">心灵哲学</span>
-</div>
-<p class="font-medium text-on-surface text-[12px] leading-tight">
-                Searle, John (1980). Minds, Brains, and Programs.
-              </p>
-<p class="text-[11px] text-on-surface-variant mt-1">
-                中文屋思想实验：句法操作无法等同于语义意识。
-              </p>
-</div>
-</div>
-</div>
-<!-- Scholar's Marginal Note Card -->
-<div class="bg-surface rounded-xl p-4 border border-outline-variant/60 shadow-sm relative">
-<div class="flex items-center gap-1.5 text-primary font-title-md text-label-md font-semibold mb-2">
-<span class="material-symbols-outlined text-[18px]">push_pin</span>
-<span>学者札记 (Scholar's Marginal Note)</span>
-</div>
-<div class="bg-surface-container-low p-2.5 rounded-lg border-l-2 border-primary mb-3">
-<p class="font-body-sm text-body-sm text-on-surface-variant italic leading-relaxed text-[12px]">
-              “我们在 LLM 中所见证的所有所谓‘逻辑顿悟’，在本质上均是人类写作者在原始语料库中预先烙印的逻辑遗迹。镜子中的人影向你鞠躬，并不代表镜面内部产生了敬意。”
-            </p>
-</div>
-<div class="flex items-center justify-between text-[11px] font-label-meta text-outline">
-<span>札记作者：陈墨言 博士</span>
-<span class="text-primary hover:underline cursor-pointer">回应札记 (3)</span>
-</div>
-</div>
-<!-- Cross-Reference Card -->
-<div class="bg-surface-container-low rounded-xl p-4 border border-surface-variant">
-<div class="flex items-center gap-1.5 text-on-surface font-title-md text-label-md font-semibold mb-3">
-<span class="material-symbols-outlined text-primary text-[18px]">auto_stories</span>
-<span>文库横向参照</span>
-</div>
-<div class="space-y-2">
-<a class="block p-2 rounded hover:bg-surface transition-colors" href="index.html">
-<span class="font-title-md text-body-sm text-on-surface hover:text-primary block line-clamp-1">
-                《任天堂：枯竭技术的水平思考》
-              </span>
-<span class="text-[11px] text-on-surface-variant">技术哲学的横向实用主义对照</span>
-</a>
-<a class="block p-2 rounded hover:bg-surface transition-colors" href="index.html">
-<span class="font-title-md text-body-sm text-on-surface hover:text-primary block line-clamp-1">
-                《扎心的真相：上班是如何摧毁心态的》
-              </span>
-<span class="text-[11px] text-on-surface-variant">异化劳动、工具理性与算法宰制</span>
-</a>
-</div>
-</div>
-</aside>
-</div>
-</main>
-<!-- ================= FOOTER (Shared Components JSON Anchor) ================= -->
-<footer class="bg-surface-container-low dark:bg-surface-dim w-full mt-auto border-t border-surface-variant dark:border-outline-variant flat no shadows">
-<div class="w-full py-10 px-6 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-<!-- Left Info -->
-<div class="flex flex-col items-center md:items-start gap-2">
-<div class="text-headline-sm font-headline-sm text-on-surface dark:text-inverse-on-surface flex items-center gap-2">
-<span class="w-5 h-5 rounded bg-primary text-on-primary text-[11px] flex items-center justify-center font-bold">思</span>
-<span>思辨之境 · 全景思想文库</span>
-</div>
-<p class="text-body-sm font-body-sm text-on-surface-variant dark:text-secondary-fixed-dim text-center md:text-left">
-          © 2024 思辨之境 · 全景思想文库 · 遵循知识共享 CC BY-NC-SA 4.0 许可
-        </p>
-</div>
-<!-- Links from JSON -->
-<div class="flex flex-wrap justify-center items-center gap-x-5 gap-y-2">
-<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:text-on-surface dark:hover:text-inverse-on-surface font-body-sm text-body-sm hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="index.html">独立写作誓约</a>
-<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:text-on-surface dark:hover:text-inverse-on-surface font-body-sm text-body-sm hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="index.html">研究伦理准则</a>
-<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:text-on-surface dark:hover:text-inverse-on-surface font-body-sm text-body-sm hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="index.html">跨学科拓扑图</a>
-<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:text-on-surface dark:hover:text-inverse-on-surface font-body-sm text-body-sm hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="index.html">RSS订阅源</a>
-<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:text-on-surface dark:hover:text-inverse-on-surface font-body-sm text-body-sm hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="index.html">开放文库接口</a>
-<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:text-on-surface dark:hover:text-inverse-on-surface font-body-sm text-body-sm hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="index.html">隐私说明</a>
-</div>
-</div>
+
+<div class="article-layout">
+  <aside class="toc" aria-label="目录">
+    <a class="back" href="index.html#archive">← 返回文库</a>
+    <div class="eyebrow">目录</div>
+    <ol id="toc">
+      <li><a href="#s1">引言：涌现神话与“跃迁幻觉”</a></li>
+      <li><a href="#s2">统计拟合 vs 因果推理</a></li>
+      <li><a href="#s3">封闭在爱因斯坦电梯里的大模型</a></li>
+      <li><a href="#s4">符号接地的本体论困境</a></li>
+      <li><a href="#s5">大脑“过拟合”与机器的同构性</a></li>
+      <li><a href="#s6">结论：未竟之路</a></li>
+    </ol>
+  </aside>
+
+  <article class="reader">
+    <div class="crumb"><a href="index.html#archive">文库</a><span>/</span><span class="tag">AI 与技术哲学</span></div>
+    <h1>LLMs Can't Jump：大模型为何无法自主跃迁与符号接地困境</h1>
+    <p class="subtitle">当统计学概率补全被误认为真正理解——从爱因斯坦电梯思想实验，看 AGI 的本质壁垒与符号接地的终极困境。</p>
+
+    <div class="article-meta">
+      <span class="mono">2026.03.12</span>
+      <span>约 2.4 万字</span>
+      <span>24 分钟</span>
+      <span class="spacer"></span>
+      <div class="reader-tools" role="group" aria-label="字号">
+        <button type="button" data-size="-1" aria-label="缩小字号">A−</button>
+        <button type="button" data-size="1" aria-label="放大字号">A+</button>
+      </div>
+    </div>
+
+    <section class="summary">
+      <h2>核心论点</h2>
+      <ol>
+        <li><div><strong>跃迁悖论。</strong>增加参数量与预训练语料只能持续提升高维流形上的内插拟合精度，却无法在本体论层面自发产生因果反事实推理与认知跃迁。</div></li>
+        <li><div><strong>爱因斯坦电梯。</strong>大模型好比永远被封闭在加速电梯里的纯统计观察者：即便穷尽舱内所有相关性，若无外部干预，也永远无法区分“引力场”与“加速参照系”。</div></li>
+        <li><div><strong>符号接地的鸿沟。</strong>脱离具身实体与物理世界因果交互的纯语言系统，无论注意力矩阵多么深邃，本质上仍困在高维向量空间里的“无底词语接龙”。</div></li>
+      </ol>
+    </section>
+
+    <div class="prose">
+      <h2 id="s1"><span class="no">01</span>引言：涌现神话与 AGI 的“跃迁幻觉”</h2>
+      <p>在当代人工智能的狂热叙事中，参数尺度的每一次倍增都被赋予了某种神圣的蜕变意义。伴随着千亿乃至万亿级注意力矩阵的收敛，公众与大量工程主义学者沉浸于一种关于“涌现（Emergence）”的技术弥赛亚主义之中：仿佛只要向 Transformer 喂入足够多的人类数字化文本，一个具有自我意向性、因果自觉与本体洞察的通用人工智能便会水到渠成地从统计噪音中呼啸而出。</p>
+      <p>然而，这种被广泛赞颂的“智能跃迁”，往往遮蔽了统计学习理论早已划定的本体论防线。从图灵测试的修辞戏法到现代大型语言模型的惊人流利度，我们见证的究竟是认知的飞跃，还是一场前所未有的、极其逼真的高维流形影子戏？当一个系统能够毫无破绽地撰写十四行诗、解答量子物理习题时，它是否真正跨越了那道从“表征相关”到“实在理解”的鸿沟？</p>
+
+      <h2 id="s2"><span class="no">02</span>统计拟合 vs 因果推理：朱迪亚·珀尔的因果之梯</h2>
+      <p>图灵奖得主朱迪亚·珀尔（Judea Pearl）将人类认知与科学探索的阶梯拆解为三层：关联（Association）、干预（Intervention）以及反事实（Counterfactuals）。当今所有基于自回归损失训练的 Transformer 架构，无一例外被禁锢在第一层阶梯上。</p>
+      <blockquote class="pullquote">
+        <p>大模型并不“理解”世界，它只是在亿万次高维投掷中，精确记住了人类语言投射在地板上的影子。</p>
+      </blockquote>
+      <p>预训练模型的全部智慧，来自对条件概率分布 <code>P(w_t | w_1, …, w_{t-1})</code> 的极大似然估计。这种机制具备强大的内插能力（Interpolation），却先天缺乏外推（Extrapolation）以及执行因果算子 <code>do(X)</code> 的能力。模型可以复述“吃退烧药导致退烧”的全部语言模式，但在其潜空间中，并不存在独立于文本共现的生理本体，更无从设立真实的因果干预实验。</p>
+
+      <h2 id="s3"><span class="no">03 · 思想实验</span>封闭在爱因斯坦电梯里的大语言模型</h2>
+      <p>为阐明大模型对现实认知的结构性盲视，我们不妨构想一个计算科学版本的“爱因斯坦电梯”。1907 年，爱因斯坦提出了著名的等效原理：一个处于无窗密闭电梯内的观察者，若感受到地板传来的向上压力，在逻辑上完全无法区分自己是静止在均匀引力场中，还是正以 1g 的加速度在深空中被牵引。</p>
+
+      <figure class="figure">
+        <div class="cap"><b>图 1　两种观察者</b><span>封闭系统 vs 可干预系统</span></div>
+        <div class="compare">
+          <div class="col a">
+            <svg viewBox="0 0 240 170" role="img" aria-label="封闭的电梯舱，观察者只能看到舱内的关联">
+              <rect x="70" y="20" width="100" height="130" rx="4" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--ink-2)"/>
+              <circle cx="120" cy="78" r="9" fill="var(--ink-3)"/>
+              <path d="M120 88v28M108 100h24M120 116l-10 22M120 116l10 22" stroke="var(--ink-3)" stroke-width="3" stroke-linecap="round" fill="none"/>
+              <path d="M30 60v34M30 94l-6-8M30 94l6-8" stroke="var(--ink-3)" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <text x="30" y="112" text-anchor="middle" font-size="11" fill="var(--ink-3)" font-family="JetBrains Mono, monospace">g ?</text>
+              <path d="M210 94V60M210 60l-6 8M210 60l6 8" stroke="var(--ink-3)" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <text x="210" y="112" text-anchor="middle" font-size="11" fill="var(--ink-3)" font-family="JetBrains Mono, monospace">a ?</text>
+            </svg>
+            <h4><span class="pill">系统 A</span>　纯统计观察（LLM）</h4>
+            <p>收集了舱内仪器产生的所有数据，能以极高置信度写出重力加速度方程；但由于<strong>从未打破舱壁</strong>，它无法判定外部是引力场还是火箭推力。</p>
+          </div>
+          <div class="col b">
+            <svg viewBox="0 0 240 170" role="img" aria-label="观察者在电梯壁上开孔射入光线，通过光线弯曲判断外部状态">
+              <path d="M70 20h100v130H70z" fill="none" stroke="var(--ink-2)" stroke-width="3" stroke-dasharray="0" />
+              <rect x="66" y="52" width="8" height="14" fill="var(--paper)"/>
+              <path d="M20 59 L70 59 Q120 62 170 76" fill="none" stroke="var(--seal)" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="170" cy="76" r="4" fill="var(--seal)"/>
+              <circle cx="120" cy="96" r="9" fill="var(--ink-2)"/>
+              <path d="M120 106v22M120 114l-14-6M120 128l-9 18M120 128l9 18" stroke="var(--ink-2)" stroke-width="3" stroke-linecap="round" fill="none"/>
+              <text x="20" y="48" font-size="11" fill="var(--seal)" font-family="JetBrains Mono, monospace">do(x)</text>
+            </svg>
+            <h4><span class="pill">系统 B</span>　因果干预与具身接触</h4>
+            <p>行动者在舱壁上钻孔射入一束横向光线，测量光线是否在加速中弯曲，从而<strong>锚定真实世界</strong>。符号由此获得了物理落点与真值依据。</p>
+          </div>
+        </div>
+        <div class="conclusion"><span>推论：</span>纯语言预训练的大模型，是永远无法钻破电梯壁的系统 A。</div>
+      </figure>
+
+      <h2 id="s4"><span class="no">04</span>符号接地的本体论困境：塞尔中文屋的新变体</h2>
+      <p>认知科学家斯蒂芬·哈纳德（Stevan Harnad）在 1990 年正式提出了“符号接地问题”（The Symbol Grounding Problem）。简言之：如果你试图用一本纯中文词典去学习中文，而你原本只字不通，那么词典里的每个汉字都不过是用其他你不认识的汉字来定义。你可以在词典里绕上一万圈，却永远无法跨出符号网络去触碰真实的“红苹果”或“热烈的情感”。</p>
+      <p>大型语言模型正是一本由千亿到数万亿参数构成的、自循环的超维词典。词嵌入向量所捕捉的几何关系，仅仅是符号彼此之间的相对距离。当大模型输出“火是热的”，它并不具有关于“热”的热力学感知与痛觉；它所拥有的，仅仅是 token“火”与 token“热”经常在同一注意力窗口内共现这一事实。</p>
+
+      <aside class="related">
+        <span class="eyebrow">延伸阅读</span>
+        <div class="related-grid">
+          <div><b>为什么 AI 正在重新定义学习</b><p>当知识被机器压缩为直出的答案，人类是否正在失去具身探索的感知根基？</p></div>
+          <div><b>当我们的大脑开始“过拟合”</b><p>信息流饲养下的思维固化，与神经网络的过拟合有着令人心惊的同构性。</p></div>
+        </div>
+      </aside>
+
+      <h2 id="s5"><span class="no">05</span>大脑“过拟合”与机器“记忆回放”的同构性</h2>
+      <p>在计算神经科学中，海马体与大脑皮层的互补学习系统理论（Complementary Learning Systems）揭示了一个关键机制：有机体之所以不会因海量感官输入而陷入死记硬背的“过拟合”，正是因为它拥有持续的、具身的试错机制。</p>
+      <p>反观基于海量静态文本训练的巨型模型，由于缺失身体与动作反馈回路（Sensorimotor Loop），其泛化能力始终受困于分布偏移（Out-of-Distribution Shift）。它在面对微小的词序扰动或颠倒的因果命题时暴露出的脆弱性，恰恰印证了其本质是高维统计流形上的插值逼近，而非对世界的实在表征。</p>
+
+      <h2 id="s6"><span class="no">06</span>结论：通往真正认知智能的未竟之路</h2>
+      <p>大模型并不会因为参数量从万亿攀升至十万亿，便突然“跃迁”为真正的心灵。只要它依然停留在那座毫无破口的加速电梯里，它就永远只是人类过往文字的最高级统计反照镜。通往真正 AGI 的道路，不在于单纯扩大上下文窗口与预训练算力，而在于把智能重新放回具有重力、触觉阻力、因果与真实社会契约的物理世界之中。</p>
+
+      <div class="question">
+        <span class="eyebrow">留给读者的问题</span>
+        <p>在没有任何具身感觉输入与物理反馈的纯语言世界里，大模型能否仅凭强化学习的对齐，实现真正意义上的常识理解与因果反思？</p>
+      </div>
+    </div>
+
+    <section class="refs">
+      <h2>参考文献</h2>
+      <ol>
+        <li>Pearl, J. (2000). <em>Causality: Models, Reasoning, and Inference.</em> Cambridge University Press.<span>提出因果关系三阶梯（关联、干预、反事实）的奠基之作。</span></li>
+        <li>Harnad, S. (1990). The Symbol Grounding Problem. <em>Physica D</em>, 42, 335–346.<span>论证符号系统必须通过感觉运动自下而上地与环境接地。</span></li>
+        <li>Searle, J. (1980). Minds, Brains, and Programs. <em>Behavioral and Brain Sciences</em>, 3(3).<span>中文屋思想实验：句法操作不等于语义理解。</span></li>
+      </ol>
+    </section>
+
+    <nav class="pager" aria-label="更多文章">
+      <a href="index.html#archive"><small>← 返回</small><b>全部文章</b></a>
+      <a href="index.html#domains"><small>浏览 →</small><b>六个知识领域</b></a>
+    </nav>
+  </article>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="seal">思</span>思辨之境</a>
+    <span>© 2026 Yule · 内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a></span>
+  </div>
 </footer>
-<!-- Light interactive script for reading progress bar update & controls -->
+
 <script>
-    window.addEventListener('scroll', () => {
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      const progressBar = document.querySelector('div[style*="width: 35%"]');
-      if (progressBar) {
-        progressBar.style.width = Math.min(100, Math.max(5, Math.round(scrolled))) + "%";
-      }
+(function () {
+  var bar = document.getElementById('progress');
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+  var heads = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  function onScroll() {
+    var h = document.documentElement.scrollHeight - innerHeight;
+    bar.style.width = (h > 0 ? Math.min(100, scrollY / h * 100) : 0) + '%';
+    var idx = 0;
+    heads.forEach(function (el, i) { if (el && el.getBoundingClientRect().top < 140) idx = i; });
+    links.forEach(function (a, i) { a.classList.toggle('active', i === idx); });
+  }
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var root = document.documentElement;
+  document.querySelectorAll('[data-size]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var cur = parseFloat(getComputedStyle(document.querySelector('.reader')).fontSize) || 18;
+      var next = Math.max(15, Math.min(22, cur + Number(b.dataset.size)));
+      root.style.setProperty('--reader-size', next + 'px');
+      try { localStorage.setItem('reader-size', next); } catch (e) {}
     });
-  </script>
-</body></html>
+  });
+})();
+</script>
+<script src="assets/site.js"></script>
+</body>
+</html>

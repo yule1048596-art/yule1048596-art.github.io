@@ -1,20 +1,20 @@
 # 思辨之境 · 全景思想文库 | Personal Homepage & Writing Archive
 
 > **个人主页线上地址**：[https://yule1048596-art.github.io](https://yule1048596-art.github.io)  
-> **视觉设计语言**：Anthropic Claude 官方学者美学风格（Warm Editorial Scholar）  
-> **界面编译与生成**：Google Stitch MCP Engine (Gemini 3.8 Flash)
+> **视觉设计**：书页式编辑排版（Editorial · Ink & Seal）
 
 ---
 
 ## 📖 关于本站
 
-这里是 Yule 的个人思想文库与非虚构写作归档。涵盖人工智能哲学、认知科学、游戏与商业工业史、文学叙事批评、职场社会学与现实批判，全量收录 30 余篇深度长文与 40 余万字沉淀。
+这里是 Yule 的个人思想文库与非虚构写作归档。涵盖人工智能哲学、认知科学、游戏与商业工业史、文学叙事批评、职场社会学与现实批判，收录 30 篇长文与 40 余万字沉淀。
 
-全站基于 **Anthropic Claude 风格**精心重构：
-- **底色**：典藏暖象牙纸色（Warm Ivory `#FBF9F5`）
-- **核心色**：Claude 标志性陶土珊瑚色（Terracotta Coral `#D97757`）
-- **字体**：Source Serif 4 + Inter + JetBrains Mono 学者排版体系
-- **质感**：纯净微边框卡片（1px hairline border `#EAE5DC`）与充裕阅读留白
+全站为纯静态 HTML/CSS/JS，无构建步骤：
+- **排版**：Noto Serif SC 中文衬线正文 + Inter 界面字体 + JetBrains Mono 数字与日期
+- **配色**：暖米纸色底（`#F7F3EC`）、墨色正文、朱砂印章红（`#B23A2A`）为唯一强调色
+- **深色模式**：跟随系统，可手动切换并记忆
+- **文库**：按领域筛选与即时搜索（按 `/` 聚焦搜索框）；文章页带阅读进度、目录高亮与字号调节
+- **结构**：`index.html` 首页 · `article_detail.html` 文章页 · `404.html` · `assets/style.css` 与 `assets/site.js` 为共享样式与脚本
 
 ---
 
