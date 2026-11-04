@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
-"""Rebuild articles.json from the Markdown files in articles/.
+"""Rebuild articles.json from the Markdown files in articles/ and the collections below.
 
 Usage:  python3 tools/build_index.py
+
+- COLLECTIONS are folders of multi-chapter works (e.g. an Obsidian export):
+  every sub-folder "N.名称" becomes a series, files "NN-标题.md" become its chapters
+  ("00-…" is treated as the folder's own index and skipped).
 
 - Category is kept from the existing articles.json (matched by filename);
   new files get "未分类" until you edit the category in articles.json.
@@ -22,6 +26,12 @@ SERIES_RULES = [
     (re.compile(r"任天堂：世界的主宰\s*[（(](一|二|三)[)）]"), "任天堂：世界的主宰"),
 ]
 CN_NUM = {"一": 1, "二": 2, "三": 3, "四": 4}
+
+# (folder relative to the repo root, category shown on the site)
+COLLECTIONS = [
+    ("杂文短文(数学类)", "📐 数学杂文"),
+]
+GENERIC_TAGS = {"数学", "杂文短文", "LaTeX-import", "split-note"}
 
 
 def parse_front_matter(text):
@@ -45,11 +55,38 @@ def parse_front_matter(text):
 
 
 def strip_md(s):
+    s = re.sub(r"\$\$[\s\S]*?\$\$", "", s)
+    s = re.sub(r"!\[\[[^\]]*\]\]", "", s)
+    s = re.sub(r"\[\[([^\]|]*\|)?([^\]]*)\]\]", r"\2", s)
     s = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", s)
     s = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", s)
     s = re.sub(r"[*_`#>]+", "", s)
     s = re.sub(r"\$[^$]*\$", "", s)
     return re.sub(r"\s+", " ", s).strip()
+
+
+TEX_SYMBOLS = {
+    "pm": "±", "to": "→", "le": "≤", "leq": "≤", "ge": "≥", "geq": "≥", "ne": "≠", "neq": "≠",
+    "times": "×", "cdot": "·", "in": "∈", "sigma": "σ", "pi": "π", "lambda": "λ", "alpha": "α",
+    "beta": "β", "delta": "δ", "varepsilon": "ε", "ldots": "…", "cdots": "…", "dots": "…",
+    "sum": "Σ", "prod": "Π", "infty": "∞", "approx": "≈", "equiv": "≡", "subseteq": "⊆",
+}
+
+
+def tex_plain(tex):
+    """Very small TeX -> text conversion, good enough for one-line excerpts."""
+    t = re.sub(r"\\(operatorname|mathbb|mathrm|mathbf|mathsf|mathcal|text|boxed)\{([^{}]*)\}", r"\2", tex)
+    t = re.sub(r"\\([a-zA-Z]+)", lambda m: TEX_SYMBOLS.get(m.group(1), ""), t)
+    t = re.sub(r"[{}^_\\]", "", t)
+    return re.sub(r"\s+", " ", t).strip()
+
+
+def plain_excerpt_text(block):
+    block = re.sub(r"^>\s*\[![a-zA-Z]+\][+-]?[^\n]*\n?", "", block)       # callout title line
+    block = re.sub(r"^\s*>\s?", "", block, flags=re.M)
+    block = re.sub(r"\$\$[\s\S]*?\$\$", "", block)
+    block = re.sub(r"\$([^$\n]+)\$", lambda m: tex_plain(m.group(1)), block)
+    return strip_md(block)
 
 
 def header_value(text, label):
@@ -72,10 +109,15 @@ def body_without_header(body):
     return rest
 
 
-def first_paragraph(body):
-    for block in re.split(r"\n\s*\n", body):
-        b = block.strip()
+def first_paragraph(body, skip_quotes=False, avoid_math=False):
+    blocks = [b.strip() for b in re.split(r"\n\s*\n", body)]
+    if avoid_math:
+        plain = [b for b in blocks if "$" not in b]
+        blocks = plain + [b for b in blocks if "$" in b]
+    for b in blocks:
         if not b or b.startswith(("#", "---", "|", "![", "```", "- [", "1. [")):
+            continue
+        if skip_quotes and b.startswith(">"):
             continue
         if b.startswith(("——", "—")):
             continue
@@ -159,8 +201,61 @@ def main():
             "excerpt": first_paragraph(main_body),
         })
 
+    items.extend(scan_collections())
     OUT.write_text(json.dumps(items, ensure_ascii=False, indent=2) + "\n", "utf-8")
     print(f"wrote {len(items)} articles to {OUT.relative_to(ROOT)}")
+
+
+def chapter_excerpt(body):
+    blocks = [b.strip() for b in re.split(r"\n\s*\n", body) if b.strip()]
+    def ok(b):
+        return (not b.startswith(("#", "---", "|", "![", "```", "- [")) and "[!info] 导航" not in b
+                and not re.search(r"^\s*>?\s*\|", b, flags=re.M))
+    # Prefer ordinary paragraphs, then callout bodies; within each, prefer ones without formulas.
+    for allow_quote in (False, True):
+        pool = [b for b in blocks if ok(b) and (allow_quote or not b.startswith(">"))]
+        for b in sorted(pool, key=lambda b: ("$$" in b, "$" in b)):
+            t = plain_excerpt_text(b)
+            if len(t) >= 24:
+                return t[:140] + ("…" if len(t) > 140 else "")
+    return ""
+
+
+def scan_collections():
+    items = []
+    for folder, category in COLLECTIONS:
+        base = ROOT / folder
+        if not base.is_dir():
+            continue
+        for sub in sorted(p for p in base.iterdir() if p.is_dir() and not p.name.startswith(".")):
+            series = re.sub(r"^\d+[.、]\s*", "", sub.name)
+            for path in sorted(sub.glob("*.md")):
+                m = re.match(r"^(\d+)-(.+)\.md$", path.name)
+                if not m or int(m.group(1)) == 0:
+                    continue
+                meta, body = parse_front_matter(path.read_text("utf-8"))
+                main_body = body_without_header(body)
+                chars = count_chars(main_body)
+                rel = path.relative_to(ROOT).as_posix()
+                items.append({
+                    "filename": rel,
+                    "path": rel,
+                    "title": meta.get("title") or m.group(2),
+                    "subtitle": "",
+                    "category": category,
+                    "kind": "专著章节",
+                    "series": series,
+                    "part": int(m.group(1)),
+                    "author": "",
+                    "source": "",
+                    "duration": "",
+                    "pdf": "",
+                    "tags": [t for t in (meta.get("tags") or []) if t not in GENERIC_TAGS][:4],
+                    "char_count": chars,
+                    "read_time": f"{max(2, round(chars / 450))} min",
+                    "excerpt": chapter_excerpt(main_body),
+                })
+    return items
 
 
 if __name__ == "__main__":

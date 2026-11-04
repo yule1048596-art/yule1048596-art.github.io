@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>思辨之境 · 长文文库</title>
-<meta name="description" content="按主题整理的长文文库：AI 与技术哲学、认知心理、职场社会、媒介批判、游戏工业与文学品读。">
+<meta name="description" content="按主题整理的长文文库：AI 与技术哲学、认知心理、职场社会、媒介批判、游戏工业、文学品读与数学杂文。">
 <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;600;700;900&display=swap">
 <link rel="stylesheet" href="assets/style.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23b23a2a'/%3E%3Ctext x='16' y='23' font-size='19' text-anchor='middle' fill='white' font-family='serif' font-weight='700'%3E思%3C/text%3E%3C/svg%3E">
 </head>
@@ -18,8 +18,8 @@
   <div class="wrap">
     <a class="brand" href="index.html"><span class="seal">思</span>思辨之境</a>
     <nav class="nav" aria-label="主导航">
-      <a href="#featured" class="hide-sm">精选</a>
-      <a href="#series" class="hide-sm">系列</a>
+      <a href="#featured">精选</a>
+      <a href="#series">系列</a>
       <a href="#archive">文库</a>
       <a href="#about">关于</a>
       <button class="icon-btn" type="button" data-theme-toggle aria-label="切换深浅色">
@@ -31,40 +31,41 @@
 </header>
 
 <main>
-  <section class="hero">
-    <div class="hero-mark" aria-hidden="true">思</div>
+  <section class="hero poster">
     <div class="wrap">
-      <div class="masthead"><span>思辨之境 · Long-form Library</span><span id="mh-count">—</span><span>AI · 心理 · 社会 · 媒介 · 游戏 · 文学</span></div>
-      <div class="hero-grid">
-        <div>
-          <h1><span class="line">沉淀真实的思考，</span><span class="line"><em>解构</em>复杂的现实。</span></h1>
-          <p class="lede">一座按主题整理的长文文库。这里有随笔长文、论文译文，也收录了 B 站 UP 主「智能路障」《围炉夜话》系列的视频文案——每篇都标注作者与出处，并附原始 Markdown。</p>
-          <div class="stats">
-            <div class="stat"><b class="mono" id="st-count">—</b><span>篇文章</span></div>
-            <div class="stat"><b class="mono" id="st-cats">—</b><span>个领域</span></div>
-            <div class="stat"><b class="mono" id="st-chars">—</b><span>字</span></div>
-            <div class="stat"><b class="mono">3</b><span>个系列</span></div>
-          </div>
+      <div class="masthead"><span>思辨之境 · Long-form Library</span><span id="mh-count">—</span><span>AI · 心理 · 社会 · 媒介 · 游戏 · 文学 · 数学</span></div>
+      <h1 class="poster-title">
+        <span class="line"><span class="li">沉淀真实的思考，</span></span>
+        <span class="line"><span class="li"><em>解构</em>复杂的现实。</span></span>
+      </h1>
+      <div class="hero-sub">
+        <p class="lede">一座按主题整理的长文文库。这里有随笔长文、论文译文、一部 22 章的数学专著，也收录了 B 站 UP 主「智能路障」《围炉夜话》系列的视频文案——每篇都标注作者与出处，并附原始 Markdown。</p>
+        <div class="stats">
+          <div class="stat"><b class="mono" id="st-count">—</b><span>篇文章</span></div>
+          <div class="stat"><b class="mono" id="st-chapters">—</b><span>章专著</span></div>
+          <div class="stat"><b class="mono" id="st-cats">—</b><span>个领域</span></div>
+          <div class="stat"><b class="mono" id="st-chars">—</b><span>字</span></div>
         </div>
-        <nav class="contents" aria-label="领域目录">
-          <div class="contents-head"><b>目录</b><span class="eyebrow">Contents</span></div>
-          <ol id="contents"></ol>
-          <div class="contents-foot"><span>点击领域即可筛选</span><a href="#archive">全部文章 ↓</a></div>
-        </nav>
       </div>
+    </div>
+    <nav class="domain-strip" aria-label="领域目录">
+      <div class="wrap"><ol id="contents"></ol></div>
+    </nav>
+    <div class="ticker" id="ticker-box">
+      <div class="ticker-track" id="ticker"></div>
     </div>
   </section>
 
   <section class="section" id="featured">
     <div class="wrap">
-      <div class="section-head reveal"><h2><span class="no">01</span>精选</h2><span class="eyebrow">Featured</span></div>
+      <div class="section-head reveal"><h2><span class="no" data-no="01" aria-hidden="true"></span>精选</h2><span class="eyebrow">Featured</span></div>
       <div class="featured reveal" id="featured-box"></div>
     </div>
   </section>
 
   <section class="section" id="series">
     <div class="wrap">
-      <div class="section-head reveal"><h2><span class="no">02</span>系列</h2><span class="eyebrow">Series</span></div>
+      <div class="section-head reveal"><h2><span class="no" data-no="02" aria-hidden="true"></span>系列</h2><span class="eyebrow">Series</span></div>
       <div class="series-grid" id="series-grid"></div>
     </div>
   </section>
@@ -83,7 +84,7 @@
 
   <section class="section" id="archive">
     <div class="wrap">
-      <div class="section-head reveal"><h2><span class="no">04</span>全部文章</h2><span class="eyebrow" id="archive-count"></span></div>
+      <div class="section-head reveal"><h2><span class="no" data-no="04" aria-hidden="true"></span>全部文章</h2><span class="eyebrow" id="archive-count"></span></div>
       <div class="toolbar">
         <div class="chips" id="chips" role="group" aria-label="按领域筛选"></div>
         <label class="search">
@@ -103,7 +104,7 @@
         <div><blockquote>一个问题值得被慢慢展开，而不是被压缩成一句口号。</blockquote><div class="sign"><span class="glyph solid">辨</span>思辨之境 · 编者按</div></div>
         <div class="body">
           <p>思辨之境是 Yule 的个人长文文库。这里的文章大多从一个具体的困惑出发——为什么上班让人疲惫，为什么大模型看起来懂却又不懂，为什么一台性能落后的游戏机能卖出上亿台——然后尽力把它想清楚、写明白。</p>
-          <p>文库中的《围炉夜话》系列整理自 B 站 UP 主「智能路障」的视频，《LLMs can't jump》译自 Tom Zahavy 的论文，每篇文章页都标注了作者与原始出处，并提供原始 Markdown 文件。</p>
+          <p>文库中的《围炉夜话》系列整理自 B 站 UP 主「智能路障」的视频，《LLMs can't jump》译自 Tom Zahavy 的论文；数学杂文收录 22 章的《积和式》专著，附分层练习与详解。每篇文章页都标注了作者与出处，并提供原始 Markdown 文件。</p>
           <p>原创内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议；整理与翻译的内容版权归原作者所有。</p>
         </div>
       </div>
@@ -118,26 +119,34 @@
 (function () {
   var L = Lib, esc = L.esc;
   // Edit these filenames to change what's featured on the homepage (first one is the lead).
-  var FEATURED = ['LLMs_cant_jump.md', '宝可梦：游戏怪胎.md', '什么是“轻小说”.md', '为什么AI正在重新定义学习.md'];
+  var FEATURED = ['LLMs_cant_jump.md', '宝可梦：游戏怪胎.md', '什么是“轻小说”.md', '杂文短文(数学类)/6.积和式/01-导言：只少了负号，为什么世界变了？.md'];
   var SERIES = [
     { key: '任天堂：世界的主宰', vt: '任天堂', eyebrow: '三部曲', stamp: '任', desc: '从花札老铺到 Switch：任天堂的产品哲学、手艺人传统与组织制度。' },
     { key: '不哭不哭，痛痛飞走吧 · 读后感', vt: '不哭不哭', eyebrow: '读后感 · 四部曲', stamp: '爱', desc: '三秋缒《不哭不哭，痛痛飞走吧》的文本细读：创伤、人物与“爱”的另一种定义。' },
+    { key: '积和式', vt: '积和式', eyebrow: '数学专著', stamp: '数', motif: 'per(A)', desc: '只少了负号，世界就变了：积和式的定义、性质、手算技巧、复杂度与经典问题。' },
     { key: '围炉夜话', vt: '围炉夜话', eyebrow: '视频文案 · 智能路障', stamp: '炉', desc: 'B 站 UP 主「智能路障」的长视频文案，谈学习、金钱、职场、互联网与社会心理。' }
   ];
+  var FOLD = 6;           // series longer than this are folded into one row in the grouped archive
   var state = { cat: 'all', series: '', q: '' };
   var ALL = [], CATS = [], MAXC = 1;
   var CN = ['〇', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
+  var pad = function (n) { return String(n).padStart(2, '0'); };
+  var isChapter = function (a) { return a.kind === '专著章节'; };
 
   L.load().then(function (list) {
     ALL = list;
-    MAXC = Math.max.apply(null, list.map(function (a) { return a.char_count || 0; })) || 1;
+    MAXC = Math.max.apply(null, list.filter(function (a) { return !isChapter(a); }).map(function (a) { return a.char_count || 0; })) || 1;
     list.forEach(function (a) { var k = L.catName(a.category); if (CATS.indexOf(k) < 0) CATS.push(k); });
+    var essays = list.filter(function (a) { return !isChapter(a); }).length;
+    var chapters = list.length - essays;
     var total = list.reduce(function (s, a) { return s + (a.char_count || 0); }, 0);
-    document.getElementById('st-count').textContent = list.length;
+    document.getElementById('st-count').textContent = essays;
+    document.getElementById('st-chapters').textContent = chapters;
     document.getElementById('st-cats').textContent = CATS.length;
     document.getElementById('st-chars').textContent = Math.floor(total / 10000) + '万+';
-    document.getElementById('mh-count').textContent = '收录 ' + list.length + ' 篇 · 2026';
+    document.getElementById('mh-count').textContent = '收录 ' + essays + ' 篇 + ' + chapters + ' 章 · 2026';
     renderContents();
+    renderTicker();
     renderFeatured();
     renderSeries();
     renderQuotes();
@@ -152,12 +161,26 @@
   function byFile(f) { return ALL.filter(function (a) { return a.filename === f; })[0]; }
   function countCat(c) { return ALL.filter(function (a) { return L.catName(a.category) === c; }).length; }
   function catOf(name) { return ALL.filter(function (a) { return L.catName(a.category) === name; })[0].category; }
+  function seriesParts(key) { return ALL.filter(function (a) { return a.series === key; }).sort(function (a, b) { return (a.part || 0) - (b.part || 0); }); }
 
   function renderContents() {
-    document.getElementById('contents').innerHTML = CATS.map(function (c) {
-      return '<li><button type="button" data-cat="' + esc(c) + '"><span class="glyph">' + esc(L.glyph(catOf(c))) + '</span>' +
-        '<span class="lead-dots">' + esc(c) + '</span><span class="cnt">' + countCat(c) + ' 篇</span></button></li>';
+    var tile = function (cat, glyph, name, full, count) {
+      return '<li><button type="button" class="tile" data-cat="' + esc(cat) + '" aria-label="' + esc(full + '，' + count + ' 篇') + '" title="' + esc(full) + '">' +
+        '<span class="glyph" aria-hidden="true">' + esc(glyph) + '</span>' +
+        '<span class="t-name">' + esc(name) + '</span><span class="t-count mono">' + pad(count) + '</span></button></li>';
+    };
+    document.getElementById('contents').innerHTML = tile('all', '全', '全部文章', '全部文章', ALL.length) +
+      CATS.map(function (c) { var k = catOf(c); return tile(c, L.glyph(k), L.shortName(k), c, countCat(c)); }).join('');
+  }
+
+  function renderTicker() {
+    var items = ALL.filter(function (a) { return !isChapter(a) || a.part === 1; });
+    var html = items.map(function (a) {
+      return '<a href="' + L.url(a) + '"><span class="glyph">' + esc(L.glyph(a.category)) + '</span>' + esc(isChapter(a) ? a.series + '：' + a.title : a.title) + '</a>';
     }).join('');
+    var track = document.getElementById('ticker');
+    track.innerHTML = '<div class="ticker-set">' + html + '</div><div class="ticker-set" aria-hidden="true">' + html.replace(/<a /g, '<a tabindex="-1" ') + '</div>';
+    track.style.setProperty('--dur', Math.max(60, items.length * 3.2) + 's');
   }
 
   function renderFeatured() {
@@ -168,34 +191,36 @@
       '<a class="lead" href="' + L.url(lead) + '">' +
         '<div class="kicker"><span class="glyph">' + esc(L.glyph(lead.category)) + '</span><span class="tag">' + esc(L.catName(lead.category)) + '</span>' +
         '<span class="mono">' + L.wan(lead.char_count) + ' · ' + esc(lead.read_time) + '</span></div>' +
-        '<h3>' + esc(lead.title) + '</h3>' +
+        (function () {
+          var m = lead.title.match(/^(.+?)\s*[（(]([^（）()]+)[）)]$/);
+          return m ? '<h3>' + esc(m[1]) + '<span class="h3-sub">' + esc(m[2]) + '</span></h3>' : '<h3>' + esc(lead.title) + '</h3>';
+        })() +
         (src ? '<p class="byline">' + esc(src) + '</p>' : '') +
         '<p class="quote">' + esc(lead.excerpt) + '</p><span class="more">阅读全文</span></a>' +
       '<div class="side-picks">' + items.slice(1).map(function (a, i) {
-        return '<a class="pick" href="' + L.url(a) + '"><span class="pn">' + CN[i + 2] + '</span><div class="tag">' + esc(L.catName(a.category)) + '</div>' +
+        var label = isChapter(a) ? L.source(a) : L.catName(a.category);
+        return '<a class="pick" href="' + L.url(a) + '"><span class="pn">' + CN[i + 2] + '</span><div class="tag">' + esc(label) + '</div>' +
           '<h4>' + esc(a.title) + '</h4><p>' + esc(a.subtitle || a.excerpt) + '</p></a>';
       }).join('') + '</div>';
   }
 
   function renderSeries() {
     document.getElementById('series-grid').innerHTML = SERIES.map(function (s) {
-      var parts = ALL.filter(function (a) { return a.series === s.key; })
-        .sort(function (a, b) { return (a.part || 0) - (b.part || 0); });
+      var parts = seriesParts(s.key);
       if (!parts.length) return '';
-      var first = parts[0];
+      var first = parts[0], unit = isChapter(first) ? '章' : '篇';
       var cover = '<span class="meta"><span class="eyebrow">' + esc(s.eyebrow) + '</span>' +
-        '<span class="big">' + parts.length + '<small>篇</small></span></span>' +
+        '<span class="big">' + parts.length + '<small>' + unit + '</small></span></span>' +
+        (s.motif ? '<span class="motif" data-motif="' + esc(s.motif) + '" aria-hidden="true"></span>' : '') +
         '<span class="vt">' + esc(s.vt) + '</span><span class="stamp">' + esc(s.stamp) + '</span>';
       var head = first.part
-        ? '<a class="cover" href="' + L.url(first) + '" aria-label="从第一篇开始阅读 ' + esc(s.vt) + '">' + cover + '</a>'
+        ? '<a class="cover" href="' + L.url(first) + '" aria-label="从第一' + unit + '开始阅读' + esc(s.vt) + '">' + cover + '</a>'
         : '<button class="cover" type="button" data-series="' + esc(s.key) + '" aria-label="浏览' + esc(s.vt) + '全部文章">' + cover + '</button>';
-      var body = first.part
-        ? '<ol>' + parts.map(function (a) {
-            return '<li><a href="' + L.url(a) + '"><span class="n">0' + a.part + '</span><span>' + esc(L.partLabel(a)) + '</span></a></li>';
-          }).join('') + '</ol>'
-        : '<ol>' + parts.slice(0, 3).map(function (a, i) {
-            return '<li><a href="' + L.url(a) + '"><span class="n">0' + (i + 1) + '</span><span>' + esc(a.title) + '</span></a></li>';
-          }).join('') + '</ol><button class="all" type="button" data-series="' + esc(s.key) + '">浏览全部 ' + parts.length + ' 篇 →</button>';
+      var shown = parts.length > 4 ? parts.slice(0, 3) : parts;
+      var body = '<ol>' + shown.map(function (a, i) {
+          return '<li><a href="' + L.url(a) + '"><span class="n">' + pad(a.part || i + 1) + '</span><span>' + esc(a.part ? L.partLabel(a) : a.title) + '</span></a></li>';
+        }).join('') + '</ol>' +
+        (parts.length > shown.length ? '<button class="all" type="button" data-series="' + esc(s.key) + '">浏览全部 ' + parts.length + ' ' + unit + ' →</button>' : '');
       return '<div class="series-card reveal">' + head + '<p>' + esc(s.desc) + '</p>' + body + '</div>';
     }).join('');
   }
@@ -211,7 +236,7 @@
     ['做题能改变命运吗.md', '记忆其实是思考的残留物。'],
     ['LLMs_cant_jump.md', '提出公理本身依然是机器无法跨越的瓶颈。']
   ];
-  var qi = 0, qTimer = null, qPaused = false;
+  var qi = 0, qPaused = false;
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   function renderQuotes() {
     QUOTES = QUOTES.filter(function (q) { return byFile(q[0]); });
@@ -230,7 +255,7 @@
       if (b) showQuote(qi + Number(b.dataset.step));
       if (d) showQuote(Number(d.dataset.i));
     });
-    if (!reduce) qTimer = setInterval(function () { if (!qPaused && !document.hidden) showQuote(qi + 1); }, 8000);
+    if (!reduce) setInterval(function () { if (!qPaused && !document.hidden) showQuote(qi + 1); }, 8000);
   }
   function showQuote(i) {
     qi = (i + QUOTES.length) % QUOTES.length;
@@ -242,14 +267,14 @@
       '<a href="' + L.url(a) + '">《' + esc(a.title) + '》</a>' +
       (a.author ? '<span class="by">' + esc(a.author) + '</span>' : '') + '</figcaption>';
     stage.classList.add('on');
-    document.getElementById('q-count').textContent = String(qi + 1).padStart(2, '0') + ' / ' + String(QUOTES.length).padStart(2, '0');
+    document.getElementById('q-count').textContent = pad(qi + 1) + ' / ' + pad(QUOTES.length);
     document.querySelectorAll('.q-dot').forEach(function (d, k) { d.setAttribute('aria-current', String(k === qi)); });
   }
 
   function renderChips() {
     document.getElementById('chips').innerHTML =
       '<button class="chip" type="button" data-cat="all">全部<sup>' + ALL.length + '</sup></button>' +
-      CATS.map(function (c) { return '<button class="chip" type="button" data-cat="' + esc(c) + '">' + esc(c) + '<sup>' + countCat(c) + '</sup></button>'; }).join('');
+      CATS.map(function (c) { return '<button class="chip" type="button" data-cat="' + esc(c) + '" title="' + esc(c) + '">' + esc(L.shortName(catOf(c))) + '<sup>' + countCat(c) + '</sup></button>'; }).join('');
   }
 
   function highlight(text, q) {
@@ -259,20 +284,39 @@
     return i < 0 ? t : t.slice(0, i) + '<mark>' + t.slice(i, i + k.length) + '</mark>' + t.slice(i + k.length);
   }
 
+  function lenBar(chars) {
+    return '<i class="len" style="--w:' + Math.min(100, Math.max(6, Math.round(chars / MAXC * 100))) + '%" title="篇幅"></i>';
+  }
+
   function row(a, i, q) {
     var src = L.source(a);
     var keys = (src ? '<span class="src">' + esc(src) + '</span>' : '') +
       (a.tags || []).map(function (t) { return '<span class="t">' + highlight(t, q) + '</span>'; }).join('');
-    return '<li class="row"><a href="' + L.url(a) + '"><span class="idx">' + String(i + 1).padStart(2, '0') + '</span><div>' +
+    return '<li class="row"><a href="' + L.url(a) + '"><span class="idx">' + pad(i + 1) + '</span><div>' +
       '<h4>' + highlight(a.title, q) + (a.subtitle ? '<small>' + highlight(a.subtitle, q) + '</small>' : '') + '</h4>' +
       (a.excerpt ? '<p>' + highlight(a.excerpt, q) + '</p>' : '') +
       '<div class="keys">' + keys + '</div></div>' +
-      '<div class="right"><span>' + L.wan(a.char_count) + '</span><span>' + esc(a.read_time) + '</span>' +
-      '<i class="len" style="--w:' + Math.max(6, Math.round(a.char_count / MAXC * 100)) + '%" title="篇幅"></i></div></a></li>';
+      '<div class="right"><span>' + L.wan(a.char_count) + '</span><span>' + esc(a.read_time) + '</span>' + lenBar(a.char_count) + '</div></a></li>';
+  }
+
+  // A long series (the 22-chapter monograph) folds into one expandable row.
+  function seriesRow(key, parts, i) {
+    var chars = parts.reduce(function (s, a) { return s + (a.char_count || 0); }, 0);
+    var mins = parts.reduce(function (s, a) { return s + (parseInt(a.read_time, 10) || 0); }, 0);
+    var unit = isChapter(parts[0]) ? '章' : '篇';
+    return '<li class="row series-row"><details><summary><span class="idx">' + pad(i + 1) + '</span><div>' +
+      '<h4>《' + esc(key) + '》<small>' + (isChapter(parts[0]) ? '专著 · ' : '系列 · ') + parts.length + ' ' + unit + '</small></h4>' +
+      (parts[0].excerpt ? '<p>' + esc(parts[0].excerpt) + '</p>' : '') +
+      '<div class="keys"><span class="src">展开全部 ' + parts.length + ' ' + unit + '目录</span></div></div>' +
+      '<div class="right"><span>' + L.wan(chars) + '</span><span>' + mins + ' min</span>' + lenBar(chars) + '</div></summary>' +
+      '<ol class="chapters">' + parts.map(function (a) {
+        return '<li><a href="' + L.url(a) + '"><span class="n">' + pad(a.part) + '</span><span class="ct">' + esc(a.title) + '</span><span class="cm">' + esc(a.read_time) + '</span></a></li>';
+      }).join('') + '</ol></details></li>';
   }
 
   function render() {
     document.querySelectorAll('#chips .chip').forEach(function (c) { c.setAttribute('aria-pressed', String(c.dataset.cat === state.cat)); });
+    document.querySelectorAll('#contents .tile').forEach(function (c) { c.setAttribute('aria-pressed', String(c.dataset.cat === state.cat)); });
     var q = state.q.trim(), ql = q.toLowerCase();
     var items = ALL.filter(function (a) {
       if (state.cat !== 'all' && L.catName(a.category) !== state.cat) return false;
@@ -289,19 +333,26 @@
     var box = document.getElementById('list');
     if (!items.length) { box.innerHTML = '<p class="empty">没有找到相关文章，换个关键词试试。</p>'; return; }
 
-    var groups = [];
     if (!ql && !state.series) {
+      var groups = [];
       items.forEach(function (a) {
         var c = L.catName(a.category), g = groups[groups.length - 1];
         if (!g || g.name !== c) groups.push(g = { name: c, cat: a.category, items: [] });
         g.items.push(a);
       });
       box.innerHTML = groups.map(function (g) {
-        var n = CATS.indexOf(g.name) + 1;
+        var n = CATS.indexOf(g.name) + 1, rows = [], done = {}, k = 0;
+        g.items.forEach(function (a) {
+          var parts = a.series ? seriesParts(a.series) : [];
+          var sameDomain = parts.every(function (x) { return x.category === a.category; });
+          if (parts.length > FOLD && sameDomain) {
+            if (!done[a.series]) { done[a.series] = true; rows.push(seriesRow(a.series, parts, k++)); }
+          } else rows.push(row(a, k++));
+        });
         return '<div class="group-head"><span class="glyph lg">' + esc(L.glyph(g.cat)) + '</span>' +
-          '<h3><span class="num">0' + n + '</span>' + esc(g.name) + '</h3><span class="count">' + g.items.length + ' 篇</span>' +
+          '<h3><span class="num">' + pad(n) + '</span>' + esc(g.name) + '</h3><span class="count" data-n="' + pad(g.items.length) + '"><span class="sr-only">' + g.items.length + ' 篇</span></span>' +
           '<p>' + esc(L.catDesc(g.cat)) + '</p></div>' +
-          '<ul class="archive">' + g.items.map(function (a, i) { return row(a, i); }).join('') + '</ul>';
+          '<ul class="archive">' + rows.join('') + '</ul>';
       }).join('');
     } else {
       box.innerHTML = '<ul class="archive flat">' + items.map(function (a, i) { return row(a, i, q); }).join('') + '</ul>';

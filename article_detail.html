@@ -51,7 +51,10 @@
 (function () {
   var L = Lib, esc = L.esc;
   var file = new URLSearchParams(location.search).get('file') || 'LLMs_cant_jump.md';
-  var path = 'articles/' + encodeURIComponent(file);
+  var nested = file.indexOf('/') >= 0;                 // collection chapters carry a repo-relative path
+  var path = nested ? file.split('/').map(encodeURIComponent).join('/') : 'articles/' + encodeURIComponent(file);
+  var dir = nested ? file.slice(0, file.lastIndexOf('/') + 1) : 'articles/';
+  var pad = function (n) { return String(n).padStart(2, '0'); };
 
   Promise.all([
     L.load().catch(function () { return []; }),
@@ -82,10 +85,40 @@
     return { header: header, body: md };
   }
 
+  // Obsidian syntax: [[target|label]] links and ![[file]] embeds.
+  function obsidian(md, list) {
+    var byBase = {};
+    list.forEach(function (x) {
+      var b = x.filename.slice(x.filename.lastIndexOf('/') + 1).replace(/\.md$/, '');
+      byBase[b] = x;
+    });
+    md = md.replace(/!\[\[([^\]|]+)(?:\|[^\]]*)?\]\]/g, function (_, target) {
+      var name = target.slice(target.lastIndexOf('/') + 1);
+      if (!/\.(svg|png|jpe?g|gif|webp)$/i.test(name)) return '';
+      var src = (dir + '../' + target).split('/').map(encodeURIComponent).join('/');
+      return '\n\n<figure class="embed"><img data-embed src="' + esc(src) + '" alt="' + esc(name) + '" loading="lazy"></figure>\n\n';
+    });
+    return md.replace(/\[\[([^\]|#]+)(#[^\]|]*)?(?:\|([^\]]+))?\]\]/g, function (_, target, anchor, label) {
+      var base = target.slice(target.lastIndexOf('/') + 1).trim();
+      var text = (label || base).trim();
+      var hit = byBase[base];
+      if (hit) return '[' + text + '](' + L.url(hit) + ')';
+      if (/00-章节索引$/.test(base) || !/\//.test(target)) return '[' + text + '](index.html#series)';
+      return text;
+    });
+  }
+
+  // Some exports turned "\\frac", "\\beta", "\\vec" into form-feed / backspace / vertical-tab characters.
+  function repairTex(tex) { return tex.replace(/\x0c/g, '\\f').replace(/\x08/g, '\\b').replace(/\x0b/g, '\\v'); }
+
   function protectMath(md) {
     var store = [];
-    md = md.replace(/\$\$([\s\S]+?)\$\$/g, function (_, tex) { store.push({ tex: tex, display: true }); return '@@MATH' + (store.length - 1) + '@@'; });
-    md = md.replace(/\$([^$\n]+?)\$/g, function (_, tex) { store.push({ tex: tex, display: false }); return '@@MATH' + (store.length - 1) + '@@'; });
+    md = md.replace(/\$\$([\s\S]+?)\$\$/g, function (_, tex) {
+      // Inside a callout/blockquote every line of the formula still starts with "> ".
+      store.push({ tex: repairTex(tex.replace(/^[ \t]*>[ \t]?/gm, '')), display: true });
+      return '@@MATH' + (store.length - 1) + '@@';
+    });
+    md = md.replace(/\$([^$\n]+?)\$/g, function (_, tex) { store.push({ tex: repairTex(tex), display: false }); return '@@MATH' + (store.length - 1) + '@@'; });
     // CommonMark won't close **bold** next to CJK punctuation (e.g. **溯因（A）**的), so convert those directly.
     md = md.replace(/\*\*(?=\S)([^*\n]+?\S)\*\*/g, '<strong>$1</strong>');
     return { md: md, store: store };
@@ -109,7 +142,7 @@
       return '<h' + level + ' id="' + id + '">' + text + '</h' + level + '>';
     };
     renderer.image = function (href, title, text) {
-      if (href && !/^(https?:)?\/\//.test(href) && href.charAt(0) !== '/') href = 'articles/' + href;
+      if (href && !/^(https?:)?\/\//.test(href) && href.charAt(0) !== '/') href = dir + href;
       return '<img src="' + esc(href) + '" alt="' + esc(text) + '" loading="lazy">';
     };
     renderer.table = function (header, body) {
@@ -139,7 +172,7 @@
     var cat = L.catName(a.category);
     document.title = a.title + ' · 思辨之境';
     var parts = split(md);
-    var pm = protectMath(parts.body);
+    var pm = protectMath(obsidian(parts.body, list));
     var out = render(pm.md);
 
     var links = [];
@@ -151,17 +184,20 @@
     var headerHtml = parts.header ? marked.parse(parts.header.replace(/^>\s?/gm, '').replace(/^-\s+/gm, ''), { breaks: true }) : '';
 
     var seriesHtml = '';
+    var unit = a.kind === '专著章节' ? '章' : '篇';
     if (a.part) {
       var sib = list.filter(function (x) { return x.series === a.series; }).sort(function (x, y) { return x.part - y.part; });
-      seriesHtml = '<nav class="series-box" aria-label="系列"><span class="eyebrow">系列 · ' + esc(a.series) + '</span><ol>' +
-        sib.map(function (x) {
-          return '<li' + (x.filename === a.filename ? ' class="cur"' : '') + '><a href="' + L.url(x) + '"><span class="n">0' + x.part + '</span><span>' + esc(L.partLabel(x)) + '</span></a></li>';
-        }).join('') + '</ol></nav>';
+      var items = '<ol>' + sib.map(function (x) {
+          return '<li' + (x.filename === a.filename ? ' class="cur"' : '') + '><a href="' + L.url(x) + '"' + (x.filename === a.filename ? ' aria-current="page"' : '') + '><span class="n">' + pad(x.part) + '</span><span>' + esc(L.partLabel(x)) + '</span></a></li>';
+        }).join('') + '</ol>';
+      seriesHtml = sib.length > 6
+        ? '<details class="series-box"><summary><span class="eyebrow">系列 · ' + esc(a.series) + '</span><span class="sb-pos">第 ' + a.part + ' / ' + sib.length + ' ' + unit + ' · 展开目录</span></summary>' + items + '</details>'
+        : '<nav class="series-box" aria-label="系列"><span class="eyebrow">系列 · ' + esc(a.series) + '</span>' + items + '</nav>';
     }
 
     document.getElementById('head').innerHTML =
       '<div class="r-mast"><span class="glyph lg solid" aria-hidden="true">' + esc(L.glyph(a.category)) + '</span>' +
-      '<span class="eyebrow">思辨之境 · ' + esc(cat || '文章') + (a.part ? ' · 第 ' + a.part + ' 篇' : '') + '</span></div>' +
+      '<span class="eyebrow">思辨之境 · ' + esc(cat || '文章') + (a.part ? ' · 第 ' + a.part + ' ' + unit : '') + '</span></div>' +
       '<span class="r-mark" aria-hidden="true">' + esc(L.glyph(a.category)) + '</span>' +
       '<div class="crumb"><a href="index.html#archive">文库</a><span>/</span><span class="tag">' + esc(cat || '文章') + '</span>' +
         (src ? '<span>/</span><span>' + esc(src) + '</span>' : '') + '</div>' +
@@ -179,10 +215,71 @@
       seriesHtml;
 
     var body = document.getElementById('body');
-    body.innerHTML = out.html;
+    var finish = function (html) {
+      body.innerHTML = html;
+      postProcess(body);
+      buildToc(out.heads, a);
+      buildEnd(a, list, links);
+      setupScroll(out.heads);
+      // Wide formulas and tables scroll sideways; make those (and only those) reachable by keyboard.
+      (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () {
+        body.querySelectorAll('.katex-display, .table-wrap').forEach(function (el) {
+          if (el.scrollWidth > el.clientWidth + 1) {
+            el.tabIndex = 0;
+            el.setAttribute('role', 'region');
+            el.setAttribute('aria-label', el.classList.contains('table-wrap') ? '表格（可横向滚动）' : '公式（可横向滚动）');
+          }
+        });
+      });
+      if (location.hash) { var t = document.getElementById(decodeURIComponent(location.hash.slice(1))); if (t) t.scrollIntoView(); }
+    };
+    if (!pm.store.length) return finish(out.html);
+    loadKatex().then(function () {
+      finish(out.html.replace(/@@MATH(\d+)@@/g, function (_, i) {
+        var m = pm.store[+i];
+        try { return katex.renderToString(m.tex, { displayMode: m.display, throwOnError: false, strict: 'ignore' }); }
+        catch (e) { return '<code>' + esc(m.tex) + '</code>'; }
+      }));
+    }).catch(function () {
+      finish(out.html.replace(/@@MATH(\d+)@@/g, function (_, i) { return '<code>' + esc(pm.store[+i].tex) + '</code>'; }));
+    });
+  }
+
+  var CALLOUT = { info: '说明', note: '注', tip: '提示', example: '例', success: '要点', question: '思考', abstract: '摘要', warning: '注意', danger: '警告', quote: '引' };
+  function postProcess(body) {
+    // Obsidian callouts: a blockquote whose first line is "[!type] Title".
+    body.querySelectorAll('blockquote').forEach(function (bq) {
+      var p = bq.firstElementChild;
+      if (!p || p.tagName !== 'P') return;
+      var m = p.innerHTML.match(/^\s*\[!([a-zA-Z]+)\]([+-]?)[ \t]*([^\n]*)\n?/);
+      if (!m) return;
+      var type = m[1].toLowerCase(), title = m[3].trim();
+      if (title === '导航') { bq.remove(); return; }            // the site has its own series navigation
+      p.innerHTML = p.innerHTML.slice(m[0].length);
+      if (!p.innerHTML.trim()) p.remove();
+      var box = document.createElement('div');
+      box.className = 'callout callout-' + (CALLOUT[type] ? type : 'note');
+      box.setAttribute('role', 'note');
+      // A titled callout ("定理 2.1", "例 3.2", "证明") already says what it is; only untitled ones get the type label.
+      box.innerHTML = '<div class="callout-title">' + (title ? '<span class="callout-name">' + title + '</span>' : '<span class="callout-tag">' + (CALLOUT[type] || type) + '</span>') + '</div>';
+      if (/^证明/.test(box.textContent.trim())) box.classList.add('is-proof');
+      var inner = document.createElement('div'); inner.className = 'callout-body';
+      while (bq.firstChild) inner.appendChild(bq.firstChild);
+      box.appendChild(inner);
+      bq.replaceWith(box);
+    });
+
+    // Embedded attachments that were not uploaded get an honest placeholder.
+    body.querySelectorAll('img[data-embed]').forEach(function (img) {
+      img.addEventListener('error', function () {
+        var fig = img.closest('figure');
+        fig.className = 'embed missing';
+        fig.innerHTML = '<div class="fig-missing"><span class="glyph" aria-hidden="true">图</span><span>此处原有插图「' + esc(img.alt) + '」，附件尚未上传。</span></div>';
+      });
+    });
 
     // Lone images become figures with captions.
-    body.querySelectorAll('p > img:only-child').forEach(function (img) {
+    body.querySelectorAll('p > img:only-child:not([data-embed])').forEach(function (img) {
       var p = img.parentNode;
       if (p.textContent.trim()) return;
       var fig = document.createElement('figure');
@@ -190,24 +287,6 @@
       if (img.alt) { var cap = document.createElement('figcaption'); cap.textContent = img.alt; fig.appendChild(cap); }
       p.replaceWith(fig);
     });
-
-    if (pm.store.length) {
-      loadKatex().then(function () {
-        body.innerHTML = body.innerHTML.replace(/@@MATH(\d+)@@/g, function (_, i) {
-          var m = pm.store[+i];
-          try { return katex.renderToString(m.tex, { displayMode: m.display, throwOnError: false }); }
-          catch (e) { return esc(m.tex); }
-        });
-        setupScroll(out.heads);
-      }).catch(function () {
-        body.innerHTML = body.innerHTML.replace(/@@MATH(\d+)@@/g, function (_, i) { return '<code>' + esc(pm.store[+i].tex) + '</code>'; });
-      });
-    }
-
-    buildToc(out.heads, a);
-    buildEnd(a, list, links);
-    setupScroll(out.heads);
-    if (location.hash) { var t = document.getElementById(decodeURIComponent(location.hash.slice(1))); if (t) t.scrollIntoView(); }
   }
 
   var READ_MIN = 0;
@@ -235,7 +314,8 @@
     }
     var i = pool.map(function (x) { return x.filename; }).indexOf(a.filename);
     if (i >= 0) { prev = pool[i - 1]; next = pool[i + 1]; }
-    var label = a.part ? '系列' : L.catName(a.category);
+    var label = a.part ? (a.kind === '专著章节' ? a.series : '系列') : L.catName(a.category);
+    var unitPrev = a.kind === '专著章节' ? '上一章' : '上一篇', unitNext = a.kind === '专著章节' ? '下一章' : '下一篇';
     var related = list.filter(function (x) {
       return x.category === a.category && x.filename !== a.filename && (!a.series || x.series !== a.series) && x !== prev && x !== next;
     }).slice(0, 4);
@@ -244,8 +324,8 @@
       '<div class="fin" aria-hidden="true"><span class="glyph">终</span></div>' +
       '<div class="article-end"><div class="actions"><span>本文文件：</span>' + links.join(' · ') + '</div>' +
       ((prev || next) ? '<nav class="pager" aria-label="上一篇与下一篇">' +
-        (prev ? '<a class="prev" href="' + L.url(prev) + '"><small>← 上一篇 · ' + esc(label) + '</small><b>' + esc(prev.title) + '</b></a>' : '') +
-        (next ? '<a class="next" href="' + L.url(next) + '"><small>下一篇 · ' + esc(label) + ' →</small><b>' + esc(next.title) + '</b></a>' : '') +
+        (prev ? '<a class="prev" href="' + L.url(prev) + '"><small>← ' + unitPrev + ' · ' + esc(label) + '</small><b>' + esc(prev.title) + '</b></a>' : '') +
+        (next ? '<a class="next" href="' + L.url(next) + '"><small>' + unitNext + ' · ' + esc(label) + ' →</small><b>' + esc(next.title) + '</b></a>' : '') +
       '</nav>' : '') +
       (related.length ? '<div class="related"><span class="eyebrow">同领域 · ' + esc(L.catName(a.category)) + '</span><ul>' +
         related.map(function (x) { return '<li><a href="' + L.url(x) + '">' + esc(x.title) + '<span>' + esc(x.read_time) + '</span></a></li>'; }).join('') +
