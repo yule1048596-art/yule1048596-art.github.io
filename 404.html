@@ -222,13 +222,13 @@
           </h1>
 <!-- Prose Manifesto -->
 <p class="text-body-lg font-body-lg text-on-surface-variant leading-relaxed mb-6 font-normal">
-            汇集人工智能哲学、认知科学、现代职场困境、媒介工业批判与文学随笔，全量收录 32 篇深度长文与 40 余万字独立非虚构思想沉淀。以严谨学术实证对抗碎片短视频投喂，重拾长篇深度阅读与批判性反思。
+            汇集人工智能哲学、认知科学、现代职场困境、媒介工业批判与文学随笔，全量收录 37 篇全量深度长文与 40 余万字独立非虚构思想沉淀。以严谨学术实证对抗碎片短视频投喂，重拾长篇深度阅读与批判性反思。
           </p>
 <!-- Core Metric Badges -->
 <div class="flex flex-wrap items-center gap-2.5 pt-2 border-t border-[#EAE5DC]">
 <span class="px-3 py-1 rounded-md bg-surface-container-lowest border border-surface-variant font-label-code text-label-code text-on-surface flex items-center gap-1.5">
 <span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
-              32 篇深度长文
+              37 篇全量深度长文
             </span>
 <span class="px-3 py-1 rounded-md bg-surface-container-lowest border border-surface-variant font-label-code text-label-code text-on-surface flex items-center gap-1.5">
 <span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
@@ -345,13 +345,13 @@
 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
 <!-- Filter Tabs -->
 <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none">
-<button class="px-3.5 py-1.5 rounded-full bg-primary-container text-on-tertiary font-title-md text-body-sm shadow-sm shrink-0">全部写作 (32)</button>
+<button class="px-3.5 py-1.5 rounded-full bg-primary-container text-on-tertiary font-title-md text-body-sm shadow-sm shrink-0">全部写作 (37)</button>
 <button class="px-3.5 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface border border-surface-variant font-body-sm text-body-sm shrink-0 transition-colors">🤖 AI与技术哲学 (5)</button>
 <button class="px-3.5 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface border border-surface-variant font-body-sm text-body-sm shrink-0 transition-colors">🧠 认知心理与成长 (7)</button>
 <button class="px-3.5 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface border border-surface-variant font-body-sm text-body-sm shrink-0 transition-colors">🏛️ 职场生存与社会 (6)</button>
-<button class="px-3.5 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface border border-surface-variant font-body-sm text-body-sm shrink-0 transition-colors">🌐 媒介批判与互联网 (5)</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface border border-surface-variant font-body-sm text-body-sm shrink-0 transition-colors">🌐 媒介批判与互联网 (8)</button>
 <button class="px-3.5 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface border border-surface-variant font-body-sm text-body-sm shrink-0 transition-colors">🎮 商业工业与游戏文化 (5)</button>
-<button class="px-3.5 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface border border-surface-variant font-body-sm text-body-sm shrink-0 transition-colors">📖 文学品读与随笔 (4)</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface border border-surface-variant font-body-sm text-body-sm shrink-0 transition-colors">📖 文学品读与随笔 (6)</button>
 </div>
 <!-- Sorting & Metadata Toolbar -->
 <div class="flex items-center gap-3 shrink-0">
@@ -371,7 +371,7 @@
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 <!-- LEFT: 2-COLUMN ARTICLE ARCHIVE (8 COLS) -->
 <section class="lg:col-span-8">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5">
 <!-- Card 1 -->
 <article class="bg-surface-container-lowest border border-[#EAE5DC] rounded-xl p-6 hover:border-primary-container hover:shadow-sm transition-all flex flex-col justify-between group">
 <div>
@@ -851,4 +851,122 @@
 </div>
 </div>
 </footer>
+
+<script>
+const ALL_ARTICLES = [{"filename": "LLMs_cant_jump.md", "title": "LLMs can't jump（大语言模型无法起跳）", "category": "🤖 AI与技术哲学", "char_count": 12231, "read_time": "20 min", "tags": ["爱因斯坦电梯", "符号接地", "因果之梯", "AGI边界"], "excerpt": "**原作者**：Tom Zahavy（Google DeepMind）..."}, {"filename": "一个关于归属的数字寓言.md", "title": "一个关于归属的数字寓言", "category": "🤖 AI与技术哲学", "char_count": 3471, "read_time": "5 min", "tags": ["赛博空间", "虚拟身份", "数字存在主义"], "excerpt": "2026 年夏天，两件事撞在了一起，让人心里直发毛。..."}, {"filename": "不哭不哭 痛痛飞走吧 读后感(三)：关于汤上瑞穗(2).md", "title": "不哭不哭，痛痛飞走吧 读后感(三)：关于汤上瑞穗(2) —— 畸变人格的精神发生学与创伤溯源", "category": "📖 文学品读与随笔", "char_count": 4782, "read_time": "7 min", "tags": ["心理折射", "救赎可能", "叙事伦理"], "excerpt": "在《不哭不哭，痛痛飞走吧》中，三秋缒对男主角汤上瑞穗的童年与少年成长史展现了极具日式私小说特征的“克制留白”。整部小说没有安排冗长的回忆篇章来解释他那令人战栗的病态心理，而是仅在字里行间散落了若干断裂而锋利的拼图碎片：..."}, {"filename": "不哭不哭 痛痛飞走吧 读后感(四)：关于爱.md", "title": "不哭不哭，痛痛飞走吧 读后感(四)：关于爱 —— 废墟之上的共犯、代偿与神圣抵押", "category": "📖 文学品读与随笔", "char_count": 3844, "read_time": "6 min", "tags": ["爱的本质", "精神救赎", "生命余味"], "excerpt": "在主流大众文学与流行文化中，“爱”往往被描绘成一种明媚、治愈且富有建设性的力量——它是孤独者的避风港，是迷茫者的引路灯，是跨越阶级与苦难后的圆满救赎。..."}, {"filename": "不哭不哭，痛痛飞走吧 读后感(一)：愿这世上有爱.md", "title": "不哭不哭，痛痛飞走吧 读后感(一)：愿这世上有爱", "category": "📖 文学品读与随笔", "char_count": 4759, "read_time": "7 min", "tags": ["共情困境", "创伤叙事", "文学温情"], "excerpt": "如果你在深夜醉酒驾车，撞倒了一名过路的十七岁少女，车轮从她身上碾过去，你会怎么做？..."}, {"filename": "不哭不哭，痛痛飞走吧 读后感(二)：关于汤上瑞穗.md", "title": "不哭不哭，痛痛飞走吧 读后感(二)：关于汤上瑞穗", "category": "📖 文学品读与随笔", "char_count": 4661, "read_time": "7 min", "tags": ["角色心理", "命运对抗", "人物弧光"], "excerpt": "在三秋缒构筑的灰冷文学图景中，主角往往不是承担英雄主义救赎功能的楷模，而是深陷精神泥潭的边缘畸零人。而在《不哭不哭，痛痛飞走吧》中，汤上瑞穗这一人物形象更是被推向了某种极致的负面光谱：他开篇即是一个自暴自弃、在大学浑噩度日、深陷虚无与冷漠，最终在醉酒状态下肇事..."}, {"filename": "世界杯来了，赌狗也来了.md", "title": "世界杯来了，赌狗也来了。【围炉夜话】", "category": "🌐 媒介批判与互联网", "char_count": 8125, "read_time": "13 min", "tags": ["赌徒谬误", "概率错觉", "欲望经济"], "excerpt": "title: 世界杯来了，赌狗也来了。【围炉夜话】..."}, {"filename": "为什么AI正在重新定义学习.md", "title": "为什么AI正在重新定义学习", "category": "🤖 AI与技术哲学", "char_count": 3615, "read_time": "6 min", "tags": ["人机协作", "认知外包", "批判性思维"], "excerpt": "——关于没有菜单的时代、手感的断层，以及大脑该如何自救..."}, {"filename": "为什么互联网越来越低智，回旋镖越来越多.md", "title": "为什么互联网越来越低智，回旋镖越来越多？【围炉夜话】", "category": "🌐 媒介批判与互联网", "char_count": 24521, "read_time": "40 min", "tags": ["群体极化", "回音室效应", "多巴胺算法"], "excerpt": "title: 为什么互联网越来越低智，回旋镖越来越多？【围炉夜话】..."}, {"filename": "为什么谈恋爱这么难.md", "title": "为什么谈恋爱这么难？关于恋爱的科学研究！【围炉夜话】", "category": "🧠 认知心理与成长", "char_count": 7044, "read_time": "11 min", "tags": ["亲密关系", "情感经济学", "依恋风格"], "excerpt": "title: 为什么谈恋爱这么难？关于恋爱的科学研究！【围炉夜话】..."}, {"filename": "为何世道从未太平，恶人总是横行无忌.md", "title": "为何世道从未太平，恶人总是横行无忌？【围炉夜话】", "category": "🌐 媒介批判与互联网", "char_count": 8485, "read_time": "14 min", "tags": ["博弈论", "法治演进", "社会正义"], "excerpt": "title: 为何世道从未太平，恶人总是横行无忌？【围炉夜话】..."}, {"filename": "为何我们如此贫穷.md", "title": "【围炉夜话】为何我们如此贫穷？不只是缺钱那么简单。", "category": "🏛️ 职场生存与社会", "char_count": 9303, "read_time": "15 min", "tags": ["结构性不平等", "资产配置", "经济学透视"], "excerpt": "title: 为何我们如此贫穷？不只是缺钱那么简单。【围炉夜话】..."}, {"filename": "人类真的需要理解彼此吗.md", "title": "人类真的需要理解彼此吗？", "category": "🧠 认知心理与成长", "char_count": 4337, "read_time": "7 min", "tags": ["交往理性", "孤独本质", "理解的边界"], "excerpt": "深夜两点，对话框里敲下了几百字，光标在屏幕上一下一下闪烁，最后却被一个键一个键全部删光，只剩下轻描淡写的两个字：“睡了”。..."}, {"filename": "什么是“轻小说”.md", "title": "什么是“轻小说”：低阻抗文体、商业叙事学与青春的无菌箱庭", "category": "📖 文学品读与随笔", "char_count": 7513, "read_time": "12 min", "tags": ["快餐文学", "叙事迭代", "符号快感"], "excerpt": "在日本出版界，曾流传过一个近乎无赖的“套套逻辑”：**“只要出版商在书脊上印了轻小说文库的标志，它就是轻小说。”**..."}, {"filename": "任天堂：世界的主宰(一).md", "title": "任天堂：世界的主宰(一)", "category": "🎮 商业工业与游戏文化", "char_count": 5026, "read_time": "8 min", "tags": ["横井军平", "枯竭技术", "硬件哲学"], "excerpt": "今天游戏行业最吊诡的图景，莫过于索尼和微软正联手把 3A 制作推向两三亿美元的悬崖。光追、动捕与微表情扫描一路层层加码，换来的却是全行业猝不及防的裁员暴雪。几百号人苦熬数年的心血，只要在市场上稍有闪失，整间工作室便在几天之内原地蒸发。..."}, {"filename": "任天堂：世界的主宰(三).md", "title": "任天堂：世界的主宰(三)", "category": "🎮 商业工业与游戏文化", "char_count": 4131, "read_time": "6 min", "tags": ["Switch奇迹", "百年玩具店", "娱乐本质"], "excerpt": "在当代商业与组织研究中，任天堂常被视为一个难以归类的样本。..."}, {"filename": "任天堂：世界的主宰(二).md", "title": "任天堂：世界的主宰(二)", "category": "🎮 商业工业与游戏文化", "char_count": 5277, "read_time": "8 min", "tags": ["岩田聪", "蓝海战略", "玩家直觉"], "excerpt": "每年，有数十万个大大小小的邮裹从世界各地寄往日本京都南区。..."}, {"filename": "做题能改变命运吗.md", "title": "做题能改变命运吗？【围炉夜话】", "category": "🧠 认知心理与成长", "char_count": 10570, "read_time": "17 min", "tags": ["文化资本", "应试选拔", "阶层跃迁"], "excerpt": "title: 做题能改变命运吗？【围炉夜话】..."}, {"filename": "商务漂流、擦边二游，现代人为何如此性压抑.md", "title": "商务漂流、擦边二游，现代人为何如此性压抑？【围炉夜话】", "category": "🎮 商业工业与游戏文化", "char_count": 11075, "read_time": "18 min", "tags": ["亚文化透视", "情感代偿", "欲望符号"], "excerpt": "title: 商务漂流、擦边二游，现代人为何如此性压抑？【围炉夜话】..."}, {"filename": "围炉夜话20篇深度风格蒸馏与论据体系拆解报告.md", "title": "《围炉夜话》20篇长视频文案深度风格蒸馏与论据体系拆解报告", "category": "🌐 媒介批判与互联网", "char_count": 16510, "read_time": "27 min", "tags": ["风格蒸馏", "叙事六拍律", "论据体系"], "excerpt": "1. [总纲：什么是《围炉夜话》的底层写作哲学？](#1-总纲什么是围炉夜话的底层写作哲学)..."}, {"filename": "在被算作数字之前.md", "title": "在被算作数字之前", "category": "🤖 AI与技术哲学", "char_count": 3487, "read_time": "5 min", "tags": ["人的主体性", "数据异化", "数字尊严"], "excerpt": "2026 年夏天，两件事撞在了一起，让人心里直发毛。..."}, {"filename": "好学生和差学生的区别在哪.md", "title": "为什么有的人成绩好，有的人成绩差，好学生和差学生区别在哪？【围炉夜话】", "category": "🧠 认知心理与成长", "char_count": 6344, "read_time": "10 min", "tags": ["评价体系", "自主学习", "思维模型"], "excerpt": "title: 为什么有的人成绩好，有的人成绩差，好学生和差学生区别在哪？【围炉夜话】..."}, {"filename": "如何使内心强大？解析当代年轻人的九大心理防御机制.md", "title": "如何使内心强大？解析当代年轻人的九大心理防御机制！【围炉夜话】", "category": "🧠 认知心理与成长", "char_count": 11637, "read_time": "19 min", "tags": ["心理防御", "升华投射", "认知自洽"], "excerpt": "title: 如何使内心强大？解析当代年轻人的九大心理防御机制！【围炉夜话】..."}, {"filename": "宝可梦：游戏怪胎.md", "title": "宝可梦 游戏怪胎", "category": "🎮 商业工业与游戏文化", "char_count": 12982, "read_time": "21 min", "tags": ["收集交换", "媒介融合", "商业神话"], "excerpt": "2022年11月，《宝可梦 朱/紫》刚发售那一周，各大社交平台几乎成了游戏事故展览馆。..."}, {"filename": "年轻人为何越来越疲惫、焦虑.md", "title": "年轻人为何越来越疲惫、焦虑？社会越来越富裕，底层却越来越难以翻身。【围炉夜话】", "category": "🏛️ 职场生存与社会", "char_count": 9094, "read_time": "15 min", "tags": ["功绩社会", "自我剥削", "时代病症"], "excerpt": "title: 年轻人为何越来越疲惫、焦虑？社会越来越富裕，底层却越来越难以翻身。【围炉夜话】..."}, {"filename": "当我们的大脑开始“过拟合”.md", "title": "当我们的大脑开始“过拟合”", "category": "🤖 AI与技术哲学", "char_count": 3056, "read_time": "5 min", "tags": ["神经可塑性", "启发式偏见", "认知算法"], "excerpt": "——一场关于认知内耗、经验牢笼与梦境自救的思考..."}, {"filename": "怎么判断自己是不是一个聪明人.md", "title": "怎么判断自己是不是一个聪明人？【围炉夜话·认知2】", "category": "🧠 认知心理与成长", "char_count": 11044, "read_time": "18 min", "tags": ["理性与智力", "元认知", "认知谦逊"], "excerpt": "title: 怎么判断自己是不是一个聪明人？【围炉夜话·认知2】..."}, {"filename": "扎心的真相：上班是如何摧毁我们的心态、生活和幸福感的.md", "title": "扎心的真相：上班是如何摧毁我们的心态、生活和幸福感的？【围炉夜话】", "category": "🏛️ 职场生存与社会", "char_count": 7181, "read_time": "11 min", "tags": ["异化劳动", "工具理性", "新穷人"], "excerpt": "title: 扎心的真相：上班是如何摧毁我们的心态、生活和幸福感的？【围炉夜话】..."}, {"filename": "摆拍，编剧本，网红上热搜，短视频是怎样恶心全国的.md", "title": "摆拍，编剧本，网红上热搜，短视频是怎样恶心全国的？【围炉夜话】", "category": "🌐 媒介批判与互联网", "char_count": 7249, "read_time": "12 min", "tags": ["注意力商人", "虚假景观", "情绪流量"], "excerpt": "title: 摆拍，编剧本，网红上热搜，短视频是怎样恶心全国的？【围炉夜话】..."}, {"filename": "毒害年轻人的错误认知有哪些.md", "title": "毒害年轻人的错误认知有哪些？【围炉夜话·认知1】", "category": "🧠 认知心理与成长", "char_count": 9470, "read_time": "15 min", "tags": ["认知陷阱", "受害者思维", "思维误区"], "excerpt": "title: 毒害年轻人的错误认知有哪些？【围炉夜话·认知1】..."}, {"filename": "消费主义的本质：花钱你会成为穷人，抠门你会成为新穷人.md", "title": "消费主义的本质：花钱你会成为穷人，抠门你会成为新穷人。【围炉夜话】", "category": "🏛️ 职场生存与社会", "char_count": 10769, "read_time": "17 min", "tags": ["鲍曼新穷人", "符号消费", "诱惑囚笼"], "excerpt": "title: 消费主义的本质：花钱你会成为穷人，抠门你会成为新穷人。【围炉夜话】..."}, {"filename": "网络喷子和键盘侠这么多，罪魁祸首到底是谁.md", "title": "网络喷子和键盘侠这么多，罪魁祸首到底是谁？【围炉夜话】", "category": "🌐 媒介批判与互联网", "char_count": 9352, "read_time": "15 min", "tags": ["匿名机制", "道德脱敏", "平台激励"], "excerpt": "title: 网络喷子和键盘侠这么多，罪魁祸首到底是谁？【围炉夜话】..."}, {"filename": "自由职业真相：不上班，到底应该怎么活.md", "title": "自由职业真相：不上班，到底应该怎么活？400万粉UP主，在家12年的经验分享！【围炉夜话】", "category": "🏛️ 职场生存与社会", "char_count": 10765, "read_time": "17 min", "tags": ["三叶草组织", "抗风险系统", "自我雇佣"], "excerpt": "title: 自由职业真相：不上班，到底应该怎么活？400万粉UP主，在家12年的经验分享！【围炉夜话】..."}, {"filename": "贴标签、造黑话！现代人为何越来越不会说人话？【围炉夜话】完整文案.md", "title": "贴标签、造黑话！现代人为何越来越不会说人话？【围炉夜话】", "category": "🌐 媒介批判与互联网", "char_count": 12194, "read_time": "20 min", "tags": ["概念蠕变", "语言腐败", "平台算法"], "excerpt": "- **UP 主**：智能路障（UID: 79577853）..."}, {"filename": "这时代，阅读还有未来吗.md", "title": "这时代，阅读还有未来吗？【围炉夜话】", "category": "📖 文学品读与随笔", "char_count": 8261, "read_time": "13 min", "tags": ["注意力碎片化", "深度阅读", "慢阅读倡议"], "excerpt": "title: 这时代，阅读还有未来吗？【围炉夜话】..."}, {"filename": "都在劝你多存钱，但我想劝你多花钱.md", "title": "都在劝你多存钱，但我想劝你多花钱。【围炉夜话】", "category": "🏛️ 职场生存与社会", "char_count": 7980, "read_time": "13 min", "tags": ["体验经济", "资本流通", "生活投资"], "excerpt": "title: 都在劝你多存钱，但我想劝你多花钱。【围炉夜话】..."}, {"filename": "黑哨、贿选、死人！世界杯到底黑到什么程度.md", "title": "黑哨、贿选、死人！世界杯到底黑到什么程度？【围炉夜话】", "category": "🌐 媒介批判与互联网", "char_count": 12587, "read_time": "20 min", "tags": ["资本共谋", "地缘政治", "体育商业黑幕"], "excerpt": "title: 黑哨、贿选、死人！世界杯到底黑到什么程度？【围炉夜话】..."}];
+
+let currentCategory = 'all';
+let currentSearch = '';
+let currentSort = 'default';
+
+function renderCards() {
+  const grid = document.getElementById('articles-grid');
+  if (!grid) return;
+  
+  let list = ALL_ARTICLES.filter(item => {
+    const matchCat = currentCategory === 'all' || item.category.includes(currentCategory);
+    const q = currentSearch.toLowerCase().trim();
+    const matchQuery = !q || 
+      item.title.toLowerCase().includes(q) || 
+      item.excerpt.toLowerCase().includes(q) || 
+      (item.tags && item.tags.some(t => t.toLowerCase().includes(q)));
+    return matchCat && matchQuery;
+  });
+
+  if (currentSort === 'length') {
+    list.sort((a, b) => b.char_count - a.char_count);
+  } else if (currentSort === 'time') {
+    list.sort((a, b) => parseInt(b.read_time) - parseInt(a.read_time));
+  }
+
+  if (list.length === 0) {
+    grid.innerHTML = `
+      <div class="col-span-2 py-16 text-center text-on-surface-variant font-body-md bg-surface-container-low rounded-2xl border border-surface-variant">
+        <span class="material-symbols-outlined text-4xl text-secondary mb-2">search_off</span>
+        <p>未找到匹配的文章，请尝试清除搜索词或切换分类</p>
+      </div>
+    `;
+    return;
+  }
+
+  grid.innerHTML = list.map(item => {
+    const cleanT = item.title.replace(/【围炉夜话.*?】/g, '');
+    const href = `article_detail.html?file=${encodeURIComponent(item.filename)}`;
+    const tagBadges = (item.tags || []).slice(0, 3).map(t => 
+      `<span class="px-2 py-0.5 rounded bg-surface-container-low text-on-surface-variant font-label-meta text-[11px]">${t}</span>`
+    ).join(' ');
+
+    return `
+      <article class="bg-surface-container-lowest border border-[#EAE5DC] rounded-xl p-5 hover:border-primary hover:shadow-md transition-all flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-label-meta font-label-meta px-2.5 py-1 rounded-full bg-surface-container-low text-primary text-xs font-medium">
+              ${item.category}
+            </span>
+            <div class="flex items-center gap-2 text-label-code font-label-code text-secondary text-xs">
+              <span>${item.char_count.toLocaleString()} 字</span>
+              <span>·</span>
+              <span>${item.read_time}</span>
+            </div>
+          </div>
+          <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors font-semibold mb-3 leading-snug">
+            <a href="${href}" class="hover:underline">${cleanT}</a>
+          </h3>
+          <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mb-4 leading-relaxed">
+            ${item.excerpt || '点击阅读全文，查看深入透彻的跨学科思考论述。'}
+          </p>
+        </div>
+        <div class="pt-3 border-t border-surface-variant flex items-center justify-between">
+          <div class="flex flex-wrap items-center gap-1.5 overflow-hidden">
+            ${tagBadges}
+          </div>
+          <a href="${href}" class="text-primary font-medium text-sm inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform shrink-0 ml-2">
+            阅读全文 →
+          </a>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const tabButtons = document.querySelectorAll('div.flex.items-center.gap-2 button');
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabButtons.forEach(b => {
+        b.className = 'px-3.5 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant font-title-md text-xs font-medium transition-colors shrink-0';
+      });
+      btn.className = 'px-3.5 py-1.5 rounded-full bg-primary text-white font-title-md text-xs font-medium transition-colors shrink-0 shadow-sm';
+      
+      const txt = btn.innerText;
+      if (txt.includes('全部')) currentCategory = 'all';
+      else if (txt.includes('AI')) currentCategory = 'AI与技术哲学';
+      else if (txt.includes('认知')) currentCategory = '认知心理与成长';
+      else if (txt.includes('职场')) currentCategory = '职场生存与社会';
+      else if (txt.includes('媒介')) currentCategory = '媒介批判与互联网';
+      else if (txt.includes('游戏')) currentCategory = '商业工业与游戏文化';
+      else if (txt.includes('文学')) currentCategory = '文学品读与随笔';
+      renderCards();
+    });
+  });
+
+  const searchInputs = document.querySelectorAll('input[placeholder*="搜索"]');
+  searchInputs.forEach(input => {
+    input.addEventListener('input', (e) => {
+      currentSearch = e.target.value;
+      renderCards();
+    });
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      const s = document.querySelector('input[placeholder*="搜索"]');
+      if (s) s.focus();
+    }
+  });
+
+  renderCards();
+});
+</script>
 </body></html>

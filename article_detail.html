@@ -11,6 +11,7 @@
 <!-- Material Symbols -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <!-- Tailwind CSS v3 -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
@@ -309,11 +310,11 @@
 <span>AI与技术哲学 · 深度研究长文 (Research Monograph)</span>
 </div>
 <!-- Master Title -->
-<h1 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight mb-4 leading-tight">
+<h1 id="article-title" class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight mb-4 leading-tight">
             《LLMs Can't Jump：大模型为何无法自主跃迁与符号接地困境》
           </h1>
 <!-- Subtitle -->
-<p class="font-headline-sm text-headline-sm text-on-surface-variant font-normal leading-relaxed mb-6">
+<p id="article-subtitle" class="font-headline-sm text-headline-sm text-on-surface-variant font-normal leading-relaxed mb-6">
             当统计学概率补全被误认为真正理解：从爱因斯坦电梯思想实验看AGI的本质壁垒与符号接地终极困境
           </p>
 <!-- Scholarly Metadata Strip -->
@@ -341,7 +342,7 @@
 <span class="text-outline">CC BY-NC-SA 4.0</span>
 </div>
 <!-- CLAUDE EXECUTIVE SUMMARY / 思辨提要 -->
-<div class="mt-8 rounded-xl bg-surface-container-low border-l-4 border-primary p-6 relative overflow-hidden">
+<div id="article-summary-box" class="mt-8 rounded-xl bg-surface-container-low border-l-4 border-primary p-6 relative overflow-hidden">
 <div class="flex items-center gap-2 mb-3">
 <span class="material-symbols-outlined text-primary text-[20px]">lightbulb</span>
 <h2 class="font-title-md text-title-md text-on-surface font-semibold">核心论点提要 (Executive Summary / Claude 思辨提要)</h2>
@@ -780,4 +781,148 @@
       }
     });
   </script>
+
+<script>
+// Dynamic Markdown Article Loader
+(function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const file = urlParams.get('file');
+  
+  if (!file || file === 'LLMs_cant_jump.md') {
+    return;
+  }
+  
+  const cleanTitle = file.replace(/\.md$/, '').replace(/【围炉夜话.*?】/g, '');
+  document.title = '《' + cleanTitle + '》· 思辨之境';
+  
+  const titleEl = document.getElementById('article-title');
+  if (titleEl) titleEl.innerText = '《' + cleanTitle + '》';
+  
+  const subEl = document.getElementById('article-subtitle');
+  if (subEl) subEl.innerText = '全景思想文库收录长文 · 原始完整录文';
+  
+  const summaryBox = document.getElementById('article-summary-box');
+  if (summaryBox) summaryBox.style.display = 'none';
+
+  // Breadcrumb
+  const breadcrumb = document.querySelector('aside .font-headline-sm');
+  if (breadcrumb) breadcrumb.innerText = cleanTitle;
+
+  const targetPath = 'articles/' + file;
+  fetch(targetPath)
+    .then(res => {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.text();
+    })
+    .then(text => {
+      const charCount = text.length;
+      const readMin = Math.max(3, Math.round(charCount / 600));
+      
+      const metaStrip = document.querySelector('article .flex.flex-wrap.items-center.gap-y-2');
+      if (metaStrip) {
+        metaStrip.innerHTML = `
+          <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">article</span> ${charCount.toLocaleString()} 字</span>
+          <span class="text-surface-variant">·</span>
+          <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> 约 ${readMin} 分钟长读</span>
+          <span class="text-surface-variant">·</span>
+          <span class="text-outline">CC BY-NC-SA 4.0</span>
+          <span class="text-surface-variant">·</span>
+          <a href="articles/${encodeURIComponent(file)}" target="_blank" class="text-primary hover:underline flex items-center gap-1 font-label-meta text-xs"><span class="material-symbols-outlined text-[14px]">download</span> 原始 Markdown</a>
+        `;
+      }
+
+      const renderer = new marked.Renderer();
+      const tocList = [];
+      let sectionIdx = 1;
+
+      renderer.heading = function({text, depth}) {
+        const id = 'sec-' + (sectionIdx++);
+        if (depth === 2 || depth === 3) {
+          tocList.push({ id, text: text.replace(/<[^>]*>?/gm, ''), depth });
+        }
+        if (depth === 1) {
+          return `<h2 id="${id}" class="font-headline-md text-headline-md text-on-surface font-semibold mt-10 mb-4 pb-2 border-b border-surface-variant">${text}</h2>`;
+        } else if (depth === 2) {
+          return `<h2 id="${id}" class="font-headline-md text-headline-md text-on-surface font-medium mt-8 mb-3">${text}</h2>`;
+        } else if (depth === 3) {
+          return `<h3 id="${id}" class="font-title-md text-title-md text-on-surface font-medium mt-6 mb-2">${text}</h3>`;
+        }
+        return `<h${depth} id="${id}" class="font-headline-sm text-headline-sm text-on-surface font-medium mt-4 mb-2">${text}</h${depth}>`;
+      };
+
+      renderer.paragraph = function({text}) {
+        return `<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-6">${text}</p>`;
+      };
+
+      renderer.blockquote = function({text}) {
+        return `<blockquote class="border-l-4 border-primary bg-surface-container-low rounded-r-xl p-5 my-6 font-body-md text-body-md text-on-surface italic shadow-sm">${text}</blockquote>`;
+      };
+
+      renderer.image = function({href, title, text}) {
+        let cleanHref = href;
+        if (!cleanHref.startsWith('http') && !cleanHref.startsWith('/')) {
+          cleanHref = 'articles/' + cleanHref;
+        }
+        return `<figure class="my-8"><img src="${cleanHref}" alt="${text || ''}" class="rounded-xl max-w-full mx-auto border border-surface-variant shadow-sm" />${text ? `<figcaption class="text-center font-label-meta text-secondary text-xs mt-2">${text}</figcaption>` : ''}</figure>`;
+      };
+
+      renderer.list = function({ordered, items}) {
+        const tag = ordered ? 'ol' : 'ul';
+        const cls = ordered ? 'list-decimal list-inside space-y-2 mb-6 text-on-surface-variant font-body-md' : 'list-disc list-inside space-y-2 mb-6 text-on-surface-variant font-body-md';
+        let body = '';
+        for (const item of items) {
+          body += `<li class="leading-relaxed">${item.text}</li>`;
+        }
+        return `<${tag} class="${cls}">${body}</${tag}>`;
+      };
+
+      renderer.table = function({header, rows}) {
+        let headerHtml = '<tr>';
+        for (const cell of header) {
+          headerHtml += `<th class="p-3 text-left font-semibold border-b border-surface-variant bg-surface-container-low font-label-md">${cell.text}</th>`;
+        }
+        headerHtml += '</tr>';
+        let rowsHtml = '';
+        for (const row of rows) {
+          rowsHtml += '<tr class="border-b border-surface-variant/50">';
+          for (const cell of row) {
+            rowsHtml += `<td class="p-3 text-on-surface-variant font-body-sm">${cell.text}</td>`;
+          }
+          rowsHtml += '</tr>';
+        }
+        return `<div class="overflow-x-auto my-6 border border-surface-variant rounded-xl shadow-sm"><table class="w-full border-collapse font-body-sm"><thead>${headerHtml}</thead><tbody>${rowsHtml}</tbody></table></div>`;
+      };
+
+      renderer.code = function({text, lang}) {
+        return `<pre class="bg-surface-container-high border border-surface-variant rounded-xl p-4 overflow-x-auto font-label-code text-label-code text-on-surface my-6"><code>${text}</code></pre>`;
+      };
+
+      marked.use({ renderer });
+      const parsedHtml = marked.parse(text);
+
+      const bodyContainer = document.getElementById('article-body-container');
+      if (bodyContainer) {
+        bodyContainer.innerHTML = parsedHtml;
+      }
+
+      // Update Left Sidebar Table of Contents
+      const navList = document.querySelector('aside nav.space-y-1');
+      if (navList && tocList.length > 0) {
+        let tocHtml = '';
+        tocList.slice(0, 10).forEach((item, idx) => {
+          tocHtml += `
+            <a href="#${item.id}" class="flex items-start gap-2.5 p-2 rounded-lg text-body-sm text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors group">
+              <span class="font-label-code text-[11px] text-secondary mt-0.5">${(idx + 1).toString().padStart(2, '0')}.</span>
+              <span class="line-clamp-2 leading-snug">${item.text}</span>
+            </a>
+          `;
+        });
+        navList.innerHTML = tocHtml;
+      }
+    })
+    .catch(err => {
+      console.error('Error loading article markdown:', err);
+    });
+})();
+</script>
 </body></html>
