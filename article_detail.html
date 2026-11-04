@@ -160,7 +160,9 @@
     }
 
     document.getElementById('head').innerHTML =
-      '<span class="glyph lg solid" aria-hidden="true">' + esc(L.glyph(a.category)) + '</span>' +
+      '<div class="r-mast"><span class="glyph lg solid" aria-hidden="true">' + esc(L.glyph(a.category)) + '</span>' +
+      '<span class="eyebrow">思辨之境 · ' + esc(cat || '文章') + (a.part ? ' · 第 ' + a.part + ' 篇' : '') + '</span></div>' +
+      '<span class="r-mark" aria-hidden="true">' + esc(L.glyph(a.category)) + '</span>' +
       '<div class="crumb"><a href="index.html#archive">文库</a><span>/</span><span class="tag">' + esc(cat || '文章') + '</span>' +
         (src ? '<span>/</span><span>' + esc(src) + '</span>' : '') + '</div>' +
       '<h1 class="title">' + esc(a.title) + '</h1>' +

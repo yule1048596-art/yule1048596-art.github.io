@@ -125,11 +125,12 @@
     { key: '围炉夜话', vt: '围炉夜话', eyebrow: '视频文案 · 智能路障', stamp: '炉', desc: 'B 站 UP 主「智能路障」的长视频文案，谈学习、金钱、职场、互联网与社会心理。' }
   ];
   var state = { cat: 'all', series: '', q: '' };
-  var ALL = [], CATS = [];
+  var ALL = [], CATS = [], MAXC = 1;
   var CN = ['〇', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
 
   L.load().then(function (list) {
     ALL = list;
+    MAXC = Math.max.apply(null, list.map(function (a) { return a.char_count || 0; })) || 1;
     list.forEach(function (a) { var k = L.catName(a.category); if (CATS.indexOf(k) < 0) CATS.push(k); });
     var total = list.reduce(function (s, a) { return s + (a.char_count || 0); }, 0);
     document.getElementById('st-count').textContent = list.length;
@@ -266,7 +267,8 @@
       '<h4>' + highlight(a.title, q) + (a.subtitle ? '<small>' + highlight(a.subtitle, q) + '</small>' : '') + '</h4>' +
       (a.excerpt ? '<p>' + highlight(a.excerpt, q) + '</p>' : '') +
       '<div class="keys">' + keys + '</div></div>' +
-      '<div class="right"><span>' + L.wan(a.char_count) + '</span><span>' + esc(a.read_time) + '</span></div></a></li>';
+      '<div class="right"><span>' + L.wan(a.char_count) + '</span><span>' + esc(a.read_time) + '</span>' +
+      '<i class="len" style="--w:' + Math.max(6, Math.round(a.char_count / MAXC * 100)) + '%" title="篇幅"></i></div></a></li>';
   }
 
   function render() {
