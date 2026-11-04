@@ -36,7 +36,7 @@
     <div class="wrap">
       <div class="masthead"><span>思辨之境 · Long-form Library</span><span id="mh-count">—</span><span>AI · 心理 · 社会 · 媒介 · 游戏 · 文学</span></div>
       <div class="hero-grid">
-        <div class="reveal">
+        <div>
           <h1><span class="line">沉淀真实的思考，</span><span class="line"><em>解构</em>复杂的现实。</span></h1>
           <p class="lede">一座按主题整理的长文文库。这里有随笔长文、论文译文，也收录了 B 站 UP 主「智能路障」《围炉夜话》系列的视频文案——每篇都标注作者与出处，并附原始 Markdown。</p>
           <div class="stats">
@@ -46,7 +46,7 @@
             <div class="stat"><b class="mono">3</b><span>个系列</span></div>
           </div>
         </div>
-        <nav class="contents reveal" aria-label="领域目录">
+        <nav class="contents" aria-label="领域目录">
           <div class="contents-head"><b>目录</b><span class="eyebrow">Contents</span></div>
           <ol id="contents"></ol>
           <div class="contents-foot"><span>点击领域即可筛选</span><a href="#archive">全部文章 ↓</a></div>
@@ -114,7 +114,7 @@
   ];
   var state = { cat: 'all', series: '', q: '' };
   var ALL = [], CATS = [];
-  var CN = ['〇', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+  var CN = ['〇', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
 
   L.load().then(function (list) {
     ALL = list;

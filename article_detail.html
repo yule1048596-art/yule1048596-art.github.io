@@ -202,20 +202,26 @@
       });
     }
 
-    buildToc(out.heads);
+    buildToc(out.heads, a);
     buildEnd(a, list, links);
     setupScroll(out.heads);
     if (location.hash) { var t = document.getElementById(decodeURIComponent(location.hash.slice(1))); if (t) t.scrollIntoView(); }
   }
 
-  function buildToc(heads) {
+  var READ_MIN = 0;
+  function buildToc(heads, a) {
+    READ_MIN = parseInt(a.read_time, 10) || 0;
     var h2 = heads.filter(function (h) { return h.level === 2; });
     var use = h2.length >= 3 ? (heads.length <= 28 ? heads : h2) : heads;
-    if (use.length < 2) return;
-    document.getElementById('toc-box').innerHTML = '<div class="eyebrow">目录<span class="pct" id="pct">0%</span></div><div class="toc-progress"><i id="tocbar"></i></div><ol id="toc">' +
+    var card = '<div class="read-card">' +
+      '<svg class="ring" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20" class="track"/><circle cx="24" cy="24" r="20" class="bar" id="ring"/></svg>' +
+      '<div class="rc-text"><b id="pct">0%</b><span id="left">' + (READ_MIN ? '约 ' + READ_MIN + ' 分钟读完' : '') + '</span></div>' +
+      '<span class="glyph" aria-hidden="true">' + esc(L.glyph(a.category)) + '</span></div>';
+    var toc = use.length >= 2 ? '<div class="eyebrow">目录</div><ol id="toc">' +
       use.map(function (h) {
         return '<li' + (h.level === 3 && use !== h2 && h2.length ? ' class="sub"' : '') + '><a href="#' + h.id + '">' + esc(h.text) + '</a></li>';
-      }).join('') + '</ol>';
+      }).join('') + '</ol>' : '<p class="toc-none">本文为连续长文，没有分节标题。</p>';
+    document.getElementById('toc-box').innerHTML = card + toc;
   }
 
   function buildEnd(a, list, links) {
@@ -257,9 +263,13 @@
     var h = document.documentElement.scrollHeight - innerHeight;
     var pc = h > 0 ? Math.min(100, scrollY / h * 100) : 0;
     document.getElementById('progress').style.width = pc + '%';
-    var pe = document.getElementById('pct'), tb = document.getElementById('tocbar');
+    var pe = document.getElementById('pct'), ring = document.getElementById('ring'), left = document.getElementById('left');
     if (pe) pe.textContent = Math.round(pc) + '%';
-    if (tb) tb.style.width = pc + '%';
+    if (ring) ring.style.strokeDashoffset = String(125.66 * (1 - pc / 100));
+    if (left && READ_MIN) {
+      var m = Math.ceil(READ_MIN * (1 - pc / 100));
+      left.textContent = pc >= 99 ? '已读完' : '还剩约 ' + Math.max(1, m) + ' 分钟';
+    }
     var idx = -1;
     tocHeads.forEach(function (el, i) { if (el && el.getBoundingClientRect().top < 140) idx = i; });
     tocLinks.forEach(function (l, i) { l.classList.toggle('active', i === idx); });

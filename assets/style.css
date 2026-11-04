@@ -547,3 +547,94 @@ body::before {
   .js .reveal { opacity: 1; transform: none; }
   .cover, .series-card:hover .cover { transform: none; }
 }
+
+/* ================================================================
+   POLISH PASS — motion, mobile menu, reading card, ornaments
+   ================================================================ */
+/* Hero entrance */
+@keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+@keyframes draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.js .hero h1 .line, .js .hero .lede, .js .hero .stats, .js .hero .contents { animation: rise .9s var(--ease) both; }
+.js .hero h1 .line:nth-child(2) { animation-delay: .12s; }
+.js .hero .lede { animation-delay: .26s; }
+.js .hero .stats { animation-delay: .38s; }
+.js .hero .contents { animation-delay: .3s; }
+.hero h1 em::after { transform-origin: left; }
+.js .hero h1 em::after { animation: draw .8s var(--ease) .75s both; }
+.js .masthead { animation: rise .7s var(--ease) both; }
+.contents li { opacity: 1; }
+.js .hero .contents li { animation: rise .6s var(--ease) both; }
+.js .hero .contents li:nth-child(1) { animation-delay: .42s; }
+.js .hero .contents li:nth-child(2) { animation-delay: .48s; }
+.js .hero .contents li:nth-child(3) { animation-delay: .54s; }
+.js .hero .contents li:nth-child(4) { animation-delay: .60s; }
+.js .hero .contents li:nth-child(5) { animation-delay: .66s; }
+.js .hero .contents li:nth-child(6) { animation-delay: .72s; }
+.contents button:hover .glyph { background: var(--seal); color: var(--paper); }
+.contents .glyph { transition: background-color .2s, color .2s; }
+
+/* Featured lead ornament */
+.lead { overflow: hidden; }
+.lead::after {
+  content: "壹"; position: absolute; right: 36px; bottom: -0.18em; z-index: -1;
+  font-family: var(--serif); font-weight: 700; font-size: 200px; line-height: 1;
+  color: var(--ink); opacity: .045; pointer-events: none; transition: opacity .4s, transform .6s var(--ease);
+}
+.lead:hover::after { opacity: .08; transform: translateY(-6px); }
+.featured { position: relative; z-index: 0; }
+
+/* Mobile menu */
+.menu-btn { display: none; }
+.mnav { display: none; }
+@media (max-width: 640px) {
+  .nav a { display: none; }
+  .menu-btn { display: grid; }
+  .site-header.open .mnav {
+    display: block; position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--paper); border-bottom: 1px solid var(--ink);
+    padding: 4px var(--gutter) 12px; animation: rise .3s var(--ease) both;
+    box-shadow: 0 16px 32px -20px rgba(0,0,0,.35);
+  }
+  .mnav a { display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid var(--rule); font-family: var(--serif); font-size: 19px; font-weight: 600; }
+  .mnav a::after { content: "→"; color: var(--seal); font-family: var(--sans); font-weight: 400; }
+  .mnav a:last-child { border-bottom: 0; }
+}
+
+/* Back to top seal */
+.to-top {
+  position: fixed; right: clamp(16px, 3vw, 32px); bottom: clamp(16px, 3vw, 32px); z-index: 25;
+  width: 48px; height: 48px; border-radius: 6px; border: 0; cursor: pointer;
+  background: var(--seal); color: #fff; display: grid; place-items: center; align-content: center; gap: 0;
+  box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.25), 0 10px 24px -10px rgba(120,30,20,.6);
+  opacity: 0; transform: translateY(12px) rotate(-3deg); pointer-events: none;
+  transition: opacity .3s, transform .4s var(--ease);
+}
+.to-top.show { opacity: 1; transform: rotate(-3deg); pointer-events: auto; }
+.to-top:hover { transform: translateY(-3px) rotate(0); }
+.to-top span { font-size: 15px; line-height: 1; }
+.to-top small { font-family: var(--serif); font-size: 12px; font-weight: 700; line-height: 1.2; }
+
+/* Reading card */
+.read-card { display: grid; grid-template-columns: 48px 1fr auto; gap: 12px; align-items: center; padding: 14px 0 18px; margin-bottom: 18px; border-bottom: 1px solid var(--rule); }
+.ring { width: 48px; height: 48px; transform: rotate(-90deg); }
+.ring circle { fill: none; stroke-width: 3; }
+.ring .track { stroke: var(--rule); }
+.ring .bar { stroke: var(--seal); stroke-linecap: round; stroke-dasharray: 125.66; stroke-dashoffset: 125.66; transition: stroke-dashoffset .15s linear; }
+.rc-text { display: flex; flex-direction: column; line-height: 1.3; }
+.rc-text b { font-family: var(--serif); font-size: 20px; }
+.rc-text span { font-size: 12px; color: var(--ink-3); }
+.toc-none { font-size: 13px; color: var(--ink-3); line-height: 1.7; margin: 0; }
+.toc { padding-top: 56px; }
+
+/* Typographic refinements */
+.prose p, .row p, .lede { text-wrap: pretty; }
+.prose { hanging-punctuation: allow-end; }
+html { scrollbar-color: var(--rule-strong) transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: var(--rule-strong); border-radius: 10px; border: 2px solid var(--paper); }
+::-webkit-scrollbar-track { background: transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .hero h1 .line, .js .hero .lede, .js .hero .stats, .js .hero .contents, .js .hero .contents li,
+  .js .hero h1 em::after, .js .masthead { animation: none; }
+}

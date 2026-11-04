@@ -111,3 +111,36 @@ window.Lib = (function () {
       '</div><div class="footer-base"><span>© 2026 YULE · 思辨之境</span><span>原创内容 CC BY-NC-SA 4.0 · 整理与翻译内容版权归原作者</span></div></div>';
   }
 })();
+
+// Mobile menu + back-to-top seal.
+(function () {
+  var header = document.querySelector('.site-header');
+  var nav = header && header.querySelector('.nav');
+  if (nav) {
+    var links = nav.querySelectorAll('a');
+    var panel = document.createElement('nav');
+    panel.className = 'mnav'; panel.setAttribute('aria-label', '移动端导航'); panel.id = 'mnav';
+    links.forEach(function (a) { var c = a.cloneNode(true); c.removeAttribute('class'); panel.appendChild(c); });
+    header.appendChild(panel);
+    var btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'icon-btn menu-btn'; btn.setAttribute('aria-label', '打开菜单');
+    btn.setAttribute('aria-expanded', 'false'); btn.setAttribute('aria-controls', 'mnav');
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>';
+    nav.appendChild(btn);
+    var close = function () { header.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); };
+    btn.addEventListener('click', function () {
+      var open = header.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+    });
+    panel.addEventListener('click', function (e) { if (e.target.closest('a')) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  }
+
+  var top = document.createElement('button');
+  top.type = 'button'; top.className = 'to-top'; top.setAttribute('aria-label', '回到顶部');
+  top.innerHTML = '<span>↑</span><small>顶</small>';
+  top.addEventListener('click', function () { scrollTo({ top: 0, behavior: 'smooth' }); });
+  document.body.appendChild(top);
+  var onS = function () { top.classList.toggle('show', scrollY > 900); };
+  addEventListener('scroll', onS, { passive: true }); onS();
+})();
