@@ -69,9 +69,21 @@
     </div>
   </section>
 
+  <section class="quotes" id="quotes" aria-roledescription="轮播" aria-label="摘句">
+    <div class="wrap">
+      <div class="q-head"><span class="glyph">摘</span><span class="eyebrow">03 · 摘句</span><span class="q-count mono" id="q-count"></span></div>
+      <figure class="q-stage" id="q-stage" aria-live="polite"></figure>
+      <div class="q-nav">
+        <button type="button" class="q-btn" data-step="-1" aria-label="上一句">←</button>
+        <div class="q-dots" id="q-dots"></div>
+        <button type="button" class="q-btn" data-step="1" aria-label="下一句">→</button>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="archive">
     <div class="wrap">
-      <div class="section-head reveal"><h2><span class="no">03</span>全部文章</h2><span class="eyebrow" id="archive-count"></span></div>
+      <div class="section-head reveal"><h2><span class="no">04</span>全部文章</h2><span class="eyebrow" id="archive-count"></span></div>
       <div class="toolbar">
         <div class="chips" id="chips" role="group" aria-label="按领域筛选"></div>
         <label class="search">
@@ -127,6 +139,7 @@
     renderContents();
     renderFeatured();
     renderSeries();
+    renderQuotes();
     renderChips();
     readHash();
     render();
@@ -184,6 +197,52 @@
           }).join('') + '</ol><button class="all" type="button" data-series="' + esc(s.key) + '">浏览全部 ' + parts.length + ' 篇 →</button>';
       return '<div class="series-card reveal">' + head + '<p>' + esc(s.desc) + '</p>' + body + '</div>';
     }).join('');
+  }
+
+  // Hand-picked sentences, quoted verbatim from the articles.
+  var QUOTES = [
+    ['为什么AI正在重新定义学习.md', '当工具能替人生成几乎所有现成答案时，最终能端出什么成色的东西，完全取决于使唤它的人脑子里有多少货。'],
+    ['一个关于归属的数字寓言.md', '在什么都要连网的今天，到底还有什么东西，是真正属于我们的？'],
+    ['任天堂：世界的主宰(一).md', '“如果它不好玩，做它干什么？”'],
+    ['人类真的需要理解彼此吗.md', '人类在物理和神经结构上，就被注定了无法“彻底理解”彼此。'],
+    ['这时代，阅读还有未来吗.md', '人类的大脑出厂时根本就没有阅读基因。'],
+    ['不哭不哭 痛痛飞走吧 读后感(四)：关于爱.md', '“爱”被剥离了一切轻浮的浪漫主义泡沫与道德粉饰。'],
+    ['做题能改变命运吗.md', '记忆其实是思考的残留物。'],
+    ['LLMs_cant_jump.md', '提出公理本身依然是机器无法跨越的瓶颈。']
+  ];
+  var qi = 0, qTimer = null, qPaused = false;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function renderQuotes() {
+    QUOTES = QUOTES.filter(function (q) { return byFile(q[0]); });
+    if (!QUOTES.length) { document.getElementById('quotes').hidden = true; return; }
+    document.getElementById('q-dots').innerHTML = QUOTES.map(function (_, i) {
+      return '<button type="button" class="q-dot" data-i="' + i + '" aria-label="第 ' + (i + 1) + ' 句"></button>';
+    }).join('');
+    showQuote(0);
+    var box = document.getElementById('quotes');
+    box.addEventListener('mouseenter', function () { qPaused = true; });
+    box.addEventListener('mouseleave', function () { qPaused = false; });
+    box.addEventListener('focusin', function () { qPaused = true; });
+    box.addEventListener('focusout', function () { qPaused = false; });
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-step]'), d = e.target.closest('[data-i]');
+      if (b) showQuote(qi + Number(b.dataset.step));
+      if (d) showQuote(Number(d.dataset.i));
+    });
+    if (!reduce) qTimer = setInterval(function () { if (!qPaused && !document.hidden) showQuote(qi + 1); }, 8000);
+  }
+  function showQuote(i) {
+    qi = (i + QUOTES.length) % QUOTES.length;
+    var q = QUOTES[qi], a = byFile(q[0]);
+    var stage = document.getElementById('q-stage');
+    stage.classList.remove('on'); void stage.offsetWidth;
+    stage.innerHTML = '<blockquote>' + esc(q[1]) + '</blockquote>' +
+      '<figcaption><span class="glyph">' + esc(L.glyph(a.category)) + '</span>' +
+      '<a href="' + L.url(a) + '">《' + esc(a.title) + '》</a>' +
+      (a.author ? '<span class="by">' + esc(a.author) + '</span>' : '') + '</figcaption>';
+    stage.classList.add('on');
+    document.getElementById('q-count').textContent = String(qi + 1).padStart(2, '0') + ' / ' + String(QUOTES.length).padStart(2, '0');
+    document.querySelectorAll('.q-dot').forEach(function (d, k) { d.setAttribute('aria-current', String(k === qi)); });
   }
 
   function renderChips() {

@@ -638,3 +638,43 @@ html { scrollbar-color: var(--rule-strong) transparent; }
   .js .hero h1 .line, .js .hero .lede, .js .hero .stats, .js .hero .contents, .js .hero .contents li,
   .js .hero h1 em::after, .js .masthead { animation: none; }
 }
+
+/* ---------- 摘句 quote band ---------- */
+.quotes {
+  --qbg: #1c1a17; --qfg: #f1eadf; --qmuted: rgba(241,234,223,.55); --qrule: rgba(241,234,223,.16);
+  margin-top: clamp(64px, 9vw, 104px); padding: clamp(48px, 7vw, 80px) 0 clamp(36px, 5vw, 52px);
+  background: var(--qbg); color: var(--qfg); position: relative; overflow: hidden;
+}
+:root[data-theme="dark"] .quotes { --qbg: #0e0d0c; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .quotes { --qbg: #0e0d0c; } }
+.quotes::before {
+  content: "“"; position: absolute; left: 50%; top: -0.12em; transform: translateX(-50%);
+  font-family: var(--serif); font-size: clamp(260px, 34vw, 460px); line-height: 1; color: var(--seal); opacity: .14; pointer-events: none;
+}
+.quotes .wrap { position: relative; }
+.q-head { display: flex; align-items: center; gap: 12px; }
+.q-head .eyebrow { color: var(--qmuted); }
+.q-head .glyph { border-color: #e0644f; color: #e0644f; }
+.q-count { margin-left: auto; font-size: 12px; color: var(--qmuted); }
+.q-stage { margin: clamp(28px, 4vw, 44px) 0 0; min-height: 13.5em; display: flex; flex-direction: column; justify-content: center; }
+.q-stage blockquote {
+  margin: 0; max-width: 24em; font-family: var(--serif); font-weight: 600;
+  font-size: clamp(24px, 3.4vw, 42px); line-height: 1.5; letter-spacing: .02em; text-wrap: balance;
+}
+.q-stage figcaption { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 14px; margin-top: 28px; font-size: 14px; color: var(--qmuted); }
+.q-stage figcaption .glyph { --g: 24px; border-color: var(--qmuted); color: var(--qfg); }
+.q-stage figcaption a { color: var(--qfg); font-family: var(--serif); border-bottom: 1px solid var(--qrule); transition: border-color .2s; }
+.q-stage figcaption a:hover { border-color: #e0644f; }
+.q-stage.on blockquote, .q-stage.on figcaption { animation: rise .7s var(--ease) both; }
+.q-stage.on figcaption { animation-delay: .12s; }
+.q-nav { display: flex; align-items: center; gap: 16px; margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--qrule); }
+.q-btn { width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--qrule); background: transparent; color: var(--qfg); cursor: pointer; transition: border-color .2s, background-color .2s; }
+.q-btn:hover { border-color: var(--qfg); background: rgba(241,234,223,.06); }
+.q-dots { display: flex; gap: 6px; flex: 1; }
+.q-dot { flex: 1; max-width: 48px; height: 3px; padding: 8px 0; border: 0; background: none; cursor: pointer; position: relative; }
+.q-dot::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: var(--qrule); border-radius: 2px; transition: background-color .3s; }
+.q-dot[aria-current="true"]::before { background: #e0644f; }
+.quotes :focus-visible { outline-color: #e0644f; }
+.quotes + .section { padding-top: clamp(56px, 8vw, 88px); }
+@media (max-width: 640px) { .q-stage { min-height: 15em; } }
+@media (prefers-reduced-motion: reduce) { .q-stage.on blockquote, .q-stage.on figcaption { animation: none; } }
