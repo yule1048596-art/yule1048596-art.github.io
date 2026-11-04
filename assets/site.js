@@ -19,6 +19,7 @@
 // Shared helpers for the article library (articles.json).
 window.Lib = (function () {
   var ORDER = ['AI', '认知', '职场', '媒介', '游戏', '文学'];
+  var GLYPH = { 'AI': '智', '认知': '心', '职场': '世', '媒介': '媒', '游戏': '戏', '文学': '文' };
   var DESC = {
     'AI': '大模型、学习与认知的边界，以及技术如何重新定义“人”。',
     '认知': '心理防御、学习与智力、亲密关系里的困惑与自我觉察。',
@@ -35,6 +36,7 @@ window.Lib = (function () {
   }
   function catRank(c) { var i = ORDER.indexOf(catKey(c)); return i < 0 ? 99 : i; }
   function catDesc(c) { return DESC[catKey(c)] || ''; }
+  function glyph(c) { return GLYPH[catKey(c)] || catName(c).charAt(0); }
   function url(a) { return 'article_detail.html?file=' + encodeURIComponent(a.filename); }
   function wan(n) { return n >= 10000 ? (n / 10000).toFixed(1).replace(/\.0$/, '') + ' 万字' : n.toLocaleString() + ' 字'; }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -70,5 +72,42 @@ window.Lib = (function () {
     }).then(sort);
     return cache;
   }
-  return { load: load, catName: catName, catKey: catKey, catRank: catRank, catDesc: catDesc, url: url, wan: wan, esc: esc, source: source, sort: sort, partLabel: partLabel };
+  return { load: load, catName: catName, catKey: catKey, catRank: catRank, catDesc: catDesc, url: url, wan: wan, esc: esc, source: source, sort: sort, partLabel: partLabel, glyph: glyph, ORDER: ORDER };
+})();
+
+// Header shadow, scroll reveals, shared colophon footer.
+(function () {
+  var header = document.querySelector('.site-header');
+  if (header) {
+    var onS = function () { header.classList.toggle('scrolled', scrollY > 8); };
+    addEventListener('scroll', onS, { passive: true }); onS();
+  }
+
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -8% 0px' }) : null;
+  window.reveal = function (root) {
+    (root || document).querySelectorAll('.reveal:not(.in)').forEach(function (el) {
+      if (io) io.observe(el); else el.classList.add('in');
+    });
+  };
+  window.reveal();
+
+  var foot = document.querySelector('[data-colophon]');
+  if (foot) {
+    var base = foot.getAttribute('data-base') || '';
+    var cats = [['智', 'AI与技术哲学'], ['心', '认知心理与成长'], ['世', '职场生存与社会'], ['媒', '媒介批判与互联网'], ['戏', '商业工业与游戏文化'], ['文', '文学品读与随笔']];
+    foot.innerHTML =
+      '<div class="wrap"><div class="colophon">' +
+        '<div><div class="name"><span class="seal">思</span>思辨之境</div>' +
+        '<p class="motto">沉淀真实的思考，解构复杂的现实。<br>一座按主题整理的长文文库。</p></div>' +
+        '<div><h4>领域</h4><ul>' + cats.slice(0, 3).map(function (c) { return '<li><a href="' + base + 'index.html#cat=' + encodeURIComponent(c[1]) + '">' + c[1] + '</a></li>'; }).join('') + '</ul></div>' +
+        '<div><h4>&nbsp;</h4><ul>' + cats.slice(3).map(function (c) { return '<li><a href="' + base + 'index.html#cat=' + encodeURIComponent(c[1]) + '">' + c[1] + '</a></li>'; }).join('') + '</ul></div>' +
+        '<div><h4>站点</h4><ul>' +
+          '<li><a href="' + base + 'index.html#series">系列</a></li>' +
+          '<li><a href="' + base + 'index.html#about">关于</a></li>' +
+          '<li><a href="https://github.com/yule1048596-art/yule1048596-art.github.io">GitHub</a></li>' +
+        '</ul></div>' +
+      '</div><div class="footer-base"><span>© 2026 YULE · 思辨之境</span><span>原创内容 CC BY-NC-SA 4.0 · 整理与翻译内容版权归原作者</span></div></div>';
+  }
 })();

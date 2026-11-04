@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>思辨之境 · 长文文库</title>
 <meta name="description" content="按主题整理的长文文库：AI 与技术哲学、认知心理、职场社会、媒介批判、游戏工业与文学品读。">
-<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;600;700&display=swap">
@@ -32,36 +32,46 @@
 
 <main>
   <section class="hero">
+    <div class="hero-mark" aria-hidden="true">思</div>
     <div class="wrap">
-      <div class="eyebrow">思辨之境 · 长文文库</div>
-      <h1>沉淀真实的思考，<br><em>解构</em>复杂的现实。</h1>
-      <p class="lede">一座按主题整理的长文文库：AI 与技术哲学、认知心理、职场社会、媒介批判、游戏工业与文学品读。这里有随笔长文、论文译文，也收录了 B 站 UP 主「智能路障」《围炉夜话》系列的视频文案。</p>
-      <div class="stats">
-        <div class="stat"><b class="mono" id="st-count">—</b><span>篇文章</span></div>
-        <div class="stat"><b class="mono" id="st-cats">—</b><span>个领域</span></div>
-        <div class="stat"><b class="mono" id="st-chars">—</b><span>字</span></div>
-        <div class="stat"><b class="mono">3</b><span>个系列</span></div>
+      <div class="masthead"><span>思辨之境 · Long-form Library</span><span id="mh-count">—</span><span>AI · 心理 · 社会 · 媒介 · 游戏 · 文学</span></div>
+      <div class="hero-grid">
+        <div class="reveal">
+          <h1><span class="line">沉淀真实的思考，</span><span class="line"><em>解构</em>复杂的现实。</span></h1>
+          <p class="lede">一座按主题整理的长文文库。这里有随笔长文、论文译文，也收录了 B 站 UP 主「智能路障」《围炉夜话》系列的视频文案——每篇都标注作者与出处，并附原始 Markdown。</p>
+          <div class="stats">
+            <div class="stat"><b class="mono" id="st-count">—</b><span>篇文章</span></div>
+            <div class="stat"><b class="mono" id="st-cats">—</b><span>个领域</span></div>
+            <div class="stat"><b class="mono" id="st-chars">—</b><span>字</span></div>
+            <div class="stat"><b class="mono">3</b><span>个系列</span></div>
+          </div>
+        </div>
+        <nav class="contents reveal" aria-label="领域目录">
+          <div class="contents-head"><b>目录</b><span class="eyebrow">Contents</span></div>
+          <ol id="contents"></ol>
+          <div class="contents-foot"><span>点击领域即可筛选</span><a href="#archive">全部文章 ↓</a></div>
+        </nav>
       </div>
     </div>
   </section>
 
   <section class="section" id="featured">
     <div class="wrap">
-      <div class="section-head"><h2>精选</h2><span class="eyebrow">Featured</span></div>
-      <div class="featured" id="featured-box"></div>
+      <div class="section-head reveal"><h2><span class="no">01</span>精选</h2><span class="eyebrow">Featured</span></div>
+      <div class="featured reveal" id="featured-box"></div>
     </div>
   </section>
 
   <section class="section" id="series">
     <div class="wrap">
-      <div class="section-head"><h2>系列</h2><span class="eyebrow">Series</span></div>
+      <div class="section-head reveal"><h2><span class="no">02</span>系列</h2><span class="eyebrow">Series</span></div>
       <div class="series-grid" id="series-grid"></div>
     </div>
   </section>
 
   <section class="section" id="archive">
     <div class="wrap">
-      <div class="section-head"><h2>全部文章</h2><span class="eyebrow" id="archive-count"></span></div>
+      <div class="section-head reveal"><h2><span class="no">03</span>全部文章</h2><span class="eyebrow" id="archive-count"></span></div>
       <div class="toolbar">
         <div class="chips" id="chips" role="group" aria-label="按领域筛选"></div>
         <label class="search">
@@ -77,8 +87,8 @@
 
   <section class="section" id="about">
     <div class="wrap">
-      <div class="about">
-        <blockquote>一个问题值得被慢慢展开，而不是被压缩成一句口号。</blockquote>
+      <div class="about reveal">
+        <div><blockquote>一个问题值得被慢慢展开，而不是被压缩成一句口号。</blockquote><div class="sign"><span class="glyph solid">辨</span>思辨之境 · 编者按</div></div>
         <div class="body">
           <p>思辨之境是 Yule 的个人长文文库。这里的文章大多从一个具体的困惑出发——为什么上班让人疲惫，为什么大模型看起来懂却又不懂，为什么一台性能落后的游戏机能卖出上亿台——然后尽力把它想清楚、写明白。</p>
           <p>文库中的《围炉夜话》系列整理自 B 站 UP 主「智能路障」的视频，《LLMs can't jump》译自 Tom Zahavy 的论文，每篇文章页都标注了作者与原始出处，并提供原始 Markdown 文件。</p>
@@ -89,12 +99,7 @@
   </section>
 </main>
 
-<footer class="site-footer">
-  <div class="wrap">
-    <a class="brand" href="index.html"><span class="seal">思</span>思辨之境</a>
-    <span>© 2026 Yule · <a href="https://github.com/yule1048596-art/yule1048596-art.github.io">GitHub</a></span>
-  </div>
-</footer>
+<footer class="site-footer" data-colophon></footer>
 
 <script src="assets/site.js"></script>
 <script>
@@ -103,48 +108,57 @@
   // Edit these filenames to change what's featured on the homepage (first one is the lead).
   var FEATURED = ['LLMs_cant_jump.md', '宝可梦：游戏怪胎.md', '什么是“轻小说”.md', '为什么AI正在重新定义学习.md'];
   var SERIES = [
-    { key: '任天堂：世界的主宰', eyebrow: '三部曲', desc: '从花札老铺到 Switch：任天堂的产品哲学、手艺人传统与组织制度。' },
-    { key: '不哭不哭，痛痛飞走吧 · 读后感', eyebrow: '四部曲', title: '不哭不哭，痛痛飞走吧', desc: '三秋缒小说的文本细读：创伤、人物与“爱”的另一种定义。' },
-    { key: '围炉夜话', eyebrow: '视频文案', title: '《围炉夜话》', desc: 'B 站 UP 主「智能路障」的长视频文案，谈学习、金钱、职场、互联网与社会心理。' }
+    { key: '任天堂：世界的主宰', vt: '任天堂', eyebrow: '三部曲', stamp: '任', desc: '从花札老铺到 Switch：任天堂的产品哲学、手艺人传统与组织制度。' },
+    { key: '不哭不哭，痛痛飞走吧 · 读后感', vt: '不哭不哭', eyebrow: '读后感 · 四部曲', stamp: '爱', desc: '三秋缒《不哭不哭，痛痛飞走吧》的文本细读：创伤、人物与“爱”的另一种定义。' },
+    { key: '围炉夜话', vt: '围炉夜话', eyebrow: '视频文案 · 智能路障', stamp: '炉', desc: 'B 站 UP 主「智能路障」的长视频文案，谈学习、金钱、职场、互联网与社会心理。' }
   ];
   var state = { cat: 'all', series: '', q: '' };
-  var ALL = [];
+  var ALL = [], CATS = [];
+  var CN = ['〇', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
 
   L.load().then(function (list) {
     ALL = list;
-    var cats = [];
-    list.forEach(function (a) { var k = L.catName(a.category); if (cats.indexOf(k) < 0) cats.push(k); });
-    document.getElementById('st-count').textContent = list.length;
-    document.getElementById('st-cats').textContent = cats.length;
+    list.forEach(function (a) { var k = L.catName(a.category); if (CATS.indexOf(k) < 0) CATS.push(k); });
     var total = list.reduce(function (s, a) { return s + (a.char_count || 0); }, 0);
-    document.getElementById('st-chars').textContent = Math.floor(total / 10000) + ' 万+';
+    document.getElementById('st-count').textContent = list.length;
+    document.getElementById('st-cats').textContent = CATS.length;
+    document.getElementById('st-chars').textContent = Math.floor(total / 10000) + '万+';
+    document.getElementById('mh-count').textContent = '收录 ' + list.length + ' 篇 · 2026';
+    renderContents();
     renderFeatured();
     renderSeries();
-    renderChips(cats);
+    renderChips();
+    readHash();
     render();
+    reveal();
   }).catch(function (e) {
     document.getElementById('list').innerHTML = '<p class="empty">文库载入失败（' + esc(e.message) + '）。如果是在本地直接打开文件，请先启动本地服务器，见 README。</p>';
   });
 
   function byFile(f) { return ALL.filter(function (a) { return a.filename === f; })[0]; }
-  function kicker(a) {
-    var src = L.source(a);
-    return '<div class="kicker"><span class="tag">' + esc(L.catName(a.category)) + '</span>' +
-      (src ? '<span>' + esc(src) + '</span>' : '') +
-      '<span class="mono">' + L.wan(a.char_count) + ' · ' + esc(a.read_time) + '</span></div>';
+  function countCat(c) { return ALL.filter(function (a) { return L.catName(a.category) === c; }).length; }
+  function catOf(name) { return ALL.filter(function (a) { return L.catName(a.category) === name; })[0].category; }
+
+  function renderContents() {
+    document.getElementById('contents').innerHTML = CATS.map(function (c) {
+      return '<li><button type="button" data-cat="' + esc(c) + '"><span class="glyph">' + esc(L.glyph(catOf(c))) + '</span>' +
+        '<span class="lead-dots">' + esc(c) + '</span><span class="cnt">' + countCat(c) + ' 篇</span></button></li>';
+    }).join('');
   }
 
   function renderFeatured() {
     var items = FEATURED.map(byFile).filter(Boolean);
     if (!items.length) return;
-    var lead = items[0];
+    var lead = items[0], src = L.source(lead);
     document.getElementById('featured-box').innerHTML =
-      '<a class="lead" href="' + L.url(lead) + '">' + kicker(lead) +
+      '<a class="lead" href="' + L.url(lead) + '">' +
+        '<div class="kicker"><span class="glyph">' + esc(L.glyph(lead.category)) + '</span><span class="tag">' + esc(L.catName(lead.category)) + '</span>' +
+        '<span class="mono">' + L.wan(lead.char_count) + ' · ' + esc(lead.read_time) + '</span></div>' +
         '<h3>' + esc(lead.title) + '</h3>' +
-        (lead.subtitle ? '<p class="sub">' + esc(lead.subtitle) + '</p>' : '') +
-        '<p>' + esc(lead.excerpt) + '</p><span class="more">阅读全文</span></a>' +
-      '<div class="side-picks">' + items.slice(1).map(function (a) {
-        return '<a class="pick" href="' + L.url(a) + '"><div class="tag">' + esc(L.catName(a.category)) + '</div>' +
+        (src ? '<p class="byline">' + esc(src) + '</p>' : '') +
+        '<p class="quote">' + esc(lead.excerpt) + '</p><span class="more">阅读全文</span></a>' +
+      '<div class="side-picks">' + items.slice(1).map(function (a, i) {
+        return '<a class="pick" href="' + L.url(a) + '"><span class="pn">' + CN[i + 2] + '</span><div class="tag">' + esc(L.catName(a.category)) + '</div>' +
           '<h4>' + esc(a.title) + '</h4><p>' + esc(a.subtitle || a.excerpt) + '</p></a>';
       }).join('') + '</div>';
   }
@@ -154,24 +168,28 @@
       var parts = ALL.filter(function (a) { return a.series === s.key; })
         .sort(function (a, b) { return (a.part || 0) - (b.part || 0); });
       if (!parts.length) return '';
-      var body;
-      if (parts[0].part) {
-        body = '<ol>' + parts.map(function (a) {
-          return '<li><a href="' + L.url(a) + '"><span class="n">0' + a.part + '</span><span>' + esc(L.partLabel(a)) + '</span></a></li>';
-        }).join('') + '</ol>';
-      } else {
-        body = '<button class="all" type="button" data-series="' + esc(s.key) + '">浏览全部 ' + parts.length + ' 篇 →</button>';
-      }
-      return '<div class="series-card"><span class="eyebrow">' + esc(s.eyebrow) + ' · ' + parts.length + ' 篇</span>' +
-        '<h3>' + esc(s.title || s.key) + '</h3><p>' + esc(s.desc) + '</p>' + body + '</div>';
+      var first = parts[0];
+      var cover = '<span class="meta"><span class="eyebrow">' + esc(s.eyebrow) + '</span>' +
+        '<span class="big">' + parts.length + '<small>篇</small></span></span>' +
+        '<span class="vt">' + esc(s.vt) + '</span><span class="stamp">' + esc(s.stamp) + '</span>';
+      var head = first.part
+        ? '<a class="cover" href="' + L.url(first) + '" aria-label="从第一篇开始阅读 ' + esc(s.vt) + '">' + cover + '</a>'
+        : '<button class="cover" type="button" data-series="' + esc(s.key) + '" aria-label="浏览' + esc(s.vt) + '全部文章">' + cover + '</button>';
+      var body = first.part
+        ? '<ol>' + parts.map(function (a) {
+            return '<li><a href="' + L.url(a) + '"><span class="n">0' + a.part + '</span><span>' + esc(L.partLabel(a)) + '</span></a></li>';
+          }).join('') + '</ol>'
+        : '<ol>' + parts.slice(0, 3).map(function (a, i) {
+            return '<li><a href="' + L.url(a) + '"><span class="n">0' + (i + 1) + '</span><span>' + esc(a.title) + '</span></a></li>';
+          }).join('') + '</ol><button class="all" type="button" data-series="' + esc(s.key) + '">浏览全部 ' + parts.length + ' 篇 →</button>';
+      return '<div class="series-card reveal">' + head + '<p>' + esc(s.desc) + '</p>' + body + '</div>';
     }).join('');
   }
 
-  function renderChips(cats) {
-    var count = function (c) { return ALL.filter(function (a) { return L.catName(a.category) === c; }).length; };
+  function renderChips() {
     document.getElementById('chips').innerHTML =
       '<button class="chip" type="button" data-cat="all">全部<sup>' + ALL.length + '</sup></button>' +
-      cats.map(function (c) { return '<button class="chip" type="button" data-cat="' + esc(c) + '">' + esc(c) + '<sup>' + count(c) + '</sup></button>'; }).join('');
+      CATS.map(function (c) { return '<button class="chip" type="button" data-cat="' + esc(c) + '">' + esc(c) + '<sup>' + countCat(c) + '</sup></button>'; }).join('');
   }
 
   function highlight(text, q) {
@@ -181,11 +199,11 @@
     return i < 0 ? t : t.slice(0, i) + '<mark>' + t.slice(i, i + k.length) + '</mark>' + t.slice(i + k.length);
   }
 
-  function row(a, q) {
+  function row(a, i, q) {
     var src = L.source(a);
     var keys = (src ? '<span class="src">' + esc(src) + '</span>' : '') +
       (a.tags || []).map(function (t) { return '<span class="t">' + highlight(t, q) + '</span>'; }).join('');
-    return '<li class="row"><a href="' + L.url(a) + '"><div>' +
+    return '<li class="row"><a href="' + L.url(a) + '"><span class="idx">' + String(i + 1).padStart(2, '0') + '</span><div>' +
       '<h4>' + highlight(a.title, q) + (a.subtitle ? '<small>' + highlight(a.subtitle, q) + '</small>' : '') + '</h4>' +
       (a.excerpt ? '<p>' + highlight(a.excerpt, q) + '</p>' : '') +
       '<div class="keys">' + keys + '</div></div>' +
@@ -210,25 +228,39 @@
     var box = document.getElementById('list');
     if (!items.length) { box.innerHTML = '<p class="empty">没有找到相关文章，换个关键词试试。</p>'; return; }
 
-    if (state.cat === 'all' && !ql && !state.series) {
-      var groups = [];
+    var groups = [];
+    if (!ql && !state.series) {
       items.forEach(function (a) {
         var c = L.catName(a.category), g = groups[groups.length - 1];
-        if (!g || g.name !== c) groups.push(g = { name: c, items: [] });
+        if (!g || g.name !== c) groups.push(g = { name: c, cat: a.category, items: [] });
         g.items.push(a);
       });
-      box.innerHTML = groups.map(function (g, i) {
-        return '<div class="group-head"><span class="num">0' + (i + 1) + '</span><h3>' + esc(g.name) + '</h3><span class="count">' + g.items.length + ' 篇</span></div>' +
-          '<ul class="archive">' + g.items.map(function (a) { return row(a); }).join('') + '</ul>';
+      box.innerHTML = groups.map(function (g) {
+        var n = CATS.indexOf(g.name) + 1;
+        return '<div class="group-head"><span class="glyph lg">' + esc(L.glyph(g.cat)) + '</span>' +
+          '<h3><span class="num">0' + n + '</span>' + esc(g.name) + '</h3><span class="count">' + g.items.length + ' 篇</span>' +
+          '<p>' + esc(L.catDesc(g.cat)) + '</p></div>' +
+          '<ul class="archive">' + g.items.map(function (a, i) { return row(a, i); }).join('') + '</ul>';
       }).join('');
     } else {
-      box.innerHTML = '<ul class="archive flat">' + items.map(function (a) { return row(a, q); }).join('') + '</ul>';
+      box.innerHTML = '<ul class="archive flat">' + items.map(function (a, i) { return row(a, i, q); }).join('') + '</ul>';
     }
   }
 
+  function setCat(c, scroll) {
+    state.cat = c; state.series = ''; render();
+    if (scroll) document.getElementById('archive').scrollIntoView({ behavior: 'smooth' });
+  }
+  function readHash() {
+    var m = location.hash.match(/^#cat=(.+)$/);
+    if (m) { var c = decodeURIComponent(m[1]); if (CATS.indexOf(c) >= 0) { state.cat = c; setTimeout(function () { document.getElementById('archive').scrollIntoView(); }, 50); } }
+  }
+
   document.getElementById('chips').addEventListener('click', function (e) {
-    var b = e.target.closest('.chip'); if (!b) return;
-    state.cat = b.dataset.cat; render();
+    var b = e.target.closest('.chip'); if (b) setCat(b.dataset.cat);
+  });
+  document.getElementById('contents').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-cat]'); if (b) setCat(b.dataset.cat, true);
   });
   document.getElementById('series-grid').addEventListener('click', function (e) {
     var b = e.target.closest('[data-series]'); if (!b) return;
@@ -242,6 +274,7 @@
   document.addEventListener('keydown', function (e) {
     if (e.key === '/' && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) { e.preventDefault(); document.getElementById('q').focus(); }
   });
+  addEventListener('hashchange', function () { if (/^#cat=/.test(location.hash)) { readHash(); render(); } });
 })();
 </script>
 </body>

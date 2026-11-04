@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>页面不存在 · 思辨之境</title>
-<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;600;700&display=swap">
@@ -25,12 +25,13 @@
 </header>
 <main class="wrap notfound">
   <div>
-    <div class="big mono">404</div>
+    <div class="big">四〇四</div>
     <h1>这一页还没有被写下</h1>
     <p>你要找的页面不存在，或者已经被移走了。</p>
     <a class="btn" href="/">回到文库首页 →</a>
   </div>
 </main>
+<footer class="site-footer" data-colophon data-base="/"></footer>
 <script src="/assets/site.js"></script>
 </body>
 </html>
