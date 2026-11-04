@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>思辨之境 · 全景思想文库</title>
+<!-- Google Fonts: Source Serif 4, Inter, JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-on-surface": "#f2f0ed",
+            "surface-variant": "#e4e2de",
+            "secondary": "#5d5e66",
+            "surface-tint": "#99462a",
+            "secondary-fixed-dim": "#c6c5cf",
+            "surface": "#fbf9f5",
+            "on-tertiary-fixed-variant": "#832604",
+            "primary-fixed": "#ffdbd0",
+            "on-tertiary": "#ffffff",
+            "on-surface-variant": "#55433d",
+            "surface-container-highest": "#e4e2de",
+            "primary-container": "#d97757",
+            "tertiary-fixed": "#ffdbd0",
+            "on-primary-fixed": "#390b00",
+            "primary": "#99462a",
+            "on-surface": "#1b1c1a",
+            "primary-fixed-dim": "#ffb59e",
+            "secondary-container": "#e3e1ec",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#541400",
+            "secondary-fixed": "#e3e1ec",
+            "error-container": "#ffdad6",
+            "on-secondary-fixed": "#1a1b22",
+            "surface-container": "#efeeea",
+            "on-secondary-fixed-variant": "#46464e",
+            "surface-container-low": "#f5f3ef",
+            "tertiary-fixed-dim": "#ffb59f",
+            "on-secondary-container": "#63646c",
+            "outline-variant": "#dbc1b9",
+            "background": "#fbf9f5",
+            "outline": "#88726c",
+            "surface-bright": "#fbf9f5",
+            "on-primary-fixed-variant": "#7a2f15",
+            "on-tertiary-fixed": "#3a0a00",
+            "on-tertiary-container": "#551300",
+            "tertiary": "#a43d1b",
+            "surface-dim": "#dbdad6",
+            "inverse-primary": "#ffb59e",
+            "on-error": "#ffffff",
+            "tertiary-container": "#e76e48",
+            "surface-container-lowest": "#ffffff",
+            "on-primary": "#ffffff",
+            "on-background": "#1b1c1a",
+            "error": "#ba1a1a",
+            "inverse-surface": "#30312e",
+            "on-error-container": "#93000a",
+            "surface-container-high": "#eae8e4"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "space-sm": "0.5rem",
+            "gutter-sm": "1rem",
+            "margin-sm": "1rem",
+            "margin": "2rem",
+            "gutter": "1.5rem",
+            "space-md": "1rem",
+            "space-xl": "2.5rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "label-code": ["JetBrains Mono", "monospace"],
+            "body-sm": ["Inter", "sans-serif"],
+            "label-md": ["Inter", "sans-serif"],
+            "body-lg": ["Inter", "sans-serif"],
+            "title-md": ["Inter", "sans-serif"],
+            "headline-lg-mobile": ["\"Source Serif 4\"", "serif"],
+            "label-meta": ["JetBrains Mono", "monospace"],
+            "headline-sm": ["\"Source Serif 4\"", "serif"],
+            "headline-md": ["\"Source Serif 4\"", "serif"],
+            "headline-lg": ["\"Source Serif 4\"", "serif"],
+            "display-lg": ["\"Source Serif 4\"", "serif"],
+            "display-lg-mobile": ["\"Source Serif 4\"", "serif"],
+            "body-md": ["Inter", "sans-serif"]
+          },
+          "fontSize": {
+            "label-code": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "label-meta": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "500" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "400" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+            "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* Subtle book-paper texture simulation */
+    .bg-paper-noise {
+      background-color: #fbf9f5;
+      background-image: radial-gradient(#eadbc8 0.45px, transparent 0.45px);
+      background-size: 16px 16px;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- ========================================================================= -->
+<!-- 1. SHARED COMPONENT: TopNavBar (Exact Strings & Classes from Blueprint)  -->
+<!-- ========================================================================= -->
+<header class="bg-surface dark:bg-inverse-surface docked full-width top-0 z-50 sticky border-b border-surface-variant dark:border-outline-variant flat no shadows backdrop-blur-md bg-opacity-95">
+<div class="flex justify-between items-center w-full px-6 py-3 max-w-7xl mx-auto">
+<!-- Brand Anchor with Authentic Claude 8-Spoke Spark -->
+<div class="flex items-center gap-3">
+<a class="flex items-center gap-2.5 group" href="article_detail.html">
+<!-- Claude 8-pointed terracotta spark mark -->
+<div class="w-7 h-7 flex items-center justify-center text-primary-container group-hover:rotate-45 transition-transform duration-300">
+<svg class="w-6 h-6 fill-current" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2L13.8 8.8L20.6 7L15.8 12L20.6 17L13.8 15.2L12 22L10.2 15.2L3.4 17L8.2 12L3.4 7L10.2 8.8L12 2Z"></path>
+</svg>
+</div>
+<span class="text-headline-sm font-headline-sm font-bold text-on-surface dark:text-inverse-on-surface tracking-tight">思辨之境 · 全景思想文库</span>
+</a>
+<span class="hidden xl:inline-block px-2 py-0.5 rounded-full text-label-meta font-label-meta bg-surface-container text-on-surface-variant border border-surface-variant">全景写作与思想档案</span>
+</div>
+<!-- Navigation Links from Shared Components JSON -->
+<nav class="hidden md:flex items-center space-x-6">
+<!-- Active Nav: 文库 -->
+<a class="text-primary dark:text-inverse-primary border-b-2 border-primary dark:border-inverse-primary font-title-md text-title-md pb-1 cursor-pointer transition-all duration-150" href="article_detail.html">文库</a>
+<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:text-on-surface dark:hover:text-inverse-on-surface font-body-md text-body-md cursor-pointer transition-all duration-150" href="article_detail.html">论题</a>
+<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:text-on-surface dark:hover:text-inverse-on-surface font-body-md text-body-md cursor-pointer transition-all duration-150" href="article_detail.html">拓扑</a>
+<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:text-on-surface dark:hover:text-inverse-on-surface font-body-md text-body-md cursor-pointer transition-all duration-150" href="article_detail.html">札记</a>
+<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:text-on-surface dark:hover:text-inverse-on-surface font-body-md text-body-md cursor-pointer transition-all duration-150" href="article_detail.html">手稿</a>
+</nav>
+<!-- Trailing Action Cluster with Exact JSON Labels & Icons -->
+<div class="flex items-center gap-3">
+<!-- Search bar on left of trailing actions -->
+<div class="relative hidden sm:flex items-center">
+<span class="material-symbols-outlined absolute left-2.5 text-secondary text-sm" data-icon="search">search</span>
+<input class="w-44 lg:w-56 pl-8 pr-10 py-1.5 text-body-sm font-body-sm bg-surface-container-lowest border border-surface-variant rounded-lg text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container" placeholder="检索思想与论述..." type="text"/>
+<kbd class="absolute right-2 px-1.5 py-0.5 text-label-code font-label-code bg-surface-container border border-surface-variant rounded text-secondary text-xs">⌘K</kbd>
+</div>
+<!-- Trailing Secondary Action -->
+<button class="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-surface-variant text-body-sm font-body-sm text-on-surface hover:bg-surface-container-low transition-colors duration-150 cursor-pointer active:scale-95">
+<span class="material-symbols-outlined text-base" data-icon="download">download</span>
+<span>离线归档</span>
+</button>
+<!-- Trailing Primary Action -->
+<button class="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-lg bg-primary-container text-on-tertiary text-body-sm font-body-sm font-medium hover:bg-primary transition-colors duration-150 cursor-pointer active:scale-95 shadow-sm">
+<span>订阅文摘</span>
+</button>
+<!-- Trailing Icon Actions from JSON: menu_book, contrast, bookmark -->
+<div class="flex items-center border-l border-surface-variant pl-2 ml-1 gap-1">
+<button class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer" title="阅读模式">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer" title="切换沉思色温">
+<span class="material-symbols-outlined" data-icon="contrast">contrast</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer" title="我的书签">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+</button>
+</div>
+<!-- Profile Avatar from JSON -->
+<div class="w-8 h-8 rounded-full border border-surface-variant overflow-hidden bg-surface-container flex items-center justify-center shrink-0 ml-1">
+<img class="w-full h-full object-cover" data-alt="A dignified scholar and essayist captured in natural morning light inside an archive library filled with warm mahogany bookshelves and linen books, contemplative expression, soft warm tone editorial portrait style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBT5lt9ymlXRWD-1bqKdDAePH9NYnRvbDAXsavV1HsySGDTOfaA9vU7Ya4KYJAYxAFtcw1GgbMHpUm4uugzJuBCNA5H8HZFHvY27rFXjUhOgzNaAsjneInt198LLeqTlL_fG3drbHkTgnep-i4SM3hwTD7bUfpeQBP7Kj55Yjdz-anRL9AZ5KB9YuQoHa_2GAlBqBGoMz4ax5IMO_xsL52XEEiafsq0tvMlf9WUj6whmOBzHAmz2nlWWhgq6QF1oYzZM3eWFJSCDxM"/>
+</div>
+</div>
+</div>
+</header>
+<!-- ========================================================================= -->
+<!-- 2. MAIN LAYOUT CANVAS WITH INTELLECTUAL SHELL & ASYMMETRIC STRUCTURE     -->
+<!-- ========================================================================= -->
+<main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 py-8">
+<!-- HERO MANIFESTO & SYSTEM ARCHIVE BANNER -->
+<section class="mb-10">
+<div class="relative bg-[#F7F4EB] border border-[#E8E2D8] rounded-2xl p-6 sm:p-10 shadow-[0_1px_3px_rgba(39,39,42,0.03)] overflow-hidden">
+<!-- Subtle Academic Watermark Emblem -->
+<div class="absolute -right-8 -bottom-10 opacity-5 pointer-events-none select-none text-primary">
+<svg class="w-96 h-96 fill-current" viewbox="0 0 200 200">
+<path d="M100 0 L115 70 L185 85 L115 100 L100 170 L85 100 L15 85 L85 70 Z"></path>
+</svg>
+</div>
+<div class="relative z-10 max-w-4xl">
+<!-- Eyebrow Tag -->
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF0EC] border border-primary-container text-primary font-label-meta text-label-meta mb-4">
+<span class="material-symbols-outlined text-xs" data-icon="history_edu">history_edu</span>
+<span>CLAUDE 沉思文库 · 2026 全集</span>
+</div>
+<!-- Headline -->
+<h1 class="text-display-lg-mobile md:text-display-lg font-display-lg text-on-surface tracking-tight mb-4">
+            沉淀真实的思考，解构复杂的现实
+          </h1>
+<!-- Prose Manifesto -->
+<p class="text-body-lg font-body-lg text-on-surface-variant leading-relaxed mb-6 font-normal">
+            汇集人工智能哲学、认知科学、现代职场困境、媒介工业批判与文学随笔，全量收录 32 篇深度长文与 40 余万字独立非虚构思想沉淀。以严谨学术实证对抗碎片短视频投喂，重拾长篇深度阅读与批判性反思。
+          </p>
+<!-- Core Metric Badges -->
+<div class="flex flex-wrap items-center gap-2.5 pt-2 border-t border-[#EAE5DC]">
+<span class="px-3 py-1 rounded-md bg-surface-container-lowest border border-surface-variant font-label-code text-label-code text-on-surface flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+              32 篇深度长文
+            </span>
+<span class="px-3 py-1 rounded-md bg-surface-container-lowest border border-surface-variant font-label-code text-label-code text-on-surface flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+              6 大核心学科
+            </span>
+<span class="px-3 py-1 rounded-md bg-surface-container-lowest border border-surface-variant font-label-code text-label-code text-on-surface flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+              41.8 万字思想沉淀
+            </span>
+<span class="px-3 py-1 rounded-md bg-surface-container-lowest border border-surface-variant font-label-code text-label-code text-on-surface flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+              100% 独立非虚构写作
+            </span>
+<span class="px-3 py-1 rounded-md bg-surface-container-lowest border border-surface-variant font-label-code text-label-code text-on-surface flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+              零算法商业投喂
+            </span>
+</div>
+</div>
+</div>
+</section>
+<!-- CROSS-DISCIPLINARY SPOTLIGHTS: 4-Card Bento Row -->
+<section class="mb-12">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="auto_awesome">auto_awesome</span>
+          跨学科年度核心议题
+        </h2>
+<span class="font-label-meta text-label-meta text-secondary tracking-widest uppercase">DISCIPLINARY BENCHMARKS</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Spotlight 1: AI -->
+<article class="bg-surface-container-lowest border border-[#EAE5DC] rounded-xl p-5 hover:border-primary-container hover:shadow-sm transition-all flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="text-label-meta font-label-meta px-2 py-0.5 rounded bg-[#FAF0EC] text-primary border border-primary-fixed">AI与技术哲学</span>
+<span class="text-label-code font-label-code text-secondary text-xs">24,000 字</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug mb-2">
+              《LLMs Can't Jump：大模型为何无法自主跃迁》
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mb-4">
+              以爱因斯坦电梯思想实验解构黑箱自回归机制，直面塞尔中文屋与当代符号接地难题，破除对人工通用智能的虚妄神话。
+            </p>
+</div>
+<div class="pt-3 border-t border-surface-variant flex items-center justify-between text-label-code font-label-code text-xs text-secondary">
+<span>认知鸿沟 · 维特根斯坦</span>
+<span class="text-primary group-hover:translate-x-1 transition-transform">→</span>
+</div>
+</article>
+<!-- Spotlight 2: Media Critique -->
+<article class="bg-surface-container-lowest border border-[#EAE5DC] rounded-xl p-5 hover:border-primary-container hover:shadow-sm transition-all flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="text-label-meta font-label-meta px-2 py-0.5 rounded bg-surface-container-low text-on-surface-variant border border-surface-variant">媒介工业与社会</span>
+<span class="text-label-code font-label-code text-secondary text-xs">17,200 字</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug mb-2">
+              《为什么互联网越来越低智，回旋镖越来越多》
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mb-4">
+              短视频短促多巴胺回路如何悄然完成对公众神经突触的重构？算法投喂引发群体极化与降维思维的系统剖析。
+            </p>
+</div>
+<div class="pt-3 border-t border-surface-variant flex items-center justify-between text-label-code font-label-code text-xs text-secondary">
+<span>认知降维 · 群体极化</span>
+<span class="text-primary group-hover:translate-x-1 transition-transform">→</span>
+</div>
+</article>
+<!-- Spotlight 3: Gaming Industry & Philosophy -->
+<article class="bg-surface-container-lowest border border-[#EAE5DC] rounded-xl p-5 hover:border-primary-container hover:shadow-sm transition-all flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="text-label-meta font-label-meta px-2 py-0.5 rounded bg-surface-container-low text-on-surface-variant border border-surface-variant">商业工业与游戏</span>
+<span class="text-label-code font-label-code text-secondary text-xs">32,500 字</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug mb-2">
+              《任天堂：世界的主宰——枯竭技术的水平思考》
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mb-4">
+              从京都花札骨牌到全球第九艺术殿堂，回溯横井军平与岩田聪的哲学遗产：为什么成熟低廉的技术往往蕴藏最纯粹的交互魔法？
+            </p>
+</div>
+<div class="pt-3 border-t border-surface-variant flex items-center justify-between text-label-code font-label-code text-xs text-secondary">
+<span>横井军平 · 体验建构</span>
+<span class="text-primary group-hover:translate-x-1 transition-transform">→</span>
+</div>
+</article>
+<!-- Spotlight 4: Cognitive Psychology -->
+<article class="bg-surface-container-lowest border border-[#EAE5DC] rounded-xl p-5 hover:border-primary-container hover:shadow-sm transition-all flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="text-label-meta font-label-meta px-2 py-0.5 rounded bg-surface-container-low text-on-surface-variant border border-surface-variant">认知心理与成长</span>
+<span class="text-label-code font-label-code text-secondary text-xs">19,800 字</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug mb-2">
+              《如何使内心强大？解析年轻人的九大心理防御机制》
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mb-4">
+              升华、合理化、退行、反向形成——全面拆解潜意识保护自我的盾牌与牢笼，建立基于理性觉察的终身心理免疫力。
+            </p>
+</div>
+<div class="pt-3 border-t border-surface-variant flex items-center justify-between text-label-code font-label-code text-xs text-secondary">
+<span>升华与投射 · 认知失调</span>
+<span class="text-primary group-hover:translate-x-1 transition-transform">→</span>
+</div>
+</article>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 3. INTERACTIVE DOMAIN FILTER BAR & SCHOLARLY SORT TOOLBAR                 -->
+<!-- ========================================================================= -->
+<div class="mb-8 border-b border-surface-variant pb-5">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<!-- Filter Tabs -->
+<div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none">
+<button class="px-3.5 py-1.5 rounded-full bg-primary-container text-on-tertiary font-title-md text-body-sm shadow-sm shrink-0">全部写作 (32)</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface border border-surface-variant font-body-sm text-body-sm shrink-0 transition-colors">🤖 AI与技术哲学 (5)</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface border border-surface-variant font-body-sm text-body-sm shrink-0 transition-colors">🧠 认知心理与成长 (7)</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface border border-surface-variant font-body-sm text-body-sm shrink-0 transition-colors">🏛️ 职场生存与社会 (6)</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface border border-surface-variant font-body-sm text-body-sm shrink-0 transition-colors">🌐 媒介批判与互联网 (5)</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface border border-surface-variant font-body-sm text-body-sm shrink-0 transition-colors">🎮 商业工业与游戏文化 (5)</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface border border-surface-variant font-body-sm text-body-sm shrink-0 transition-colors">📖 文学品读与随笔 (4)</button>
+</div>
+<!-- Sorting & Metadata Toolbar -->
+<div class="flex items-center gap-3 shrink-0">
+<span class="text-label-code font-label-code text-secondary text-xs hidden lg:inline">排序维度:</span>
+<div class="inline-flex rounded-lg border border-surface-variant p-0.5 bg-surface-container-low text-body-sm font-body-sm">
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest text-on-surface font-medium shadow-xs">最新归档</button>
+<button class="px-2.5 py-1 rounded text-on-surface-variant hover:text-on-surface">字数与深度</button>
+<button class="px-2.5 py-1 rounded text-on-surface-variant hover:text-on-surface">论据密度</button>
+<button class="px-2.5 py-1 rounded text-on-surface-variant hover:text-on-surface">读者高光标记</button>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- 4. CORE ARTICLES EXPLORATION AREA: 2-COLUMN GRID + CLAUDE SIDEBAR         -->
+<!-- ========================================================================= -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- LEFT: 2-COLUMN ARTICLE ARCHIVE (8 COLS) -->
+<section class="lg:col-span-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<!-- Card 1 -->
+<article class="bg-surface-container-lowest border border-[#EAE5DC] rounded-xl p-6 hover:border-primary-container hover:shadow-sm transition-all flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-2.5">
+<span class="px-2 py-0.5 rounded text-label-meta font-label-meta bg-[#FAF0EC] text-primary border border-primary-fixed">AI与技术哲学</span>
+<span class="font-label-code text-label-code text-secondary">2.4万字 · 24 min</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug mb-2">
+                《LLMs Can't Jump：大模型为何无法自主跃迁》
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4 leading-relaxed">
+                借用爱因斯坦电梯思想实验，深度论证符号自回归统计模型为何本质缺乏物理接地的因果常识，阐释从相关性向真正理解的致命认知鸿沟。
+              </p>
+<div class="flex flex-wrap gap-1.5 mb-5">
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">爱因斯坦电梯</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">符号接地</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">维特根斯坦</span>
+</div>
+</div>
+<div class="pt-3 border-t border-surface-variant flex items-center justify-between text-body-sm">
+<span class="text-secondary font-label-code text-xs">2026-03-12 · 独立研究</span>
+<a class="text-primary font-title-md text-sm flex items-center gap-1 group-hover:translate-x-0.5 transition-transform" href="article_detail.html">深入阅读 →</a>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="bg-surface-container-lowest border border-[#EAE5DC] rounded-xl p-6 hover:border-primary-container hover:shadow-sm transition-all flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-2.5">
+<span class="px-2 py-0.5 rounded text-label-meta font-label-meta bg-surface-container text-on-surface-variant border border-surface-variant">职场生存与社会</span>
+<span class="font-label-code text-label-code text-secondary">1.8万字 · 18 min</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug mb-2">
+                《扎心的真相：上班是如何摧毁我们的心态、生活和幸福感的》
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4 leading-relaxed">
+                现代科层制企业中细分的齿轮分工，如何系统性剥夺劳动者的主体价值与自主节奏？解析大卫·格雷伯所论“狗屁工作”对生命心智的慢性蚕食。
+              </p>
+<div class="flex flex-wrap gap-1.5 mb-5">
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">异化劳动</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">狗屁工作</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">能量耗竭</span>
+</div>
+</div>
+<div class="pt-3 border-t border-surface-variant flex items-center justify-between text-body-sm">
+<span class="text-secondary font-label-code text-xs">2026-02-28 · 调查长文</span>
+<a class="text-primary font-title-md text-sm flex items-center gap-1 group-hover:translate-x-0.5 transition-transform" href="article_detail.html">深入阅读 →</a>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="bg-surface-container-lowest border border-[#EAE5DC] rounded-xl p-6 hover:border-primary-container hover:shadow-sm transition-all flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-2.5">
+<span class="px-2 py-0.5 rounded text-label-meta font-label-meta bg-surface-container text-on-surface-variant border border-surface-variant">商业工业与游戏</span>
+<span class="font-label-code text-label-code text-secondary">3.2万字 · 32 min</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug mb-2">
+                《任天堂：世界的主宰（三部曲）》
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4 leading-relaxed">
+                三部曲万字巨制，详述任天堂穿越百年的产品美学——不依赖最前沿的军备竞赛算力，而是依靠“枯竭技术”与极致交互设计的创造性重生。
+              </p>
+<div class="flex flex-wrap gap-1.5 mb-5">
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">横井军平</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">枯竭技术</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">硬件哲学</span>
+</div>
+</div>
+<div class="pt-3 border-t border-surface-variant flex items-center justify-between text-body-sm">
+<span class="text-secondary font-label-code text-xs">2026-02-14 · 工业史诗</span>
+<a class="text-primary font-title-md text-sm flex items-center gap-1 group-hover:translate-x-0.5 transition-transform" href="article_detail.html">深入阅读 →</a>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="bg-surface-container-lowest border border-[#EAE5DC] rounded-xl p-6 hover:border-primary-container hover:shadow-sm transition-all flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-2.5">
+<span class="px-2 py-0.5 rounded text-label-meta font-label-meta bg-surface-container text-on-surface-variant border border-surface-variant">文学品读与随笔</span>
+<span class="font-label-code text-label-code text-secondary">1.5万字 · 15 min</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug mb-2">
+                《不哭不哭，痛痛飞走吧 深度读后感四部曲》
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4 leading-relaxed">
+                四部曲文本细读：当文学将苦难、依恋与告别转化为具象的意象叙事，我们究竟如何在当代冷漠的人际荒漠中重建脆弱而崇高的共情能力？
+              </p>
+<div class="flex flex-wrap gap-1.5 mb-5">
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">叙事解构</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">共情困境</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">创伤叙事</span>
+</div>
+</div>
+<div class="pt-3 border-t border-surface-variant flex items-center justify-between text-body-sm">
+<span class="text-secondary font-label-code text-xs">2026-01-20 · 文学批评</span>
+<a class="text-primary font-title-md text-sm flex items-center gap-1 group-hover:translate-x-0.5 transition-transform" href="article_detail.html">深入阅读 →</a>
+</div>
+</article>
+<!-- Card 5 -->
+<article class="bg-surface-container-lowest border border-[#EAE5DC] rounded-xl p-6 hover:border-primary-container hover:shadow-sm transition-all flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-2.5">
+<span class="px-2 py-0.5 rounded text-label-meta font-label-meta bg-surface-container text-on-surface-variant border border-surface-variant">职场生存与社会</span>
+<span class="font-label-code text-label-code text-secondary">1.6万字 · 16 min</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug mb-2">
+                《消费主义的本质：花钱你会成为穷人，抠门你会成为新穷人》
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4 leading-relaxed">
+                承接社会学家齐格蒙特·鲍曼的“工作、消费主义与新穷人”命题，揭示当社会从生产者社会转向消费者社会时，两端逃不出的阶级资本困局。
+              </p>
+<div class="flex flex-wrap gap-1.5 mb-5">
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">齐格蒙特·鲍曼</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">虚假需求</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">阶级壁垒</span>
+</div>
+</div>
+<div class="pt-3 border-t border-surface-variant flex items-center justify-between text-body-sm">
+<span class="text-secondary font-label-code text-xs">2026-01-05 · 社会经济</span>
+<a class="text-primary font-title-md text-sm flex items-center gap-1 group-hover:translate-x-0.5 transition-transform" href="article_detail.html">深入阅读 →</a>
+</div>
+</article>
+<!-- Card 6 -->
+<article class="bg-surface-container-lowest border border-[#EAE5DC] rounded-xl p-6 hover:border-primary-container hover:shadow-sm transition-all flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-2.5">
+<span class="px-2 py-0.5 rounded text-label-meta font-label-meta bg-surface-container text-on-surface-variant border border-surface-variant">认知心理与成长</span>
+<span class="font-label-code text-label-code text-secondary">1.4万字 · 14 min</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug mb-2">
+                《做题能改变命运吗》
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4 leading-relaxed">
+                借助布迪厄文化资本与习性理论，客观剖析应试筛选机制的代际壁垒。在应试做题红利逐渐出清的当下，年轻人如何重新定义真实认知力？
+              </p>
+<div class="flex flex-wrap gap-1.5 mb-5">
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">布迪厄文化资本</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">筛选机制</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">认知重塑</span>
+</div>
+</div>
+<div class="pt-3 border-t border-surface-variant flex items-center justify-between text-body-sm">
+<span class="text-secondary font-label-code text-xs">2025-12-18 · 阶层洞察</span>
+<a class="text-primary font-title-md text-sm flex items-center gap-1 group-hover:translate-x-0.5 transition-transform" href="article_detail.html">深入阅读 →</a>
+</div>
+</article>
+<!-- Card 7 -->
+<article class="bg-surface-container-lowest border border-[#EAE5DC] rounded-xl p-6 hover:border-primary-container hover:shadow-sm transition-all flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-2.5">
+<span class="px-2 py-0.5 rounded text-label-meta font-label-meta bg-surface-container text-on-surface-variant border border-surface-variant">文学品读与随笔</span>
+<span class="font-label-code text-label-code text-secondary">1.1万字 · 11 min</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug mb-2">
+                《什么是“轻小说”》
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4 leading-relaxed">
+                探究现代流行文体演进背后的读者心理动力学。从战后日本大众文学脉络到当代快餐叙事，分析文字符号如何演化为轻质化的消费情绪。
+              </p>
+<div class="flex flex-wrap gap-1.5 mb-5">
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">亚文化演进</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">快餐叙事</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">符号消费</span>
+</div>
+</div>
+<div class="pt-3 border-t border-surface-variant flex items-center justify-between text-body-sm">
+<span class="text-secondary font-label-code text-xs">2025-11-30 · 文化随笔</span>
+<a class="text-primary font-title-md text-sm flex items-center gap-1 group-hover:translate-x-0.5 transition-transform" href="article_detail.html">深入阅读 →</a>
+</div>
+</article>
+<!-- Card 8 -->
+<article class="bg-surface-container-lowest border border-[#EAE5DC] rounded-xl p-6 hover:border-primary-container hover:shadow-sm transition-all flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-2.5">
+<span class="px-2 py-0.5 rounded text-label-meta font-label-meta bg-surface-container text-on-surface-variant border border-surface-variant">认知心理与成长</span>
+<span class="font-label-code text-label-code text-secondary">1.3万字 · 13 min</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug mb-2">
+                《为什么谈恋爱这么难》
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4 leading-relaxed">
+                将心理学依恋理论与社会学情感经济学相结合。在充满不确定性与防御机制的当代原子化社会中，为何毫无保留的亲密关系变得日益奢侈？
+              </p>
+<div class="flex flex-wrap gap-1.5 mb-5">
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">亲密关系异化</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">情感经济学</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">依恋理论</span>
+</div>
+</div>
+<div class="pt-3 border-t border-surface-variant flex items-center justify-between text-body-sm">
+<span class="text-secondary font-label-code text-xs">2025-11-12 · 心理透视</span>
+<a class="text-primary font-title-md text-sm flex items-center gap-1 group-hover:translate-x-0.5 transition-transform" href="article_detail.html">深入阅读 →</a>
+</div>
+</article>
+<!-- Card 9 -->
+<article class="bg-surface-container-lowest border border-[#EAE5DC] rounded-xl p-6 hover:border-primary-container hover:shadow-sm transition-all flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-2.5">
+<span class="px-2 py-0.5 rounded text-label-meta font-label-meta bg-surface-container text-on-surface-variant border border-surface-variant">媒介批判与互联网</span>
+<span class="font-label-code text-label-code text-secondary">2.1万字 · 21 min</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug mb-2">
+                《黑哨、贿选、死人！世界杯到底黑到什么程度》
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4 leading-relaxed">
+                全景式拆解国际足联（FIFA）与跨国资本、主权基金及转播媒介巨头的权谋纠缠，揭示全球第一运动背后血腥而魔幻的政治经济学。
+              </p>
+<div class="flex flex-wrap gap-1.5 mb-5">
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">体育地缘政治</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">资本渗透</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">媒介合谋</span>
+</div>
+</div>
+<div class="pt-3 border-t border-surface-variant flex items-center justify-between text-body-sm">
+<span class="text-secondary font-label-code text-xs">2025-10-25 · 深度调查</span>
+<a class="text-primary font-title-md text-sm flex items-center gap-1 group-hover:translate-x-0.5 transition-transform" href="article_detail.html">深入阅读 →</a>
+</div>
+</article>
+<!-- Card 10 -->
+<article class="bg-surface-container-lowest border border-[#EAE5DC] rounded-xl p-6 hover:border-primary-container hover:shadow-sm transition-all flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-2.5">
+<span class="px-2 py-0.5 rounded text-label-meta font-label-meta bg-[#FAF0EC] text-primary border border-primary-fixed">AI与技术哲学</span>
+<span class="font-label-code text-label-code text-secondary">1.2万字 · 12 min</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug mb-2">
+                《当我们的大脑开始“过拟合”》
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4 leading-relaxed">
+                从机器学习中的过拟合（Overfitting）概念借喻人类认知。长期浸泡在同质化社群与算法信息茧房中，大脑是如何逐渐丧失泛化应对现实的能力的？
+              </p>
+<div class="flex flex-wrap gap-1.5 mb-5">
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">神经可塑性</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">算法回音室</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">启发式偏见</span>
+</div>
+</div>
+<div class="pt-3 border-t border-surface-variant flex items-center justify-between text-body-sm">
+<span class="text-secondary font-label-code text-xs">2025-09-19 · 技术隐喻</span>
+<a class="text-primary font-title-md text-sm flex items-center gap-1 group-hover:translate-x-0.5 transition-transform" href="article_detail.html">深入阅读 →</a>
+</div>
+</article>
+<!-- Card 11 -->
+<article class="bg-surface-container-lowest border border-[#EAE5DC] rounded-xl p-6 hover:border-primary-container hover:shadow-sm transition-all flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-2.5">
+<span class="px-2 py-0.5 rounded text-label-meta font-label-meta bg-surface-container text-on-surface-variant border border-surface-variant">媒介批判与互联网</span>
+<span class="font-label-code text-label-code text-secondary">1.7万字 · 17 min</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug mb-2">
+                《贴标签、造黑话！现代人为何越来越不会说人话？》
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4 leading-relaxed">
+                概念蠕变（Concept Creep）与语言腐败如何悄无声息地窄化我们的思考维度？警惕用流行互联网黑话代替真正严密逻辑推导的思维惰性。
+              </p>
+<div class="flex flex-wrap gap-1.5 mb-5">
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">概念蠕变</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">语言腐败</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">思想窄化</span>
+</div>
+</div>
+<div class="pt-3 border-t border-surface-variant flex items-center justify-between text-body-sm">
+<span class="text-secondary font-label-code text-xs">2025-08-30 · 语言学批评</span>
+<a class="text-primary font-title-md text-sm flex items-center gap-1 group-hover:translate-x-0.5 transition-transform" href="article_detail.html">深入阅读 →</a>
+</div>
+</article>
+<!-- Card 12 -->
+<article class="bg-surface-container-lowest border border-[#EAE5DC] rounded-xl p-6 hover:border-primary-container hover:shadow-sm transition-all flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-2.5">
+<span class="px-2 py-0.5 rounded text-label-meta font-label-meta bg-surface-container text-on-surface-variant border border-surface-variant">职场生存与社会</span>
+<span class="font-label-code text-label-code text-secondary">2.0万字 · 20 min</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug mb-2">
+                《自由职业真相：不上班，到底应该怎么活》
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4 leading-relaxed">
+                撕下滤镜，真实拆解独立劳动者的现金流设计、注意力对抗与精力抗压系统。如何用查尔斯·汉迪“三叶草组织”架构重建人生的自我雇佣契约？
+              </p>
+<div class="flex flex-wrap gap-1.5 mb-5">
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">三叶草组织</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">自我雇佣</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-label-code font-label-code text-on-surface-variant text-xs">风险管理</span>
+</div>
+</div>
+<div class="pt-3 border-t border-surface-variant flex items-center justify-between text-body-sm">
+<span class="text-secondary font-label-code text-xs">2025-07-14 · 个人治理</span>
+<a class="text-primary font-title-md text-sm flex items-center gap-1 group-hover:translate-x-0.5 transition-transform" href="article_detail.html">深入阅读 →</a>
+</div>
+</article>
+</div>
+<!-- Pagination / Reading Stream Bottom Indicator -->
+<div class="mt-8 p-4 rounded-xl border border-surface-variant bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="text-body-sm font-body-sm text-on-surface-variant">
+            已呈现 <span class="font-semibold text-on-surface">12</span> 篇长文（全库 32 篇中已加载核心索引）
+          </div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-lg border border-surface-variant bg-surface-container-lowest text-on-surface text-body-sm font-body-sm hover:bg-surface-container transition-colors disabled:opacity-50" disabled="">上一卷</button>
+<span class="px-3 py-1 text-label-code font-label-code text-on-surface font-medium text-xs">卷 1 / 3</span>
+<button class="px-3 py-1.5 rounded-lg border border-surface-variant bg-surface-container-lowest text-on-surface text-body-sm font-body-sm hover:bg-surface-container transition-colors">下一卷</button>
+</div>
+</div>
+</section>
+<!-- RIGHT: CLAUDE INTELLECTUAL SIDEBAR & COMPONENT BLUEPRINT (4 COLS) -->
+<aside class="lg:col-span-4 flex flex-col gap-6">
+<!-- Sidebar Card A: Claude Manifesto & Writing Pledge -->
+<div class="bg-surface-container-lowest border border-[#EAE5DC] rounded-xl p-6 shadow-[0_1px_3px_rgba(39,39,42,0.03)]">
+<div class="flex items-center gap-2 mb-3">
+<svg class="w-5 h-5 fill-current text-primary-container" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2L13.8 8.8L20.6 7L15.8 12L20.6 17L13.8 15.2L12 22L10.2 15.2L3.4 17L8.2 12L3.4 7L10.2 8.8L12 2Z"></path>
+</svg>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">理性的温度与非虚构敬畏</h4>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-4">
+            思辨之境拒绝情绪煽动与流量迎合。我们坚信：只有经由严谨的长程逻辑链条、多学科视角的交叉穿透与真实的经验检验，文字才能在时间长河中沉淀为坚固的思想灯塔。
+          </p>
+<div class="p-3 bg-surface-container-low rounded-lg border border-surface-variant flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="verified">verified</span>
+<span class="text-label-code font-label-code text-xs text-on-surface-variant">所有篇目均经过学术规范溯源与交叉考证</span>
+</div>
+</div>
+<!-- Sidebar Card B: Concept Topology Network -->
+<div class="bg-surface-container-lowest border border-[#EAE5DC] rounded-xl p-6 shadow-[0_1px_3px_rgba(39,39,42,0.03)]">
+<div class="flex items-center justify-between mb-4">
+<h4 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="hub">hub</span>
+              跨学科概念拓扑
+            </h4>
+<span class="text-label-meta font-label-meta text-secondary">TOPOLOGY</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<a class="px-2.5 py-1 rounded bg-surface-container hover:bg-primary-container hover:text-white transition-colors text-label-code font-label-code text-xs text-on-surface-variant" href="article_detail.html"># 符号接地难题</a>
+<a class="px-2.5 py-1 rounded bg-[#FAF0EC] text-primary border border-primary-fixed hover:bg-primary hover:text-white transition-colors text-label-code font-label-code text-xs" href="article_detail.html"># 异化劳动</a>
+<a class="px-2.5 py-1 rounded bg-surface-container hover:bg-primary-container hover:text-white transition-colors text-label-code font-label-code text-xs" href="article_detail.html"># 枯竭技术的水平思考</a>
+<a class="px-2.5 py-1 rounded bg-surface-container hover:bg-primary-container hover:text-white transition-colors text-label-code font-label-code text-xs" href="article_detail.html"># 概念蠕变</a>
+<a class="px-2.5 py-1 rounded bg-[#FAF0EC] text-primary border border-primary-fixed hover:bg-primary hover:text-white transition-colors text-label-code font-label-code text-xs" href="article_detail.html"># 文化资本</a>
+<a class="px-2.5 py-1 rounded bg-surface-container hover:bg-primary-container hover:text-white transition-colors text-label-code font-label-code text-xs" href="article_detail.html"># 心理防御机制</a>
+<a class="px-2.5 py-1 rounded bg-surface-container hover:bg-primary-container hover:text-white transition-colors text-label-code font-label-code text-xs" href="article_detail.html"># 启发式偏见</a>
+<a class="px-2.5 py-1 rounded bg-surface-container hover:bg-primary-container hover:text-white transition-colors text-label-code font-label-code text-xs" href="article_detail.html"># 狗屁工作</a>
+<a class="px-2.5 py-1 rounded bg-surface-container hover:bg-primary-container hover:text-white transition-colors text-label-code font-label-code text-xs" href="article_detail.html"># 算法回音室</a>
+<a class="px-2.5 py-1 rounded bg-surface-container hover:bg-primary-container hover:text-white transition-colors text-label-code font-label-code text-xs" href="article_detail.html"># 三叶草组织</a>
+</div>
+</div>
+<!-- Sidebar Card C: Structured Catalog Tree (Shared Components SideNav Replica) -->
+<div class="bg-surface-container-low border border-[#EAE5DC] rounded-xl p-6 shadow-[0_1px_3px_rgba(39,39,42,0.03)]">
+<!-- SideNavBar Header from Blueprint -->
+<div class="flex items-center gap-3 pb-4 mb-4 border-b border-surface-variant">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest border border-surface-variant flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="account_tree">account_tree</span>
+</div>
+<div>
+<div class="text-title-md font-title-md font-semibold text-on-surface">思想拓扑目录</div>
+<div class="text-label-code font-label-code text-xs text-secondary">跨学科概念索引与专题树</div>
+</div>
+</div>
+<!-- Tab Labels & Icons from SideNavBar Blueprint -->
+<ul class="space-y-1.5 font-body-sm text-body-sm mb-6">
+<li>
+<div class="flex items-center justify-between px-3 py-2 rounded-lg bg-surface-container-highest text-primary font-title-md cursor-pointer">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base" data-icon="account_tree">account_tree</span>
+<span>总论体系</span>
+</span>
+<span class="text-label-meta font-label-meta text-xs">6 篇</span>
+</div>
+</li>
+<li>
+<div class="flex items-center justify-between px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors cursor-pointer">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base" data-icon="history_edu">history_edu</span>
+<span>历史与演变</span>
+</span>
+<span class="text-label-meta font-label-meta text-xs">5 篇</span>
+</div>
+</li>
+<li>
+<div class="flex items-center justify-between px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors cursor-pointer">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base" data-icon="hub">hub</span>
+<span>范式与结构</span>
+</span>
+<span class="text-label-meta font-label-meta text-xs">7 篇</span>
+</div>
+</li>
+<li>
+<div class="flex items-center justify-between px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors cursor-pointer">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base" data-icon="terminal">terminal</span>
+<span>技术伦理</span>
+</span>
+<span class="text-label-meta font-label-meta text-xs">8 篇</span>
+</div>
+</li>
+<li>
+<div class="flex items-center justify-between px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors cursor-pointer">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base" data-icon="auto_stories">auto_stories</span>
+<span>美学认知</span>
+</span>
+<span class="text-label-meta font-label-meta text-xs">6 篇</span>
+</div>
+</li>
+</ul>
+<!-- SideNavBar CTA from Blueprint -->
+<button class="w-full py-2.5 px-4 rounded-lg bg-primary-container text-on-tertiary font-title-md text-sm hover:bg-primary transition-colors flex items-center justify-center gap-2 shadow-xs mb-4">
+<span class="material-symbols-outlined text-base" data-icon="picture_as_pdf">picture_as_pdf</span>
+<span>导出全文 (PDF/ePub)</span>
+</button>
+<!-- SideNavBar Footer Tabs from Blueprint -->
+<div class="pt-4 border-t border-surface-variant flex items-center justify-between text-label-code font-label-code text-xs text-secondary">
+<a class="flex items-center gap-1 hover:text-primary" href="article_detail.html">
+<span class="material-symbols-outlined text-xs" data-icon="verified">verified</span>
+<span>版权声明</span>
+</a>
+<a class="flex items-center gap-1 hover:text-primary" href="article_detail.html">
+<span class="material-symbols-outlined text-xs" data-icon="shield_person">shield_person</span>
+<span>独立写作宣言</span>
+</a>
+</div>
+</div>
+<!-- Sidebar Card D: Offline Archive Pack & RSS -->
+<div class="bg-surface-container-lowest border border-[#EAE5DC] rounded-xl p-6 shadow-[0_1px_3px_rgba(39,39,42,0.03)]">
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-2">全集离线随身包</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">
+            一次性打包获取无删减高排版 Markdown 文档包与精装电子书，随时随地开启断网深阅读。
+          </p>
+<div class="space-y-2">
+<a class="flex items-center justify-between p-2.5 rounded-lg border border-surface-variant hover:border-primary-container hover:bg-[#FAF0EC] transition-all group" href="article_detail.html">
+<span class="text-body-sm font-body-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary" data-icon="book">book</span>
+<span>ePub 精装电子书 (32篇合集)</span>
+</span>
+<span class="text-label-code font-label-code text-xs text-secondary">28.4 MB</span>
+</a>
+<a class="flex items-center justify-between p-2.5 rounded-lg border border-surface-variant hover:border-primary-container hover:bg-[#FAF0EC] transition-all group" href="article_detail.html">
+<span class="text-body-sm font-body-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary" data-icon="code">code</span>
+<span>纯净 Markdown 源文件包</span>
+</span>
+<span class="text-label-code font-label-code text-xs text-secondary">14.2 MB</span>
+</a>
+<a class="flex items-center justify-between p-2.5 rounded-lg border border-surface-variant hover:border-primary-container hover:bg-[#FAF0EC] transition-all group" href="article_detail.html">
+<span class="text-body-sm font-body-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary" data-icon="rss_feed">rss_feed</span>
+<span>RSS 全文输出源</span>
+</span>
+<span class="text-label-code font-label-code text-xs text-primary">订阅源</span>
+</a>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- ========================================================================= -->
+<!-- 5. SHARED COMPONENT: Footer (Exact Specs & Content from Blueprint)        -->
+<!-- ========================================================================= -->
+<footer class="bg-surface-container-low dark:bg-surface-dim w-full mt-auto border-t border-surface-variant dark:border-outline-variant flat no shadows">
+<div class="w-full py-10 px-6 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<!-- Brand & Copyright from Shared Blueprint -->
+<div class="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+<!-- Claude Signature Spark Mark -->
+<div class="w-6 h-6 flex items-center justify-center text-primary-container">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2L13.8 8.8L20.6 7L15.8 12L20.6 17L13.8 15.2L12 22L10.2 15.2L3.4 17L8.2 12L3.4 7L10.2 8.8L12 2Z"></path>
+</svg>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant dark:text-secondary-fixed-dim">
+          © 2024 思辨之境 · 全景思想文库 · 遵循知识共享 CC BY-NC-SA 4.0 许可
+        </p>
+</div>
+<!-- Links from Shared Blueprint -->
+<div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-body-sm font-body-sm">
+<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:text-on-surface dark:hover:text-inverse-on-surface hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="article_detail.html">独立写作誓约</a>
+<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:text-on-surface dark:hover:text-inverse-on-surface hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="article_detail.html">研究伦理准则</a>
+<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:text-on-surface dark:hover:text-inverse-on-surface hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="article_detail.html">跨学科拓扑图</a>
+<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:text-on-surface dark:hover:text-inverse-on-surface hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="article_detail.html">RSS订阅源</a>
+<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:text-on-surface dark:hover:text-inverse-on-surface hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="article_detail.html">开放文库接口</a>
+<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:text-on-surface dark:hover:text-inverse-on-surface hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="article_detail.html">隐私说明</a>
+</div>
+</div>
+</footer>
+</body></html>
