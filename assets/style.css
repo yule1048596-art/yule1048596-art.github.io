@@ -5,7 +5,7 @@
   --card: #fbf8f3;
   --ink: #1d1b18;
   --ink-2: #4a453e;
-  --ink-3: #847c71;
+  --ink-3: #6b6358;
   --rule: #ddd5c8;
   --rule-strong: #c9bfb0;
   --seal: #b23a2a;
@@ -202,7 +202,7 @@ button { font: inherit; color: inherit; }
 .about blockquote::after { content: "」"; color: var(--seal); }
 .about .body p { margin: 0 0 16px; color: var(--ink-2); }
 .about .body p:last-child { margin: 0; }
-.about .body a { color: var(--seal); }
+.about .body a { color: var(--seal); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 @media (max-width: 760px) { .about { grid-template-columns: 1fr; } }
 
 /* ================================================================
