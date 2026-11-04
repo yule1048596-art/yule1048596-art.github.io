@@ -3,8 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LLMs Can't Jump · 思辨之境</title>
-<meta name="description" content="当统计学概率补全被误认为真正理解：从爱因斯坦电梯思想实验看 AGI 的本质壁垒与符号接地困境。">
+<title>思辨之境</title>
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);var s=localStorage.getItem('reader-size');if(s)document.documentElement.style.setProperty('--reader-size',s+'px')}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +19,7 @@
     <a class="brand" href="index.html"><span class="seal">思</span>思辨之境</a>
     <nav class="nav" aria-label="主导航">
       <a href="index.html#featured" class="hide-sm">精选</a>
-      <a href="index.html#domains" class="hide-sm">领域</a>
+      <a href="index.html#series" class="hide-sm">系列</a>
       <a href="index.html#archive">文库</a>
       <a href="index.html#about">关于</a>
       <button class="icon-btn" type="button" data-theme-toggle aria-label="切换深浅色">
@@ -34,164 +33,251 @@
 <div class="article-layout">
   <aside class="toc" aria-label="目录">
     <a class="back" href="index.html#archive">← 返回文库</a>
-    <div class="eyebrow">目录</div>
-    <ol id="toc">
-      <li><a href="#s1">引言：涌现神话与“跃迁幻觉”</a></li>
-      <li><a href="#s2">统计拟合 vs 因果推理</a></li>
-      <li><a href="#s3">封闭在爱因斯坦电梯里的大模型</a></li>
-      <li><a href="#s4">符号接地的本体论困境</a></li>
-      <li><a href="#s5">大脑“过拟合”与机器的同构性</a></li>
-      <li><a href="#s6">结论：未竟之路</a></li>
-    </ol>
+    <div id="toc-box"></div>
   </aside>
 
   <article class="reader">
-    <div class="crumb"><a href="index.html#archive">文库</a><span>/</span><span class="tag">AI 与技术哲学</span></div>
-    <h1>LLMs Can't Jump：大模型为何无法自主跃迁与符号接地困境</h1>
-    <p class="subtitle">当统计学概率补全被误认为真正理解——从爱因斯坦电梯思想实验，看 AGI 的本质壁垒与符号接地的终极困境。</p>
-
-    <div class="article-meta">
-      <span class="mono">2026.03.12</span>
-      <span>约 2.4 万字</span>
-      <span>24 分钟</span>
-      <span class="spacer"></span>
-      <div class="reader-tools" role="group" aria-label="字号">
-        <button type="button" data-size="-1" aria-label="缩小字号">A−</button>
-        <button type="button" data-size="1" aria-label="放大字号">A+</button>
-      </div>
-    </div>
-
-    <section class="summary">
-      <h2>核心论点</h2>
-      <ol>
-        <li><div><strong>跃迁悖论。</strong>增加参数量与预训练语料只能持续提升高维流形上的内插拟合精度，却无法在本体论层面自发产生因果反事实推理与认知跃迁。</div></li>
-        <li><div><strong>爱因斯坦电梯。</strong>大模型好比永远被封闭在加速电梯里的纯统计观察者：即便穷尽舱内所有相关性，若无外部干预，也永远无法区分“引力场”与“加速参照系”。</div></li>
-        <li><div><strong>符号接地的鸿沟。</strong>脱离具身实体与物理世界因果交互的纯语言系统，无论注意力矩阵多么深邃，本质上仍困在高维向量空间里的“无底词语接龙”。</div></li>
-      </ol>
-    </section>
-
-    <div class="prose">
-      <h2 id="s1"><span class="no">01</span>引言：涌现神话与 AGI 的“跃迁幻觉”</h2>
-      <p>在当代人工智能的狂热叙事中，参数尺度的每一次倍增都被赋予了某种神圣的蜕变意义。伴随着千亿乃至万亿级注意力矩阵的收敛，公众与大量工程主义学者沉浸于一种关于“涌现（Emergence）”的技术弥赛亚主义之中：仿佛只要向 Transformer 喂入足够多的人类数字化文本，一个具有自我意向性、因果自觉与本体洞察的通用人工智能便会水到渠成地从统计噪音中呼啸而出。</p>
-      <p>然而，这种被广泛赞颂的“智能跃迁”，往往遮蔽了统计学习理论早已划定的本体论防线。从图灵测试的修辞戏法到现代大型语言模型的惊人流利度，我们见证的究竟是认知的飞跃，还是一场前所未有的、极其逼真的高维流形影子戏？当一个系统能够毫无破绽地撰写十四行诗、解答量子物理习题时，它是否真正跨越了那道从“表征相关”到“实在理解”的鸿沟？</p>
-
-      <h2 id="s2"><span class="no">02</span>统计拟合 vs 因果推理：朱迪亚·珀尔的因果之梯</h2>
-      <p>图灵奖得主朱迪亚·珀尔（Judea Pearl）将人类认知与科学探索的阶梯拆解为三层：关联（Association）、干预（Intervention）以及反事实（Counterfactuals）。当今所有基于自回归损失训练的 Transformer 架构，无一例外被禁锢在第一层阶梯上。</p>
-      <blockquote class="pullquote">
-        <p>大模型并不“理解”世界，它只是在亿万次高维投掷中，精确记住了人类语言投射在地板上的影子。</p>
-      </blockquote>
-      <p>预训练模型的全部智慧，来自对条件概率分布 <code>P(w_t | w_1, …, w_{t-1})</code> 的极大似然估计。这种机制具备强大的内插能力（Interpolation），却先天缺乏外推（Extrapolation）以及执行因果算子 <code>do(X)</code> 的能力。模型可以复述“吃退烧药导致退烧”的全部语言模式，但在其潜空间中，并不存在独立于文本共现的生理本体，更无从设立真实的因果干预实验。</p>
-
-      <h2 id="s3"><span class="no">03 · 思想实验</span>封闭在爱因斯坦电梯里的大语言模型</h2>
-      <p>为阐明大模型对现实认知的结构性盲视，我们不妨构想一个计算科学版本的“爱因斯坦电梯”。1907 年，爱因斯坦提出了著名的等效原理：一个处于无窗密闭电梯内的观察者，若感受到地板传来的向上压力，在逻辑上完全无法区分自己是静止在均匀引力场中，还是正以 1g 的加速度在深空中被牵引。</p>
-
-      <figure class="figure">
-        <div class="cap"><b>图 1　两种观察者</b><span>封闭系统 vs 可干预系统</span></div>
-        <div class="compare">
-          <div class="col a">
-            <svg viewBox="0 0 240 170" role="img" aria-label="封闭的电梯舱，观察者只能看到舱内的关联">
-              <rect x="70" y="20" width="100" height="130" rx="4" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--ink-2)"/>
-              <circle cx="120" cy="78" r="9" fill="var(--ink-3)"/>
-              <path d="M120 88v28M108 100h24M120 116l-10 22M120 116l10 22" stroke="var(--ink-3)" stroke-width="3" stroke-linecap="round" fill="none"/>
-              <path d="M30 60v34M30 94l-6-8M30 94l6-8" stroke="var(--ink-3)" stroke-width="2" fill="none" stroke-linecap="round"/>
-              <text x="30" y="112" text-anchor="middle" font-size="11" fill="var(--ink-3)" font-family="JetBrains Mono, monospace">g ?</text>
-              <path d="M210 94V60M210 60l-6 8M210 60l6 8" stroke="var(--ink-3)" stroke-width="2" fill="none" stroke-linecap="round"/>
-              <text x="210" y="112" text-anchor="middle" font-size="11" fill="var(--ink-3)" font-family="JetBrains Mono, monospace">a ?</text>
-            </svg>
-            <h4><span class="pill">系统 A</span>　纯统计观察（LLM）</h4>
-            <p>收集了舱内仪器产生的所有数据，能以极高置信度写出重力加速度方程；但由于<strong>从未打破舱壁</strong>，它无法判定外部是引力场还是火箭推力。</p>
-          </div>
-          <div class="col b">
-            <svg viewBox="0 0 240 170" role="img" aria-label="观察者在电梯壁上开孔射入光线，通过光线弯曲判断外部状态">
-              <path d="M70 20h100v130H70z" fill="none" stroke="var(--ink-2)" stroke-width="3" stroke-dasharray="0" />
-              <rect x="66" y="52" width="8" height="14" fill="var(--paper)"/>
-              <path d="M20 59 L70 59 Q120 62 170 76" fill="none" stroke="var(--seal)" stroke-width="2.5" stroke-linecap="round"/>
-              <circle cx="170" cy="76" r="4" fill="var(--seal)"/>
-              <circle cx="120" cy="96" r="9" fill="var(--ink-2)"/>
-              <path d="M120 106v22M120 114l-14-6M120 128l-9 18M120 128l9 18" stroke="var(--ink-2)" stroke-width="3" stroke-linecap="round" fill="none"/>
-              <text x="20" y="48" font-size="11" fill="var(--seal)" font-family="JetBrains Mono, monospace">do(x)</text>
-            </svg>
-            <h4><span class="pill">系统 B</span>　因果干预与具身接触</h4>
-            <p>行动者在舱壁上钻孔射入一束横向光线，测量光线是否在加速中弯曲，从而<strong>锚定真实世界</strong>。符号由此获得了物理落点与真值依据。</p>
-          </div>
-        </div>
-        <div class="conclusion"><span>推论：</span>纯语言预训练的大模型，是永远无法钻破电梯壁的系统 A。</div>
-      </figure>
-
-      <h2 id="s4"><span class="no">04</span>符号接地的本体论困境：塞尔中文屋的新变体</h2>
-      <p>认知科学家斯蒂芬·哈纳德（Stevan Harnad）在 1990 年正式提出了“符号接地问题”（The Symbol Grounding Problem）。简言之：如果你试图用一本纯中文词典去学习中文，而你原本只字不通，那么词典里的每个汉字都不过是用其他你不认识的汉字来定义。你可以在词典里绕上一万圈，却永远无法跨出符号网络去触碰真实的“红苹果”或“热烈的情感”。</p>
-      <p>大型语言模型正是一本由千亿到数万亿参数构成的、自循环的超维词典。词嵌入向量所捕捉的几何关系，仅仅是符号彼此之间的相对距离。当大模型输出“火是热的”，它并不具有关于“热”的热力学感知与痛觉；它所拥有的，仅仅是 token“火”与 token“热”经常在同一注意力窗口内共现这一事实。</p>
-
-      <aside class="related">
-        <span class="eyebrow">延伸阅读</span>
-        <div class="related-grid">
-          <div><b>为什么 AI 正在重新定义学习</b><p>当知识被机器压缩为直出的答案，人类是否正在失去具身探索的感知根基？</p></div>
-          <div><b>当我们的大脑开始“过拟合”</b><p>信息流饲养下的思维固化，与神经网络的过拟合有着令人心惊的同构性。</p></div>
-        </div>
-      </aside>
-
-      <h2 id="s5"><span class="no">05</span>大脑“过拟合”与机器“记忆回放”的同构性</h2>
-      <p>在计算神经科学中，海马体与大脑皮层的互补学习系统理论（Complementary Learning Systems）揭示了一个关键机制：有机体之所以不会因海量感官输入而陷入死记硬背的“过拟合”，正是因为它拥有持续的、具身的试错机制。</p>
-      <p>反观基于海量静态文本训练的巨型模型，由于缺失身体与动作反馈回路（Sensorimotor Loop），其泛化能力始终受困于分布偏移（Out-of-Distribution Shift）。它在面对微小的词序扰动或颠倒的因果命题时暴露出的脆弱性，恰恰印证了其本质是高维统计流形上的插值逼近，而非对世界的实在表征。</p>
-
-      <h2 id="s6"><span class="no">06</span>结论：通往真正认知智能的未竟之路</h2>
-      <p>大模型并不会因为参数量从万亿攀升至十万亿，便突然“跃迁”为真正的心灵。只要它依然停留在那座毫无破口的加速电梯里，它就永远只是人类过往文字的最高级统计反照镜。通往真正 AGI 的道路，不在于单纯扩大上下文窗口与预训练算力，而在于把智能重新放回具有重力、触觉阻力、因果与真实社会契约的物理世界之中。</p>
-
-      <div class="question">
-        <span class="eyebrow">留给读者的问题</span>
-        <p>在没有任何具身感觉输入与物理反馈的纯语言世界里，大模型能否仅凭强化学习的对齐，实现真正意义上的常识理解与因果反思？</p>
-      </div>
-    </div>
-
-    <section class="refs">
-      <h2>参考文献</h2>
-      <ol>
-        <li>Pearl, J. (2000). <em>Causality: Models, Reasoning, and Inference.</em> Cambridge University Press.<span>提出因果关系三阶梯（关联、干预、反事实）的奠基之作。</span></li>
-        <li>Harnad, S. (1990). The Symbol Grounding Problem. <em>Physica D</em>, 42, 335–346.<span>论证符号系统必须通过感觉运动自下而上地与环境接地。</span></li>
-        <li>Searle, J. (1980). Minds, Brains, and Programs. <em>Behavioral and Brain Sciences</em>, 3(3).<span>中文屋思想实验：句法操作不等于语义理解。</span></li>
-      </ol>
-    </section>
-
-    <nav class="pager" aria-label="更多文章">
-      <a href="index.html#archive"><small>← 返回</small><b>全部文章</b></a>
-      <a href="index.html#domains"><small>浏览 →</small><b>六个知识领域</b></a>
-    </nav>
+    <div id="head"></div>
+    <div class="prose" id="body"><p class="loading">正在载入文章…</p></div>
+    <div id="end"></div>
   </article>
 </div>
 
 <footer class="site-footer">
   <div class="wrap">
     <a class="brand" href="index.html"><span class="seal">思</span>思辨之境</a>
-    <span>© 2026 Yule · 内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a></span>
+    <span>© 2026 Yule · <a href="https://github.com/yule1048596-art/yule1048596-art.github.io">GitHub</a></span>
   </div>
 </footer>
 
+<script src="assets/vendor/marked.min.js"></script>
+<script src="assets/site.js"></script>
 <script>
 (function () {
-  var bar = document.getElementById('progress');
-  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
-  var heads = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  var L = Lib, esc = L.esc;
+  var file = new URLSearchParams(location.search).get('file') || 'LLMs_cant_jump.md';
+  var path = 'articles/' + encodeURIComponent(file);
+
+  Promise.all([
+    L.load().catch(function () { return []; }),
+    fetch(path).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+  ]).then(function (res) {
+    var list = res[0];
+    var meta = list.filter(function (a) { return a.filename === file; })[0] || { filename: file, title: file.replace(/\.md$/, ''), category: '', tags: [] };
+    show(meta, list, res[1]);
+  }).catch(function (e) {
+    document.getElementById('body').innerHTML = '<div class="load-error"><p>没有找到这篇文章（' + esc(e.message) + '）。</p><p><a href="index.html#archive">← 返回文库</a></p></div>';
+  });
+
+  // ---------- Markdown preprocessing ----------
+  function split(md) {
+    md = md.replace(/\r\n/g, '\n');
+    if (md.indexOf('---\n') === 0) {                         // YAML front matter
+      var end = md.indexOf('\n---', 4);
+      if (end > 0) md = md.slice(end + 4);
+    }
+    md = md.replace(/^\s*# .*\n/, '');                         // title (shown in header)
+    md = md.replace(/^\s*——.*\n/, '');                         // subtitle line (shown in header)
+    var header = '';
+    var m = md.match(/^([\s\S]*?)\n-{3,}\s*\n/);               // author/source block before first rule
+    if (m && m[1].length < 1500 && /UP\s*主|原作者/.test(m[1])) {
+      header = m[1].trim();
+      md = md.slice(m[0].length);
+    }
+    return { header: header, body: md };
+  }
+
+  function protectMath(md) {
+    var store = [];
+    md = md.replace(/\$\$([\s\S]+?)\$\$/g, function (_, tex) { store.push({ tex: tex, display: true }); return '@@MATH' + (store.length - 1) + '@@'; });
+    md = md.replace(/\$([^$\n]+?)\$/g, function (_, tex) { store.push({ tex: tex, display: false }); return '@@MATH' + (store.length - 1) + '@@'; });
+    // CommonMark won't close **bold** next to CJK punctuation (e.g. **溯因（A）**的), so convert those directly.
+    md = md.replace(/\*\*(?=\S)([^*\n]+?\S)\*\*/g, '<strong>$1</strong>');
+    return { md: md, store: store };
+  }
+
+  function slug(text, used) {
+    var s = text.toLowerCase().replace(/<[^>]+>/g, '').replace(/&[a-z#0-9]+;/g, '')
+      .replace(/[^\p{L}\p{N}\s_-]/gu, '').trim().replace(/\s/g, '-') || 'section';
+    var base = s, i = 1;
+    while (used[s]) s = base + '-' + (i++);
+    used[s] = true;
+    return s;
+  }
+
+  function render(md) {
+    var used = {}, heads = [];
+    var renderer = new marked.Renderer();
+    renderer.heading = function (text, level, raw) {
+      var id = slug(raw, used);
+      if ((level === 2 || level === 3) && !/^目录$/.test(raw.trim())) heads.push({ id: id, level: level, text: raw.replace(/[*_`]/g, '') });
+      return '<h' + level + ' id="' + id + '">' + text + '</h' + level + '>';
+    };
+    renderer.image = function (href, title, text) {
+      if (href && !/^(https?:)?\/\//.test(href) && href.charAt(0) !== '/') href = 'articles/' + href;
+      return '<img src="' + esc(href) + '" alt="' + esc(text) + '" loading="lazy">';
+    };
+    renderer.table = function (header, body) {
+      return '<div class="table-wrap"><table><thead>' + header + '</thead><tbody>' + body + '</tbody></table></div>';
+    };
+    renderer.link = function (href, title, text) {
+      var ext = /^https?:/.test(href || '');
+      return '<a href="' + esc(href) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' + text + '</a>';
+    };
+    var html = marked.parse(md, { renderer: renderer, gfm: true, breaks: false });
+    return { html: html, heads: heads };
+  }
+
+  function loadKatex() {
+    return new Promise(function (ok, fail) {
+      var css = document.createElement('link');
+      css.rel = 'stylesheet'; css.href = 'assets/vendor/katex/katex.min.css';
+      document.head.appendChild(css);
+      var s = document.createElement('script');
+      s.src = 'assets/vendor/katex/katex.min.js'; s.onload = ok; s.onerror = fail;
+      document.head.appendChild(s);
+    });
+  }
+
+  // ---------- Page ----------
+  function show(a, list, md) {
+    var cat = L.catName(a.category);
+    document.title = a.title + ' · 思辨之境';
+    var parts = split(md);
+    var pm = protectMath(parts.body);
+    var out = render(pm.md);
+
+    var links = [];
+    if (a.source) links.push('<a href="' + esc(a.source) + '" target="_blank" rel="noopener">' + (a.kind === '视频文案' ? '原视频' : '原文') + '</a>');
+    if (a.pdf) links.push('<a href="articles/' + encodeURIComponent(a.pdf) + '" target="_blank" rel="noopener">PDF</a>');
+    links.push('<a href="' + path + '" target="_blank" rel="noopener">Markdown</a>');
+
+    var src = L.source(a);
+    var headerHtml = parts.header ? marked.parse(parts.header.replace(/^>\s?/gm, '').replace(/^-\s+/gm, ''), { breaks: true }) : '';
+
+    var seriesHtml = '';
+    if (a.part) {
+      var sib = list.filter(function (x) { return x.series === a.series; }).sort(function (x, y) { return x.part - y.part; });
+      seriesHtml = '<nav class="series-box" aria-label="系列"><span class="eyebrow">系列 · ' + esc(a.series) + '</span><ol>' +
+        sib.map(function (x) {
+          return '<li' + (x.filename === a.filename ? ' class="cur"' : '') + '><a href="' + L.url(x) + '"><span class="n">0' + x.part + '</span><span>' + esc(L.partLabel(x)) + '</span></a></li>';
+        }).join('') + '</ol></nav>';
+    }
+
+    document.getElementById('head').innerHTML =
+      '<div class="crumb"><a href="index.html#archive">文库</a><span>/</span><span class="tag">' + esc(cat || '文章') + '</span>' +
+        (src ? '<span>/</span><span>' + esc(src) + '</span>' : '') + '</div>' +
+      '<h1 class="title">' + esc(a.title) + '</h1>' +
+      (a.subtitle ? '<p class="subtitle">' + esc(a.subtitle) + '</p>' : '') +
+      '<div class="article-meta">' +
+        (a.char_count ? '<span>约 ' + L.wan(a.char_count) + '</span>' : '') +
+        (a.read_time ? '<span>' + esc(a.read_time) + '</span>' : '') +
+        (a.duration ? '<span>视频 ' + esc(a.duration) + '</span>' : '') +
+        '<span>' + links.join(' · ') + '</span>' +
+        '<span class="spacer"></span>' +
+        '<div class="reader-tools" role="group" aria-label="字号"><button type="button" data-size="-1" aria-label="缩小字号">A−</button><button type="button" data-size="1" aria-label="放大字号">A+</button></div>' +
+      '</div>' +
+      (headerHtml ? '<div class="source-card">' + headerHtml + '</div>' : '') +
+      seriesHtml;
+
+    var body = document.getElementById('body');
+    body.innerHTML = out.html;
+
+    // Lone images become figures with captions.
+    body.querySelectorAll('p > img:only-child').forEach(function (img) {
+      var p = img.parentNode;
+      if (p.textContent.trim()) return;
+      var fig = document.createElement('figure');
+      fig.appendChild(img);
+      if (img.alt) { var cap = document.createElement('figcaption'); cap.textContent = img.alt; fig.appendChild(cap); }
+      p.replaceWith(fig);
+    });
+
+    if (pm.store.length) {
+      loadKatex().then(function () {
+        body.innerHTML = body.innerHTML.replace(/@@MATH(\d+)@@/g, function (_, i) {
+          var m = pm.store[+i];
+          try { return katex.renderToString(m.tex, { displayMode: m.display, throwOnError: false }); }
+          catch (e) { return esc(m.tex); }
+        });
+        setupScroll(out.heads);
+      }).catch(function () {
+        body.innerHTML = body.innerHTML.replace(/@@MATH(\d+)@@/g, function (_, i) { return '<code>' + esc(pm.store[+i].tex) + '</code>'; });
+      });
+    }
+
+    buildToc(out.heads);
+    buildEnd(a, list, links);
+    setupScroll(out.heads);
+    if (location.hash) { var t = document.getElementById(decodeURIComponent(location.hash.slice(1))); if (t) t.scrollIntoView(); }
+  }
+
+  function buildToc(heads) {
+    var h2 = heads.filter(function (h) { return h.level === 2; });
+    var use = h2.length >= 3 ? (heads.length <= 28 ? heads : h2) : heads;
+    if (use.length < 2) return;
+    document.getElementById('toc-box').innerHTML = '<div class="eyebrow">目录</div><ol id="toc">' +
+      use.map(function (h) {
+        return '<li' + (h.level === 3 && use !== h2 && h2.length ? ' class="sub"' : '') + '><a href="#' + h.id + '">' + esc(h.text) + '</a></li>';
+      }).join('') + '</ol>';
+  }
+
+  function buildEnd(a, list, links) {
+    var prev, next, pool;
+    if (a.part) {
+      pool = list.filter(function (x) { return x.series === a.series; }).sort(function (x, y) { return x.part - y.part; });
+    } else {
+      pool = list.filter(function (x) { return x.category === a.category; });
+    }
+    var i = pool.map(function (x) { return x.filename; }).indexOf(a.filename);
+    if (i >= 0) { prev = pool[i - 1]; next = pool[i + 1]; }
+    var label = a.part ? '系列' : L.catName(a.category);
+    var related = list.filter(function (x) {
+      return x.category === a.category && x.filename !== a.filename && (!a.series || x.series !== a.series) && x !== prev && x !== next;
+    }).slice(0, 4);
+
+    document.getElementById('end').innerHTML =
+      '<div class="article-end"><div class="actions"><span>本文文件：</span>' + links.join(' · ') + '</div>' +
+      ((prev || next) ? '<nav class="pager" aria-label="上一篇与下一篇">' +
+        (prev ? '<a class="prev" href="' + L.url(prev) + '"><small>← 上一篇 · ' + esc(label) + '</small><b>' + esc(prev.title) + '</b></a>' : '') +
+        (next ? '<a class="next" href="' + L.url(next) + '"><small>下一篇 · ' + esc(label) + ' →</small><b>' + esc(next.title) + '</b></a>' : '') +
+      '</nav>' : '') +
+      (related.length ? '<div class="related"><span class="eyebrow">同领域 · ' + esc(L.catName(a.category)) + '</span><ul>' +
+        related.map(function (x) { return '<li><a href="' + L.url(x) + '">' + esc(x.title) + '<span>' + esc(x.read_time) + '</span></a></li>'; }).join('') +
+      '</ul></div>' : '') + '</div>';
+  }
+
+  var scrollBound = false, tocLinks = [], tocHeads = [];
+  function setupScroll() {
+    tocLinks = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+    tocHeads = tocLinks.map(function (l) { return document.getElementById(l.getAttribute('href').slice(1)); });
+    if (scrollBound) return onScroll();
+    scrollBound = true;
+    addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
   function onScroll() {
     var h = document.documentElement.scrollHeight - innerHeight;
-    bar.style.width = (h > 0 ? Math.min(100, scrollY / h * 100) : 0) + '%';
-    var idx = 0;
-    heads.forEach(function (el, i) { if (el && el.getBoundingClientRect().top < 140) idx = i; });
-    links.forEach(function (a, i) { a.classList.toggle('active', i === idx); });
+    document.getElementById('progress').style.width = (h > 0 ? Math.min(100, scrollY / h * 100) : 0) + '%';
+    var idx = -1;
+    tocHeads.forEach(function (el, i) { if (el && el.getBoundingClientRect().top < 140) idx = i; });
+    tocLinks.forEach(function (l, i) { l.classList.toggle('active', i === idx); });
+    var act = tocLinks[idx];
+    if (act) {
+      var box = document.querySelector('.toc');
+      var r = act.getBoundingClientRect(), b = box.getBoundingClientRect();
+      if (r.top < b.top + 40 || r.bottom > b.bottom - 20) box.scrollTop += r.top - b.top - b.height / 2;
+    }
   }
-  addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
 
-  var root = document.documentElement;
-  document.querySelectorAll('[data-size]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      var cur = parseFloat(getComputedStyle(document.querySelector('.reader')).fontSize) || 18;
-      var next = Math.max(15, Math.min(22, cur + Number(b.dataset.size)));
-      root.style.setProperty('--reader-size', next + 'px');
-      try { localStorage.setItem('reader-size', next); } catch (e) {}
-    });
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-size]'); if (!b) return;
+    var cur = parseFloat(getComputedStyle(document.querySelector('.reader')).fontSize) || 18;
+    var next = Math.max(15, Math.min(22, cur + Number(b.dataset.size)));
+    document.documentElement.style.setProperty('--reader-size', next + 'px');
+    try { localStorage.setItem('reader-size', next); } catch (err) {}
   });
 })();
 </script>
-<script src="assets/site.js"></script>
 </body>
 </html>

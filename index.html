@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>思辨之境 · Yule 的写作文库</title>
-<meta name="description" content="Yule 的个人思想文库：人工智能哲学、认知心理、职场社会、媒介批判、游戏工业与文学品读的长篇非虚构写作。">
+<title>思辨之境 · 长文文库</title>
+<meta name="description" content="按主题整理的长文文库：AI 与技术哲学、认知心理、职场社会、媒介批判、游戏工业与文学品读。">
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +19,7 @@
     <a class="brand" href="index.html"><span class="seal">思</span>思辨之境</a>
     <nav class="nav" aria-label="主导航">
       <a href="#featured" class="hide-sm">精选</a>
-      <a href="#domains" class="hide-sm">领域</a>
+      <a href="#series" class="hide-sm">系列</a>
       <a href="#archive">文库</a>
       <a href="#about">关于</a>
       <button class="icon-btn" type="button" data-theme-toggle aria-label="切换深浅色">
@@ -33,88 +33,56 @@
 <main>
   <section class="hero">
     <div class="wrap">
-      <div class="eyebrow">Yule · 个人写作文库</div>
+      <div class="eyebrow">思辨之境 · 长文文库</div>
       <h1>沉淀真实的思考，<br><em>解构</em>复杂的现实。</h1>
-      <p class="lede">这里收录我关于人工智能哲学、认知心理、职场与消费社会、媒介批判、游戏工业史和文学品读的长篇非虚构写作。不追热点，不为流量，只写值得花时间想清楚的问题。</p>
+      <p class="lede">一座按主题整理的长文文库：AI 与技术哲学、认知心理、职场社会、媒介批判、游戏工业与文学品读。这里有随笔长文、论文译文，也收录了 B 站 UP 主「智能路障」《围炉夜话》系列的视频文案。</p>
       <div class="stats">
-        <div class="stat"><b class="mono" data-stat="count">31</b><span>篇长文</span></div>
-        <div class="stat"><b class="mono">6</b><span>个知识领域</span></div>
-        <div class="stat"><b class="mono">40万+</b><span>字</span></div>
+        <div class="stat"><b class="mono" id="st-count">—</b><span>篇文章</span></div>
+        <div class="stat"><b class="mono" id="st-cats">—</b><span>个领域</span></div>
+        <div class="stat"><b class="mono" id="st-chars">—</b><span>字</span></div>
+        <div class="stat"><b class="mono">3</b><span>个系列</span></div>
       </div>
     </div>
   </section>
 
   <section class="section" id="featured">
     <div class="wrap">
-      <div class="section-head">
-        <h2>精选</h2>
-        <span class="eyebrow">Featured</span>
-      </div>
-      <div class="featured">
-        <a class="lead" href="article_detail.html">
-          <div class="kicker"><span class="tag">AI 与技术哲学</span><span class="mono">2.4 万字 · 24 min</span></div>
-          <h3>LLMs Can't Jump：大模型为何无法自主跃迁</h3>
-          <p>以爱因斯坦电梯思想实验解构自回归模型的黑箱机制，直面塞尔中文屋与符号接地难题：当统计学的概率补全被误认为真正的理解，我们离“通用智能”究竟还有多远？</p>
-          <span class="more">阅读全文</span>
-        </a>
-        <div class="side-picks">
-          <div class="pick">
-            <div class="tag">媒介批判与互联网</div>
-            <h4>为什么互联网越来越低智，回旋镖越来越多</h4>
-            <p>短视频的多巴胺回路如何悄然重构公众的注意力？算法投喂引发群体极化与降维思维的系统剖析。</p>
-          </div>
-          <div class="pick">
-            <div class="tag">商业工业与游戏</div>
-            <h4>任天堂：世界的主宰（三部曲）</h4>
-            <p>从京都花札到全球游戏殿堂，回溯横井军平与岩田聪的哲学遗产：为什么成熟廉价的技术往往蕴藏最纯粹的交互魔法？</p>
-          </div>
-          <div class="pick">
-            <div class="tag">认知心理与成长</div>
-            <h4>如何使内心强大？解析年轻人的九大心理防御机制</h4>
-            <p>升华、合理化、退行、反向形成——拆解潜意识保护自我的盾牌与牢笼，建立基于觉察的心理免疫力。</p>
-          </div>
-        </div>
-      </div>
+      <div class="section-head"><h2>精选</h2><span class="eyebrow">Featured</span></div>
+      <div class="featured" id="featured-box"></div>
     </div>
   </section>
 
-  <section class="section" id="domains">
+  <section class="section" id="series">
     <div class="wrap">
-      <div class="section-head">
-        <h2>六个领域</h2>
-        <span class="eyebrow">点击即可筛选文库</span>
-      </div>
-      <div class="domains" id="domain-grid"></div>
+      <div class="section-head"><h2>系列</h2><span class="eyebrow">Series</span></div>
+      <div class="series-grid" id="series-grid"></div>
     </div>
   </section>
 
   <section class="section" id="archive">
     <div class="wrap">
-      <div class="section-head">
-        <h2>全部文章</h2>
-        <span class="eyebrow" id="archive-count"></span>
-      </div>
+      <div class="section-head"><h2>全部文章</h2><span class="eyebrow" id="archive-count"></span></div>
       <div class="toolbar">
         <div class="chips" id="chips" role="group" aria-label="按领域筛选"></div>
         <label class="search">
           <span class="sr-only">搜索文章</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-          <input id="q" type="search" placeholder="搜索标题、关键词…" autocomplete="off">
+          <input id="q" type="search" placeholder="搜索标题、标签、作者…" autocomplete="off">
         </label>
       </div>
-      <ul class="archive" id="list"></ul>
-      <p class="archive-foot">标注“已上线”的文章可在站内阅读，其余篇目正在整理排版中。</p>
+      <div class="filter-note" id="filter-note" hidden></div>
+      <div id="list"><p class="empty">正在载入文库…</p></div>
     </div>
   </section>
 
   <section class="section" id="about">
     <div class="wrap">
       <div class="about">
-        <blockquote>只有经由严谨的长程逻辑与真实的经验检验，文字才能在时间里沉淀下来。</blockquote>
+        <blockquote>一个问题值得被慢慢展开，而不是被压缩成一句口号。</blockquote>
         <div class="body">
-          <p>思辨之境是 Yule 的个人写作归档。我相信长文仍然有它的位置：一个问题值得被慢慢展开，从多个学科的角度交叉审视，而不是被压缩成一句口号或十五秒的视频。</p>
-          <p>这里的文章大多从一个具体的困惑出发——为什么上班让人疲惫，为什么大模型看起来懂却又不懂，为什么一款廉价的游戏机能打败性能怪兽——然后尽力把它想清楚、写明白。</p>
-          <p>文章内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" style="color:var(--seal)">CC BY-NC-SA 4.0</a> 协议，欢迎在注明出处的前提下非商业转载。</p>
+          <p>思辨之境是 Yule 的个人长文文库。这里的文章大多从一个具体的困惑出发——为什么上班让人疲惫，为什么大模型看起来懂却又不懂，为什么一台性能落后的游戏机能卖出上亿台——然后尽力把它想清楚、写明白。</p>
+          <p>文库中的《围炉夜话》系列整理自 B 站 UP 主「智能路障」的视频，《LLMs can't jump》译自 Tom Zahavy 的论文，每篇文章页都标注了作者与原始出处，并提供原始 Markdown 文件。</p>
+          <p>原创内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议；整理与翻译的内容版权归原作者所有。</p>
         </div>
       </div>
     </div>
@@ -124,128 +92,157 @@
 <footer class="site-footer">
   <div class="wrap">
     <a class="brand" href="index.html"><span class="seal">思</span>思辨之境</a>
-    <span>© 2026 Yule · 内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a></span>
+    <span>© 2026 Yule · <a href="https://github.com/yule1048596-art/yule1048596-art.github.io">GitHub</a></span>
   </div>
 </footer>
 
-<script>
-const DOMAINS = [
-  { id: 'ai',    name: 'AI 与技术哲学',   desc: '大模型、学习与认知的边界，以及技术如何重新定义“人”。' },
-  { id: 'mind',  name: '认知心理与成长',   desc: '心理防御、学习与智力、亲密关系里的困惑与自我觉察。' },
-  { id: 'work',  name: '职场生存与社会',   desc: '上班、自由职业、消费主义与“新穷人”的生存处境。' },
-  { id: 'media', name: '媒介批判与互联网', desc: '黑话、短视频、网络暴力与体育资本背后的媒介机制。' },
-  { id: 'game',  name: '商业工业与游戏',   desc: '任天堂与宝可梦的工业史，以及游戏里的欲望与商业。' },
-  { id: 'lit',   name: '文学品读与随笔',   desc: '轻小说、文本细读，和关于阅读本身的思考。' }
-];
-
-const POSTS = [
-  { d: 'ai', t: "LLMs Can't Jump：大模型为何无法自主跃迁", date: '2026-03-12', wc: '2.4 万字', href: 'article_detail.html',
-    x: '借用爱因斯坦电梯思想实验，论证自回归统计模型为何缺乏物理接地的因果常识，阐释从相关性到真正理解之间的认知鸿沟。', k: ['爱因斯坦电梯', '符号接地', '维特根斯坦'] },
-  { d: 'work', t: '扎心的真相：上班是如何摧毁我们的心态、生活和幸福感的', date: '2026-02-28', wc: '1.8 万字',
-    x: '现代科层制企业中细分的齿轮分工，如何系统性剥夺劳动者的主体价值与自主节奏？解析大卫·格雷伯所论“狗屁工作”。', k: ['异化劳动', '狗屁工作', '能量耗竭'] },
-  { d: 'game', t: '任天堂：世界的主宰（三部曲）', date: '2026-02-14', wc: '3.2 万字',
-    x: '任天堂穿越百年的产品美学——不依赖算力军备竞赛，而是依靠“枯竭技术的水平思考”与极致的交互设计。', k: ['横井军平', '枯竭技术', '硬件哲学'] },
-  { d: 'lit', t: '不哭不哭，痛痛飞走吧：深度读后感四部曲', date: '2026-01-20', wc: '1.5 万字',
-    x: '四部曲文本细读：当文学把苦难、依恋与告别转化为意象，我们如何在冷漠的人际荒漠中重建脆弱的共情能力？', k: ['叙事解构', '共情困境', '创伤叙事'] },
-  { d: 'work', t: '消费主义的本质：花钱你会成为穷人，抠门你会成为新穷人', date: '2026-01-05', wc: '1.6 万字',
-    x: '承接鲍曼“工作、消费主义与新穷人”的命题，揭示社会从生产者转向消费者之后，两端都逃不出的困局。', k: ['齐格蒙特·鲍曼', '虚假需求', '阶级壁垒'] },
-  { d: 'mind', t: '做题能改变命运吗', date: '2025-12-18', wc: '1.4 万字',
-    x: '借助布迪厄的文化资本与习性理论，剖析应试筛选机制的代际壁垒：做题红利出清之后，如何重新定义真实的认知力？', k: ['文化资本', '筛选机制', '认知重塑'] },
-  { d: 'lit', t: '什么是“轻小说”', date: '2025-11-30', wc: '1.1 万字',
-    x: '从战后日本大众文学脉络到当代快餐叙事，分析文字符号如何演化为轻质化的消费情绪。', k: ['亚文化', '快餐叙事', '符号消费'] },
-  { d: 'mind', t: '为什么谈恋爱这么难', date: '2025-11-12', wc: '1.3 万字',
-    x: '把依恋理论与情感经济学结合起来：在充满不确定与防御的原子化社会里，毫无保留的亲密关系为何越来越奢侈？', k: ['依恋理论', '情感经济学', '亲密关系'] },
-  { d: 'media', t: '黑哨、贿选、死人！世界杯到底黑到什么程度', date: '2025-10-25', wc: '2.1 万字',
-    x: '拆解国际足联与跨国资本、主权基金及转播巨头的纠缠，揭示全球第一运动背后的政治经济学。', k: ['体育地缘政治', '资本渗透', '媒介合谋'] },
-  { d: 'ai', t: '当我们的大脑开始“过拟合”', date: '2025-09-19', wc: '1.2 万字',
-    x: '借机器学习中的“过拟合”隐喻人类认知：长期浸泡在同质化社群与信息茧房中，大脑如何丧失泛化应对现实的能力？', k: ['神经可塑性', '算法回音室', '启发式偏见'] },
-  { d: 'media', t: '贴标签、造黑话！现代人为何越来越不会说人话？', date: '2025-08-30', wc: '1.7 万字',
-    x: '概念蠕变与语言腐败如何悄无声息地窄化我们的思考？警惕用互联网黑话代替严密推理的思维惰性。', k: ['概念蠕变', '语言腐败', '思想窄化'] },
-  { d: 'work', t: '自由职业真相：不上班，到底应该怎么活', date: '2025-07-14', wc: '2.0 万字',
-    x: '撕下滤镜，拆解独立劳动者的现金流、注意力与精力系统。如何用查尔斯·汉迪的“三叶草组织”重建自我雇佣契约？', k: ['三叶草组织', '自我雇佣', '风险管理'] },
-  { d: 'media', t: '为什么互联网越来越低智，回旋镖越来越多',
-    x: '短视频的多巴胺回路如何重构公众的注意力？算法投喂引发群体极化与降维思维的系统剖析。', k: ['认知降维', '群体极化'] },
-  { d: 'mind', t: '如何使内心强大？解析当代年轻人的九大心理防御机制', wc: '1.98 万字',
-    x: '升华、合理化、退行、反向形成——全面拆解潜意识保护自我的盾牌与牢笼。', k: ['心理防御机制', '认知失调'] },
-  { d: 'ai', t: '为什么 AI 正在重新定义学习' },
-  { d: 'ai', t: '在被算作数字之前' },
-  { d: 'ai', t: '一个关于归属的数字寓言' },
-  { d: 'game', t: '宝可梦：游戏怪胎' },
-  { d: 'game', t: '商务漂流、擦边二游，现代人为何如此性压抑' },
-  { d: 'lit', t: '这时代，阅读还有未来吗' },
-  { d: 'mind', t: '怎么判断自己是不是一个聪明人' },
-  { d: 'mind', t: '好学生和差学生的区别在哪' },
-  { d: 'mind', t: '毒害年轻人的错误认知有哪些' },
-  { d: 'mind', t: '人类真的需要理解彼此吗' },
-  { d: 'work', t: '年轻人为何越来越疲惫、焦虑' },
-  { d: 'work', t: '都在劝你多存钱，但我想劝你多花钱' },
-  { d: 'work', t: '为何我们如此贫穷' },
-  { d: 'media', t: '网络喷子和键盘侠这么多，罪魁祸首到底是谁' },
-  { d: 'media', t: '摆拍、编剧本、网红上热搜，短视频是怎样恶心全国的' },
-  { d: 'media', t: '世界杯来了，赌狗也来了' }
-];
-
-const byId = Object.fromEntries(DOMAINS.map(d => [d.id, d]));
-const countOf = id => POSTS.filter(p => p.d === id).length;
-const state = { domain: 'all', q: '' };
-const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-
-document.querySelector('[data-stat="count"]').textContent = POSTS.length;
-
-// Domain grid
-document.getElementById('domain-grid').innerHTML = DOMAINS.map((d, i) => `
-  <button class="domain" type="button" data-domain="${d.id}">
-    <span class="num">0${i + 1}</span>
-    <strong>${d.name}</strong>
-    <span class="desc">${d.desc}</span>
-    <span class="count">${countOf(d.id)} 篇</span>
-  </button>`).join('');
-
-// Chips
-const chips = document.getElementById('chips');
-chips.innerHTML = [`<button class="chip" type="button" data-domain="all">全部<sup>${POSTS.length}</sup></button>`]
-  .concat(DOMAINS.map(d => `<button class="chip" type="button" data-domain="${d.id}">${d.name.replace(/ /g, '')}<sup>${countOf(d.id)}</sup></button>`))
-  .join('');
-
-function render() {
-  chips.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.domain === state.domain));
-  const q = state.q.trim().toLowerCase();
-  const items = POSTS
-    .filter(p => state.domain === 'all' || p.d === state.domain)
-    .filter(p => !q || [p.t, p.x || '', (p.k || []).join(' '), byId[p.d].name].join(' ').toLowerCase().includes(q))
-    .sort((a, b) => (b.href ? 1 : 0) - (a.href ? 1 : 0) || (b.date || '').localeCompare(a.date || ''));
-
-  document.getElementById('archive-count').textContent = `${items.length} / ${POSTS.length}`;
-  const list = document.getElementById('list');
-  if (!items.length) { list.innerHTML = '<li class="empty">没有找到相关文章，换个关键词试试。</li>'; return; }
-  list.innerHTML = items.map(p => {
-    const tag = p.href ? 'a' : 'div';
-    const attrs = p.href ? ` href="${p.href}"` : '';
-    return `<li class="row"><${tag} class="inner"${attrs}>
-      <span class="date">${p.date ? p.date.replace(/-/g, '.') : '—'}</span>
-      <div>
-        <h3>${esc(p.t)}${p.href ? '<span class="badge">已上线</span>' : ''}</h3>
-        ${p.x ? `<p>${esc(p.x)}</p>` : ''}
-        ${p.k ? `<div class="keys">${p.k.map(k => `<span>${esc(k)}</span>`).join('')}</div>` : ''}
-      </div>
-      <div class="right"><span class="tag">${byId[p.d].name}</span>${p.wc ? `<span class="wc">${p.wc}</span>` : ''}</div>
-    </${tag}></li>`;
-  }).join('');
-}
-
-function setDomain(id, scroll) {
-  state.domain = id;
-  render();
-  if (scroll) document.getElementById('archive').scrollIntoView({ behavior: 'smooth' });
-}
-chips.addEventListener('click', e => { const b = e.target.closest('.chip'); if (b) setDomain(b.dataset.domain); });
-document.getElementById('domain-grid').addEventListener('click', e => { const b = e.target.closest('.domain'); if (b) setDomain(b.dataset.domain, true); });
-document.getElementById('q').addEventListener('input', e => { state.q = e.target.value; render(); });
-document.addEventListener('keydown', e => {
-  if (e.key === '/' && document.activeElement.tagName !== 'INPUT') { e.preventDefault(); document.getElementById('q').focus(); }
-});
-render();
-</script>
 <script src="assets/site.js"></script>
+<script>
+(function () {
+  var L = Lib, esc = L.esc;
+  // Edit these filenames to change what's featured on the homepage (first one is the lead).
+  var FEATURED = ['LLMs_cant_jump.md', '宝可梦：游戏怪胎.md', '什么是“轻小说”.md', '为什么AI正在重新定义学习.md'];
+  var SERIES = [
+    { key: '任天堂：世界的主宰', eyebrow: '三部曲', desc: '从花札老铺到 Switch：任天堂的产品哲学、手艺人传统与组织制度。' },
+    { key: '不哭不哭，痛痛飞走吧 · 读后感', eyebrow: '四部曲', title: '不哭不哭，痛痛飞走吧', desc: '三秋缒小说的文本细读：创伤、人物与“爱”的另一种定义。' },
+    { key: '围炉夜话', eyebrow: '视频文案', title: '《围炉夜话》', desc: 'B 站 UP 主「智能路障」的长视频文案，谈学习、金钱、职场、互联网与社会心理。' }
+  ];
+  var state = { cat: 'all', series: '', q: '' };
+  var ALL = [];
+
+  L.load().then(function (list) {
+    ALL = list;
+    var cats = [];
+    list.forEach(function (a) { var k = L.catName(a.category); if (cats.indexOf(k) < 0) cats.push(k); });
+    document.getElementById('st-count').textContent = list.length;
+    document.getElementById('st-cats').textContent = cats.length;
+    var total = list.reduce(function (s, a) { return s + (a.char_count || 0); }, 0);
+    document.getElementById('st-chars').textContent = Math.floor(total / 10000) + ' 万+';
+    renderFeatured();
+    renderSeries();
+    renderChips(cats);
+    render();
+  }).catch(function (e) {
+    document.getElementById('list').innerHTML = '<p class="empty">文库载入失败（' + esc(e.message) + '）。如果是在本地直接打开文件，请先启动本地服务器，见 README。</p>';
+  });
+
+  function byFile(f) { return ALL.filter(function (a) { return a.filename === f; })[0]; }
+  function kicker(a) {
+    var src = L.source(a);
+    return '<div class="kicker"><span class="tag">' + esc(L.catName(a.category)) + '</span>' +
+      (src ? '<span>' + esc(src) + '</span>' : '') +
+      '<span class="mono">' + L.wan(a.char_count) + ' · ' + esc(a.read_time) + '</span></div>';
+  }
+
+  function renderFeatured() {
+    var items = FEATURED.map(byFile).filter(Boolean);
+    if (!items.length) return;
+    var lead = items[0];
+    document.getElementById('featured-box').innerHTML =
+      '<a class="lead" href="' + L.url(lead) + '">' + kicker(lead) +
+        '<h3>' + esc(lead.title) + '</h3>' +
+        (lead.subtitle ? '<p class="sub">' + esc(lead.subtitle) + '</p>' : '') +
+        '<p>' + esc(lead.excerpt) + '</p><span class="more">阅读全文</span></a>' +
+      '<div class="side-picks">' + items.slice(1).map(function (a) {
+        return '<a class="pick" href="' + L.url(a) + '"><div class="tag">' + esc(L.catName(a.category)) + '</div>' +
+          '<h4>' + esc(a.title) + '</h4><p>' + esc(a.subtitle || a.excerpt) + '</p></a>';
+      }).join('') + '</div>';
+  }
+
+  function renderSeries() {
+    document.getElementById('series-grid').innerHTML = SERIES.map(function (s) {
+      var parts = ALL.filter(function (a) { return a.series === s.key; })
+        .sort(function (a, b) { return (a.part || 0) - (b.part || 0); });
+      if (!parts.length) return '';
+      var body;
+      if (parts[0].part) {
+        body = '<ol>' + parts.map(function (a) {
+          return '<li><a href="' + L.url(a) + '"><span class="n">0' + a.part + '</span><span>' + esc(L.partLabel(a)) + '</span></a></li>';
+        }).join('') + '</ol>';
+      } else {
+        body = '<button class="all" type="button" data-series="' + esc(s.key) + '">浏览全部 ' + parts.length + ' 篇 →</button>';
+      }
+      return '<div class="series-card"><span class="eyebrow">' + esc(s.eyebrow) + ' · ' + parts.length + ' 篇</span>' +
+        '<h3>' + esc(s.title || s.key) + '</h3><p>' + esc(s.desc) + '</p>' + body + '</div>';
+    }).join('');
+  }
+
+  function renderChips(cats) {
+    var count = function (c) { return ALL.filter(function (a) { return L.catName(a.category) === c; }).length; };
+    document.getElementById('chips').innerHTML =
+      '<button class="chip" type="button" data-cat="all">全部<sup>' + ALL.length + '</sup></button>' +
+      cats.map(function (c) { return '<button class="chip" type="button" data-cat="' + esc(c) + '">' + esc(c) + '<sup>' + count(c) + '</sup></button>'; }).join('');
+  }
+
+  function highlight(text, q) {
+    var t = esc(text), k = esc(q);
+    if (!q) return t;
+    var i = t.toLowerCase().indexOf(k.toLowerCase());
+    return i < 0 ? t : t.slice(0, i) + '<mark>' + t.slice(i, i + k.length) + '</mark>' + t.slice(i + k.length);
+  }
+
+  function row(a, q) {
+    var src = L.source(a);
+    var keys = (src ? '<span class="src">' + esc(src) + '</span>' : '') +
+      (a.tags || []).map(function (t) { return '<span class="t">' + highlight(t, q) + '</span>'; }).join('');
+    return '<li class="row"><a href="' + L.url(a) + '"><div>' +
+      '<h4>' + highlight(a.title, q) + (a.subtitle ? '<small>' + highlight(a.subtitle, q) + '</small>' : '') + '</h4>' +
+      (a.excerpt ? '<p>' + highlight(a.excerpt, q) + '</p>' : '') +
+      '<div class="keys">' + keys + '</div></div>' +
+      '<div class="right"><span>' + L.wan(a.char_count) + '</span><span>' + esc(a.read_time) + '</span></div></a></li>';
+  }
+
+  function render() {
+    document.querySelectorAll('#chips .chip').forEach(function (c) { c.setAttribute('aria-pressed', String(c.dataset.cat === state.cat)); });
+    var q = state.q.trim(), ql = q.toLowerCase();
+    var items = ALL.filter(function (a) {
+      if (state.cat !== 'all' && L.catName(a.category) !== state.cat) return false;
+      if (state.series && a.series !== state.series) return false;
+      if (!ql) return true;
+      return [a.title, a.subtitle, a.excerpt, a.author, a.series, L.catName(a.category), (a.tags || []).join(' ')].join(' ').toLowerCase().indexOf(ql) >= 0;
+    });
+
+    var note = document.getElementById('filter-note');
+    note.hidden = !state.series;
+    note.innerHTML = state.series ? '只看系列：<b>' + esc(state.series) + '</b><button type="button" id="clear-series">清除 ×</button>' : '';
+
+    document.getElementById('archive-count').textContent = items.length + ' / ' + ALL.length;
+    var box = document.getElementById('list');
+    if (!items.length) { box.innerHTML = '<p class="empty">没有找到相关文章，换个关键词试试。</p>'; return; }
+
+    if (state.cat === 'all' && !ql && !state.series) {
+      var groups = [];
+      items.forEach(function (a) {
+        var c = L.catName(a.category), g = groups[groups.length - 1];
+        if (!g || g.name !== c) groups.push(g = { name: c, items: [] });
+        g.items.push(a);
+      });
+      box.innerHTML = groups.map(function (g, i) {
+        return '<div class="group-head"><span class="num">0' + (i + 1) + '</span><h3>' + esc(g.name) + '</h3><span class="count">' + g.items.length + ' 篇</span></div>' +
+          '<ul class="archive">' + g.items.map(function (a) { return row(a); }).join('') + '</ul>';
+      }).join('');
+    } else {
+      box.innerHTML = '<ul class="archive flat">' + items.map(function (a) { return row(a, q); }).join('') + '</ul>';
+    }
+  }
+
+  document.getElementById('chips').addEventListener('click', function (e) {
+    var b = e.target.closest('.chip'); if (!b) return;
+    state.cat = b.dataset.cat; render();
+  });
+  document.getElementById('series-grid').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-series]'); if (!b) return;
+    state.series = b.dataset.series; state.cat = 'all'; render();
+    document.getElementById('archive').scrollIntoView({ behavior: 'smooth' });
+  });
+  document.getElementById('filter-note').addEventListener('click', function (e) {
+    if (e.target.id === 'clear-series') { state.series = ''; render(); }
+  });
+  document.getElementById('q').addEventListener('input', function (e) { state.q = e.target.value; render(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === '/' && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) { e.preventDefault(); document.getElementById('q').focus(); }
+  });
+})();
+</script>
 </body>
 </html>
