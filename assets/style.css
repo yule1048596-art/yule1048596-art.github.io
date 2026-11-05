@@ -606,7 +606,7 @@ body::before {
 .to-top {
   position: fixed; right: clamp(16px, 3vw, 32px); bottom: clamp(16px, 3vw, 32px); z-index: 25;
   width: 48px; height: 48px; border-radius: 6px; border: 0; cursor: pointer;
-  background: var(--seal); color: #fff; display: grid; place-items: center; align-content: center; gap: 0;
+  background: var(--seal); color: var(--paper); display: grid; place-items: center; align-content: center; gap: 0;
   box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.25), 0 10px 24px -10px rgba(120,30,20,.6);
   opacity: 0; transform: translateY(12px) rotate(-3deg); pointer-events: none;
   transition: opacity .3s, transform .4s var(--ease);
@@ -987,39 +987,39 @@ details.series-box ol { margin-top: 12px; max-height: 380px; overflow-y: auto; o
 body.ocean-on .ocean-bg { opacity: 1; }
 
 body.ocean {
-  /* Panel opacity and the two text colours below were tuned against the darkest
-     (light theme) / brightest (dark theme) blurred ocean, measured over time with a
-     25% safety margin, so every panel keeps WCAG AA contrast. */
-  --glass-a: 74%;
-  --glass-a-strong: 86%;
+  /* Panel opacity, blur and the two text colours below were tuned against the darkest
+     (light theme) / brightest (dark theme) ocean behind a 20px blur, measured over 120
+     frames, plus a 15% safety margin, so every panel keeps WCAG AA contrast. */
+  --glass-a: 60%;
+  --glass-a-strong: 72%;
   --glass-line: rgba(29, 27, 24, .12);
   --glass-shadow: 0 1px 0 rgba(255, 255, 255, .55) inset, 0 28px 70px -42px rgba(20, 16, 10, .55);
-  --glass-blur: blur(16px) saturate(1.15);
+  --glass-blur: blur(20px) saturate(1.15);
   --panel-pad: clamp(18px, 4vw, 52px);
   --ink-3: #5c554b;
   --seal: #9e3222;
 }
 :root[data-theme="dark"] body.ocean {
-  --glass-a: 80%;
-  --glass-a-strong: 88%;
+  --glass-a: 66%;
+  --glass-a-strong: 76%;
   --glass-line: rgba(236, 230, 220, .1);
   --glass-shadow: 0 1px 0 rgba(255, 255, 255, .06) inset, 0 28px 70px -40px rgba(0, 0, 0, .85);
-  --ink-3: #aca497;
-  --seal: #ec7a65;
+  --ink-3: #afa89b;
+  --seal: #ef8e7c;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) body.ocean {
-    --glass-a: 80%;
-    --glass-a-strong: 88%;
+    --glass-a: 66%;
+    --glass-a-strong: 76%;
     --glass-line: rgba(236, 230, 220, .1);
     --glass-shadow: 0 1px 0 rgba(255, 255, 255, .06) inset, 0 28px 70px -40px rgba(0, 0, 0, .85);
-    --ink-3: #aca497;
-    --seal: #ec7a65;
+    --ink-3: #afa89b;
+    --seal: #ef8e7c;
   }
 }
 
 body.ocean > main, body.ocean > .site-footer { position: relative; z-index: 1; }
-body.ocean .site-header { background: color-mix(in srgb, var(--paper) 72%, transparent); border-bottom-color: var(--glass-line); }
+body.ocean .site-header { background: color-mix(in srgb, var(--paper) var(--glass-a), transparent); border-bottom-color: var(--glass-line); }
 
 /* Glass panels */
 body.ocean .panel {
