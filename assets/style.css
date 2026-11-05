@@ -968,3 +968,6 @@ details.series-box ol { margin-top: 12px; max-height: 380px; overflow-y: auto; o
 /* KaTeX numbers its equations with class "tag"; keep the site's .tag label style off them. */
 .katex .tag { font-size: inherit; font-weight: inherit; letter-spacing: normal; color: var(--ink-2); }
 .katex-display[tabindex]:focus-visible, .table-wrap[tabindex]:focus-visible { outline: 2px solid var(--seal); outline-offset: 4px; border-radius: 4px; }
+
+/* Vector figures exported from LaTeX/Inkscape are tiny at their native size; scale them to a readable width. */
+.prose .embed img[src$=".svg"] { width: min(100%, 480px); height: auto; padding: 12px 16px; }
