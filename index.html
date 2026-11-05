@@ -8,11 +8,12 @@
 <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;600;700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@400;600;700;900&display=swap">
 <link rel="stylesheet" href="assets/style.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23b23a2a'/%3E%3Ctext x='16' y='23' font-size='19' text-anchor='middle' fill='white' font-family='serif' font-weight='700'%3E思%3C/text%3E%3C/svg%3E">
 </head>
-<body>
+<body class="ocean">
+<canvas id="ocean" class="ocean-bg" aria-hidden="true"></canvas>
 
 <header class="site-header">
   <div class="wrap">
@@ -32,7 +33,7 @@
 
 <main>
   <section class="hero poster">
-    <div class="wrap">
+    <div class="wrap"><div class="panel hero-card">
       <div class="masthead"><span>思辨之境 · Long-form Library</span><span id="mh-count">—</span><span>AI · 心理 · 社会 · 媒介 · 游戏 · 文学 · 数学</span></div>
       <h1 class="poster-title">
         <span class="line"><span class="li">沉淀真实的思考，</span></span>
@@ -47,7 +48,7 @@
           <div class="stat"><b class="mono" id="st-chars">—</b><span>字</span></div>
         </div>
       </div>
-    </div>
+    </div></div>
     <nav class="domain-strip" aria-label="领域目录">
       <div class="wrap"><ol id="contents"></ol></div>
     </nav>
@@ -57,17 +58,17 @@
   </section>
 
   <section class="section" id="featured">
-    <div class="wrap">
+    <div class="wrap"><div class="panel">
       <div class="section-head reveal"><h2><span class="no" data-no="01" aria-hidden="true"></span>精选</h2><span class="eyebrow">Featured</span></div>
       <div class="featured reveal" id="featured-box"></div>
-    </div>
+    </div></div>
   </section>
 
   <section class="section" id="series">
-    <div class="wrap">
+    <div class="wrap"><div class="panel">
       <div class="section-head reveal"><h2><span class="no" data-no="02" aria-hidden="true"></span>系列</h2><span class="eyebrow">Series</span></div>
       <div class="series-grid" id="series-grid"></div>
-    </div>
+    </div></div>
   </section>
 
   <section class="quotes" id="quotes" aria-roledescription="轮播" aria-label="摘句">
@@ -83,7 +84,7 @@
   </section>
 
   <section class="section" id="archive">
-    <div class="wrap">
+    <div class="wrap"><div class="panel panel-dense">
       <div class="section-head reveal"><h2><span class="no" data-no="04" aria-hidden="true"></span>全部文章</h2><span class="eyebrow" id="archive-count"></span></div>
       <div class="toolbar">
         <div class="chips" id="chips" role="group" aria-label="按领域筛选"></div>
@@ -95,26 +96,27 @@
       </div>
       <div class="filter-note" id="filter-note" hidden></div>
       <div id="list"><p class="empty">正在载入文库…</p></div>
-    </div>
+    </div></div>
   </section>
 
   <section class="section" id="about">
-    <div class="wrap">
+    <div class="wrap"><div class="panel">
       <div class="about reveal">
         <div><blockquote>一个问题值得被慢慢展开，而不是被压缩成一句口号。</blockquote><div class="sign"><span class="glyph solid">辨</span>思辨之境 · 编者按</div></div>
         <div class="body">
           <p>思辨之境是 Yule 的个人长文文库。这里的文章大多从一个具体的困惑出发——为什么上班让人疲惫，为什么大模型看起来懂却又不懂，为什么一台性能落后的游戏机能卖出上亿台——然后尽力把它想清楚、写明白。</p>
           <p>文库中的《围炉夜话》系列整理自 B 站 UP 主「智能路障」的视频，《LLMs can't jump》译自 Tom Zahavy 的论文；数学杂文收录 22 章的《积和式》专著，附分层练习与详解。每篇文章页都标注了作者与出处，并提供原始 Markdown 文件。</p>
-          <p>原创内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议；整理与翻译的内容版权归原作者所有。</p>
+          <p>原创内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议；整理与翻译的内容版权归原作者所有。首页背景的 ASCII 鲨鱼动画来自 drewdi 的开源项目 <a href="https://github.com/stackedlol/ascii-sharks">ascii-sharks</a>（MIT 协议），本站为它加了浅色配色。</p>
         </div>
       </div>
-    </div>
+    </div></div>
   </section>
 </main>
 
 <footer class="site-footer" data-colophon></footer>
 
 <script src="assets/site.js"></script>
+<script type="module" src="assets/ocean-bg.js"></script>
 <script>
 (function () {
   var L = Lib, esc = L.esc;

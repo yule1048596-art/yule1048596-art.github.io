@@ -13,6 +13,7 @@ Yule 的个人长文文库，按主题整理 AI 与技术哲学、认知心理�
 - **阅读页**：直接渲染 Markdown，带自动目录与当前章节高亮、阅读进度、字号调节、系列导航、上一篇/下一篇、同领域推荐；支持表格、图片说明和 KaTeX 数学公式（含 `align`、`\tag`、`\boxed`）
 - **Obsidian 语法**：`[[双链]]` 会转换成站内链接，`> [!info]`、`> [!tip]` 等 callout 渲染为彩色提示框（定理、例、练习、证明等），未上传的 `![[附件]]` 会显示占位提示
 - **深色模式**：跟随系统，也可手动切换并记忆
+- **首页背景**：开源 ASCII 鲨鱼动画 [ascii-sharks](https://github.com/stackedlol/ascii-sharks)（MIT），页面内容以半透明毛玻璃面板悬浮其上；浅色、深色各有一套配色，开启“减少动态效果”时显示静止画面，性能不足的设备会自动关闭模糊
 
 ## 目录结构
 
@@ -25,7 +26,9 @@ articles/               Markdown 原文、图片与 PDF
 杂文短文(数学类)/        Obsidian 导出的多章节作品（每个子文件夹是一个系列）
 assets/style.css        样式
 assets/site.js          主题切换与文库公共函数
-assets/vendor/          marked 12.0.2、KaTeX 0.16.11（本地化，不依赖 CDN）
+assets/vendor/          marked 12.0.2、KaTeX 0.16.11、ascii-sharks（本地化，不依赖 CDN）
+assets/ocean-bg.js      首页背景动画的启动与主题同步
+tools/ascii-sharks/     背景动画的源码（含改动说明与编译命令）
 tools/build_index.py    重新生成 articles.json
 ```
 
