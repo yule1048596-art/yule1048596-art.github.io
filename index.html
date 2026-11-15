@@ -14,6 +14,7 @@
 </head>
 <body class="ocean">
 <canvas id="ocean" class="ocean-bg" aria-hidden="true"></canvas>
+<div class="progress" id="progress"></div>
 
 <header class="site-header">
   <div class="wrap">
@@ -32,7 +33,7 @@
 </header>
 
 <main>
-  <section class="hero poster">
+  <section class="hero poster" id="top">
     <div class="wrap"><div class="panel hero-card">
       <div class="masthead"><span>思辨之境 · Long-form Library</span><span id="mh-count">—</span><span>AI · 心理 · 社会 · 媒介 · 游戏 · 文学 · 数学</span></div>
       <h1 class="poster-title">
@@ -59,14 +60,14 @@
 
   <section class="section" id="featured">
     <div class="wrap"><div class="panel">
-      <div class="section-head reveal"><h2><span class="no" data-no="01" aria-hidden="true"></span>精选</h2><span class="eyebrow">Featured</span></div>
-      <div class="featured reveal" id="featured-box"></div>
+      <div class="section-head"><h2><span class="no" data-no="01" aria-hidden="true"></span>精选</h2><span class="eyebrow">Featured</span></div>
+      <div class="featured" id="featured-box"></div>
     </div></div>
   </section>
 
   <section class="section" id="series">
     <div class="wrap"><div class="panel">
-      <div class="section-head reveal"><h2><span class="no" data-no="02" aria-hidden="true"></span>系列</h2><span class="eyebrow">Series</span></div>
+      <div class="section-head"><h2><span class="no" data-no="02" aria-hidden="true"></span>系列</h2><span class="eyebrow">Series</span></div>
       <div class="series-grid" id="series-grid"></div>
     </div></div>
   </section>
@@ -85,7 +86,7 @@
 
   <section class="section" id="archive">
     <div class="wrap"><div class="panel panel-dense">
-      <div class="section-head reveal"><h2><span class="no" data-no="04" aria-hidden="true"></span>全部文章</h2><span class="eyebrow" id="archive-count"></span></div>
+      <div class="section-head"><h2><span class="no" data-no="04" aria-hidden="true"></span>全部文章</h2><span class="eyebrow" id="archive-count"></span></div>
       <div class="toolbar">
         <div class="chips" id="chips" role="group" aria-label="按领域筛选"></div>
         <label class="search">
@@ -101,7 +102,7 @@
 
   <section class="section" id="about">
     <div class="wrap"><div class="panel">
-      <div class="about reveal">
+      <div class="about">
         <div><blockquote>一个问题值得被慢慢展开，而不是被压缩成一句口号。</blockquote><div class="sign"><span class="glyph solid">辨</span>思辨之境 · 编者按</div></div>
         <div class="body">
           <p>思辨之境是 Yule 的个人长文文库。这里的文章大多从一个具体的困惑出发——为什么上班让人疲惫，为什么大模型看起来懂却又不懂，为什么一台性能落后的游戏机能卖出上亿台——然后尽力把它想清楚、写明白。</p>
@@ -116,6 +117,7 @@
 <footer class="site-footer" data-colophon></footer>
 
 <script src="assets/site.js"></script>
+<script src="assets/motion.js"></script>
 <script type="module" src="assets/ocean-bg.js"></script>
 <script>
 (function () {
@@ -156,6 +158,7 @@
     readHash();
     render();
     reveal();
+    if (window.Motion) Motion.refresh();
   }).catch(function (e) {
     document.getElementById('list').innerHTML = '<p class="empty">文库载入失败（' + esc(e.message) + '）。如果是在本地直接打开文件，请先启动本地服务器，见 README。</p>';
   });
@@ -268,6 +271,7 @@
       '<figcaption><span class="glyph">' + esc(L.glyph(a.category)) + '</span>' +
       '<a href="' + L.url(a) + '">《' + esc(a.title) + '》</a>' +
       (a.author ? '<span class="by">' + esc(a.author) + '</span>' : '') + '</figcaption>';
+    if (window.Motion) Motion.split(stage.querySelector('blockquote'), 26);
     stage.classList.add('on');
     document.getElementById('q-count').textContent = pad(qi + 1) + ' / ' + pad(QUOTES.length);
     document.querySelectorAll('.q-dot').forEach(function (d, k) { d.setAttribute('aria-current', String(k === qi)); });
@@ -359,6 +363,7 @@
     } else {
       box.innerHTML = '<ul class="archive flat">' + items.map(function (a, i) { return row(a, i, q); }).join('') + '</ul>';
     }
+    if (window.Motion && ALL.length) Motion.refresh();
   }
 
   function setCat(c, scroll) {
